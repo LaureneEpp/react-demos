@@ -40,8 +40,8 @@ const NavBar = () => {
           <button type="button" className="nav-show-btn text-creme" onClick={showSideMenu} > 
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
+              width="25"
+              height="25"
               fill="text-orange-sand"
               className="bi bi-list"
               viewBox="0 0 16 16">
@@ -56,8 +56,8 @@ const NavBar = () => {
           <button type="button" className="nav-hide-btn" onClick={hideSideMenu}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
+              width="25"
+              height="25"
               fill="currentColor"
               className="bi bi-x"
               viewBox="0 0 16 16">
@@ -75,9 +75,9 @@ const NavBar = () => {
                 <span className="nav-link-icon">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    fill="currentColor"
+                    width="25"
+                    height="25"
+                    fill="text-orange-sand"
                     className="bi bi-chevron-bar-down"
                     viewBox="0 0 16 16">
                     <path

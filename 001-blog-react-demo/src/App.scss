@@ -426,7 +426,7 @@ h6 {
 }
 
 .btn-o-primary {
-  border: 1px solid $color-orange-sand;
+  border: 2px solid $color-orange-sand;
   color: $color-creme;
 
   &:hover {
@@ -465,7 +465,7 @@ h6 {
 }
 
 .badge-primary {
-  background-color: rgb(54, 179, 126, 0.1);
+  background-color: $color-blue-light;
   color: $color-blue-dark;
 }
 
@@ -575,7 +575,7 @@ h6 {
   margin: 48px 0;
   .card-grid {
     border-radius: 16px;
-    border: 1px solid #e5eaf4;
+    border: px solid #e5eaf4;
     box-shadow: 0 10px 35px 0 rgba(0, 0, 0, 0.03);
     overflow: hidden;
   }

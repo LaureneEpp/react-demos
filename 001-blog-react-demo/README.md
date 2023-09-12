@@ -1,8 +1,8 @@
-# React + Vite
+BLOG WEBSITE
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This react is a simple web app built using React and the Vite framework. It's main purpose was to put in practice my knowledge of React. Credit goes to GeekProbin(https://www.youtube.com/watch?v=kfLbYGDV3Dg) for the tutorial and inspiration.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Features
+Blog Posts: Users can browse through a collection of blog posts on different subjects.
+Search For : The app includes a search feature powered by React that allows users to search for specific articles by keywords.
+Responsive Design: The app is designed to work seamlessly on both desktop and mobile devices.

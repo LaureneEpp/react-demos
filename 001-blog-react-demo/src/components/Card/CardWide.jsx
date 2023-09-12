@@ -16,7 +16,7 @@ const CardWide = ({ blogItemData }) => {
           <h2 className="title-lg title featured-title">
             { blogItemData.title }
           </h2>
-          <p className="text-lg text">
+          <p className="text-lg text-blue-dark">
             {blogItemData.content}
           </p>
         </div>
