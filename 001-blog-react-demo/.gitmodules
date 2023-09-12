@@ -1,0 +1,9 @@
+[submodule "001-blog-react-demo"]
+	path = 001-blog-react-demo
+	url = git@github.com:LaureneEpp/real-demos.git
+[submodule "002-weather-react-demo"]
+	path = 002-weather-react-demo
+	url = git@github.com:LaureneEpp/real-demos.git
+[submodule "003-marketplace-react-demo"]
+	path = 003-marketplace-react-demo
+	url = git@github.com:LaureneEpp/real-demos.git
