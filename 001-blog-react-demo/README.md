@@ -1,6 +1,6 @@
 BLOG WEBSITE
 
-This react is a simple web app built using React and the Vite framework. It's main purpose was to put in practice my knowledge of React. Credit goes to GeekProbin(https://www.youtube.com/watch?v=kfLbYGDV3Dg) for the tutorial and inspiration.
+This react project is a simple web app built using React and the Vite framework. It's main purpose was to put in practice my knowledge of React. Credit goes to GeekProbin(https://www.youtube.com/watch?v=kfLbYGDV3Dg) for the tutorial and inspiration.
 
 Features
 Blog Posts: Users can browse through a collection of blog posts on different subjects.
