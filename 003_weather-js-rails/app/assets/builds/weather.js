@@ -39,8 +39,12 @@
       const weatherHtml = `
         <div class="card bg_blue-dark-color p-3 primary-color" style="width: 18rem;">
           <div class="card-body">
-            <h5 class="card-title">
-              Weather in ${name}, ${sys.country}
+            <h5 class="card-title d-flex flex-row">
+            <span>
+              <span id="map-icon-container">
+              </span>
+            </span>
+            <span class="ms-2">Weather in ${name} in ${sys.country}</spaan>
             </h5>
             <p class="card-text"><span class="fw-semibold">Temperature:</span> ${main.temp}\xB0C</p>
             <p class="card-text"><span class="fw-semibold">Conditions:</span> ${weather[0].description}</p>
@@ -49,6 +53,33 @@
       `;
       weatherDisplay.innerHTML = weatherHtml;
       errorDisplay.textContent = "";
+      addMapIconLink(name);
+    }
+    function generateMapLink(city) {
+      const formattedCity = city.replace(/\s+/g, "+");
+      const mapServiceUrl = `https://www.google.com/maps/search/?api=1&query=${formattedCity}`;
+      return mapServiceUrl;
+    }
+    function addMapIconLink(city) {
+      const mapIconContainer = document.getElementById("map-icon-container");
+      const mapLink = document.createElement("a");
+      mapLink.href = generateMapLink(city);
+      mapLink.target = "_blank";
+      const mapIcon = document.createElement("svg");
+      mapIcon.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+      mapIcon.setAttribute("width", "25");
+      mapIcon.setAttribute("height", "25");
+      mapIcon.setAttribute("fill", "currentColor");
+      mapIcon.setAttribute("class", "bi bi-geo-alt yellow-sun-color");
+      mapIcon.setAttribute("viewBox", "0 0 16 16");
+      const path = document.createElement("path");
+      path.setAttribute(
+        "d",
+        "M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"
+      );
+      mapIcon.appendChild(path);
+      mapLink.appendChild(mapIcon);
+      mapIconContainer.appendChild(mapLink);
     }
     function handleApiError(errorMessage2) {
       showError(errorMessage2);
@@ -74,7 +105,6 @@
       infoButton.classList.add("btn", "btn-light", "mt-3");
       infoButton.addEventListener("click", () => {
         displayMoreInfo(weatherData);
-        console.log("Test btn");
       });
       weatherDisplay.appendChild(infoButton);
     }
@@ -101,6 +131,7 @@
       const moreInfoContainer = document.createElement("div");
       moreInfoContainer.innerHTML = moreInfoHtml;
       weatherDisplay.appendChild(moreInfoContainer);
+      document.getElementById("info-button").style.display = "none";
     }
   });
 })();
