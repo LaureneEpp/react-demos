@@ -15,5 +15,4 @@ const Home = () => (
       <WeatherComponent />
   </div>
 );
-
 export default Home;

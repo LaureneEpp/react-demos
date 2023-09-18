@@ -4,7 +4,7 @@ function WeatherDataComponent({ weatherData }) {
   const { name, sys, main, weather } = weatherData;
 
   return (
-    <div>
+    <div className="jumbotron jumbotron-fluid bg_blue-dark-color">
       <h2>
         Weather in {name}, {sys.country}
       </h2>
