@@ -4326,3 +4326,18 @@ Processing by WeatherController#fetch_weather as */*
 Completed 200 OK in 115ms (Views: 0.7ms | ActiveRecord: 0.0ms | Allocations: 1603)
 
 
+Started GET "/" for ::1 at 2023-09-20 00:36:16 +0200
+Processing by WeatherController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering weather/index.html.erb within layouts/application
+  Rendered weather/index.html.erb within layouts/application (Duration: 4.6ms | Allocations: 325)
+  Rendered layout layouts/application.html.erb (Duration: 17.8ms | Allocations: 1551)
+Completed 200 OK in 77ms (Views: 36.5ms | ActiveRecord: 0.0ms | Allocations: 5403)
+
+
+Started GET "/weather?city=London" for ::1 at 2023-09-20 00:36:21 +0200
+Processing by WeatherController#fetch_weather as */*
+  Parameters: {"city"=>"London"}
+Completed 200 OK in 135ms (Views: 1.3ms | ActiveRecord: 0.0ms | Allocations: 1601)
+
+

@@ -55,7 +55,10 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="card bg_blue-dark-color p-3 primary-color" style="width: 18rem;">
           <div class="card-body">
             <h5 class="card-title d-flex flex-row">
-
+            <span>
+              <span id="map-icon-container">
+              </span>
+            </span>
             <span class="ms-2">Weather in ${name} in ${sys.country}</spaan>
             </h5>
             <p class="card-text"><span class="fw-semibold">Temperature:</span> ${main.temp}°C</p>
@@ -66,7 +69,45 @@ document.addEventListener("DOMContentLoaded", () => {
 
     weatherDisplay.innerHTML = weatherHtml;
     errorDisplay.textContent = "";
+    addMapIconLink(name);
   }
+
+  function generateMapLink(city) {
+    const formattedCity = city.replace(/\s+/g, "+");
+    const mapServiceUrl = `https://www.google.com/maps/search/?api=1&query=${formattedCity}`;
+    return mapServiceUrl;
+  }
+
+  function addMapIconLink(city) {
+      const mapIconContainer = document.getElementById("map-icon-container");
+  
+      const mapLink = document.createElement("a");
+      mapLink.href = generateMapLink(city);
+      mapLink.target = "_blank";
+      const mapIcon = document.createElement("svg");
+      mapIcon.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+      mapIcon.setAttribute("width", "25");
+      mapIcon.setAttribute("height", "25");
+      mapIcon.setAttribute("fill", "currentColor");
+      mapIcon.setAttribute("class", "bi bi-geo-alt yellow-sun-color");
+      mapIcon.setAttribute("viewBox", "0 0 16 16");
+  
+    // Create the path for the map icon (you can customize this)
+    const path = document.createElement("path");
+    path.setAttribute(
+      "d",
+      "M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"
+    );
+  
+    // Append the path to the map icon
+    mapIcon.appendChild(path);
+  
+    // Append the map icon to the map link
+    mapLink.appendChild(mapIcon);
+  
+    // Append the map link to the map icon container
+    mapIconContainer.appendChild(mapLink);
+    }
 
   function handleApiError(errorMessage) {
     showError(errorMessage);
@@ -144,17 +185,16 @@ document.addEventListener("DOMContentLoaded", () => {
     "p-3",
     "primary-color",
     "mt-3",
-    "mx-auto", 
+    "mx-auto",
     "d-flex",
     "align-items-center"
-
   );
   selectedInfoContainer.style.width = "18rem";
   const card_body = document.createElement("div");
   card_body.classList.add("card-body");
   selectedInfoContainer.append(card_body);
   const selectedInfoList = document.createElement("ul");
-  selectedInfoList.classList.add('list-unstyled');
+  selectedInfoList.classList.add("list-unstyled");
   card_body.appendChild(selectedInfoList);
 
   function displaySelectedInfo() {
@@ -170,7 +210,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
     weatherMoreInfoDisplay.appendChild(selectedInfoContainer);
-
   }
 
   function getInfoText(infoType) {
