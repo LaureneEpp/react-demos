@@ -3,10 +3,14 @@
   document.addEventListener("DOMContentLoaded", () => {
     const cityInput = document.getElementById("city-input");
     const weatherDisplay = document.getElementById("weather-display");
+    const weatherMoreInfoDisplay = document.getElementById(
+      "weather-more-info-display"
+    );
     const errorDisplay = document.getElementById("error-display");
     const errorPopup = document.getElementById("error-popup");
     const errorMessage = document.getElementById("error-message");
     let weatherData;
+    const selectedInfoTypes = [];
     document.getElementById("weather-form").addEventListener("submit", (event) => {
       event.preventDefault();
       const city = cityInput.value.trim();
@@ -25,7 +29,7 @@
         weatherData = data;
         displayWeather(weatherData);
         errorDisplay.textContent = "";
-        appendInfoButton();
+        createInfoButtons();
       }).catch((error) => {
         handleApiError(error.message);
       });
@@ -68,40 +72,109 @@
     function hideError() {
       errorPopup.style.display = "none";
     }
-    function appendInfoButton() {
-      const infoButton = document.createElement("button");
-      infoButton.textContent = "+";
-      infoButton.id = "info-button";
-      infoButton.classList.add("btn", "btn-light", "mt-3");
-      infoButton.addEventListener("click", () => {
-        displayMoreInfo(weatherData);
+    function createInfoButtons() {
+      const infoTypesContainer = document.createElement("div");
+      infoTypesContainer.setAttribute("id", "info-types-container");
+      infoTypesContainer.classList.add("grid", "text-center");
+      const infoTypes = [
+        "Temperature min",
+        "Temperature max",
+        "Humidity",
+        "Wind Speed",
+        "Sunrise",
+        "Sunset",
+        "Pressure",
+        "Longitude",
+        "Latitude",
+        "Clouds"
+      ];
+      infoTypes.forEach((infoType) => {
+        const infoButton = document.createElement("button");
+        infoButton.classList.add(
+          "btn",
+          "btn-outline-dark",
+          "m-2",
+          "p-2",
+          "g-col-6",
+          "g-col-md-4"
+        );
+        infoButton.textContent = infoType;
+        infoButton.addEventListener("click", () => {
+          addInfoType(infoType, infoButton);
+        });
+        infoTypesContainer.append(infoButton);
       });
-      weatherDisplay.appendChild(infoButton);
+      weatherMoreInfoDisplay.innerHTML = "";
+      weatherMoreInfoDisplay.append(infoTypesContainer);
     }
-    function displayMoreInfo(data) {
-      if (!data) {
-        errorDisplay.textContent = "Weather data is undefined.";
-        return;
+    function addInfoType(infoType, infoButton) {
+      if (!selectedInfoTypes.includes(infoType)) {
+        selectedInfoTypes.push(infoType);
+        infoButton.style.display = "none";
+        displaySelectedInfo();
       }
-      const { main, wind, sys } = data;
-      const moreInfoHtml = `
-      <div class="card bg_blue-dark-color p-3 primary-color mt-3" style="width: 18rem;">
-        <div class="card-body">
-          <p class="card-text"><span class="fw-semibold">Humidity:</span> ${main.humidity}%</p>
-          <p class="card-text"><span class="fw-semibold">Wind Speed:</span> ${wind.speed} m/s</p>
-          <p class="card-text"><span class="fw-semibold">Sunrise:</span> ${new Date(
-        sys.sunrise * 1e3
-      ).toLocaleTimeString()}</p>
-          <p class="card-text"><span class="fw-semibold">Sunset:</span> ${new Date(
-        sys.sunset * 1e3
-      ).toLocaleTimeString()}</p>
-        </div>
-      </div>
-      `;
-      const moreInfoContainer = document.createElement("div");
-      moreInfoContainer.innerHTML = moreInfoHtml;
-      weatherDisplay.appendChild(moreInfoContainer);
-      document.getElementById("info-button").style.display = "none";
+    }
+    const selectedInfoContainer = document.createElement("div");
+    selectedInfoContainer.setAttribute("id", "selected-info-container");
+    selectedInfoContainer.classList.add(
+      "card",
+      "bg_blue-dark-color",
+      "p-3",
+      "primary-color",
+      "mt-3",
+      "mx-auto",
+      "d-flex",
+      "align-items-center"
+    );
+    selectedInfoContainer.style.width = "18rem";
+    const card_body = document.createElement("div");
+    card_body.classList.add("card-body");
+    selectedInfoContainer.append(card_body);
+    const selectedInfoList = document.createElement("ul");
+    selectedInfoList.classList.add("list-unstyled");
+    card_body.appendChild(selectedInfoList);
+    function displaySelectedInfo() {
+      selectedInfoList.innerHTML = "";
+      selectedInfoTypes.forEach((infoType) => {
+        const infoText = getInfoText(infoType);
+        if (infoText) {
+          const listItem = document.createElement("li");
+          listItem.classList.add("card-text", "my-2");
+          listItem.textContent = infoText;
+          selectedInfoList.appendChild(listItem);
+        }
+      });
+      weatherMoreInfoDisplay.appendChild(selectedInfoContainer);
+    }
+    function getInfoText(infoType) {
+      switch (infoType) {
+        case "Temperature min":
+          return `Temperature min: ${weatherData.main.temp_min}\xB0C`;
+        case "Temperature max":
+          return `Temperature max: ${weatherData.main.temp_max}\xB0C`;
+        case "Humidity":
+          return `Humidity: ${weatherData.main.humidity}%`;
+        case "Wind Speed":
+          return `Wind Speed: ${weatherData.wind.speed} m/s`;
+        case "Sunrise":
+          return `Sunrise: ${new Date(
+            weatherData.sys.sunrise * 1e3
+          ).toLocaleTimeString()}`;
+        case "Sunset":
+          return `Sunset: ${new Date(
+            weatherData.sys.sunset * 1e3
+          ).toLocaleTimeString()}`;
+        case "Pressure":
+          return `Pressure: ${weatherData.main.pressure}`;
+        case "Longitude":
+          return `Longitude: ${weatherData.coord.lon}`;
+        case "Latitude":
+          return `Latitude: ${weatherData.coord.lat}`;
+        case "Rain":
+          return `Clouds: ${weatherData.clouds.all} %`;
+        default:
+          return "";
+      }
     }
   });
 })();
