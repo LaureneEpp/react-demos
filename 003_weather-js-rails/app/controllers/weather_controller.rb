@@ -1,12 +1,11 @@
 class WeatherController < ApplicationController
   include HTTParty
 
-  def index
-  end
+  def index; end
 
   def fetch_weather
     city = params[:city]
-    api_key = ENV['API_KEY']
+    api_key = Rails.application.credentials.my_api_key[:development]
 
     url = "https://api.openweathermap.org/data/2.5/weather?q=#{city}&appid=#{api_key}"
     response = HTTParty.get(url)
@@ -15,7 +14,6 @@ class WeatherController < ApplicationController
       weather_data = JSON.parse(response.body)
       render json: weather_data
     else
-      # error_message = 'Fail to fetch weather data !'
       error_message = ''
       render json: { error: error_message }, status: :unprocessable_entity
     end

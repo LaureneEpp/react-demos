@@ -1,3 +1,3 @@
-My react laboratory
+Weather App
 
-The purpose of this repository is to present my small projects that I develop while trying to learn React. Learning by practising !
+This is weather app built using Ruby on Rails and JavaScript. 
