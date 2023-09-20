@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // Get all links
   const cityInput = document.getElementById("city-input");
   const weatherDisplay = document.getElementById("weather-display");
   const weatherMoreInfoDisplay = document.getElementById(
@@ -11,11 +12,13 @@ document.addEventListener("DOMContentLoaded", () => {
   let weatherData;
   const selectedInfoTypes = [];
 
+  // Event listener to the weather form
   document
     .getElementById("weather-form")
     .addEventListener("submit", (event) => {
       event.preventDefault();
 
+      // Get the city input value
       const city = cityInput.value.trim();
 
       if (!city) {
@@ -24,6 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
+      // Fetch weather data for the city
       fetch(`/weather?city=${city}`)
         .then((response) => {
           if (response.status === 200) {
@@ -43,7 +47,9 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
+  // Display weather data
   function displayWeather(data) {
+    // Is data defined?
     if (!data) {
       handleApiError("Weather data is undefined.");
       return;
@@ -51,6 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const { name, sys, main, weather } = data;
 
+    // HTML for weather display
     const weatherHtml = `
         <div class="card bg_blue-dark-color p-3 primary-color" style="width: 18rem;">
           <div class="card-body">
@@ -72,42 +79,40 @@ document.addEventListener("DOMContentLoaded", () => {
     addMapIconLink(name);
   }
 
+  // Generate a map link
   function generateMapLink(city) {
     const formattedCity = city.replace(/\s+/g, "+");
     const mapServiceUrl = `https://www.google.com/maps/search/?api=1&query=${formattedCity}`;
     return mapServiceUrl;
   }
 
+  // Add a map icon link
   function addMapIconLink(city) {
-      const mapIconContainer = document.getElementById("map-icon-container");
-  
-      const mapLink = document.createElement("a");
-      mapLink.href = generateMapLink(city);
-      mapLink.target = "_blank";
-      const mapIcon = document.createElement("svg");
-      mapIcon.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-      mapIcon.setAttribute("width", "25");
-      mapIcon.setAttribute("height", "25");
-      mapIcon.setAttribute("fill", "currentColor");
-      mapIcon.setAttribute("class", "bi bi-geo-alt yellow-sun-color");
-      mapIcon.setAttribute("viewBox", "0 0 16 16");
-  
-    // Create the path for the map icon (you can customize this)
+    const mapIconContainer = document.getElementById("map-icon-container");
+
+    const mapLink = document.createElement("a");
+    mapLink.href = generateMapLink(city);
+    mapLink.target = "_blank";
+    const mapIcon = document.createElement("svg");
+    mapIcon.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+    mapIcon.setAttribute("width", "25");
+    mapIcon.setAttribute("height", "25");
+    mapIcon.setAttribute("fill", "currentColor");
+    mapIcon.setAttribute("class", "bi bi-geo-alt yellow-sun-color");
+    mapIcon.setAttribute("viewBox", "0 0 16 16");
+
+    // Create the path for the map icon
     const path = document.createElement("path");
     path.setAttribute(
       "d",
       "M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"
     );
-  
-    // Append the path to the map icon
+
+    // Append the path to the map icon, to the map Link, to the map container
     mapIcon.appendChild(path);
-  
-    // Append the map icon to the map link
     mapLink.appendChild(mapIcon);
-  
-    // Append the map link to the map icon container
     mapIconContainer.appendChild(mapLink);
-    }
+  }
 
   function handleApiError(errorMessage) {
     showError(errorMessage);
@@ -122,6 +127,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Handling API errors
   function showError(message) {
     errorMessage.textContent = message;
     errorPopup.style.display = "flex";
@@ -131,6 +137,7 @@ document.addEventListener("DOMContentLoaded", () => {
     errorPopup.style.display = "none";
   }
 
+  // Create information buttons
   function createInfoButtons() {
     const infoTypesContainer = document.createElement("div");
     infoTypesContainer.setAttribute("id", "info-types-container");
@@ -169,6 +176,7 @@ document.addEventListener("DOMContentLoaded", () => {
     weatherMoreInfoDisplay.append(infoTypesContainer);
   }
 
+  // Add an information type
   function addInfoType(infoType, infoButton) {
     if (!selectedInfoTypes.includes(infoType)) {
       selectedInfoTypes.push(infoType);
@@ -197,6 +205,7 @@ document.addEventListener("DOMContentLoaded", () => {
   selectedInfoList.classList.add("list-unstyled");
   card_body.appendChild(selectedInfoList);
 
+  // Display selected information
   function displaySelectedInfo() {
     selectedInfoList.innerHTML = "";
     selectedInfoTypes.forEach((infoType) => {
@@ -212,6 +221,7 @@ document.addEventListener("DOMContentLoaded", () => {
     weatherMoreInfoDisplay.appendChild(selectedInfoContainer);
   }
 
+  // Get information text based on infoType
   function getInfoText(infoType) {
     switch (infoType) {
       case "Temperature min":
