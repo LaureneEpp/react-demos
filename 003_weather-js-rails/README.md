@@ -7,3 +7,4 @@ API Requests: The app makes API requests to retrieve weather data for a city upo
 Weather Display: basic information concerning the current weather conditions are displayed.
 Additional Information: the user can click on a list of information types to view additional weather-related data.
 Map icon : the user can click the map icon and view the location on Google maps where the weather information is based. 
+Reset button: the user can reset the form and weather information.

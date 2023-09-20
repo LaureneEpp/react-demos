@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const errorDisplay = document.getElementById("error-display");
   const errorPopup = document.getElementById("error-popup");
   const errorMessage = document.getElementById("error-message");
+  const resetButton = document.getElementById("reset-button");
 
   let weatherData;
   const selectedInfoTypes = [];
@@ -76,6 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     weatherDisplay.innerHTML = weatherHtml;
     errorDisplay.textContent = "";
+    resetButton.removeAttribute("hidden");
     addMapIconLink(name);
   }
 

@@ -4356,3 +4356,177 @@ Processing by WeatherController#fetch_weather as */*
 Completed 200 OK in 156ms (Views: 0.5ms | ActiveRecord: 0.0ms | Allocations: 1603)
 
 
+Started GET "/" for ::1 at 2023-09-20 13:28:56 +0200
+Processing by WeatherController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering weather/index.html.erb within layouts/application
+  Rendered weather/index.html.erb within layouts/application (Duration: 2.8ms | Allocations: 326)
+  Rendered layout layouts/application.html.erb (Duration: 13.1ms | Allocations: 1552)
+Completed 200 OK in 47ms (Views: 22.6ms | ActiveRecord: 0.0ms | Allocations: 5404)
+
+
+Started GET "/" for ::1 at 2023-09-20 13:35:43 +0200
+Processing by WeatherController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering weather/index.html.erb within layouts/application
+  Rendered weather/index.html.erb within layouts/application (Duration: 0.9ms | Allocations: 136)
+  Rendered layout layouts/application.html.erb (Duration: 4.9ms | Allocations: 967)
+Completed 200 OK in 10ms (Views: 8.0ms | ActiveRecord: 0.0ms | Allocations: 1756)
+
+
+Started GET "/" for ::1 at 2023-09-20 13:37:24 +0200
+Processing by WeatherController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering weather/index.html.erb within layouts/application
+  Rendered weather/index.html.erb within layouts/application (Duration: 0.8ms | Allocations: 136)
+  Rendered layout layouts/application.html.erb (Duration: 4.7ms | Allocations: 938)
+Completed 200 OK in 10ms (Views: 9.3ms | ActiveRecord: 0.0ms | Allocations: 1728)
+
+
+Started GET "/" for ::1 at 2023-09-20 13:48:00 +0200
+Processing by WeatherController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering weather/index.html.erb within layouts/application
+  Rendered weather/index.html.erb within layouts/application (Duration: 3.7ms | Allocations: 326)
+  Rendered layout layouts/application.html.erb (Duration: 11.1ms | Allocations: 1552)
+Completed 200 OK in 51ms (Views: 20.7ms | ActiveRecord: 0.0ms | Allocations: 5404)
+
+
+Started GET "/" for ::1 at 2023-09-20 13:48:02 +0200
+Processing by WeatherController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering weather/index.html.erb within layouts/application
+  Rendered weather/index.html.erb within layouts/application (Duration: 0.1ms | Allocations: 7)
+  Rendered layout layouts/application.html.erb (Duration: 1.1ms | Allocations: 546)
+Completed 200 OK in 2ms (Views: 1.5ms | ActiveRecord: 0.0ms | Allocations: 786)
+
+
+Started GET "/" for ::1 at 2023-09-20 13:48:03 +0200
+Processing by WeatherController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering weather/index.html.erb within layouts/application
+  Rendered weather/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 7)
+  Rendered layout layouts/application.html.erb (Duration: 0.9ms | Allocations: 535)
+Completed 200 OK in 1ms (Views: 1.3ms | ActiveRecord: 0.0ms | Allocations: 774)
+
+
+Started GET "/" for ::1 at 2023-09-20 13:48:06 +0200
+Processing by WeatherController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering weather/index.html.erb within layouts/application
+  Rendered weather/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 7)
+  Rendered layout layouts/application.html.erb (Duration: 1.1ms | Allocations: 552)
+Completed 200 OK in 2ms (Views: 1.6ms | ActiveRecord: 0.0ms | Allocations: 789)
+
+
+Started GET "/" for ::1 at 2023-09-20 13:48:19 +0200
+Processing by WeatherController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering weather/index.html.erb within layouts/application
+  Rendered weather/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 7)
+  Rendered layout layouts/application.html.erb (Duration: 1.1ms | Allocations: 534)
+Completed 200 OK in 2ms (Views: 1.8ms | ActiveRecord: 0.0ms | Allocations: 771)
+
+
+Started GET "/" for ::1 at 2023-09-20 13:48:20 +0200
+Processing by WeatherController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering weather/index.html.erb within layouts/application
+  Rendered weather/index.html.erb within layouts/application (Duration: 0.2ms | Allocations: 7)
+  Rendered layout layouts/application.html.erb (Duration: 1.5ms | Allocations: 535)
+Completed 200 OK in 2ms (Views: 2.0ms | ActiveRecord: 0.0ms | Allocations: 774)
+
+
+Started GET "/" for ::1 at 2023-09-20 13:48:21 +0200
+Processing by WeatherController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering weather/index.html.erb within layouts/application
+  Rendered weather/index.html.erb within layouts/application (Duration: 0.1ms | Allocations: 7)
+  Rendered layout layouts/application.html.erb (Duration: 1.9ms | Allocations: 543)
+Completed 200 OK in 4ms (Views: 3.6ms | ActiveRecord: 0.0ms | Allocations: 780)
+
+
+Started GET "/" for ::1 at 2023-09-20 13:48:28 +0200
+Processing by WeatherController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering weather/index.html.erb within layouts/application
+  Rendered weather/index.html.erb within layouts/application (Duration: 0.8ms | Allocations: 136)
+  Rendered layout layouts/application.html.erb (Duration: 5.1ms | Allocations: 952)
+Completed 200 OK in 10ms (Views: 8.5ms | ActiveRecord: 0.0ms | Allocations: 1739)
+
+
+Started GET "/" for ::1 at 2023-09-20 13:48:29 +0200
+Processing by WeatherController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering weather/index.html.erb within layouts/application
+  Rendered weather/index.html.erb within layouts/application (Duration: 0.1ms | Allocations: 7)
+  Rendered layout layouts/application.html.erb (Duration: 1.7ms | Allocations: 528)
+Completed 200 OK in 4ms (Views: 2.7ms | ActiveRecord: 0.0ms | Allocations: 766)
+
+
+Started GET "/" for ::1 at 2023-09-20 13:48:30 +0200
+Processing by WeatherController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering weather/index.html.erb within layouts/application
+  Rendered weather/index.html.erb within layouts/application (Duration: 0.0ms | Allocations: 7)
+  Rendered layout layouts/application.html.erb (Duration: 0.9ms | Allocations: 537)
+Completed 200 OK in 2ms (Views: 1.7ms | ActiveRecord: 0.0ms | Allocations: 774)
+
+
+Started GET "/weather?city=city" for ::1 at 2023-09-20 13:48:32 +0200
+Processing by WeatherController#fetch_weather as */*
+  Parameters: {"city"=>"city"}
+Completed 200 OK in 204ms (Views: 0.7ms | ActiveRecord: 0.0ms | Allocations: 1600)
+
+
+Started GET "/" for ::1 at 2023-09-20 13:51:16 +0200
+Processing by WeatherController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering weather/index.html.erb within layouts/application
+  Rendered weather/index.html.erb within layouts/application (Duration: 4.4ms | Allocations: 326)
+  Rendered layout layouts/application.html.erb (Duration: 12.6ms | Allocations: 1534)
+Completed 200 OK in 51ms (Views: 21.4ms | ActiveRecord: 0.0ms | Allocations: 5386)
+
+
+Started GET "/weather?city=London" for ::1 at 2023-09-20 13:51:23 +0200
+Processing by WeatherController#fetch_weather as */*
+  Parameters: {"city"=>"London"}
+Completed 200 OK in 182ms (Views: 0.6ms | ActiveRecord: 0.0ms | Allocations: 1609)
+
+
+Started GET "/" for ::1 at 2023-09-20 13:52:41 +0200
+Processing by WeatherController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering weather/index.html.erb within layouts/application
+  Rendered weather/index.html.erb within layouts/application (Duration: 3.9ms | Allocations: 326)
+  Rendered layout layouts/application.html.erb (Duration: 12.9ms | Allocations: 1564)
+Completed 200 OK in 50ms (Views: 22.5ms | ActiveRecord: 0.0ms | Allocations: 5416)
+
+
+Started GET "/weather?city=london" for ::1 at 2023-09-20 13:52:45 +0200
+Processing by WeatherController#fetch_weather as */*
+  Parameters: {"city"=>"london"}
+Completed 200 OK in 320ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 1608)
+
+
+Started GET "/" for ::1 at 2023-09-20 13:56:53 +0200
+Processing by WeatherController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering weather/index.html.erb within layouts/application
+  Rendered weather/index.html.erb within layouts/application (Duration: 6.1ms | Allocations: 326)
+  Rendered layout layouts/application.html.erb (Duration: 14.7ms | Allocations: 1549)
+Completed 200 OK in 53ms (Views: 24.4ms | ActiveRecord: 0.0ms | Allocations: 5401)
+
+
+Started GET "/weather?city=London" for ::1 at 2023-09-20 13:56:57 +0200
+Processing by WeatherController#fetch_weather as */*
+  Parameters: {"city"=>"London"}
+Completed 200 OK in 154ms (Views: 0.5ms | ActiveRecord: 0.0ms | Allocations: 1608)
+
+
+Started GET "/weather?city=london" for ::1 at 2023-09-20 13:57:07 +0200
+Processing by WeatherController#fetch_weather as */*
+  Parameters: {"city"=>"london"}
+Completed 200 OK in 75ms (Views: 0.5ms | ActiveRecord: 0.0ms | Allocations: 1012)
+
+

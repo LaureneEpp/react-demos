@@ -9,6 +9,7 @@
     const errorDisplay = document.getElementById("error-display");
     const errorPopup = document.getElementById("error-popup");
     const errorMessage = document.getElementById("error-message");
+    const resetButton = document.getElementById("reset-button");
     let weatherData;
     const selectedInfoTypes = [];
     document.getElementById("weather-form").addEventListener("submit", (event) => {
@@ -57,6 +58,7 @@
       `;
       weatherDisplay.innerHTML = weatherHtml;
       errorDisplay.textContent = "";
+      resetButton.removeAttribute("hidden");
       addMapIconLink(name);
     }
     function generateMapLink(city) {
