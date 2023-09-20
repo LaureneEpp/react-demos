@@ -4341,3 +4341,18 @@ Processing by WeatherController#fetch_weather as */*
 Completed 200 OK in 135ms (Views: 1.3ms | ActiveRecord: 0.0ms | Allocations: 1601)
 
 
+Started GET "/" for ::1 at 2023-09-20 11:21:39 +0200
+Processing by WeatherController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering weather/index.html.erb within layouts/application
+  Rendered weather/index.html.erb within layouts/application (Duration: 3.9ms | Allocations: 325)
+  Rendered layout layouts/application.html.erb (Duration: 11.6ms | Allocations: 1428)
+Completed 200 OK in 51ms (Views: 20.5ms | ActiveRecord: 0.0ms | Allocations: 5280)
+
+
+Started GET "/weather?city=rouen" for ::1 at 2023-09-20 11:21:43 +0200
+Processing by WeatherController#fetch_weather as */*
+  Parameters: {"city"=>"rouen"}
+Completed 200 OK in 156ms (Views: 0.5ms | ActiveRecord: 0.0ms | Allocations: 1603)
+
+

@@ -6,3 +6,4 @@ _Key Features_
 API Requests: The app makes API requests to retrieve weather data for a city upon user's input.
 Weather Display: basic information concerning the current weather conditions are displayed.
 Additional Information: the user can click on a list of information types to view additional weather-related data.
+Map icon : the user can click the map icon and view the location on Google maps where the weather information is based. 
