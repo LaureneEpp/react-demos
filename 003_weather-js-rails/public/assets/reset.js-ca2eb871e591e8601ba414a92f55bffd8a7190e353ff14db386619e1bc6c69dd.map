@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../javascript/reset.js"],
+  "sourcesContent": ["document.addEventListener(\"DOMContentLoaded\", () => {\n    // Get all links\n    const weatherForm = document.getElementById(\"weather-form\");\n    const resetButton = document.getElementById(\"reset-button\");\n\n    resetButton.addEventListener(\"click\", () => {\n        // Delete weather data\n        weatherDisplay.innerHTML = \"\";\n        weatherMoreInfoDisplay.innerHTML = \"\";\n\n        // Reset form\n        weatherForm.reset();\n    });\n    \n    resetButton.setAttribute(\"hidden\", \"true\");\n});\n"],
+  "mappings": ";;AAAA,WAAS,iBAAiB,oBAAoB,MAAM;AAEhD,UAAM,cAAc,SAAS,eAAe,cAAc;AAC1D,UAAM,cAAc,SAAS,eAAe,cAAc;AAE1D,gBAAY,iBAAiB,SAAS,MAAM;AAExC,qBAAe,YAAY;AAC3B,6BAAuB,YAAY;AAGnC,kBAAY,MAAM;AAAA,IACtB,CAAC;AAED,gBAAY,aAAa,UAAU,MAAM;AAAA,EAC7C,CAAC;",
+  "names": []
+}

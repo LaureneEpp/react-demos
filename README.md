@@ -1,24 +1,9 @@
-# README
+My react laboratory
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The purpose of this repository is to present my small projects that I develop while trying to learn React. Learning by practising !
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Under this repository, you will find:
+001 - Blog - Vite & React Framework - learning process: 100% youtube tutorial
+002 - Weather app - RoR & React - learning process : 100% learning by doing - fails to configure
+003 - Weather app - RoR & Javascript - learning process : 100% learning by doing
+004 - Wip
