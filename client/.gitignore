@@ -26,3 +26,5 @@ dist-ssr
 #no env files on 
 .env
 .env.development
+
+coverage
