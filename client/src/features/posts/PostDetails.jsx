@@ -5,11 +5,9 @@ import { API_URL } from "../../constants";
 function PostDetails() {
   const [post, setPost] = useState(null);
   const { id } = useParams();
-//   const [loading, setLoading] = useState(true);
-//   const [, setError] = useState(null);
-
+  
   useEffect(() => {
-    const fetchCurrentPost = async () => {
+    async function fetchCurrentPost() {
       try {
         const response = await fetch(`${API_URL}/${id}`);
         if (response.ok) {
@@ -21,9 +19,10 @@ function PostDetails() {
       } catch (e) {
         console.log("An error occured", e);
       }
-    };
+    }
     fetchCurrentPost();
   }, [id]);
+
 
   if (!post) return <h2>Loading...</h2>;
 
