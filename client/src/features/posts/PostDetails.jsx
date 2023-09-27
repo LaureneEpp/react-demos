@@ -1,10 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import { API_URL } from "../../constants";
-import {
-  fetchPost,
-  deletePost as deletePostService,
-} from "../../services/postService";
+
+import { fetchPost, deletePost } from "../../services/postService";
 
 function PostDetails() {
   const [post, setPost] = useState(null);
@@ -29,12 +26,12 @@ function PostDetails() {
 
   const handleDeletePost = async () => {
     try {
-      await deletePostService(post.id);
+      await deletePost(post.id);
       console.log(`Post with ID ${id} deleted successfully.`);
       navigate("/");
     } catch (e) {
       console.log("Error occurred while deleting the post:", e);
-      setError(e);
+      setError(e); 
     }
   };
 
