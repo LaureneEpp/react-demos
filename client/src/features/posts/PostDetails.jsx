@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { API_URL } from "../../constants";
-import { fetchPost, deletePost as deletePostService } from "../../services/postService";
+import {
+  fetchPost,
+  deletePost as deletePostService,
+} from "../../services/postService";
 
 function PostDetails() {
   const [post, setPost] = useState(null);
@@ -14,22 +17,23 @@ function PostDetails() {
   useEffect(() => {
     async function fetchCurrentPost() {
       try {
-        const json = await fetchPost(id)
-        setPost(json)
+        const json = await fetchPost(id);
+        console.log(`Post with ID ${id} has been loaded successfully.`);
+        setPost(json);
       } catch (e) {
-        console.log("An error occured", e);
+        console.log("Error occurred while loading the post:", e);
       }
     }
     fetchCurrentPost();
   }, [id]);
 
-  const deletePost = async () => {
-    try { 
+  const handleDeletePost = async () => {
+    try {
       await deletePostService(post.id);
-        navigate("/");
-
+      console.log(`Post with ID ${id} deleted successfully.`);
+      navigate("/");
     } catch (e) {
-      console.log("Error occured", e);
+      console.log("Error occurred while deleting the post:", e);
       setError(e);
     }
   };
@@ -44,7 +48,7 @@ function PostDetails() {
       {"|"}
       <Link to="/"> Back to Posts</Link>
       {"|"}
-      <button onClick={deletePost}>Delete</button>
+      <button onClick={handleDeletePost}>Delete</button>
     </div>
   );
 }

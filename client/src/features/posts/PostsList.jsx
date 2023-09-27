@@ -12,10 +12,11 @@ function PostsList() {
     async function loadPosts() {
       try {
         const data = await fetchAllPosts();
+        console.log(`Posts have been loaded successfully.`);
         setPosts(data);
         setLoading(false);
       } catch (e) {
-        console.log("Error occured", e);
+        console.log("Error occurred while loading posts:", e);
         setError(e);
       }
     }
@@ -33,6 +34,7 @@ function PostsList() {
       }
     } catch (e) {
       console.log("Error occurred while deleting the post:", e);
+      // setError(e)
     }
   };
 
