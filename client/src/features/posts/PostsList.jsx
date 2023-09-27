@@ -1,48 +1,38 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { API_URL } from "../../constants";
+import { deletePost, fetchAllPosts } from "../../services/postService";
 
 function PostsList() {
   const [posts, setPosts] = useState([]);
   const [, setLoading] = useState(true);
   const [, setError] = useState(null);
 
-  // Fetch API URL
+  // Fetch API URL - refactor
   useEffect(() => {
     async function loadPosts() {
       try {
-        const response = await fetch(API_URL);
-        if (response.ok) {
-          const json = await response.json();
-          setPosts(json);
-        } else {
-          throw response;
-        }
+        const data = await fetchAllPosts();
+        setPosts(data);
+        setLoading(false);
       } catch (e) {
-        setError("An error occured...");
-        console.log("An error occured", e);
-        // setLoading(false);
+        console.log("Error occured", e);
+        setError(e);
       }
     }
     loadPosts();
   }, []);
 
-  const deletePost = async (id) => {
+  const handleDeletePost = async (id) => {
     try {
-      const response = await fetch(`${API_URL}/${id}`, {
-        method: "DELETE",
-      });
-      if (response.ok) {
-        const json = await response.json();
-        console.log("Post deleted:", json);
-        // Delete post from the list of posts (setPosts)
+      const response = await deletePost(id);
+      if (response === null ) {
+        console.log(`Post with ID ${id} deleted successfully.`);
         setPosts(posts.filter((post) => post.id !== id));
       } else {
-        throw response;
+        console.log("Error occurred while deleting the post:", response);
       }
     } catch (e) {
-      console.log("Error occured", e);
-      setError(e);
+      console.log("Error occurred while deleting the post:", e);
     }
   };
 
@@ -56,9 +46,9 @@ function PostsList() {
             </Link>
           </h2>
           <div className="post-links">
-          <Link to={`/posts/${post.id}/edit`} >Edit </Link>
+            <Link to={`/posts/${post.id}/edit`}>Edit </Link>
             {"|"}
-            <button onClick={() => deletePost(post.id)}>Delete Post</button>
+            <button onClick={() => handleDeletePost(post.id)}>Delete</button>
           </div>
         </div>
       ))}

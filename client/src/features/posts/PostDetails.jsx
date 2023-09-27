@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { API_URL } from "../../constants";
+import { fetchPost, deletePost as deletePostService } from "../../services/postService";
 
 function PostDetails() {
   const [post, setPost] = useState(null);
@@ -13,13 +14,8 @@ function PostDetails() {
   useEffect(() => {
     async function fetchCurrentPost() {
       try {
-        const response = await fetch(`${API_URL}/${id}`);
-        if (response.ok) {
-          const json = await response.json();
-          setPost(json);
-        } else {
-          throw response;
-        }
+        const json = await fetchPost(id)
+        setPost(json)
       } catch (e) {
         console.log("An error occured", e);
       }
@@ -28,16 +24,10 @@ function PostDetails() {
   }, [id]);
 
   const deletePost = async () => {
-    try {
-      const response = await fetch(`${API_URL}/${id}`, {
-        method: "DELETE",
-      });
-      if (response.ok) {
-        // const json = await response.json();
+    try { 
+      await deletePostService(post.id);
         navigate("/");
-      } else {
-        throw response;
-      }
+
     } catch (e) {
       console.log("Error occured", e);
       setError(e);
