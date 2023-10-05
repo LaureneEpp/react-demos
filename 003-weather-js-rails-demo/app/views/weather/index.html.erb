@@ -1,0 +1,23 @@
+  <div class="vw-100 vh-100 d-flex flex-column align-items-center justify-content-center my-4">
+    <div class="jumbotron jumbotron-fluid bg-transparent">
+        <div class="container secondary-color mb-5">
+            <h1 class="display-4">Sunshine Weather</h1>
+            <p class="lead">
+            How is the sun where you are?
+            </p>
+            <hr class="my-4">
+        </div>
+        <div class="d-flex flex-column">
+            <form id="weather-form">
+                <div class="input-group">
+                    <input type="text" id="city-input" class="form-control" placeholder="Enter a city" aria-label="City">
+                    <button class="btn btn-outline-secondary" type="submit">Search</button>
+                </div>
+            </form>
+            <div class="mt-5">
+                <div id="error-message" class="error-message"></div>
+                <div id="weather-display" class="d-flex flex-column align-items-center"></div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,13 +1,0 @@
-{:uriI"Œfile://app/assets/builds/reset.js.map?type=application/js-sourcemap+json&id=dfc0213b5d6d27d64952ccd6fda4cdd0be60f2536223e8d7fb1c189a4188f7b0:ET:load_pathI"app/assets/builds;T:filenameI"#app/assets/builds/reset.js.map;T:	nameI"
-reset;T:logical_pathI"reset.js.map;T:content_typeI""application/js-sourcemap+json;T:sourceI"l{
-  "version": 3,
-  "sources": ["../../javascript/reset.js"],
-  "sourcesContent": ["document.addEventListener(\"DOMContentLoaded\", () => {\n    // Get all links\n    const weatherForm = document.getElementById(\"weather-form\");\n    const resetButton = document.getElementById(\"reset-button\");\n\n    resetButton.addEventListener(\"click\", () => {\n        // Delete weather data\n        weatherDisplay.innerHTML = \"\";\n        weatherMoreInfoDisplay.innerHTML = \"\";\n\n        // Reset form\n        weatherForm.reset();\n    });\n    \n    resetButton.setAttribute(\"hidden\", \"true\");\n});\n"],
-  "mappings": ";;AAAA,WAAS,iBAAiB,oBAAoB,MAAM;AAEhD,UAAM,cAAc,SAAS,eAAe,cAAc;AAC1D,UAAM,cAAc,SAAS,eAAe,cAAc;AAE1D,gBAAY,iBAAiB,SAAS,MAAM;AAExC,qBAAe,YAAY;AAC3B,6BAAuB,YAAY;AAGnC,kBAAY,MAAM;AAAA,IACtB,CAAC;AAED,gBAAY,aAAa,UAAU,MAAM;AAAA,EAC7C,CAAC;",
-  "names": []
-}
-;T:metadata{
-:dependencieso:Set:
-@hash}
-I"environment-version;TTI"environment-paths;TTI"rails-env;TTI"Zprocessors:type=application/js-sourcemap+json&file_type=application/js-sourcemap+json;TTI"1file-digest://app/assets/builds/reset.js.map;TTF:charsetI"
-utf-8;F:digest"%C)ÕŒÝA&â$¸#Aj…ñ©\Ç’R¼êMÓ¨ÍŸ:lengthil:environment_versionI"1.0;T:dependencies_digest"%9G,WMž’NYêb˜òß•ýœëC²;÷EW5£ìM:idI"Edfc0213b5d6d27d64952ccd6fda4cdd0be60f2536223e8d7fb1c189a4188f7b0;F
