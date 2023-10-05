@@ -3,7 +3,7 @@ import {
   fetchAllPosts,
   fetchPost,
   createPost,
-  updatePost,
+  editPost,
   deletePost,
 } from "./postService";
 
@@ -59,7 +59,7 @@ describe("Post API Service", () => {
 
     fetch.mockResponseOnce(JSON.stringify(mockData));
 
-    const result = await updatePost(mockPostID, mockData);
+    const result = await editPost(mockPostID, mockData);
 
     expect(result).toEqual(mockData);
   });
@@ -99,13 +99,13 @@ describe("Post API Service", () => {
     await expect(createPost(mockData)).rejects.toThrow();
   });
 
-  it("throws an error when the updatePost response is not ok", async () => {
+  it("throws an error when the editPost response is not ok", async () => {
     const mockPostID = 1;
     const mockData = { id: mockPostID, title: "Test Post", body: "Case" };
 
     fetch.mockResponseOnce(JSON.stringify({}), { status: 500 });
 
-    await expect(updatePost(mockPostID, mockData)).rejects.toThrow();
+    await expect(editPost(mockPostID, mockData)).rejects.toThrow();
   });
 
   it("throws an error when the deletePost response is not ok", async () => {

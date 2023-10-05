@@ -15,9 +15,10 @@ function PostsList() {
         console.log(`Posts have been loaded successfully.`);
         setPosts(data);
         setLoading(false);
-      } catch (e) {
-        console.log("Error occurred while loading posts:", e);
-        setError(e);
+      } catch (error) {
+        setError(error);
+        setLoading(false);
+        console.log("Error occurred while loading posts:", error);
       }
     }
     loadPosts();
@@ -26,7 +27,7 @@ function PostsList() {
   const handleDeletePost = async (id) => {
     try {
       const response = await deletePost(id);
-      if (response === null ) {
+      if (response === null) {
         console.log(`Post with ID ${id} deleted successfully.`);
         setPosts(posts.filter((post) => post.id !== id));
       } else {
@@ -34,7 +35,7 @@ function PostsList() {
       }
     } catch (e) {
       console.log("Error occurred while deleting the post:", e);
-      // setError(e)
+      setError(e)
     }
   };
 

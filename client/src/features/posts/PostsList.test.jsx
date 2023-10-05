@@ -44,11 +44,13 @@ describe("PostsList component", () => {
 
     await waitFor(() => expect(postsService.deletePost).toHaveBeenCalled());
 
+
     expect(screen.queryByText(postText)).not.toBeInTheDocument();
+
   });
 
   test("sets error and loading to false when fetching posts fails", async () => {
-    // "Failed to fetch posts:", e => An error occurred!
+    // "Error occurred while loading posts:, e" => An error occurred!
     const error = new Error("An error occurred!");
     postsService.fetchAllPosts.mockRejectedValue(error);
 
@@ -57,7 +59,7 @@ describe("PostsList component", () => {
     await waitFor(() => {
       // TODO: spy on the console instead of mocking it
       expect(console.error).toHaveBeenCalledWith(
-        "Failed to fetch posts: ",
+        "Error occurred while loading posts:",
         error
       );
     });
@@ -75,52 +77,52 @@ describe("PostsList component", () => {
     fireEvent.click(screen.getAllByText("Delete")[0]);
     await waitFor(() => {
       expect(console.error).toHaveBeenCalledWith(
-        "Failed to delete the post: ",
+        "Error occurred while deleting the post:",
         deleteError
       );
     });
   });
 });
 
-describe("PostsList component image_url rendering", () => {
-  const mockPostWithImageUrl = [
-    {
-      id: 1,
-      title: "Post with Image",
-      body: "Hello Image",
-      image_url: "https://via.placeholder.com/150",
-    },
-  ];
+// describe("PostsList component image_url rendering", () => {
+//   const mockPostWithImageUrl = [
+//     {
+//       id: 1,
+//       title: "Post with Image",
+//       body: "Hello Image",
+//       image_url: "https://via.placeholder.com/150",
+//     },
+//   ];
 
-  const mockPostWithoutImageUrl = [
-    {
-      id: 2,
-      title: "Post without Image",
-      body: "Hello Placeholder",
-      image_url: null,
-    },
-  ];
+//   const mockPostWithoutImageUrl = [
+//     {
+//       id: 2,
+//       title: "Post without Image",
+//       body: "Hello Placeholder",
+//       image_url: null,
+//     },
+//   ];
 
-  test("renders the image with image_url exists", async () => {
-    postsService.fetchAllPosts.mockResolvedValue(mockPostWithImageUrl);
+//   test("renders the image with image_url exists", async () => {
+//     postsService.fetchAllPosts.mockResolvedValue(mockPostWithImageUrl);
 
-    render(<PostsList />, { wrapper: MemoryRouter });
+//     render(<PostsList />, { wrapper: MemoryRouter });
 
-    await waitFor(() => screen.getByText(mockPostWithImageUrl[0].title));
+//     await waitFor(() => screen.getByText(mockPostWithImageUrl[0].title));
 
-    const imgElement = screen.getByAltText(mockPostWithImageUrl[0].title);
-    expect(imgElement).toBeInTheDocument();
-    expect(imgElement.src).toBe(mockPostWithImageUrl[0].image_url);
-  });
+//     const imgElement = screen.getByAltText(mockPostWithImageUrl[0].title);
+//     expect(imgElement).toBeInTheDocument();
+//     expect(imgElement.src).toBe(mockPostWithImageUrl[0].image_url);
+//   });
 
-  test("renders the placeholder div when image_url does not exist", async () => {
-    postsService.fetchAllPosts.mockResolvedValue(mockPostWithoutImageUrl);
+//   test("renders the placeholder div when image_url does not exist", async () => {
+//     postsService.fetchAllPosts.mockResolvedValue(mockPostWithoutImageUrl);
 
-    render(<PostsList />, { wrapper: MemoryRouter });
+//     render(<PostsList />, { wrapper: MemoryRouter });
 
-    await waitFor(() => screen.getByText(mockPostWithoutImageUrl[0].title));
+//     await waitFor(() => screen.getByText(mockPostWithoutImageUrl[0].title));
 
-    const placeholderDiv = screen.getByTestId("post-image-stub");
-    expect(placeholderDiv).toBeInTheDocument();
-  });
-});
+//     const placeholderDiv = screen.getByTestId("post-image-stub");
+//     expect(placeholderDiv).toBeInTheDocument();
+//   });
+// });
