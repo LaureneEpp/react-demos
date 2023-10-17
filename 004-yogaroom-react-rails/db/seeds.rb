@@ -5,3 +5,19 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+p "Seeding data"
+
+p "Deleting all data"
+YogaClass.destroy_all
+
+10.times do |i|
+    YogaClass.create(
+      title: Faker::Lorem.sentence(word_count: 3),
+      description: Faker::Lorem.paragraph(sentence_count: 4),
+      date: Faker::Date.forward(days: 23),
+      location: Faker::Address.city
+    )
+  end
+
+  p "Created #{YogaClass.count} classes"
