@@ -71,10 +71,16 @@ function YogaClassesList() {
                 <h5 className="card-title mb-2">{yoga_class.title}</h5>
                 <p className="card-text">{yoga_class.description}</p>
               </Link>
-              <button
-                onClick={() => handleDelete(yoga_class.id)}
-                className="btn btn-lg delete-button my-3">
-                Delete
+              <button onClick={() => handleDelete(yoga_class.id)} className="btn btn-lg my-3 p-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="35"
+                  height="35"
+                  fill="currentColor"
+                  className="bi bi-trash3-fill orange-light-color"
+                  viewBox="0 0 16 16">
+                  <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
+                </svg>
               </button>
             </div>
           </div>
@@ -106,10 +112,18 @@ function YogaClassesList() {
       <p className="lead text-muted">
         We pulled together a great agenda for you!
       </p>
-      <Link to="/new" className="btn btn-lg custom-button my-3">
-        Create a new class
+      <Link to="/new" className="btn btn-lg my-3">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="30"
+          height="30"
+          fill="currentColor"
+          class="bi bi-plus-circle-fill secondary-color"
+          viewBox="0 0 16 16">
+          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
+        </svg>
       </Link>
-      <div className="py-5">
+      <div className="py-3">
         {yoga_classes.length > 0 ? allYogaClasses : noYogaClass}
       </div>
     </div>
