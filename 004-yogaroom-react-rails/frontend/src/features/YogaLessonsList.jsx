@@ -1,60 +1,52 @@
 import { useState, useEffect } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-function formatDate(date) {
-  const options = { year: "numeric", month: "2-digit", day: "2-digit" };
-  return new Date(date).toLocaleDateString("en-US", options);
-}
-
-function YogaClassesList() {
-  const [yoga_classes, setYogaClasses] = useState([]);
+function YogaLessonsList() {
+  const [yoga_lessons, setYogaLessons] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const { yoga_lesson_id } = useParams();
-
   useEffect(() => {
-    async function loadYogaClasses() {
+    async function loadYogaLessons() {
       try {
-        const baseURL = "http://localhost:3000";
-        const apiURL = `${baseURL}/api/v1/yoga_classes`;
-        const response = await fetch(apiURL);
+        const API_URL = "http://localhost:3000/api/v1";
+        const response = await fetch(`${API_URL}/yoga_lessons`);
         console.log("API response:", response);
-        console.log("Yoga classes have been loaded successfully.");
+        console.log("Yoga lessons have been loaded successfully.");
 
         if (response.ok) {
           const json = await response.json();
-          console.log("Yoga classes data:", json);
-          setYogaClasses(json);
+          console.log("Yoga lessons data:", json);
+          setYogaLessons(json);
         } else {
           throw new Error(`API request failed with status ${response.status}`);
         }
       } catch (e) {
-        setError(`An error occurred while loading yoga classes: ${e.message}`);
+        setError(`An error occurred while loading yoga lessons: ${e.message}`);
       } finally {
         setLoading(false);
       }
     }
 
-    loadYogaClasses();
+    loadYogaLessons();
   }, []);
 
   const handleDelete = async (id) => {
     try {
       const API_URL = "http://localhost:3000/api/v1";
-      const response = await fetch(`${API_URL}/yoga_classes/${id}`, {
+      const response = await fetch(`${API_URL}/yoga_lessons/${id}`, {
         method: "DELETE",
       });
       if (response.ok) {
-        setYogaClasses(
-          yoga_classes.filter((yoga_class) => yoga_class.id !== id)
+        setYogaLessons(
+            yoga_lessons.filter((yoga_lesson) => yoga_lesson.id !== id)
         );
       } else {
         throw response;
       }
     } catch (e) {
       console.error(
-        `An error occurred while deleting the yoga class: ${e.message}`
+        `An error occurred while deleting the yoga lesson: ${e.message}`
       );
     }
   };
@@ -67,26 +59,19 @@ function YogaClassesList() {
     return <div>Error: {error.message}</div>;
   }
 
-  const allYogaClasses = (
+  const allYogaLessons = (
     <div className="row">
-      {yoga_classes.map((yoga_class) => (
-        <div key={yoga_class.id} className="col-md-6 col-lg-4">
+      {yoga_lessons.map((yoga_lesson) => (
+        <div key={yoga_lesson.id} className="col-md-6 col-lg-4">
           <div className="card mb-4 custom-card">
             <div className="card-body">
               <Link
-                to={`/yoga_lessons/${yoga_lesson_id}/yoga_classes/${yoga_class.id}`}
+                to={`/yoga_lessons/${yoga_lesson.id}`}
                 className="text-decoration-none text-reset">
-                <h5 className="card-title mb-2">
-                  {yoga_class.yoga_lesson.title}
-                </h5>
-                <div className="d-flex flex-column">
-                  <p className="card-text">{yoga_class.location}</p>
-                  <p className="card-text">{formatDate(yoga_class.date)}</p>
-                </div>
+                <h5 className="card-title mb-2">{yoga_lesson.title}</h5>
+                <p className="card-text">{yoga_lesson.description}</p>
               </Link>
-              <button
-                onClick={() => handleDelete(yoga_class.id)}
-                className="btn btn-lg my-3 p-2">
+              <button onClick={() => handleDelete(yoga_lesson.id)} className="btn btn-lg my-3 p-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="35"
@@ -104,11 +89,11 @@ function YogaClassesList() {
     </div>
   );
 
-  const noYogaClass = (
+  const noYogaLesson = (
     <div className="vw-100 vh-50 d-flex align-items-center justify-content-center">
       <h4>
-        No yoga class scheduled yet. Why not{" "}
-        <Link to="/yoga_classes/new">create one</Link>
+        No yoga lesson scheduled yet. Why not{" "}
+        <Link to="/new_yoga_class">create one</Link>
       </h4>
     </div>
   );
@@ -123,11 +108,11 @@ function YogaClassesList() {
 
   return (
     <div className="container py-5">
-      <h2 className="display-4">All the yoga classes you wish</h2>
+      <h2 className="display-4">All the yoga lessons you wish</h2>
       <p className="lead text-muted">
         We pulled together a great agenda for you!
       </p>
-      <Link to="/yoga_classes/new" className="btn btn-lg my-3">
+      <Link to="/yoga_lessons/new" className="btn btn-lg my-3">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="30"
@@ -139,10 +124,10 @@ function YogaClassesList() {
         </svg>
       </Link>
       <div className="py-3">
-        {yoga_classes.length > 0 ? allYogaClasses : noYogaClass}
+        {yoga_lessons.length > 0 ? allYogaLessons : noYogaLesson}
       </div>
     </div>
   );
 }
 
-export default YogaClassesList;
+export default YogaLessonsList;

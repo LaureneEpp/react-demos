@@ -10,14 +10,22 @@ p "Seeding data"
 
 p "Deleting all data"
 YogaClass.destroy_all
+YogaLesson.destroy_all
 
-10.times do |i|
-    YogaClass.create(
-      title: Faker::Lorem.sentence(word_count: 3),
-      description: Faker::Lorem.paragraph(sentence_count: 4),
+20.times do |i|
+  lesson = YogaLesson.create(
+    title: Faker::Lorem.sentence(word_count: 3),
+    description: Faker::Lorem.paragraph(sentence_count: 4),
+    category: Faker::Lorem.word
+  )
+
+  5.times do |j|
+    lesson.yoga_classes.create(
       date: Faker::Date.forward(days: 23),
       location: Faker::Address.city
     )
   end
+end
 
-  p "Created #{YogaClass.count} classes"
+puts "Created #{YogaLesson.count} lessons"
+puts "Created #{YogaClass.count} classes"

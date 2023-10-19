@@ -13,10 +13,16 @@ function Home() {
         </p>
         <hr className="my-4" />
         <Link
+          to="/yoga_lessons"
+          className="btn btn-lg custom-button"
+          role="button">
+            What?
+            </Link>
+            <Link
           to="/yoga_classes"
           className="btn btn-lg custom-button"
           role="button">
-          View classes
+            When?
         </Link>
       </div>
     </div>

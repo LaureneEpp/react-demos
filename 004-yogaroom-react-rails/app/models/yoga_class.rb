@@ -1,4 +1,4 @@
 class YogaClass < ApplicationRecord
-     validates :title, :description, :location, :date, presence: true
-     validates :title, uniqueness: true
+     validates :location, :date, presence: true
+     belongs_to :yoga_lesson
 end
