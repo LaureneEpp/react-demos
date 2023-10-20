@@ -14,13 +14,13 @@ function Home() {
         <hr className="my-4" />
         <Link
           to="/yoga_lessons"
-          className="btn btn-lg custom-button"
+          className="btn btn-lg custom-button mx-2"
           role="button">
             What?
             </Link>
             <Link
           to="/yoga_classes"
-          className="btn btn-lg custom-button"
+          className="btn btn-lg custom-button mx-2"
           role="button">
             When?
         </Link>

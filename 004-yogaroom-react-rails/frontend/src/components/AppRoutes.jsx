@@ -7,6 +7,7 @@ import YogaClassDetails from "../features/YogaClassDetails";
 import NewYogaClass from "../features/NewYogaClass";
 import NewYogaLesson from "../features/NewYogaLesson";
 import EditYogaClass from "../features/EditYogaClass";
+import Navbar from "./Navbar"
 
 function AppRoutes() {
   return (
