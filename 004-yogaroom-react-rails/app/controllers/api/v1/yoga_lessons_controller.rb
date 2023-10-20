@@ -1,9 +1,18 @@
 class Api::V1::YogaLessonsController < ApplicationController
+  # before_action :set_yoga_category
   before_action :set_yoga_lesson, only: %i[ show update destroy ]
 
   def index
+    @yoga_categories = YogaCategory.all.order(created_at: :desc)
     @yoga_lessons = YogaLesson.all.order(created_at: :desc)
-    render json: @yoga_lessons, include: [:yoga_classes => {:only => [:id, :location, :date, :yoga_lesson_id]}]
+    render json: @yoga_lessons, include: [:yoga_classes => {:only => [:id, :location, :date, :yoga_lesson_id]},
+                                          :yoga_category => {:only => [:id, :title, :description]}]
+  end
+
+  def by_category
+    category = params[:category]
+    yoga_lessons = YogaLesson.where(category: category)
+    render json: yoga_lessons
   end
   
   def show
@@ -35,6 +44,7 @@ class Api::V1::YogaLessonsController < ApplicationController
     @yoga_lesson.destroy
   end
 
+
   private
 
   def set_yoga_lesson
@@ -42,6 +52,6 @@ class Api::V1::YogaLessonsController < ApplicationController
   end
 
   def yoga_lesson_params
-    params.require(:yoga_lesson).permit(:title, :description, :category)
+    params.require(:yoga_lesson).permit(:title, :description, :yoga_category_id)
   end
 end

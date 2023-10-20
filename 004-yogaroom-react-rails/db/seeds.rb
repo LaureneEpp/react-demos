@@ -9,14 +9,24 @@
 p "Seeding data"
 
 p "Deleting all data"
+YogaCategory.destroy_all
 YogaClass.destroy_all
 YogaLesson.destroy_all
+
+10.times do 
+  YogaCategory.create(
+    title: Faker::Lorem.word,
+    description: Faker::Lorem.paragraph(sentence_count: 4),
+  )
+end
+
+puts "Created #{YogaCategory.count} categories"
 
 20.times do |i|
   lesson = YogaLesson.create(
     title: Faker::Lorem.sentence(word_count: 3),
     description: Faker::Lorem.paragraph(sentence_count: 4),
-    category: Faker::Lorem.word
+    yoga_category_id: rand(1..10)
   )
 
   5.times do |j|

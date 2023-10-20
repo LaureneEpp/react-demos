@@ -14,6 +14,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_18_120900) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "yoga_categories", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "yoga_classes", force: :cascade do |t|
     t.bigint "yoga_lesson_id"
     t.datetime "date"
@@ -26,9 +33,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_18_120900) do
   create_table "yoga_lessons", force: :cascade do |t|
     t.string "title", null: false
     t.text "description", null: false
-    t.string "category"
+    t.bigint "yoga_category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["yoga_category_id"], name: "index_yoga_lessons_on_yoga_category_id"
   end
 
 end
