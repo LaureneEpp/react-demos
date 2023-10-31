@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import {Link} from "react-router-dom"
 
 const Navbar = () => {
+
   return (
     <nav className="navbar sticky-top navbar-expand-lg bg-transparent">
       <div className="container-fluid">
@@ -12,7 +13,7 @@ const Navbar = () => {
         </a>
         <Link
           to="/"
-          className="btn btn-lg secondary-color"
+          className="btn btn-lg secondary-color menu-toggle"
           role="button">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -26,6 +27,7 @@ const Navbar = () => {
         </Link>
       </div>
     </nav>
+    
   );
 };
 
