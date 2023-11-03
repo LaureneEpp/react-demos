@@ -8,30 +8,40 @@ function formatDate(date) {
 
 function YogaClassDetails() {
   const [yoga_class, setYogaClass] = useState(null);
+  const [yoga_lesson, setYogaLesson] = useState(null);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   const { id } = useParams();
 
   useEffect(() => {
-    async function fetchYogaClass() {
+    async function fetchData() {
       try {
         const API_URL = "http://localhost:3000/api/v1";
-        const response = await fetch(`${API_URL}/yoga_classes/${id}`);
-        console.log("API response:", response);
-        console.log(`Yoga class with ID ${id} has been loaded successfully.`);
-        if (response.ok) {
-          const json = await response.json();
-          console.log("Yoga classes data:", json);
-          setYogaClass(json);
+        const yogaClassResponse = await fetch(`${API_URL}/yoga_classes/${id}`);
+        
+        if (yogaClassResponse.ok) {
+          const yogaClassData = await yogaClassResponse.json();
+          setYogaClass(yogaClassData);
+          
+          const yogaLessonResponse = await fetch(`${API_URL}/yoga_lessons/${yogaClassData.yoga_lesson_id}`);
+          
+          if (yogaLessonResponse.ok) {
+            const yogaLessonData = await yogaLessonResponse.json();
+            setYogaLesson(yogaLessonData); 
+          } else {
+            throw new Error(`Failed to fetch yoga lesson data with status ${yogaLessonResponse.status}`);
+          }
         } else {
-          throw response;
+          throw new Error(`Failed to fetch yoga class data with status ${yogaClassResponse.status}`);
         }
       } catch (e) {
-        setError(`An error occurred while loading yoga classes: ${e.message}`);
+        setError(`An error occurred: ${e.message}`);
       }
     }
-    fetchYogaClass();
+    fetchData();
   }, [id]);
+  
 
   const deleteYogaClass = async () => {
     try {
@@ -46,19 +56,25 @@ function YogaClassDetails() {
       }
     } catch (error) {
       console.error(
-        `An error occurred while deleting the yoga class: ${e.message}`
+        `An error occurred while deleting the yoga class: ${error.message}`
       );
     }
   };
 
-  if (!yoga_class) return <h3>...Loading...</h3>;
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+  if (!yoga_class || !yoga_lesson) {
+    return <h3>...Loading...</h3>;
+  }
 
   return (
     <div className="vw-100 vh-100 d-flex align-items-center justify-content-center">
       <div className="jumbotron jumbotron-fluid bg-transparent">
         <div className="m-5">
-          <h1 className="display-4">{yoga_class.title}</h1>
-          <p className="lead">{yoga_class.description}</p>
+          <h1 className="display-4">{yoga_lesson.title}</h1>
+          <p className="lead">{yoga_lesson.description}</p>
           <hr className="my-4" />
           <div className="card-info d-flex justify-content-around mb-3">
             <div className="card-info-icon d-flex align-items-center">
@@ -67,7 +83,7 @@ function YogaClassDetails() {
                 width="16"
                 height="16"
                 fill="currentColor"
-                class="bi bi-geo-alt"
+                className="bi bi-geo-alt"
                 viewBox="0 0 16 16">
                 <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z" />
                 <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
@@ -80,7 +96,7 @@ function YogaClassDetails() {
                 width="16"
                 height="16"
                 fill="currentColor"
-                class="bi bi-calendar-event"
+                className="bi bi-calendar-event"
                 viewBox="0 0 16 16">
                 <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z" />
                 <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />

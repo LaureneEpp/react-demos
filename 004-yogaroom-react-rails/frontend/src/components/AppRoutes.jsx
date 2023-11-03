@@ -15,12 +15,9 @@ function AppRoutes() {
       <Route path="/" element={<Home />} />
       <Route path="/yoga_lessons" element={<YogaLessonsList />} />
       <Route path="/yoga_classes" element={<YogaClassesList />} />
+      <Route path="/yoga_classes/:id" element={<YogaClassDetails />} />
+      <Route path="/yoga_classes/:id/edit" element={<EditYogaClass />} />
 
-      <Route path="/yoga_lessons" element={<YogaLessonsList />}>
-        <Route path=":yoga_lesson_id/yoga_classes" element={<YogaClassesList />} />
-        <Route path=":yoga_lesson_id/yoga_classes/:id" element={<YogaClassDetails />} />
-        <Route path=":yoga_lesson_id/yoga_classes/:id/edit" element={<EditYogaClass />} />
-      </Route>
 
       <Route path="/yoga_classes/new" element={<NewYogaClass />} />
       <Route path="/yoga_lessons/new" element={<NewYogaLesson />} />

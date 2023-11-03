@@ -5,7 +5,7 @@ Rails.application.routes.draw do
       resources :yoga_lessons do
         resources :yoga_classes, except: [:index, :delete]
       end
-      resources :yoga_classes, only: [:index, :delete]
+      resources :yoga_classes
     end
   end
   root 'homepage#index'
