@@ -141,7 +141,7 @@ function YogaClassesList() {
       </Link>
       <div className="py-3">
         <div className="d-flex flex-column">
-          <div className="calendar-container d-flex justify-content-center">
+          <div className="d-flex justify-content-center">
             <Calendar
               onChange={setDate}
               value={date}
