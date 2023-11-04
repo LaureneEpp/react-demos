@@ -1,5 +1,5 @@
 class Api::V1::YogaClassesController < ApplicationController
-  before_action :set_yoga_lesson, except: [:index, :show]
+  before_action :set_yoga_lesson, except: [:index, :show, :destroy]
   before_action :set_yoga_class, only: %i[ show update destroy ]
   # rescue_from ActiveRecord::RecordInvalid, with: :render_invalid
 
