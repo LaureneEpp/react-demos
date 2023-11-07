@@ -21,8 +21,8 @@ class Api::V1::YogaClassesController < ApplicationController
   #     render json: @yoga_class.errors, status: :unprocessable_entity
   #   end
   # end
+  
   def create
-    # Create a YogaClass associated with a specific YogaLesson
     @yoga_class = @yoga_lesson.yoga_classes.new(yoga_class_params)
 
     if @yoga_class.save

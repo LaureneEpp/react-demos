@@ -111,7 +111,7 @@ function YogaClassesList() {
 
   const noYogaClass = (
     <div className="vw-100 vh-50 d-flex align-items-center justify-content-center">
-      <p className="lead">yoca
+      <p className="lead">
         No yoga class scheduled yet. Why not add one :{" "}
         <Link to="/yoga_classes/new" className="btn btn-lg my-3" role="button">
           <svg

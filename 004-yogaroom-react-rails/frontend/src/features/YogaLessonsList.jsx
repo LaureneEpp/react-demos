@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 
 function YogaLessonsList() {
   const [yoga_lessons, setYogaLessons] = useState([]);
   const [loading, setLoading] = useState(true);
   const [, setError] = useState(null);
+
+  const { id  } = useParams();
+
 
   useEffect(() => {
     async function loadYogaLessons() {
@@ -76,10 +79,14 @@ function YogaLessonsList() {
               {lessonsByCategory[category].map((yoga_lesson) => (
                 <div key={yoga_lesson.id} className="col-md-6 col-lg-4">
                   <div className="card mb-4 custom-card">
-                    <div className="card-body">
-                      <h5 className="card-title mb-2">{yoga_lesson.title}</h5>
-                      <p className="card-text">{yoga_lesson.description}</p>
-                    </div>
+                    <Link
+                      to={`/yoga_lessons/${yoga_lesson.id}`}
+                      className="text-decoration-none text-reset">
+                      <div className="card-body">
+                        <h5 className="card-title mb-2">{yoga_lesson.title}</h5>
+                        <p className="card-text">{yoga_lesson.description}</p>
+                      </div>
+                    </Link>
                   </div>
                 </div>
               ))}

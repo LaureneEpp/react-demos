@@ -16,7 +16,7 @@ class Api::V1::YogaLessonsController < ApplicationController
   end
   
   def show
-    render json: @yoga_lesson
+    render json: @yoga_lesson, include: [:yoga_classes => {:only => [:id, :location, :date, :yoga_lesson_id]}]
   end
 
   def new
