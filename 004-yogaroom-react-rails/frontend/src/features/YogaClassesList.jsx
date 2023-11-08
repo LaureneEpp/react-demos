@@ -15,7 +15,7 @@ function YogaClassesList() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const { id  } = useParams();
+  const { id } = useParams();
 
   useEffect(() => {
     async function loadYogaClasses() {
@@ -79,9 +79,11 @@ function YogaClassesList() {
     : [];
 
   const allYogaClasses = (
-    <div className="d-flex flex-column">
+    <div className="d-flex align-items-center justify-content-center align-content-center my-4 mx-2 row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
       {filteredYogaClasses.map((yoga_class) => (
-        <div key={yoga_class.id} className="bg_orange-light-color p-4 my-3 position-relative">
+        <div
+          key={yoga_class.id}
+          className="border border-0 shadow m-2 p-3 bg_orange-light-color position-relative">
           <button
             onClick={() => handleDelete(yoga_class.id)}
             className="btn btn-lg position-absolute top-0 start-100 translate-middle">
@@ -98,10 +100,9 @@ function YogaClassesList() {
           <Link
             to={`/yoga_classes/${yoga_class.id}`}
             className="text-decoration-none text-reset">
-            <h5 className="card-title mb-2">{yoga_class.yoga_lesson.title}</h5>
+            <h5 className="mb-1">{yoga_class.yoga_lesson.title}</h5>
             <div className="d-flex flex-column">
-              <p className="card-text">{yoga_class.location}</p>
-              {/* <p className="card-text">{formatDate(yoga_class.date)}</p> */}
+              <p className="">{yoga_class.location}</p>
             </div>
           </Link>
         </div>
@@ -110,10 +111,10 @@ function YogaClassesList() {
   );
 
   const noYogaClass = (
-    <div className="vw-100 vh-50 d-flex align-items-center justify-content-center">
-      <p className="lead">
+    <div className="my-4">
+      <p className="lead ">
         No yoga class scheduled yet. Why not add one :{" "}
-        <Link to="/yoga_classes/new" className="btn btn-lg my-3" role="button">
+        <Link to="/yoga_classes/new" className="btn btn-lg" role="button">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="30"
@@ -130,6 +131,7 @@ function YogaClassesList() {
 
   return (
     <div className="container py-5">
+      <div>
       <h2 className="display-4">All the yoga classes you wish</h2>
       <p className="lead text-muted">
         We pulled together a great agenda for you!
@@ -145,6 +147,8 @@ function YogaClassesList() {
           <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
         </svg>
       </Link>
+
+      </div>
       <div className="py-3">
         <div className="d-flex flex-column">
           <div className="d-flex justify-content-center">

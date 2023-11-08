@@ -74,7 +74,7 @@ function YogaClassDetails() {
       <div className="jumbotron jumbotron-fluid bg-transparent">
         <div className="m-5">
           <h1 className="display-4">{yoga_lesson.title}</h1>
-          <p className="lead">{yoga_lesson.description}</p>
+          <p className="lead text-muted">{yoga_lesson.description}</p>
           <hr className="my-4" />
           <div className="card-info d-flex justify-content-around mb-3">
             <div className="card-info-icon d-flex align-items-center">
