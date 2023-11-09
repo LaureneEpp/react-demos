@@ -50,7 +50,7 @@ const Navbar = () => {
 
         <a
           className="navbar-brand text-uppercase fw-bold fs-3 white-color "
-          href="#">
+          href="/">
           YogaRoom
         </a>
         <motion.svg
