@@ -44,8 +44,10 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <motion.nav className="navbar navbar-expand-lg bg_primary-color  fixed-top d-flex p-3 mx-3 justify-content-between z-2 ">
+    <motion.nav className="navbar navbar-expand-lg bg_primary-color fixed-top z-2 ">
       <div className="container-fluid">
+        <div className="p-2 mx-2 vw-100  d-flex justify-content-between">
+
         <a
           className="navbar-brand text-uppercase fw-bold fs-3 white-color "
           href="#">
@@ -63,6 +65,7 @@ const Navbar = () => {
           viewBox="0 0 16 16">
           <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />
         </motion.svg>
+        </div>
         <motion.div
           initial={false}
           variants={menuVariants}
