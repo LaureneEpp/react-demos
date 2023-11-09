@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { Link, useParams } from "react-router-dom";
+import { motion } from "framer-motion";
 
 function formatDate(date) {
   const options = { year: "numeric", month: "2-digit", day: "2-digit" };
@@ -81,9 +82,11 @@ function YogaClassesList() {
   const allYogaClasses = (
     <div className="d-flex align-items-center justify-content-center align-content-center my-4 mx-2 row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
       {filteredYogaClasses.map((yoga_class) => (
-        <div
+        <motion.div
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
           key={yoga_class.id}
-          className="border border-0 shadow m-2 p-3 bg_orange-light-color position-relative">
+          className="border border-0 shadow m-3 p-3 bg_orange-light-color position-relative custom-yoga-class">
           <button
             onClick={() => handleDelete(yoga_class.id)}
             className="btn btn-lg position-absolute top-0 start-100 translate-middle">
@@ -105,7 +108,7 @@ function YogaClassesList() {
               <p className="">{yoga_class.location}</p>
             </div>
           </Link>
-        </div>
+        </motion.div>
       ))}
     </div>
   );
@@ -132,22 +135,21 @@ function YogaClassesList() {
   return (
     <div className="container py-5">
       <div>
-      <h2 className="display-4">All the yoga classes you wish</h2>
-      <p className="lead text-muted">
-        We pulled together a great agenda for you!
-      </p>
-      <Link to="/yoga_classes/new" className="btn btn-lg my-3" role="button">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="30"
-          height="30"
-          fill="currentColor"
-          className="bi bi-plus-circle-fill secondary-color"
-          viewBox="0 0 16 16">
-          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
-        </svg>
-      </Link>
-
+        <h2 className="display-4">All the yoga classes you wish</h2>
+        <p className="lead text-muted">
+          We pulled together a great agenda for you!
+        </p>
+        <Link to="/yoga_classes/new" className="btn btn-lg my-3" role="button">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="30"
+            height="30"
+            fill="currentColor"
+            className="bi bi-plus-circle-fill secondary-color"
+            viewBox="0 0 16 16">
+            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
+          </svg>
+        </Link>
       </div>
       <div className="py-3">
         <div className="d-flex flex-column">

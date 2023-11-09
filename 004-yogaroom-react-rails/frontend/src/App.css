@@ -124,3 +124,9 @@ abbr[title] {
 .react-calendar--selectRange .react-calendar__tile--hover {
   background-color: #f8f8fa;
 }
+
+/* yoga class */
+
+.custom-yoga-class {
+  height: 110px
+}
