@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
+import LoadingAnimation from "../components/LoadingAnimation";
+import { motion } from "framer-motion";
 
 
 function YogaLessonsList() {
@@ -35,10 +37,6 @@ function YogaLessonsList() {
     loadYogaLessons();
   }, []);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
   const lessonsByCategory = {};
   yoga_lessons.forEach((yoga_lesson) => {
     const category = yoga_lesson.yoga_category.title;
@@ -49,7 +47,9 @@ function YogaLessonsList() {
   });
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <LoadingAnimation/>
+    )
   }
 
   return (

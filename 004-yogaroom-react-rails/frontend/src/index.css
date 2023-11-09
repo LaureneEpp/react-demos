@@ -48,6 +48,10 @@ body,
   color: #f0997d;
 }
 
+.bg_white-color {
+  background-color: #fff;
+
+}
 .white-color {
   color: #fff;
 }

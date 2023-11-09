@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
+import LoadingAnimation from "../components/LoadingAnimation";
+
 
 function formatDate(date) {
   const options = { year: "numeric", month: "2-digit", day: "2-digit" };
@@ -66,7 +68,9 @@ function YogaClassDetails() {
   }
 
   if (!yoga_class || !yoga_lesson) {
-    return <h3>...Loading...</h3>;
+    return (
+      <LoadingAnimation/>
+    )
   }
 
   return (

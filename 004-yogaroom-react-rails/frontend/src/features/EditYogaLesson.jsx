@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
+import LoadingAnimation from "../components/LoadingAnimation";
+
 
 function EditYogaLesson() {
   const [yoga_lesson, setYogaLesson] = useState(null);
@@ -63,7 +65,12 @@ function EditYogaLesson() {
     }
   };
 
-  if (!yoga_lesson) return <h2>Loading...</h2>;
+
+  if (!yoga_lesson) {
+    return (
+      <LoadingAnimation/>
+    )
+  }
 
   return (
     <div className="vh-100 m-4">
