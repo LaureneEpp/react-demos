@@ -8,3 +8,7 @@ Key features:
 2 - Agenda: Check the schedule for upcoming yoga classes (date and location);
 
 Work in progress: user management and booking management. 
+
+
+https://github.com/LaureneEpp/react-demos/assets/70053268/f10ca633-378b-4d0a-9a87-8abb75566871
+
