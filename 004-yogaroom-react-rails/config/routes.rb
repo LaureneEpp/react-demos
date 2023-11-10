@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   end
   root 'homepage#index'
   get '/*path' => 'homepage#index'
+  get '/about' => 'homepage#aboutpage'
 end

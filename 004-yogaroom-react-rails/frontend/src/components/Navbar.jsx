@@ -5,7 +5,7 @@ const links = [
   { name: "Home", to: "/", id: 1 },
   { name: "Lessons", to: "/yoga_lessons", id: 2 },
   { name: "Agenda", to: "/yoga_classes", id: 3 },
-  { name: "Contact", to: "#", id: 4 },
+  { name: "About", to: "/about", id: 4 },
 ];
 
 const iconVariants = {

@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "../features/Home";
+import AboutPage from "../features/AboutPage"
 import YogaLessonsList from "../features/YogaLessonsList";
 import YogaLessonDetails from "../features/YogaLessonDetails";
 import NewYogaLesson from "../features/NewYogaLesson";
@@ -14,6 +15,8 @@ function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="/about" element={<AboutPage />} />
+
       <Route path="/yoga_lessons" element={<YogaLessonsList />} />
       <Route path="/yoga_lessons/:id" element={<YogaLessonDetails />} />
       <Route path="/yoga_lessons/:id/edit" element={<EditYogaLesson />} />
