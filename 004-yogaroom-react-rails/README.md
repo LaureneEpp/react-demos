@@ -1,24 +1,10 @@
-# README
+*YOGA ROOM WEBSITE* 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This website is built with Ruby on Rails and API endpoints as backend, and the frontend utilizes React with the Vite framework and Framer Motion library for smooth animations.
 
-Things you may want to cover:
+Key features: 
+1- Yoga Lessons Overview: View detailed information about yoga lessons;
 
-* Ruby version
+2 - Agenda: Check the schedule for upcoming yoga classes (date and location);
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Work in progress: user management and booking management. 
