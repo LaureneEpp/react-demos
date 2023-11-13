@@ -1,24 +1,16 @@
-# README
+*YOGA PLACE WEBSITE* 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This website is built with Ruby on Rails and API endpoints as backend, and the frontend utilizes React with the Vite framework and Framer Motion library for smooth animations.
 
-Things you may want to cover:
+Key features: 
 
-* Ruby version
+1- Yoga Lessons Overview: View detailed information about yoga lessons;
 
-* System dependencies
+2 - Agenda: Check the schedule for upcoming yoga classes (date and location);
 
-* Configuration
+Work in progress: user management and booking management. 
 
-* Database creation
 
-* Database initialization
 
-* How to run the test suite
+https://github.com/LaureneEpp/react-demos/assets/70053268/c43244b1-1c63-41d2-8c72-444ef1d35579
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
