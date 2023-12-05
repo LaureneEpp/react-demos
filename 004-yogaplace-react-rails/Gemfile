@@ -41,6 +41,9 @@ gem "redis", "~> 4.0"
 
 # Fetch API
 gem 'rack-cors'
+gem 'devise'
+gem 'devise-jwt'
+gem 'dotenv-rails', groups: [:development, :test]
 
 # Use gem install faker
 gem "faker"
