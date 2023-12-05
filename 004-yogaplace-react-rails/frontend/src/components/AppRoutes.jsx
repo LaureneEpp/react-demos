@@ -1,5 +1,5 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+// import React from "react";
+import { Routes, Route } from "react-router-dom";
 import Home from "../features/Home";
 import AboutPage from "../features/AboutPage";
 import YogaLessonsList from "../features/YogaLessonsList";
@@ -12,6 +12,8 @@ import NewYogaClass from "../features/NewYogaClass";
 import EditYogaClass from "../features/EditYogaClass";
 import Login from "./Login";
 import SignUp from "./SignUp";
+import UserProfile from "./UserProfile";
+
 
 
 function AppRoutes({ currUser, setCurrUser }) {
@@ -23,6 +25,7 @@ function AppRoutes({ currUser, setCurrUser }) {
       <Route path="/about" element={<AboutPage />} />
       <Route path="/login" element={<Login setCurrUser={setCurrUser} />} />
       <Route path="/signup" element={<SignUp setCurrUser={setCurrUser} />} />
+      <Route path="/user-profile" element={<UserProfile currUser={currUser} />} />
 
 
       <Route path="/yoga_lessons" element={<YogaLessonsList />} />
