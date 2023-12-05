@@ -68,7 +68,7 @@ body,
   border: none;
 }
 
-.delete-button.btn {
+.delete-button.btn, .validate-button.btn {
   background-color: #f0997d;
   color: white;
   border: none;

@@ -48,22 +48,45 @@ const Login = ({ setCurrUser, setShow }) => {
     <div className="vw-100 vh-100 d-flex align-items-center justify-content-center">
       <div className="jumbotron jumbotron-fluid bg-transparent">
         <div className="container">
-          <h3>Login</h3>
-          <form ref={formRef} onSubmit={handleSubmit}>
-            Email: <input type="email" name="email" placeholder="email" />
-            <br />
-            Password:{" "}
-            <input type="password" name="password" placeholder="password" />
-            <br />
-            <input type="submit" value="Login" />
-          </form>
-          <br />
-          <div>
-            Not registered yet,{" "}
-            <a href="#signup" onClick={handleClick}>
-              Signup
+          <h3 className="d-flex justify-content-center text-uppercase fs-2">Login</h3>
+          <form ref={formRef} onSubmit={handleSubmit} className="m-4">
+            <div className="mb-3">
+              <label htmlFor="exampleInputEmail1" className="form-label">
+                Email address
+              </label>
+              <input
+                type="email"
+                name="email"
+                placeholder="email"
+                className="form-control"
+                id="exampleInputEmail1"
+                aria-describedby="emailHelp"
+              />
+              <div id="emailHelp" className="form-text">
+                {" "}
+                We will never share your email with anyone else.
+              </div>
+            </div>
+            <div className="mb-3">
+              <label htmlFor="exampleInputPassword1" className="form-label">
+                Password
+              </label>
+              <input
+                type="password" name="password" placeholder="password"
+                className="form-control"
+                id="exampleInputPassword1"
+              />
+            </div>
+            <button type="submit" value="Login" className="btn validate-button mt-3">Submit</button>
+            <div className="mb-3">
+              <div className="form-text white-color py-4">
+            Not registered yet:{" "}
+            <a href="#signup" onClick={handleClick} className="white-color fw-semibold">
+              signup
             </a>{" "}
           </div>
+          </div>
+          </form>
         </div>
       </div>
     </div>
