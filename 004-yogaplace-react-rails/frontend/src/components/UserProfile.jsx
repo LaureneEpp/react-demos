@@ -1,4 +1,3 @@
-// import React from "react";
 import PropTypes from 'prop-types';
 
 const UserProfile = ({ currUser }) => {
@@ -8,11 +7,11 @@ const UserProfile = ({ currUser }) => {
         <div className="row justify-content-center">
           <div className="col-md-8">
             <div className="card bg_secondary-color">
-              <div className="card-header">
-                <h2 className="card-title white-color fw-semibold fs-2">User Profile</h2>
+              <div className="card-header p-3">
+                <h2 className="card-title white-color display-4">Your Profile</h2>
               </div>
               <div className="card-body">
-                <div className="mb-3 white-color">
+                <div className="mb-3 lead text-muted">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="25"
@@ -25,7 +24,7 @@ const UserProfile = ({ currUser }) => {
                   {currUser.first_name} {currUser.last_name}
                   <hr className="my-2 bg-secondary" />
                 </div>
-                <div className="mb-3 white-color">
+                <div className="mb-3 lead text-muted">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="25"
@@ -38,7 +37,7 @@ const UserProfile = ({ currUser }) => {
                   {currUser.username}
                   <hr className="my-2 bg-secondary" />
                 </div>
-                <div className="mb-3 white-color">
+                <div className="mb-3 lead text-muted">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="25"
@@ -51,7 +50,7 @@ const UserProfile = ({ currUser }) => {
                   {currUser.city}
                   <hr className="my-2 bg-secondary" />
                 </div>
-                <div className="mb-3 white-color">
+                <div className="mb-3 lead text-muted">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="25"
