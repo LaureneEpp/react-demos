@@ -1,4 +1,6 @@
 import PropTypes from 'prop-types';
+import { Link } from "react-router-dom";
+
 
 const UserProfile = ({ currUser }) => {
   return (
@@ -9,6 +11,9 @@ const UserProfile = ({ currUser }) => {
             <div className="card bg_secondary-color">
               <div className="card-header p-3">
                 <h2 className="card-title white-color display-4">Your Profile</h2>
+                <Link to="/user-profile/edit" className="btn btn-primary">
+                  Edit Profile
+                </Link>
               </div>
               <div className="card-body">
                 <div className="mb-3 lead text-muted">

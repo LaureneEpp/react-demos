@@ -13,6 +13,7 @@ import EditYogaClass from "../features/EditYogaClass";
 import Login from "./Login";
 import SignUp from "./SignUp";
 import UserProfile from "./UserProfile";
+import EditUserProfile from "../features/EditUserProfile";
 
 
 
@@ -26,7 +27,7 @@ function AppRoutes({ currUser, setCurrUser }) {
       <Route path="/login" element={<Login setCurrUser={setCurrUser} />} />
       <Route path="/signup" element={<SignUp setCurrUser={setCurrUser} />} />
       <Route path="/user-profile" element={<UserProfile currUser={currUser} />} />
-
+      <Route path="/user-profile/edit" element={<EditUserProfile currUser={currUser} />} />
 
       <Route path="/yoga_lessons" element={<YogaLessonsList />} />
       <Route path="/yoga_lessons/:id" element={<YogaLessonDetails />} />
