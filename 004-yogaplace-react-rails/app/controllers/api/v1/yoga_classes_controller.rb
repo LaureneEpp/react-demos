@@ -52,9 +52,7 @@ class Api::V1::YogaClassesController < ApplicationController
   end
 
   def set_yoga_class
-    # @yoga_class = @yoga_lesson.yoga_classes.find(params[:id])
     @yoga_class = YogaClass.find(params[:id])
-
   end
 
   def yoga_class_params

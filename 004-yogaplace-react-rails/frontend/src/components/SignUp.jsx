@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
+
 const Signup = ({ setCurrUser, setShow }) => {
   const navigate = useNavigate();
   const formRef = useRef();

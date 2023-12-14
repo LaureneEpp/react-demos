@@ -11,6 +11,8 @@ Rails.application.routes.draw do
       sessions: 'users/sessions',
       registrations: 'users/registrations'
     }
+    resources :users, only: [:show, :edit, :update]
+
   namespace :api do
     namespace :v1 do
       resources :yoga_categories
@@ -18,6 +20,7 @@ Rails.application.routes.draw do
         resources :yoga_classes, except: [:index, :delete]
       end
       resources :yoga_classes
+      resources :users
     end
   end
   root 'homepage#index'

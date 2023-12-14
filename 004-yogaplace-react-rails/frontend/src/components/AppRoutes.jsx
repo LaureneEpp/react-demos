@@ -26,8 +26,8 @@ function AppRoutes({ currUser, setCurrUser }) {
       <Route path="/about" element={<AboutPage />} />
       <Route path="/login" element={<Login setCurrUser={setCurrUser} />} />
       <Route path="/signup" element={<SignUp setCurrUser={setCurrUser} />} />
-      <Route path="/user-profile" element={<UserProfile currUser={currUser} />} />
-      <Route path="/user-profile/edit" element={<EditUserProfile currUser={currUser} />} />
+      <Route path="/:username" element={<UserProfile currUser={currUser} />} />
+      <Route path="/:username/edit" element={<EditUserProfile currUser={currUser}/>} />
 
       <Route path="/yoga_lessons" element={<YogaLessonsList />} />
       <Route path="/yoga_lessons/:id" element={<YogaLessonDetails />} />
