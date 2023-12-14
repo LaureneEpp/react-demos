@@ -9,6 +9,7 @@
 p "Seeding data"
 
 p "Deleting all data"
+User.destroy_all
 YogaCategory.destroy_all
 YogaClass.destroy_all
 YogaLesson.destroy_all

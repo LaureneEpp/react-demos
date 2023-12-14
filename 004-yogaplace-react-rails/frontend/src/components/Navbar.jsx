@@ -63,7 +63,7 @@ const Navbar = ({ currUser, setCurrUser }) => {
             {isLoggedIn ? (
               <>
                 <Link
-                  to="/user-profile"
+                  to={`/${currUser.username}`}
                   className="ms-4 fw-normal white-color fs-4 text-decoration-none">
                   Profile
                 </Link>
