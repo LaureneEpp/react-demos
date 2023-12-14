@@ -1,4 +1,8 @@
-const Logout =({setCurrUser})=>{
+import { useNavigate } from "react-router-dom";
+
+const Logout = ({ setCurrUser }) => {
+  const navigate = useNavigate();
+
     const logout=async (setCurrUser)=>{
         try {
             const response=await fetch("http://localhost:3000/logout",{
@@ -18,7 +22,8 @@ const Logout =({setCurrUser})=>{
     }
     const handleClick=e=>{
         e.preventDefault()
-         logout(setCurrUser)
+        logout(setCurrUser)
+        navigate("/");
     }
     return (
         <div>
