@@ -1,5 +1,5 @@
 class Api::V1::YogaClassesController < ApplicationController
-  before_action :set_yoga_lesson, except: [:index, :show, :destroy]
+  before_action :set_yoga_lesson, only: [:create]
   before_action :set_yoga_class, only: %i[ show update destroy ]
   # rescue_from ActiveRecord::RecordInvalid, with: :render_invalid
 
@@ -11,22 +11,12 @@ class Api::V1::YogaClassesController < ApplicationController
   def show
     render json: @yoga_class
   end
-  
-  # def create
-  #   @yoga_class = YogaClass.new(yoga_class_params)
-  
-  #   if @yoga_class.save
-  #     render json: @yoga_class, status: :created, location: api_v1_yoga_class_url(@yoga_class)
-  #   else
-  #     render json: @yoga_class.errors, status: :unprocessable_entity
-  #   end
-  # end
-  
+
   def create
     @yoga_class = @yoga_lesson.yoga_classes.new(yoga_class_params)
-
+  
     if @yoga_class.save
-      render json: @yoga_class, status: :created, location: api_v1_yoga_lesson_yoga_class_url(@yoga_lesson, @yoga_class)
+      render json: @yoga_class, status: :created, location: api_v1_yoga_class_url(@yoga_class)
     else
       render json: @yoga_class.errors, status: :unprocessable_entity
     end
@@ -39,7 +29,6 @@ class Api::V1::YogaClassesController < ApplicationController
       render json: @yoga_class.errors, status: :unprocessable_entity
     end
   end
-  
 
   def destroy
     @yoga_class.destroy
@@ -48,7 +37,7 @@ class Api::V1::YogaClassesController < ApplicationController
   private
 
   def set_yoga_lesson
-    @yoga_lesson = YogaLesson.find(params[:yoga_lesson_id])
+    @yoga_lesson = YogaLesson.find(params[:yoga_class][:yoga_lesson_id])
   end
 
   def set_yoga_class

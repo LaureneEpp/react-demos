@@ -1,13 +1,36 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 function NewYogaLesson() {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
-    category: "",
+    yoga_category_id: "",
   });
+
+  const [yoga_categories, setYogaCategories] = useState([]);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    async function fetchLessons() {
+      try {
+        const baseURL = "http://localhost:3000";
+        const apiUrl = `${baseURL}/api/v1/yoga_categories`;
+        const response = await fetch(apiUrl);
+
+        if (response.ok) {
+          const data = await response.json();
+          console.log(data);
+          setYogaCategories(data);
+        } else {
+          console.log("Failed to fetch categories");
+        }
+      } catch (error) {
+        console.error("An error occurred while fetching categories:", error);
+      }
+    }
+    fetchLessons();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -36,11 +59,18 @@ function NewYogaLesson() {
     }
   };
 
+  const handleCategorySelect = (e) => {
+    const selectedCategoryId = e.target.value;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      yoga_category_id: selectedCategoryId,
+    }));
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
   };
-
   return (
     <div className="vh-100 m-4">
       <div className="new-form">
@@ -63,6 +93,25 @@ function NewYogaLesson() {
         </div>
         <div className="col-9 d-flex flex-column align-items-center justify-content-center">
           <form className=" border border-2 p-4" onSubmit={handleSubmit}>
+            <div className="form-group my-2">
+              <label className="my-2" htmlFor="category">
+                Choose a Yoga Category
+              </label>
+              <select
+                id="yoga_category"
+                className="form-control form-control-lg"
+                name="yoga_category_id"
+                value={formData.yoga_category_id}
+                onChange={handleCategorySelect}
+                required>
+                <option value="">Select a category</option>
+                {yoga_categories.map((category) => (
+                  <option key={yoga_categories.id} value={category.id}>
+                    {category.title}
+                  </option>
+                ))}
+              </select>
+            </div>
             <div className="form-group my-2">
               <label className="my-2" htmlFor="title">
                 Title
@@ -87,20 +136,6 @@ function NewYogaLesson() {
                 className="form-control form-control-lg"
                 name="description"
                 value={formData.description}
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <div className="form-group my-2">
-              <label className="my-2" htmlFor="category">
-                Category
-              </label>
-              <input
-                type="text"
-                id="category"
-                className="form-control form-control-lg"
-                name="category"
-                value={formData.category}
                 onChange={handleChange}
                 required
               />

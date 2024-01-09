@@ -1,5 +1,4 @@
 class Api::V1::YogaLessonsController < ApplicationController
-  # before_action :set_yoga_category
   before_action :set_yoga_lesson, only: %i[ show update destroy ]
 
   def index
