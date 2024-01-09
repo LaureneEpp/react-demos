@@ -1,14 +1,36 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 function NewYogaClass() {
   const [formData, setFormData] = useState({
-    title: "",
-    description: "",
     location: "",
     date: "",
+    yoga_lesson_id: "",
   });
+
+  const [yoga_lessons, setYogaLessons] = useState([]);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    async function fetchLessons() {
+      try {
+        const baseURL = "http://localhost:3000";
+        const apiUrl = `${baseURL}/api/v1/yoga_lessons`;
+        const response = await fetch(apiUrl);
+
+        if (response.ok) {
+          const data = await response.json();
+          console.log(data);
+          setYogaLessons(data);
+        } else {
+          console.log("Failed to fetch lessons");
+        }
+      } catch (error) {
+        console.error("An error occurred while fetching lessons:", error);
+      }
+    }
+    fetchLessons();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -35,6 +57,14 @@ function NewYogaClass() {
     } catch (error) {
       console.error("An error occurred while creating the yoga class:", error);
     }
+  };
+
+  const handleLessonSelect = (e) => {
+    const selectedLessonId = e.target.value;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      yoga_lesson_id: selectedLessonId,
+    }));
   };
 
   const handleChange = (e) => {
@@ -64,32 +94,23 @@ function NewYogaClass() {
         <div className="col-9 d-flex flex-column align-items-center justify-content-center">
           <form className=" border border-2 p-4" onSubmit={handleSubmit}>
             <div className="form-group my-2">
-              <label className="my-2" htmlFor="title">
-                Title
+              <label className="my-2" htmlFor="lesson">
+                Choose a Yoga Lesson
               </label>
-              <input
-                type="text"
-                id="title"
+              <select
+                id="yoga_lesson"
                 className="form-control form-control-lg"
-                name="title"
-                value={formData.title}
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <div className="form-group my-2">
-              <label className="my-2" htmlFor="description">
-                Description
-              </label>
-              <input
-                type="text"
-                id="description"
-                className="form-control form-control-lg"
-                name="description"
-                value={formData.description}
-                onChange={handleChange}
-                required
-              />
+                name="yoga_lesson_id"
+                value={formData.yoga_lesson_id}
+                onChange={handleLessonSelect}
+                required>
+                <option value="">Select a lesson</option>
+                {yoga_lessons.map((lesson) => (
+                  <option key={yoga_lessons.id} value={lesson.id}>
+                    {lesson.title}
+                  </option>
+                ))}
+              </select>
             </div>
             <div className="form-group my-2">
               <label className="my-2" htmlFor="location">
@@ -120,22 +141,22 @@ function NewYogaClass() {
               />
             </div>
             <div className="d-flex">
-            <Link
-              to="/yoga_classes"
-              className="btn btn-lg secondary-color my-3 p-2"
-              role="button">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="30"
-                height="30"
-                fill="currentColor"
-                className="bi bi-arrow-left-circle"
-                viewBox="0 0 16 16">
-                <path
-                  fillRule="evenodd"
-                  d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"
-                />
-              </svg>
+              <Link
+                to="/yoga_classes"
+                className="btn btn-lg secondary-color my-3 p-2"
+                role="button">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="30"
+                  height="30"
+                  fill="currentColor"
+                  className="bi bi-arrow-left-circle"
+                  viewBox="0 0 16 16">
+                  <path
+                    fillRule="evenodd"
+                    d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"
+                  />
+                </svg>
               </Link>
 
               <button type="submit" className="btn my-3">

@@ -14,6 +14,11 @@ YogaCategory.destroy_all
 YogaClass.destroy_all
 YogaLesson.destroy_all
 
+User.create!(first_name: "test01", last_name: "test01", username: "test01", email: "test01@test.org", password: "password", city: "bx")
+User.create!(first_name: "test02", last_name: "test02", username: "test02", email: "test02@test.org", password: "password", city: "bx")
+
+puts "Created #{User.count} users"
+
 10.times do 
   YogaCategory.create(
     title: Faker::Lorem.word,
