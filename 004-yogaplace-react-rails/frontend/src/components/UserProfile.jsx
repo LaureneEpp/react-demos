@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
+
 const UserProfile = ({ currUser }) => {
   const [userData, setUserData] = useState({ ...currUser });
   const { id } = useParams();
@@ -32,6 +33,7 @@ const UserProfile = ({ currUser }) => {
   }
 
   console.log(userData.email);
+
   return (
     <div className="vw-100 vh-100 d-flex align-items-center justify-content-center">
       <div className="container my-5">

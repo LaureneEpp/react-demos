@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import LoadingAnimation from "../components/LoadingAnimation";
-
+import BookingButton from "./BookingButton";
 
 function formatDate(date) {
   const options = { year: "numeric", month: "2-digit", day: "2-digit" };
   return new Date(date).toLocaleDateString("en-US", options);
 }
 
-function YogaClassDetails() {
+function YogaClassDetails({ currUser }) {
   const [yoga_class, setYogaClass] = useState(null);
+
   const [yoga_lesson, setYogaLesson] = useState(null);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
@@ -21,21 +22,27 @@ function YogaClassDetails() {
       try {
         const API_URL = "http://localhost:3000/api/v1";
         const yogaClassResponse = await fetch(`${API_URL}/yoga_classes/${id}`);
-        
+
         if (yogaClassResponse.ok) {
           const yogaClassData = await yogaClassResponse.json();
           setYogaClass(yogaClassData);
-          
-          const yogaLessonResponse = await fetch(`${API_URL}/yoga_lessons/${yogaClassData.yoga_lesson_id}`);
-          
+
+          const yogaLessonResponse = await fetch(
+            `${API_URL}/yoga_lessons/${yogaClassData.yoga_lesson_id}`
+          );
+
           if (yogaLessonResponse.ok) {
             const yogaLessonData = await yogaLessonResponse.json();
-            setYogaLesson(yogaLessonData); 
+            setYogaLesson(yogaLessonData);
           } else {
-            throw new Error(`Failed to fetch yoga lesson data with status ${yogaLessonResponse.status}`);
+            throw new Error(
+              `Failed to fetch yoga lesson data with status ${yogaLessonResponse.status}`
+            );
           }
         } else {
-          throw new Error(`Failed to fetch yoga class data with status ${yogaClassResponse.status}`);
+          throw new Error(
+            `Failed to fetch yoga class data with status ${yogaClassResponse.status}`
+          );
         }
       } catch (e) {
         setError(`An error occurred: ${e.message}`);
@@ -43,7 +50,6 @@ function YogaClassDetails() {
     }
     fetchData();
   }, [id]);
-  
 
   const deleteYogaClass = async () => {
     try {
@@ -68,9 +74,7 @@ function YogaClassDetails() {
   }
 
   if (!yoga_class || !yoga_lesson) {
-    return (
-      <LoadingAnimation/>
-    )
+    return <LoadingAnimation />;
   }
 
   return (
@@ -78,7 +82,9 @@ function YogaClassDetails() {
       <div className="jumbotron jumbotron-fluid bg-transparent">
         <div className="m-5">
           <h1 className="display-4">{yoga_lesson.title}</h1>
+
           <p className="lead text-muted">{yoga_lesson.description}</p>
+
           <hr className="my-4" />
           <div className="card-info d-flex justify-content-around mb-3">
             <div className="card-info-icon d-flex align-items-center">
@@ -109,52 +115,68 @@ function YogaClassDetails() {
             </div>
           </div>
           <hr className="my-4" />
-          <div className="d-flex">
-            <Link
-              to="/"
-              className="btn btn-lg secondary-color my-3 p-2"
-              role="button">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="35"
-                height="35"
-                fill="currentColor"
-                className="bi bi-house-door-fill"
-                viewBox="0 0 16 16">
-                <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5Z" />
-              </svg>
-            </Link>
-            <p className="align-self-center my-3 p-2">|</p>
-            <Link
-              to={`/yoga_classes/${id}/edit`}
-              className="btn btn-lg terracota-color my-3 p-2"
-              role="button">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="35"
-                height="35"
-                fill="currentColor"
-                className="bi bi-pencil-square"
-                viewBox="0 0 16 16">
-                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                <path
-                  fillRule="evenodd"
-                  d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"
+          <div className="d-flex justify-content-between">
+            <div className="d-flex">
+              <Link
+                to="/"
+                className="btn btn-lg secondary-color my-3 p-2"
+                role="button">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="35"
+                  height="35"
+                  fill="currentColor"
+                  className="bi bi-house-door-fill"
+                  viewBox="0 0 16 16">
+                  <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5Z" />
+                </svg>
+              </Link>
+              {currUser && currUser.role === "instructor" && (
+                <>
+                  <p className="align-self-center my-3 p-2">|</p>
+                  <Link
+                    to={`/yoga_classes/${id}/edit`}
+                    className="btn btn-lg terracota-color my-3 p-2"
+                    role="button">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="35"
+                      height="35"
+                      fill="currentColor"
+                      className="bi bi-pencil-square"
+                      viewBox="0 0 16 16">
+                      <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                      <path
+                        fillRule="evenodd"
+                        d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"
+                      />
+                    </svg>
+                  </Link>
+                  <p className="align-self-center my-3 p-2">|</p>
+                  <button
+                    onClick={deleteYogaClass}
+                    className="btn btn-lg my-3 p-2">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="35"
+                      height="35"
+                      fill="currentColor"
+                      className="bi bi-trash3-fill orange-light-color"
+                      viewBox="0 0 16 16">
+                      <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
+                    </svg>
+                  </button>
+                </>
+              )}
+            </div>
+            <div className="d-flex align-items-center">
+              {currUser && (
+                <BookingButton
+                  currUser={currUser}
+                  yogaClassId={yoga_class.id}
                 />
-              </svg>
-            </Link>
-            <p className="align-self-center my-3 p-2">|</p>
-            <button onClick={deleteYogaClass} className="btn btn-lg my-3 p-2">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="35"
-                height="35"
-                fill="currentColor"
-                className="bi bi-trash3-fill orange-light-color"
-                viewBox="0 0 16 16">
-                <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
-              </svg>
-            </button>
+              )}
+            </div>
           </div>
         </div>
       </div>

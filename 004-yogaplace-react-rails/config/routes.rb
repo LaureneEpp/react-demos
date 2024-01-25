@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       end
       resources :yoga_classes
       resources :users
+      resources :bookings
     end
   end
   root 'homepage#index'

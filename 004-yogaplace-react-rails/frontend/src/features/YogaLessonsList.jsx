@@ -3,14 +3,12 @@ import { Link, useParams } from "react-router-dom";
 import LoadingAnimation from "../components/LoadingAnimation";
 import { motion } from "framer-motion";
 
-
-function YogaLessonsList() {
+function YogaLessonsList({ currUser }) {
   const [yoga_lessons, setYogaLessons] = useState([]);
   const [loading, setLoading] = useState(true);
   const [, setError] = useState(null);
 
-  const { id  } = useParams();
-
+  const { id } = useParams();
 
   useEffect(() => {
     async function loadYogaLessons() {
@@ -47,9 +45,7 @@ function YogaLessonsList() {
   });
 
   if (loading) {
-    return (
-      <LoadingAnimation/>
-    )
+    return <LoadingAnimation />;
   }
 
   return (
@@ -58,17 +54,21 @@ function YogaLessonsList() {
       <p className="lead text-muted">
         We pulled together a great plan for you!
       </p>
-      <Link to="/yoga_lessons/new" className="btn btn-lg my-3">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="30"
-          height="30"
-          fill="currentColor"
-          className="bi bi-plus-circle-fill secondary-color"
-          viewBox="0 0 16 16">
-          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
-        </svg>
-      </Link>
+      {currUser && currUser.role === "instructor" && (
+        <>
+          <Link to="/yoga_lessons/new" className="btn btn-lg my-3">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="30"
+              height="30"
+              fill="currentColor"
+              className="bi bi-plus-circle-fill secondary-color"
+              viewBox="0 0 16 16">
+              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
+            </svg>
+          </Link>
+        </>
+      )}
 
       <div className="py-3">
         {Object.keys(lessonsByCategory).map((category) => (

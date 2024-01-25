@@ -9,7 +9,7 @@ function formatDate(date) {
   return new Date(date).toLocaleDateString("en-US", options);
 }
 
-function YogaClassesList() {
+function YogaClassesList({ currUser }) {
   const [date, setDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(null);
   const [yoga_classes, setYogaClasses] = useState([]);
@@ -87,19 +87,23 @@ function YogaClassesList() {
           whileTap={{ scale: 0.9 }}
           key={yoga_class.id}
           className="border border-0 shadow m-3 p-3 bg_orange-light-color position-relative custom-yoga-class">
-          <button
-            onClick={() => handleDelete(yoga_class.id)}
-            className="btn btn-lg position-absolute top-0 start-100 translate-middle">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="30"
-              height="30"
-              fill="currentColor"
-              className="bi bi-trash3-fill white-color"
-              viewBox="0 0 16 16">
-              <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
-            </svg>
-          </button>
+          {currUser && currUser.role === "instructor" && (
+            <>
+              <button
+                onClick={() => handleDelete(yoga_class.id)}
+                className="btn btn-lg position-absolute top-0 start-100 translate-middle">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="30"
+                  height="30"
+                  fill="currentColor"
+                  className="bi bi-trash3-fill white-color"
+                  viewBox="0 0 16 16">
+                  <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
+                </svg>
+              </button>
+            </>
+          )}
           <Link
             to={`/yoga_classes/${yoga_class.id}`}
             className="text-decoration-none text-reset">
@@ -116,18 +120,23 @@ function YogaClassesList() {
   const noYogaClass = (
     <div className="my-4">
       <p className="lead ">
-        No yoga class scheduled yet. Why not add one :{" "}
-        <Link to="/yoga_classes/new" className="btn btn-lg" role="button">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="30"
-            height="30"
-            fill="currentColor"
-            className="bi bi-plus-circle-fill secondary-color"
-            viewBox="0 0 16 16">
-            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
-          </svg>
-        </Link>
+        No yoga class scheduled yet.
+        {currUser && currUser.role === "instructor" && (
+          <>
+            Why not add one :{" "}
+            <Link to="/yoga_classes/new" className="btn btn-lg" role="button">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="30"
+                height="30"
+                fill="currentColor"
+                className="bi bi-plus-circle-fill secondary-color"
+                viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
+              </svg>
+            </Link>
+          </>
+        )}
       </p>
     </div>
   );
@@ -139,17 +148,24 @@ function YogaClassesList() {
         <p className="lead text-muted">
           We pulled together a great agenda for you!
         </p>
-        <Link to="/yoga_classes/new" className="btn btn-lg my-3" role="button">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="30"
-            height="30"
-            fill="currentColor"
-            className="bi bi-plus-circle-fill secondary-color"
-            viewBox="0 0 16 16">
-            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
-          </svg>
-        </Link>
+        {currUser && currUser.role === "instructor" && (
+          <>
+            <Link
+              to="/yoga_classes/new"
+              className="btn btn-lg my-3"
+              role="button">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="30"
+                height="30"
+                fill="currentColor"
+                className="bi bi-plus-circle-fill secondary-color"
+                viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
+              </svg>
+            </Link>
+          </>
+        )}
       </div>
       <div className="py-3">
         <div className="d-flex flex-column">

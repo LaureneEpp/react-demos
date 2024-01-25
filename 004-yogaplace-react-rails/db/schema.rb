@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_05_124250) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_10_164902) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bookings", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "yoga_class_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_bookings_on_user_id"
+    t.index ["yoga_class_id"], name: "index_bookings_on_yoga_class_id"
+  end
 
   create_table "jwt_denylist", force: :cascade do |t|
     t.string "jti", null: false
@@ -62,4 +71,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_05_124250) do
     t.index ["yoga_category_id"], name: "index_yoga_lessons_on_yoga_category_id"
   end
 
+  add_foreign_key "bookings", "users"
+  add_foreign_key "bookings", "yoga_classes"
 end

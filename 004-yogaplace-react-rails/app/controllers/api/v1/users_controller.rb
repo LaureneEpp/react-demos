@@ -8,7 +8,8 @@ class Api::V1::UsersController < ApplicationController
   end
   
   def show
-    @usere = current_user
+    # @user = current_user
+    @bookings = Bookings.where(user_id: @user)
     if @user.present?
       render json: @user
     else
