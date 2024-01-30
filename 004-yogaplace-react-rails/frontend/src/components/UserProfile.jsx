@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { useParams } from "react-router-dom";
-
+// import { useParams } from "react-router-dom";
 
 const UserProfile = ({ currUser }) => {
   const [userData, setUserData] = useState({ ...currUser });
-  const { id } = useParams();
+  const [userBookings, setUserBookings] = useState(null);
+  const [error, setError] = useState(null);
+
+  // const { id } = useParams();
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -18,7 +20,7 @@ const UserProfile = ({ currUser }) => {
           throw new Error("Failed to fetch user data");
         }
         const userData = await response.json();
-        console.log(userData);
+        // console.log(userData);
         setUserData(userData);
       } catch (error) {
         console.error("Error fetching user data:", error.message);
@@ -26,13 +28,36 @@ const UserProfile = ({ currUser }) => {
     };
 
     fetchUserData();
-  }, [currUser.id]);
+  }, [currUser]);
+
+  useEffect(() => {
+    async function fetchBookingData() {
+      try {
+        const API_URL = "http://localhost:3000/api/v1";
+        const userBookingsResponse = await fetch(`${API_URL}/bookings`);
+
+        if (userBookingsResponse.ok) {
+          const userBookingsData = await userBookingsResponse.json();
+          const userBookings = userBookingsData.filter(
+            (booking) => booking.user_id === currUser.id
+          );
+          console.log(userBookings);
+          setUserBookings(userBookings);
+        } else {
+          throw new Error(
+            `Failed to fetch yoga class data with status ${userBookingsResponse.status}`
+          );
+        }
+      } catch (error) {
+        setError(`An error occurred: ${error.message}`);
+      }
+    }
+    fetchBookingData();
+  }, [currUser]);
 
   if (!userData) {
     return <div>Loading...</div>;
   }
-
-  console.log(userData.email);
 
   return (
     <div className="vw-100 vh-100 d-flex align-items-center justify-content-center">
@@ -41,13 +66,10 @@ const UserProfile = ({ currUser }) => {
           <div className="col-md-8">
             <div className="card bg_secondary-color">
               <div className="card-header p-3 d-flex flex-row align-items-center">
-                <h2 className="card-title white-color display-4">
-                  Your Profile
-                </h2>
-
+                <h2 className="card-title white-color display-4">About you</h2>
                 <Link
                   to={`/${currUser.username}/edit`}
-                  className="btn btn-lg terracota-color"
+                  className="btn btn-lg terracota-color ms-3"
                   role="button">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -120,6 +142,35 @@ const UserProfile = ({ currUser }) => {
                 </div>
               </div>
             </div>
+            <div>
+              <div className="container overflow-auto align-self-center">
+                <div className="text-center">
+                  <h3>Your bookings</h3>
+                  <div className="d-flex align-items-center justify-content-center align-content-center my-4 row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+                    {userBookings && userBookings.length > 0 ? (
+                      <div className="d-flex flex-column align-items-center">
+                        {userBookings.map((booking) => (
+                          <div
+                            key={booking.id}
+                            className="col border border-light m-2 p-3">
+                            <div className="d-flex flex-column align-items-center">
+                              <p>Yoga Class: {booking.yoga_class.location}</p>
+                              <p>Date: {booking.yoga_class.date}</p>
+                              <p>
+                                Lesson Title:{" "}
+                                {booking.yoga_class.yoga_lesson.title}
+                              </p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <p>No bookings found.</p>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -129,6 +180,7 @@ const UserProfile = ({ currUser }) => {
 
 UserProfile.propTypes = {
   currUser: PropTypes.shape({
+    // id: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
     first_name: PropTypes.string.isRequired,
     last_name: PropTypes.string.isRequired,

@@ -8,14 +8,25 @@ class Api::V1::UsersController < ApplicationController
   end
   
   def show
-    # @user = current_user
-    @bookings = Bookings.where(user_id: @user)
+    @user = User.includes(bookings: [:yoga_class => [:yoga_lesson]])
+               .find_by(id: params[:id])
+  
     if @user.present?
-      render json: @user
+      render json: @user, include: {
+        bookings: {
+          # include: {
+          #   yoga_class: {
+          #     only: [:id, :location, :date, :yoga_lesson_id],
+          #     include: { yoga_lesson: { only: [:id, :title, :description] } }
+          #   }
+          # }
+        }
+      }
     else
-      render json: {}, status: 404
+      render json: {}, status: :not_found
     end
   end
+  
   
   def edit
   end

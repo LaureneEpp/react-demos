@@ -3,7 +3,9 @@ class Api::V1::BookingsController < ApplicationController
   
       def index
         @bookings = Booking.all.order(created_at: :desc)
-        render json: @bookings
+        render json: @bookings,include: { yoga_class: {only: [:id, :location, :date, :yoga_lesson_id], include: { yoga_lesson: { only: [:id, :title, :description] } }
+            },:user => {:only => [:id, :first_name, :last_name, :username, :email, :city, :role]}
+          }
       end
     
       def show
