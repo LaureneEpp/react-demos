@@ -10,6 +10,7 @@ import YogaClassesList from "../features/YogaClassesList";
 import YogaClassDetails from "../features/YogaClassDetails";
 import NewYogaClass from "../features/NewYogaClass";
 import EditYogaClass from "../features/EditYogaClass";
+import BookingsList from "../features/BookingsList";
 import Login from "./Login";
 import SignUp from "./SignUp";
 import UserProfile from "./UserProfile";
@@ -29,16 +30,21 @@ function AppRoutes({ currUser, setCurrUser }) {
       <Route path="/:username" element={<UserProfile currUser={currUser} />} />
       <Route path="/:username/edit" element={<EditUserProfile currUser={currUser}/>} />
 
-      <Route path="/yoga_lessons" element={<YogaLessonsList />} />
-      <Route path="/yoga_lessons/:id" element={<YogaLessonDetails />} />
+      <Route path="/yoga_lessons" element={<YogaLessonsList currUser={currUser}/>} />
+      <Route path="/yoga_lessons/:id" element={<YogaLessonDetails currUser={currUser} />} />
       <Route path="/yoga_lessons/:id/edit" element={<EditYogaLesson />} />
 
-      <Route path="/yoga_classes" element={<YogaClassesList />} />
-      <Route path="/yoga_classes/:id" element={<YogaClassDetails />} />
+      <Route path="/yoga_classes" element={<YogaClassesList currUser={currUser} />} />
+      <Route path="/yoga_classes/:id" element={<YogaClassDetails currUser={currUser} />} />
       <Route path="/yoga_classes/:id/edit" element={<EditYogaClass />} />
 
       <Route path="/yoga_classes/new" element={<NewYogaClass />} />
       <Route path="/yoga_lessons/new" element={<NewYogaLesson />} />
+
+      <Route path="/bookings" element={<BookingsList />} />
+      {/* <Route path="/bookings" element={<BookingsList />} /> */}
+      
+
     </Routes>
   );
 }

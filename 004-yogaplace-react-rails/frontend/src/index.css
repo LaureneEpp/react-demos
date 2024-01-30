@@ -50,7 +50,6 @@ body,
 
 .bg_white-color {
   background-color: #fff;
-
 }
 .white-color {
   color: #fff;
@@ -68,10 +67,16 @@ body,
   border: none;
 }
 
-.delete-button.btn, .validate-button.btn {
+.delete-button.btn,
+.validate-button.btn {
   background-color: #f0997d;
   color: white;
   border: none;
+}
+
+.booking-button.btn {
+  background-color: transparent;
+  border: 0.2rem solid white;
 }
 
 .overlay {
@@ -83,4 +88,3 @@ body,
 .btn {
   width: fit-content;
 }
-
