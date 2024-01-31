@@ -40,12 +40,27 @@
   form {
     margin: 2rem 0;
   }
+
+  .container-profile {
+    flex-direction: column;
+  }
+  .fixed-sidebar {
+    align-items: center;
+    margin-top: 3rem;
+  }
 }
 
 @media screen and (min-width: 480px) {
   .new-form-title {
     flex-direction: column;
   }
+
+
+  .fixed-sidebar {
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+
 }
 
 /* Calendar */
