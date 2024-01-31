@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { useNavigate, useParams, Link } from "react-router-dom";
 
-const EditUserProfile = ({ currUser }) => {
+const EditUserInformation = ({ currUser }) => {
   const [userProfile, setUserProfile] = useState({ ...currUser });
   const [formData, setFormData] = useState({
     first_name: "",
@@ -85,7 +85,7 @@ const EditUserProfile = ({ currUser }) => {
               </div>
               <div className="card-body">
                 <form onSubmit={handleSubmit} className="pt-4">
-                  <div className="mb-3 lead text-muted d-flex flex-row align-items-center">
+                  <div className="mb-3 lead white-color d-flex flex-row align-items-center">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="45"
@@ -114,7 +114,7 @@ const EditUserProfile = ({ currUser }) => {
                     />
                     <hr className="my-2 bg-secondary" />
                   </div>
-                  <div className="mb-3 lead text-muted d-flex flex-row align-items-center">
+                  <div className="mb-3 lead white-color d-flex flex-row align-items-center">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="25"
@@ -134,7 +134,7 @@ const EditUserProfile = ({ currUser }) => {
                     />
                     <hr className="my-2 bg-secondary" />
                   </div>
-                  <div className="mb-3 lead text-muted d-flex flex-row align-items-center">
+                  <div className="mb-3 lead white-color d-flex flex-row align-items-center">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="25"
@@ -154,7 +154,7 @@ const EditUserProfile = ({ currUser }) => {
                     />
                     <hr className="my-2 bg-secondary" />
                   </div>
-                  <div className="mb-3 lead text-muted d-flex flex-row align-items-center">
+                  <div className="mb-3 lead white-color d-flex flex-row align-items-center">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="25"
@@ -215,7 +215,7 @@ const EditUserProfile = ({ currUser }) => {
   );
 };
 
-EditUserProfile.propTypes = {
+EditUserInformation.propTypes = {
   currUser: PropTypes.shape({
     id: PropTypes.number.isRequired,
     first_name: PropTypes.string.isRequired,
@@ -227,4 +227,4 @@ EditUserProfile.propTypes = {
   updateUserProfile: PropTypes.func.isRequired,
 };
 
-export default EditUserProfile;
+export default EditUserInformation;

@@ -29,7 +29,7 @@ function YogaClassesList({ currUser }) {
 
         if (response.ok) {
           const json = await response.json();
-          console.log("Yoga classes data:", json);
+          // console.log("Yoga classes data:", json);
           setYogaClasses(json);
         } else {
           throw new Error(`API request failed with status ${response.status}`);

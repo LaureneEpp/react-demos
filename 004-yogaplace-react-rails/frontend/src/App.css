@@ -1,12 +1,12 @@
 /* Navbar */
 
- .menu-toggle {
+.menu-toggle {
   height: 90vh;
   position: fixed;
   top: 0;
- }
+}
 
- /* Forms */
+/* Forms */
 
 .new-form {
   display: flex;
@@ -40,12 +40,27 @@
   form {
     margin: 2rem 0;
   }
+
+  .container-profile {
+    flex-direction: column;
+  }
+  .fixed-sidebar {
+    align-items: center;
+    margin-top: 3rem;
+  }
 }
 
 @media screen and (min-width: 480px) {
   .new-form-title {
     flex-direction: column;
   }
+
+
+  .fixed-sidebar {
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+
 }
 
 /* Calendar */
@@ -124,9 +139,8 @@ abbr[title] {
 .react-calendar--selectRange .react-calendar__tile--hover {
   background-color: #f8f8fa;
 }
-
 /* yoga class */
 
 .custom-yoga-class {
-  height: 110px
+  height: 110px;
 }
