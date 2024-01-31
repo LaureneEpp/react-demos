@@ -16,7 +16,7 @@ function App() {
 
   return (
     <Router>
-      <div className="container-fluid p-3">
+      <div className="">
         <Navbar currUser={currUser} setCurrUser={setCurrUser} />
         <div className="mt-5">
           <AppRoutes currUser={currUser} setCurrUser={setCurrUser} />
