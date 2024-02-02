@@ -49,7 +49,7 @@ function YogaLessonsList({ currUser }) {
   }
 
   return (
-    <div className="container py-5">
+    <div className="">
       <h2 className="display-4">All the yoga lessons you wish</h2>
       <p className="lead text-muted">
         We pulled together a great plan for you!
