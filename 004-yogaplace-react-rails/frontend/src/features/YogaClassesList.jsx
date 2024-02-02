@@ -142,7 +142,7 @@ function YogaClassesList({ currUser }) {
   );
 
   return (
-    <div className="container py-5">
+    <div className="">
       <div>
         <h2 className="display-4">All the yoga classes you wish</h2>
         <p className="lead text-muted">

@@ -16,11 +16,9 @@ function App() {
 
   return (
     <Router>
-      <div className="">
-        <Navbar currUser={currUser} setCurrUser={setCurrUser} />
-        <div className="mt-5">
-          <AppRoutes currUser={currUser} setCurrUser={setCurrUser} />
-        </div>
+      <Navbar currUser={currUser} setCurrUser={setCurrUser} />
+      <div className="mt-5">
+        <AppRoutes currUser={currUser} setCurrUser={setCurrUser} />
       </div>
     </Router>
   );

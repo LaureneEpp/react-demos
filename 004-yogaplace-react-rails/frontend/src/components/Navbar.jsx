@@ -3,8 +3,6 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import Logout from "./Logout";
 
-// import User from "./User";
-
 const links = [
   { name: "Home", to: "/", id: 1 },
   { name: "Lessons", to: "/yoga_lessons", id: 2 },
@@ -49,11 +47,10 @@ const Navbar = ({ currUser, setCurrUser }) => {
   const [showLogin, setShowLogin] = useState(false);
   const isLoggedIn = currUser !== null;
 
-
   return (
     <motion.nav className="navbar navbar-expand-lg bg_primary-color fixed-top z-2 ">
       <div className="container-fluid">
-        <div className="p-2 mx-2 vw-100  d-flex justify-content-between">
+        <div className="p-2 mx-2 vw-100  d-flex flex-wrap justify-content-between align-items-center">
           <div className="d-flex flex-row align-items-center">
             <a
               className="navbar-brand text-uppercase fw-bold fs-3 white-color "
@@ -67,9 +64,7 @@ const Navbar = ({ currUser, setCurrUser }) => {
                   className="ms-4 fw-normal white-color fs-4 text-decoration-none">
                   Profile
                 </Link>
-                <Logout
-                  setCurrUser={setCurrUser}
-                />
+                <Logout setCurrUser={setCurrUser} />
               </>
             ) : (
               <>
