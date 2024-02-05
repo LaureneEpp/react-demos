@@ -66,6 +66,10 @@ body,
   color: #fff;
 }
 
+.margin-top-5 {
+  margin-top: 5rem;
+}
+
 .custom-button.btn {
   background-color: #ffc3a1;
   color: #a75d5d;

@@ -67,8 +67,8 @@ function YogaLessonDetails({ currUser }) {
   }
 
   return (
-    <div className="d-flex flex-column align-items-center justify-content-center">
-      <div className="jumbotron jumbotron-fluid bg-transparent">
+    <div className="vh-100 d-flex flex-column align-items-center justify-content-center">
+      <div className="jumbotron jumbotron-fluid bg-transparent p-4 margin-top-5">
         <div className="m-3">
           <h2 className="display-4">{yoga_lesson.title}</h2>
           <p className="lead text-muted">{yoga_lesson.description}</p>
@@ -129,7 +129,7 @@ function YogaLessonDetails({ currUser }) {
         </div>
       </div>
       <hr className="my-2" />
-      <div className="container overflow-auto align-self-center">
+      <div className="container overflow-auto align-self-center px-5">
         <div className="text-center">
           <h3>When & Where to practice?</h3>
           <div className="d-flex align-items-center justify-content-center align-content-center my-4 row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
