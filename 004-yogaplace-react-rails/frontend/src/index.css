@@ -19,12 +19,12 @@ body,
   height: 100%;
   background-color: #a75d5d;
   color: #fff;
+  padding-top: 60px; 
 }
 
-
 .body-content {
-  padding-top: 60px; 
   margin: 0 auto; 
+  margin-top: 5rem;
   display: flex;
   align-items: center;
   justify-content: center; 

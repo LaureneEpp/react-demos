@@ -49,32 +49,35 @@ function YogaLessonsList({ currUser }) {
   }
 
   return (
-    <div className="">
-      <h2 className="display-4">All the yoga lessons you wish</h2>
-      <p className="lead text-muted">
-        We pulled together a great plan for you!
-      </p>
-      {currUser && currUser.role === "instructor" && (
-        <>
-          <Link to="/yoga_lessons/new" className="btn btn-lg my-3">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="30"
-              height="30"
-              fill="currentColor"
-              className="bi bi-plus-circle-fill secondary-color"
-              viewBox="0 0 16 16">
-              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
-            </svg>
-          </Link>
-        </>
-      )}
+    <div className="vh-100 d-flex flex-column align-items-center justify-content-center">
 
-      <div className="py-3">
+      <div className="text-center">
+        <h2 className="display-4">All the yoga lessons you wish</h2>
+        <p className="lead text-muted">
+          We pulled together a great plan for you!
+        </p>
+        {currUser && currUser.role === "instructor" && (
+          <>
+            <Link to="/yoga_lessons/new" className="btn btn-lg">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="30"
+                height="30"
+                fill="currentColor"
+                className="bi bi-plus-circle-fill secondary-color"
+                viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
+              </svg>
+            </Link>
+          </>
+        )}
+      </div>
+
+      <div className="p-5 overflow-y-auto">
         {Object.keys(lessonsByCategory).map((category) => (
           <div
             key={category.id}
-            className="shadow-lg bg_terracota-color p-3 my-4 rounded-top">
+            className="shadow-lg bg_terracota-color my-3 p-3 rounded-top">
             <h3 className="m-2 py-3">{category}</h3>
             <div className="row">
               {lessonsByCategory[category].map((yoga_lesson) => (
