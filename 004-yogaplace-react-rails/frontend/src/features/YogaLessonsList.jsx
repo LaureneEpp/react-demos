@@ -50,7 +50,7 @@ function YogaLessonsList({ currUser }) {
 
   return (
     <div className="vh-100 d-flex flex-column align-items-center justify-content-center">
-      <div className="text-center p-4">
+      <div className="text-center px-4 margin-top-8">
         <h2 className="display-4">All the yoga lessons you wish</h2>
         <p className="lead text-muted">
           We pulled together a great plan for you!

@@ -24,7 +24,7 @@ body,
 
 .body-content {
   margin: 0 auto; 
-  margin-top: 5rem;
+  /* margin-top: 5rem; */
   display: flex;
   align-items: center;
   justify-content: center; 
@@ -66,8 +66,8 @@ body,
   color: #fff;
 }
 
-.margin-top-5 {
-  margin-top: 5rem;
+.margin-top-8 {
+  margin-top: 8rem;
 }
 
 .custom-button.btn {

@@ -67,7 +67,7 @@
 /* Calendar */
 
 .react-calendar {
-  width: 100%;
+  width: 75%;
   max-width: 100%;
   background-color: #fff;
   color: #222;
@@ -140,7 +140,6 @@ abbr[title] {
 .react-calendar--selectRange .react-calendar__tile--hover {
   background-color: #f8f8fa;
 }
-/* yoga class */
 
 .custom-yoga-class {
   height: 110px;
