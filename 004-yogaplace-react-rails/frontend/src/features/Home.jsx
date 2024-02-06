@@ -1,11 +1,10 @@
-// import React from "react";
 import { Link } from "react-router-dom";
 
 function Home() {
   return (
-    <div className="vw-100 vh-100 d-flex align-items-center justify-content-center">
-      <div className="jumbotron jumbotron-fluid bg-transparent">
-        <div className="container">
+    <div className="">
+    <div className="jumbotron jumbotron-fluid bg-transparent">
+        <div className="m-3 p-3">
           <h1 className="display-4">Yoga Room</h1>
           <p className="lead">
             A list of yoga classes for the best yoga in town.
@@ -28,5 +27,4 @@ function Home() {
     </div>
   );
 }
-
 export default Home;

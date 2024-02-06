@@ -29,7 +29,6 @@ function YogaClassesList({ currUser }) {
 
         if (response.ok) {
           const json = await response.json();
-          // console.log("Yoga classes data:", json);
           setYogaClasses(json);
         } else {
           throw new Error(`API request failed with status ${response.status}`);
@@ -118,12 +117,36 @@ function YogaClassesList({ currUser }) {
   );
 
   const noYogaClass = (
-    <div className="my-4">
-      <p className="lead ">
-        No yoga class scheduled yet.
+    <p className="lead text-muted">
+      No yoga class scheduled yet.
+      {currUser && currUser.role === "instructor" && (
+        <>
+          Why not add one :{" "}
+          <Link to="/yoga_classes/new" className="btn btn-lg" role="button">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="30"
+              height="30"
+              fill="currentColor"
+              className="bi bi-plus-circle-fill secondary-color"
+              viewBox="0 0 16 16">
+              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
+            </svg>
+          </Link>
+        </>
+      )}
+    </p>
+  );
+
+  return (
+    <div className="vh-100 d-flex flex-column align-items-center justify-content-center">
+      <div className="text-center px-4 margin-top-8">
+        <h2 className="display-4">All the yoga classes you wish</h2>
+        <p className="lead text-muted">
+          We pulled together a great agenda for you!
+        </p>
         {currUser && currUser.role === "instructor" && (
           <>
-            Why not add one :{" "}
             <Link to="/yoga_classes/new" className="btn btn-lg" role="button">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -137,51 +160,19 @@ function YogaClassesList({ currUser }) {
             </Link>
           </>
         )}
-      </p>
-    </div>
-  );
-
-  return (
-    <div className="">
-      <div>
-        <h2 className="display-4">All the yoga classes you wish</h2>
-        <p className="lead text-muted">
-          We pulled together a great agenda for you!
-        </p>
-        {currUser && currUser.role === "instructor" && (
-          <>
-            <Link
-              to="/yoga_classes/new"
-              className="btn btn-lg my-3"
-              role="button">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="30"
-                height="30"
-                fill="currentColor"
-                className="bi bi-plus-circle-fill secondary-color"
-                viewBox="0 0 16 16">
-                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
-              </svg>
-            </Link>
-          </>
-        )}
       </div>
-      <div className="py-3">
-        <div className="d-flex flex-column">
-          <div className="d-flex justify-content-center">
-            <Calendar
-              onChange={setDate}
-              value={date}
-              onClickDay={(value) => {
-                setSelectedDate(value.toDateString());
-              }}
-              className="vw-100"
-            />
-          </div>
-          <div className="d-flex justify-content-center my-2">
-            {filteredYogaClasses.length > 0 ? allYogaClasses : noYogaClass}
-          </div>
+      <div className="p-3 overflow-y-auto">
+        <div className="d-flex justify-content-center">
+          <Calendar
+            onChange={setDate}
+            value={date}
+            onClickDay={(value) => {
+              setSelectedDate(value.toDateString());
+            }}
+          />
+        </div>
+        <div className="my-4 text-center">
+          {filteredYogaClasses.length > 0 ? allYogaClasses : noYogaClass}
         </div>
       </div>
     </div>

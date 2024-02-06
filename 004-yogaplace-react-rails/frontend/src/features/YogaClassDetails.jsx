@@ -78,8 +78,8 @@ function YogaClassDetails({ currUser }) {
   }
 
   return (
-    <div className="vw-100 vh-100 d-flex align-items-center justify-content-center">
-      <div className="jumbotron jumbotron-fluid bg-transparent">
+    <div className="vh-100 d-flex flex-column align-items-center justify-content-center">
+      <div className="jumbotron jumbotron-fluid bg-transparent px-4 margin-top-8">
         <div className="m-5">
           <h1 className="display-4">{yoga_lesson.title}</h1>
 
@@ -115,7 +115,7 @@ function YogaClassDetails({ currUser }) {
             </div>
           </div>
           <hr className="my-4" />
-          <div className="d-flex justify-content-between">
+          <div className="yoga-class-buttons d-flex justify-content-between">
             <div className="d-flex">
               <Link
                 to="/"

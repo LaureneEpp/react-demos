@@ -47,7 +47,14 @@
   .fixed-sidebar {
     align-items: center;
     justify-content: center;
-    margin-top: 3rem;
+    padding: 10% 0;
+    position: fixed;
+    width: 100%;
+    /* margin-top: 3rem; */
+  }
+
+  .yoga-class-buttons {
+    flex-direction: column;
   }
 }
 
@@ -67,7 +74,7 @@
 /* Calendar */
 
 .react-calendar {
-  width: 100%;
+  width: 75%;
   max-width: 100%;
   background-color: #fff;
   color: #222;
@@ -140,8 +147,10 @@ abbr[title] {
 .react-calendar--selectRange .react-calendar__tile--hover {
   background-color: #f8f8fa;
 }
-/* yoga class */
 
 .custom-yoga-class {
   height: 110px;
 }
+
+/* yoga-class */
+

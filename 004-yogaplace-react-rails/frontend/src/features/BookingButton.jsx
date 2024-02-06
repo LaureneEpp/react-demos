@@ -99,7 +99,7 @@ const BookingButton = ({ currUser, yogaClassId }) => {
   };
 
   return (
-    <button onClick={handleBooking} className="btn btn-lg ms-4 p-2 booking-button text-muted">
+    <button onClick={handleBooking} className="btn btn-lg p-2 booking-button text-muted">
       {isBooked ? "Cancel" : "Book now!"}
     </button>
   );
