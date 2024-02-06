@@ -1,7 +1,7 @@
 import { useState } from "react";
-import UserProfileSidebar from "../features/UserProfileSidebar";
-import UserInformation from "../features/UserInformation";
-import UserBookingsList from "../features/UserBookingsList";
+import UserProfileSidebar from "./UserProfileSidebar";
+import UserInformation from "./UserInformation";
+import UserBookingsList from "./UserBookingsList";
 
 const UserProfile = ({ currUser }) => {
   const [selectedContent, setSelectedContent] = useState("userInformation");

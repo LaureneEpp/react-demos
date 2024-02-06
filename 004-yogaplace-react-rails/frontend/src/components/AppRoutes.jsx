@@ -1,4 +1,4 @@
-// import React from "react";
+import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "../features/Home";
 import AboutPage from "../features/AboutPage";
@@ -12,8 +12,9 @@ import NewYogaClass from "../features/NewYogaClass";
 import EditYogaClass from "../features/EditYogaClass";
 import Login from "./Login";
 import SignUp from "./SignUp";
-import UserProfile from "./UserProfile";
+import UserProfile from "../features/UserProfile";
 import EditUserInformation from "../features/EditUserInformation";
+import AdminDashboard from "../features/AdminDashboard";
 
 function AppRoutes({ currUser, setCurrUser }) {
   return (
@@ -30,6 +31,8 @@ function AppRoutes({ currUser, setCurrUser }) {
         path="/:username/edit"
         element={<EditUserInformation currUser={currUser} />}
       />
+
+      <Route path="/dashboard" element={<AdminDashboard />} />
 
       <Route
         path="/yoga_lessons"

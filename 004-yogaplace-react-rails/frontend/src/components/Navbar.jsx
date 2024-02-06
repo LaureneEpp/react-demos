@@ -44,26 +44,33 @@ const linkVariants = {
 
 const Navbar = ({ currUser, setCurrUser }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [showLogin, setShowLogin] = useState(false);
   const isLoggedIn = currUser !== null;
 
   return (
     <motion.nav className="navbar navbar-expand-lg bg_primary-color fixed-top z-2 ">
       <div className="container-fluid">
-        <div className="p-2 mx-2 vw-100  d-flex flex-wrap justify-content-between align-items-center">
+        <div className="p-2 mx-2 vw-100 d-flex flex-wrap justify-content-between align-items-center">
           <div className="d-flex flex-row align-items-center">
-            <a
-              className="navbar-brand text-uppercase fw-bold fs-3 white-color "
-              href="/">
+            <Link
+              to="/"
+              className="navbar-brand text-uppercase fw-bold fs-3 white-color">
               YogaPlace
-            </a>
+            </Link>
             {isLoggedIn ? (
               <>
-                <Link
-                  to={`/${currUser.username}`}
-                  className="ms-4 fw-normal white-color fs-4 text-decoration-none">
-                  Profile
-                </Link>
+                {currUser.role === "instructor" ? (
+                  <Link
+                    to="/dashboard"
+                    className="ms-4 fw-normal white-color fs-4 text-decoration-none">
+                    Dashboard
+                  </Link>
+                ) : (
+                  <Link
+                    to={`/${currUser.username}`}
+                    className="ms-4 fw-normal white-color fs-4 text-decoration-none">
+                    Profile
+                  </Link>
+                )}
                 <Logout setCurrUser={setCurrUser} />
               </>
             ) : (
@@ -81,7 +88,6 @@ const Navbar = ({ currUser, setCurrUser }) => {
               </>
             )}
           </div>
-
           <motion.svg
             variants={iconVariants}
             animate={isOpen ? "opened" : "closed"}
