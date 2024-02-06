@@ -49,6 +49,10 @@
     justify-content: center;
     margin-top: 3rem;
   }
+
+  .yoga-class-buttons {
+    flex-direction: column;
+  }
 }
 
 @media screen and (min-width: 480px) {
@@ -144,3 +148,6 @@ abbr[title] {
 .custom-yoga-class {
   height: 110px;
 }
+
+/* yoga-class */
+
