@@ -46,26 +46,27 @@ const UserBookingsList = ({ currUser }) => {
 
   console.log(userBookings);
   return (
-    <div className="text-center">
-      <h3 className="text-uppercase">Your bookings</h3>
-      <Link to="/yoga_classes" role="button">
-        <motion.svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="50"
-          height="50"
-          fill="currentColor"
-          className="bi bi-plus-lg orange-light-color fw-bold"
-          viewBox="0 0 16 16"
-          whileHover={{ scale: [null, 1.5, 1.4] }}
-          transition={{ duration: 0.3 }}>
-          <path
-            fillRule="evenodd"
-            d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"
-          />
-        </motion.svg>
-      </Link>
-
-      <div className="m-4">
+    <>
+      <div className="text-center px-4 margin-top-8">
+        <h3 className="text-uppercase">Your bookings</h3>
+        <Link to="/yoga_classes" role="button">
+          <motion.svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="50"
+            height="50"
+            fill="currentColor"
+            className="bi bi-plus-lg orange-light-color fw-bold"
+            viewBox="0 0 16 16"
+            whileHover={{ scale: [null, 1.5, 1.4] }}
+            transition={{ duration: 0.3 }}>
+            <path
+              fillRule="evenodd"
+              d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"
+            />
+          </motion.svg>
+        </Link>
+      </div>
+      <div className="p-3 overflow-y-auto">
         {userBookings && userBookings.length > 0 ? (
           <div className="table-responsive">
             <table className="table">
@@ -115,7 +116,7 @@ const UserBookingsList = ({ currUser }) => {
           <p>No bookings found.</p>
         )}
       </div>
-    </div>
+    </>
   );
 };
 

@@ -13,7 +13,7 @@ const UserProfile = ({ currUser }) => {
   return (
     <div className="container-profile vw-100 vh-100 d-flex">
       <UserProfileSidebar onButtonClick={handleSidebarButtonClick} />
-      <div className="d-flex align-items-center justify-content-center vw-100 vh-100">
+      <div className="d-flex flex-column align-items-center justify-content-center vw-100 vh-100">
         {selectedContent === "userInformation" && (
           <UserInformation currUser={currUser} />
         )}

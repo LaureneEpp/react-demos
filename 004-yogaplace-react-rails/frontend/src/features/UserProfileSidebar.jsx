@@ -1,10 +1,10 @@
 const UserProfileSidebar = ({ onButtonClick }) => {
   return (
-    <div className="fixed-sidebar bg_secondary-color d-flex p-2">
-      <button onClick={() => onButtonClick("userInformation")} className="d-block fs-5 fw-bold uppercase primary-color p-3 mb-3 bg-transparent btn">
+    <div className="fixed-sidebar bg_secondary-color d-flex">
+      <button onClick={() => onButtonClick("userInformation")} className="d-block fs-5 fw-bold uppercase primary-color bg-transparent btn btn-lg">
         Your Information
       </button>
-      <button onClick={() => onButtonClick("userBookings")} className="d-block fs-5 fw-bold uppercase primary-color p-3 mb-3 bg-transparent btn">
+      <button onClick={() => onButtonClick("userBookings")} className="d-block fs-5 fw-bold uppercase primary-color bg-transparent btn btn-lg">
         Your Bookings
       </button>
     </div>
