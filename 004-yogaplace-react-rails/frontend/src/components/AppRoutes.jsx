@@ -14,7 +14,7 @@ import Login from "./Login";
 import SignUp from "./SignUp";
 import UserProfile from "../features/UserProfile";
 import EditUserInformation from "../features/EditUserInformation";
-import AdminDashboard from "../features/AdminDashboard";
+import InstructorProfile from "../features/InstructorProfile";
 
 function AppRoutes({ currUser, setCurrUser }) {
   return (
@@ -33,7 +33,7 @@ function AppRoutes({ currUser, setCurrUser }) {
       />
       <Route
         path="/dashboard"
-        element={<AdminDashboard currUser={currUser} />}
+        element={<InstructorProfile currUser={currUser} />}
       />
 
       <Route
