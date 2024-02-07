@@ -24,9 +24,7 @@ function YogaClassesList({ currUser }) {
         const baseURL = "http://localhost:3000";
         const apiURL = `${baseURL}/api/v1/yoga_classes`;
         const response = await fetch(apiURL);
-        console.log("API response:", response);
-        console.log("Yoga classes have been loaded successfully.");
-
+        // console.log("API response:", response);
         if (response.ok) {
           const json = await response.json();
           setYogaClasses(json);
@@ -106,9 +104,33 @@ function YogaClassesList({ currUser }) {
           <Link
             to={`/yoga_classes/${yoga_class.id}`}
             className="text-decoration-none text-reset">
-            <h5 className="mb-1">{yoga_class.yoga_lesson.title}</h5>
-            <div className="d-flex flex-column">
-              <p className="">{yoga_class.location}</p>
+            <h5 className="mb-1 text-center">{yoga_class.yoga_lesson.title}</h5>
+            <div className="d-flex flex-column align-items-start ms-4 ps-4">
+              <div className="d-flex align-items-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  className="bi bi-person"
+                  viewBox="0 0 16 16">
+                  <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z" />
+                </svg>
+                <p className="m-auto ps-2">{yoga_class.user.username}</p>
+              </div>
+              <div className="d-flex align-items-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  className="bi bi-geo-alt"
+                  viewBox="0 0 16 16">
+                  <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z" />
+                  <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                </svg>
+                <p className="m-auto ps-2">{yoga_class.location}</p>
+              </div>
             </div>
           </Link>
         </motion.div>
