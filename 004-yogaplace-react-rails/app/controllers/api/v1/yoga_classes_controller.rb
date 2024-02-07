@@ -5,7 +5,8 @@ class Api::V1::YogaClassesController < ApplicationController
 
   def index
     @yoga_classes = YogaClass.all.order(created_at: :desc)
-    render json: @yoga_classes, include: [:yoga_lesson => {:only => [:id, :title, :description]}] 
+    render json: @yoga_classes, include: [:yoga_lesson => {:only => [:id, :title, :description]},
+                                        :user => {:only => [:id, :email, :first_name, :last_name, :username, :city, :role ]}] 
   end
   
   def show
@@ -45,7 +46,7 @@ class Api::V1::YogaClassesController < ApplicationController
   end
 
   def yoga_class_params
-    params.require(:yoga_class).permit(:date, :location, :yoga_lesson_id)
+    params.require(:yoga_class).permit(:date, :location, :yoga_lesson_id, :user_id)
   end
 
   # def render_invalid(invalid)

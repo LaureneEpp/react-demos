@@ -27,7 +27,6 @@ class Api::V1::UsersController < ApplicationController
     end
   end
   
-  
   def edit
   end
 
@@ -37,6 +36,11 @@ class Api::V1::UsersController < ApplicationController
     else
       render json: @user.errors, status: :unprocessable_entity
     end
+  end
+
+  def admin_dashboard
+    @users = User.all.order(created_at: :desc)
+    render json: @users
   end
   
   private

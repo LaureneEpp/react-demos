@@ -31,8 +31,10 @@ function AppRoutes({ currUser, setCurrUser }) {
         path="/:username/edit"
         element={<EditUserInformation currUser={currUser} />}
       />
-
-      <Route path="/dashboard" element={<AdminDashboard />} />
+      <Route
+        path="/dashboard"
+        element={<AdminDashboard currUser={currUser} />}
+      />
 
       <Route
         path="/yoga_lessons"
@@ -54,7 +56,7 @@ function AppRoutes({ currUser, setCurrUser }) {
       />
       <Route path="/yoga_classes/:id/edit" element={<EditYogaClass />} />
 
-      <Route path="/yoga_classes/new" element={<NewYogaClass />} />
+      <Route path="/yoga_classes/new" element={<NewYogaClass currUser={currUser} />} />
       <Route path="/yoga_lessons/new" element={<NewYogaLesson />} />
     </Routes>
   );

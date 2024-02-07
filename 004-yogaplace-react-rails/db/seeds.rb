@@ -44,7 +44,8 @@ puts "Created #{YogaCategory.count} categories"
   5.times do |j|
     yoga_class = lesson.yoga_classes.create(
       date: Faker::Date.forward(days: 23),
-      location: Faker::Address.city
+      location: Faker::Address.city, 
+      user_id: rand(1..2)
     )
 
     5.times do |h|
