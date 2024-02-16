@@ -1,7 +1,6 @@
 class Api::V1::YogaClassesController < ApplicationController
   before_action :set_yoga_lesson, only: [:create]
   before_action :set_yoga_class, only: %i[ show update destroy ]
-  # rescue_from ActiveRecord::RecordInvalid, with: :render_invalid
 
   def index
     @yoga_classes = YogaClass.all.order(created_at: :desc)
@@ -50,7 +49,4 @@ class Api::V1::YogaClassesController < ApplicationController
     params.require(:yoga_class).permit(:date, :location, :yoga_lesson_id, :user_id)
   end
 
-  # def render_invalid(invalid)
-  #   render json: {errors: ErrorMessageSerializer.error_message(invalid.record.errors)}, status: :unprocessable_entity
-  # end
 end

@@ -1,11 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
-
 p "Seeding data"
 
 p "Deleting all data"
@@ -21,7 +13,10 @@ User.create!(first_name: "test03", last_name: "test03", username: "test03", emai
 User.create!(first_name: "test04", last_name: "test04", username: "test04", email: "test04@test.org", password: "password", city: "bx")
 User.create!(first_name: "test05", last_name: "test05", username: "test05", email: "test05@test.org", password: "password", city: "bx")
 User.create!(first_name: "test06", last_name: "test06", username: "test06", email: "test06@test.org", password: "password", city: "bx")
-
+User.create!(first_name: "test07", last_name: "test07", username: "test07", email: "test07@test.org", password: "password", city: "bx")
+User.create!(first_name: "test08", last_name: "test08", username: "test08", email: "test08@test.org", password: "password", city: "bx")
+User.create!(first_name: "test09", last_name: "test09", username: "test09", email: "test09@test.org", password: "password", city: "bx")
+User.create!(first_name: "test10", last_name: "test10", username: "test10", email: "test10@test.org", password: "password", city: "bx")
 
 puts "Created #{User.count} users"
 
@@ -34,26 +29,29 @@ end
 
 puts "Created #{YogaCategory.count} categories"
 
-20.times do |i|
-  lesson = YogaLesson.create(
+
+20.times do 
+  YogaLesson.create(
     title: Faker::Lorem.sentence(word_count: 3),
     description: Faker::Lorem.paragraph(sentence_count: 4),
     yoga_category_id: rand(1..10)
   )
+end
 
-  5.times do |j|
-    yoga_class = lesson.yoga_classes.create(
+100.times do
+      YogaClass.create(
       date: Faker::Date.forward(days: 23),
       location: Faker::Address.city, 
-      user_id: rand(1..2)
+      user_id: rand(1..2),
+      yoga_lesson_id: rand(1..20)
     )
+end
 
-    5.times do |h|
-      yoga_class.bookings.create(
-        user_id: rand(3..6)
-      )
-    end
-  end
+150.times do
+  Booking.create(
+    user_id: rand(3..10),
+    yoga_class_id: rand(1..100)
+  )
 end
 
 puts "Created #{YogaLesson.count} lessons"

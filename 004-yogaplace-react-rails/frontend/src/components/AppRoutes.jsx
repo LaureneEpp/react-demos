@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import Home from "../features/Home";
-import AboutPage from "../features/AboutPage";
+import Home from "../pages/Home";
+import AboutPage from "../pages/AboutPage";
 import YogaLessonsList from "../features/YogaLessonsList";
 import YogaLessonDetails from "../features/YogaLessonDetails";
 import NewYogaLesson from "../features/NewYogaLesson";

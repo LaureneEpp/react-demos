@@ -1,29 +1,11 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import useFetchUserData from "../fetchingData/useFetchUserData";
+
 
 const UserInformation = ({ currUser }) => {
-  const [userData, setUserData] = useState({ ...currUser });
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const response = await fetch(
-          `http://localhost:3000/api/v1/users/${currUser.id}`
-        );
-        if (!response.ok) {
-          throw new Error("Failed to fetch user data");
-        }
-        const userData = await response.json();
-        setUserData(userData);
-      } catch (error) {
-        console.error("Error fetching user data:", error.message);
-      }
-    };
-
-    fetchUserData();
-  }, [currUser]);
+  const { userData, error } = useFetchUserData({ currUser });
 
   if (!userData) {
     return <div>Loading...</div>;
