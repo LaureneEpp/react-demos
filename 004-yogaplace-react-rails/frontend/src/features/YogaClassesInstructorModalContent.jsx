@@ -1,5 +1,4 @@
-// import useFetchDashboardData from "../fetchingData/useFetchDashboardData";
-// import { Link } from "react-router-dom";
+
 
 function YogaClassesInstructorModalContent({ dashboardData }) {
   return (
