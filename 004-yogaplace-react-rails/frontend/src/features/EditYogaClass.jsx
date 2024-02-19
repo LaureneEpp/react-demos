@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import LoadingAnimation from "../components/LoadingAnimation";
+import useFetchYogaClassData from "../fetchingData/useFetchYogaClassData"
 
 function EditYogaClass() {
-  const [yoga_class, setYogaClass] = useState(null);
+  const {yogaClassData} = useFetchYogaClassData(null)
+  // const [yoga_cl\ass, setYogaClass] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -11,28 +13,28 @@ function EditYogaClass() {
 
   const { id } = useParams();
 
-  useEffect(() => {
-    async function fetchYogaClass() {
-      try {
-        const API_URL = "http://localhost:3000/api/v1";
-        const response = await fetch(`${API_URL}/yoga_classes/${id}`);
-        console.log("API response:", response);
-        console.log(`Yoga class with ID ${id} has been loaded successfully.`);
-        if (response.ok) {
-          const json = await response.json();
-          console.log("Yoga classes data:", json);
-          setYogaClass(json);
-        } else {
-          throw new Error(`API request failed with status ${response.status}`);
-        }
-      } catch (e) {
-        setError(`An error occurred while loading yoga classes: ${e.message}`);
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchYogaClass();
-  }, [id]);
+  // useEffect(() => {
+  //   async function fetchYogaClass() {
+  //     try {
+  //       const API_URL = "http://localhost:3000/api/v1";
+  //       const response = await fetch(`${API_URL}/yoga_classes/${id}`);
+  //       console.log("API response:", response);
+  //       console.log(`Yoga class with ID ${id} has been loaded successfully.`);
+  //       if (response.ok) {
+  //         const json = await response.json();
+  //         console.log("Yoga classes data:", json);
+  //         setYogaClass(json);
+  //       } else {
+  //         throw new Error(`API request failed with status ${response.status}`);
+  //       }
+  //     } catch (e) {
+  //       setError(`An error occurred while loading yoga classes: ${e.message}`);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   }
+  //   fetchYogaClass();
+  // }, [id]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -90,7 +92,7 @@ function EditYogaClass() {
                       id="title"
                       className="form-control form-control-lg"
                       name="title"
-                      value={yoga_class.yoga_lesson.title}
+                      value={yogaClassData.yoga_lesson.title}
                       onChange={handleChange}
                       required
                     />
@@ -104,7 +106,7 @@ function EditYogaClass() {
                       id="description"
                       className="form-control form-control-lg"
                       name="description"
-                      value={yoga_class.yoga_lesson.description}
+                      value={yogaClassData.yoga_lesson.description}
                       onChange={handleChange}
                       required
                     />
@@ -118,7 +120,7 @@ function EditYogaClass() {
                       id="location"
                       className="form-control form-control-lg"
                       name="location"
-                      value={yoga_class.location}
+                      value={yogaClassData.location}
                       onChange={handleChange}
                       required
                     />
@@ -132,7 +134,7 @@ function EditYogaClass() {
                       id="date"
                       className="form-control form-control-lg"
                       name="date"
-                      value={yoga_class.date}
+                      value={yogaClassData.date}
                       onChange={handleChange}
                       required
                     />
