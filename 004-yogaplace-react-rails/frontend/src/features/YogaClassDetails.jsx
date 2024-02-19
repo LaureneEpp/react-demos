@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import LoadingAnimation from "../components/LoadingAnimation";
 import BookingButton from "./BookingButton";
 import useFetchYogaLessonData from "../fetchingData/useFetchYogaLessonData";
+import useFetchYogaClassData from "../fetchingData/useFetchYogaClassData";
 
 function formatDate(date) {
   const options = { year: "numeric", month: "2-digit", day: "2-digit" };
@@ -10,47 +10,12 @@ function formatDate(date) {
 }
 
 function YogaClassDetails({ currUser }) {
-  const [yoga_class, setYogaClass] = useState(null);
+  const { yogaClassData, error } = useFetchYogaClassData(null);
+  const { yogaLessonData } = useFetchYogaLessonData(null);
 
-  const [yoga_lesson, setYogaLesson] = useState(null);
-  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   const { id } = useParams();
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const API_URL = "http://localhost:3000/api/v1";
-        const yogaClassResponse = await fetch(`${API_URL}/yoga_classes/${id}`);
-
-        if (yogaClassResponse.ok) {
-          const yogaClassData = await yogaClassResponse.json();
-          setYogaClass(yogaClassData);
-
-          const yogaLessonResponse = await fetch(
-            `${API_URL}/yoga_lessons/${yogaClassData.yoga_lesson_id}`
-          );
-
-          if (yogaLessonResponse.ok) {
-            const yogaLessonData = await yogaLessonResponse.json();
-            setYogaLesson(yogaLessonData);
-          } else {
-            throw new Error(
-              `Failed to fetch yoga lesson data with status ${yogaLessonResponse.status}`
-            );
-          }
-        } else {
-          throw new Error(
-            `Failed to fetch yoga class data with status ${yogaClassResponse.status}`
-          );
-        }
-      } catch (e) {
-        setError(`An error occurred: ${e.message}`);
-      }
-    }
-    fetchData();
-  }, [id]);
 
   const deleteYogaClass = async () => {
     try {
@@ -74,7 +39,7 @@ function YogaClassDetails({ currUser }) {
     return <div>Error: {error}</div>;
   }
 
-  if (!yoga_class || !yoga_lesson) {
+  if (!yogaClassData || !yogaLessonData) {
     return <LoadingAnimation />;
   }
 
@@ -82,9 +47,9 @@ function YogaClassDetails({ currUser }) {
     <div className="vh-100 d-flex flex-column align-items-center justify-content-center">
       <div className="jumbotron jumbotron-fluid bg-transparent px-4 margin-top-8">
         <div className="m-5">
-          <h1 className="display-4">{yoga_lesson.title}</h1>
+          <h1 className="display-4">{yogaLessonData.title}</h1>
 
-          <p className="lead text-muted">{yoga_lesson.description}</p>
+          <p className="lead text-muted">{yogaLessonData.description}</p>
 
           <hr className="my-4" />
           <div className="card-info d-flex mb-3">
@@ -99,7 +64,7 @@ function YogaClassDetails({ currUser }) {
                 <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z" />
                 <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
               </svg>
-              <h5 className="fw-light m-2">{yoga_class.location}</h5>
+              <h5 className="fw-light m-2">{yogaClassData.location}</h5>
             </div>
             <div className="card-info-icon d-flex align-items-center">
               <svg
@@ -111,7 +76,7 @@ function YogaClassDetails({ currUser }) {
                 viewBox="0 0 16 16">
                 <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z" />
               </svg>
-              <h5 className="fw-light m-2">{yoga_class.user.username}</h5>
+              <h5 className="fw-light m-2">{yogaClassData.user.username}</h5>
             </div>
             <div className="card-info-icon d-flex align-items-center">
               <svg
@@ -124,7 +89,7 @@ function YogaClassDetails({ currUser }) {
                 <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z" />
                 <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
               </svg>
-              <h5 className="fw-light m-2">{formatDate(yoga_class.date)}</h5>
+              <h5 className="fw-light m-2">{formatDate(yogaClassData.date)}</h5>
             </div>
           </div>
           <hr className="my-4" />
@@ -186,7 +151,7 @@ function YogaClassDetails({ currUser }) {
               {currUser && (
                 <BookingButton
                   currUser={currUser}
-                  yogaClassId={yoga_class.id}
+                  yogaClassId={yogaClassData.id}
                 />
               )}
             </div>

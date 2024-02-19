@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 const useFetchYogaLessonData = () => {
-  const [YogaLessonData, setYogaLessonData] = useState(null);
+  const [yogaLessonData, setYogaLessonData] = useState(null);
   const [error, setError] = useState(null);
   const { id } = useParams();
 
@@ -27,7 +27,7 @@ const useFetchYogaLessonData = () => {
     fetchData();
   }, [id]);
 
-  return { YogaLessonData, error };
+  return { yogaLessonData, error };
 };
 
 export default useFetchYogaLessonData;

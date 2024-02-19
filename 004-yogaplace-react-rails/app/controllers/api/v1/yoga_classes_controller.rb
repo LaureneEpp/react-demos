@@ -9,7 +9,7 @@ class Api::V1::YogaClassesController < ApplicationController
   end
   
   def show
-    render json: @yoga_class, include: [:user => {:only => [:id, :email, :first_name, :last_name, :username, :city, :role ]}]
+    render json: @yoga_class, include: [:user => {:only => [:id, :email, :first_name, :last_name, :username, :city, :role ]}, :yoga_lesson => {:only => [:id, :title, :description]}]
 
   end
 

@@ -9,12 +9,10 @@ function formatDate(date) {
 }
 
 function YogaLessonDetails({ currUser }) {
-  const { YogaLessonData, error } = useFetchYogaLessonData();
+  const { yogaLessonData, error } = useFetchYogaLessonData();
   const navigate = useNavigate();
 
   const { id } = useParams();
-
-
 
   const deleteYogaLesson = async () => {
     try {
@@ -38,7 +36,7 @@ function YogaLessonDetails({ currUser }) {
     return <div>Error: {error}</div>;
   }
 
-  if (!YogaLessonData) {
+  if (!yogaLessonData) {
     return <LoadingAnimation />;
   }
 
@@ -46,8 +44,8 @@ function YogaLessonDetails({ currUser }) {
     <div className="vh-100 d-flex flex-column align-items-center justify-content-center">
       <div className="jumbotron jumbotron-fluid bg-transparent px-4 margin-top-8">
         <div className="m-3">
-          <h2 className="display-4">{YogaLessonData.title}</h2>
-          <p className="lead text-muted">{YogaLessonData.description}</p>
+          <h2 className="display-4">{yogaLessonData.title}</h2>
+          <p className="lead text-muted">{yogaLessonData.description}</p>
           <hr className="my-4" />
           <div className="d-flex">
             <Link
@@ -109,10 +107,10 @@ function YogaLessonDetails({ currUser }) {
         <div className="text-center">
           <h3>When & Where to practice?</h3>
           <div className="d-flex align-items-center justify-content-center align-content-center my-4 row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
-            {YogaLessonData.yoga_classes.map((yoga_class) => (
+            {yogaLessonData.yoga_classes.map((yoga_class) => (
               <Link
                 to={`/yoga_classes/${yoga_class.id}`}
-                  key={yoga_class.id}
+                key={yoga_class.id}
                 className="text-decoration-none white-color">
                 <motion.div
                   whileHover={{ scale: 1.1 }}
