@@ -4,7 +4,7 @@ class Api::V1::YogaLessonsController < ApplicationController
   def index
     @yoga_categories = YogaCategory.all.order(created_at: :desc)
     @yoga_lessons = YogaLesson.all.order(created_at: :desc)
-    render json: @yoga_lessons, include: [:yoga_classes => {:only => [:id, :location, :date, :yoga_lesson_id]},
+    render json: @yoga_lessons, include: [:yoga_classes => {:only => [:id, :location, :date, :yoga_lesson_id, :user_id]},
                                           :yoga_category => {:only => [:id, :title, :description]}]
   end
 

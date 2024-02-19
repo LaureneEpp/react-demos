@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import Home from "../features/Home";
-import AboutPage from "../features/AboutPage";
+import Home from "../pages/Home";
+import AboutPage from "../pages/AboutPage";
 import YogaLessonsList from "../features/YogaLessonsList";
 import YogaLessonDetails from "../features/YogaLessonDetails";
 import NewYogaLesson from "../features/NewYogaLesson";
@@ -14,7 +14,7 @@ import Login from "./Login";
 import SignUp from "./SignUp";
 import UserProfile from "../features/UserProfile";
 import EditUserInformation from "../features/EditUserInformation";
-import AdminDashboard from "../features/AdminDashboard";
+import InstructorProfile from "../features/InstructorProfile";
 
 function AppRoutes({ currUser, setCurrUser }) {
   return (
@@ -31,8 +31,10 @@ function AppRoutes({ currUser, setCurrUser }) {
         path="/:username/edit"
         element={<EditUserInformation currUser={currUser} />}
       />
-
-      <Route path="/dashboard" element={<AdminDashboard />} />
+      <Route
+        path="/dashboard"
+        element={<InstructorProfile currUser={currUser} />}
+      />
 
       <Route
         path="/yoga_lessons"
@@ -54,7 +56,7 @@ function AppRoutes({ currUser, setCurrUser }) {
       />
       <Route path="/yoga_classes/:id/edit" element={<EditYogaClass />} />
 
-      <Route path="/yoga_classes/new" element={<NewYogaClass />} />
+      <Route path="/yoga_classes/new" element={<NewYogaClass currUser={currUser} />} />
       <Route path="/yoga_lessons/new" element={<NewYogaLesson />} />
     </Routes>
   );

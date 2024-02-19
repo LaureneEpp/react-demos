@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-function NewYogaClass() {
+function NewYogaClass({currUser}) {
   const [formData, setFormData] = useState({
     location: "",
     date: "",
@@ -64,6 +64,7 @@ function NewYogaClass() {
     setFormData((prevFormData) => ({
       ...prevFormData,
       yoga_lesson_id: selectedLessonId,
+      user_id: currUser.id
     }));
   };
 

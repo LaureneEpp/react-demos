@@ -64,8 +64,6 @@ function EditYogaClass() {
     }
   };
 
-
-
   if (!yoga_class) {
     return <LoadingAnimation />;
   }

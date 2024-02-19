@@ -1,7 +1,7 @@
 import SignUp from "./SignUp";
 import Login from "./Login";
 import Logout from "./Logout";
-import AdminDashboard from "../features/AdminDashboard";
+import InstructorProfile from "../features/InstructorProfile";
 import UserProfile from "../features/UserProfile";
 import { useState } from "react";
 
@@ -12,7 +12,7 @@ const User = ({ currUser, setCurrUser }) => {
     return (
       <div>
         {currUser.role === "instructor" ? (
-          <AdminDashboard currUser={currUser} />
+          <InstructorProfile currUser={currUser} />
         ) : (
           <UserProfile currUser={currUser} />
         )}

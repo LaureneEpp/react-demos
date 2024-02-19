@@ -55,10 +55,12 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_10_164902) do
 
   create_table "yoga_classes", force: :cascade do |t|
     t.bigint "yoga_lesson_id"
+    t.bigint "user_id"
     t.datetime "date"
     t.string "location"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_yoga_classes_on_user_id"
     t.index ["yoga_lesson_id"], name: "index_yoga_classes_on_yoga_lesson_id"
   end
 
