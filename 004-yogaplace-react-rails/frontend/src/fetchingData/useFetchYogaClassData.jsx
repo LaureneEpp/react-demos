@@ -37,7 +37,14 @@ const useFetchYogaClassData = () => {
     fetchData();
   }, [yogaLessonData, id]);
 
-  return { yogaClassData, error };
+  const updateYogaClassData = (updatedData) => {
+    setYogaClassData((prevYogaClass) => ({
+      ...prevYogaClass,
+      ...updatedData,
+    }));
+  };
+
+  return { yogaClassData, error, updateYogaClassData };
 };
 
 export default useFetchYogaClassData;

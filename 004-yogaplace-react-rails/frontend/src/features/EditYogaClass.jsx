@@ -1,44 +1,17 @@
-import React, { useState, useEffect } from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import LoadingAnimation from "../components/LoadingAnimation";
-import useFetchYogaClassData from "../fetchingData/useFetchYogaClassData"
+import useFetchYogaClassData from "../fetchingData/useFetchYogaClassData";
 
 function EditYogaClass() {
-  const {yogaClassData} = useFetchYogaClassData(null)
-  // const [yoga_cl\ass, setYogaClass] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const { yogaClassData, updateYogaClassData } = useFetchYogaClassData();
+  const [, setLoading] = useState(true);
 
   const navigate = useNavigate();
 
-  const { id } = useParams();
-
-  // useEffect(() => {
-  //   async function fetchYogaClass() {
-  //     try {
-  //       const API_URL = "http://localhost:3000/api/v1";
-  //       const response = await fetch(`${API_URL}/yoga_classes/${id}`);
-  //       console.log("API response:", response);
-  //       console.log(`Yoga class with ID ${id} has been loaded successfully.`);
-  //       if (response.ok) {
-  //         const json = await response.json();
-  //         console.log("Yoga classes data:", json);
-  //         setYogaClass(json);
-  //       } else {
-  //         throw new Error(`API request failed with status ${response.status}`);
-  //       }
-  //     } catch (e) {
-  //       setError(`An error occurred while loading yoga classes: ${e.message}`);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   }
-  //   fetchYogaClass();
-  // }, [id]);
-
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setYogaClass((prevYogaClass) => ({ ...prevYogaClass, [name]: value }));
+    updateYogaClassData({ [name]: value });
   };
 
   const handleSubmit = async (e) => {
@@ -50,7 +23,7 @@ function EditYogaClass() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(yoga_class),
+        body: JSON.stringify(yogaClassData),
       });
       if (response.ok) {
         const json = await response.json();
@@ -66,7 +39,7 @@ function EditYogaClass() {
     }
   };
 
-  if (!yoga_class) {
+  if (!yogaClassData) {
     return <LoadingAnimation />;
   }
 
