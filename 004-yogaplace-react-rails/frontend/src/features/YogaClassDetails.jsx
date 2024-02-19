@@ -35,9 +35,9 @@ function YogaClassDetails({ currUser }) {
     }
   };
 
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
+  // if (error) {
+  //   return <div>Error: {error}</div>;
+  // }
 
   if (!yogaClassData || !yogaLessonData) {
     return <LoadingAnimation />;
