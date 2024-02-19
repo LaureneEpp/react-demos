@@ -15,34 +15,8 @@ function YogaClassesList({ currUser }) {
   const [date, setDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(null);
   const { yogaClassesList } = useFetchYogaClassesList();
-  // const [yoga_classes, setYogaClasses] = useState([]);
-  // const [loading, setLoading] = useState(true);
-  // const [error, setError] = useState(null);
-
   const { id } = useParams();
 
-  // useEffect(() => {
-  //   async function loadYogaClasses() {
-  //     try {
-  //       const baseURL = "http://localhost:3000";
-  //       const apiURL = `${baseURL}/api/v1/yoga_classes`;
-  //       const response = await fetch(apiURL);
-  //       // console.log("API response:", response);
-  //       if (response.ok) {
-  //         const json = await response.json();
-  //         setYogaClasses(json);
-  //       } else {
-  //         throw new Error(`API request failed with status ${response.status}`);
-  //       }
-  //     } catch (e) {
-  //       setError(`An error occurred while loading yoga classes: ${e.message}`);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   }
-
-  //   loadYogaClasses();
-  // }, []);
 
   const handleDelete = async (id) => {
     try {

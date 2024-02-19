@@ -11,9 +11,13 @@ const useFetchYogaLessonData = () => {
       try {
         const API_URL = "http://localhost:3000/api/v1";
         const lessonResponse = await fetch(`${API_URL}/yoga_lessons/${id}`);
+        console.log("API response:", lessonResponse);
+
 
         if (lessonResponse.ok) {
           const lessonData = await lessonResponse.json();
+          console.log("Yoga lessons data:", lessonData);
+
           setYogaLessonData(lessonData);
         } else {
           throw new Error(

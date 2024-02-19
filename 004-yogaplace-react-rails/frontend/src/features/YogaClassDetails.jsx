@@ -10,8 +10,8 @@ function formatDate(date) {
 }
 
 function YogaClassDetails({ currUser }) {
-  const { yogaClassData, error } = useFetchYogaClassData(null);
-  const { yogaLessonData } = useFetchYogaLessonData(null);
+  const { yogaClassData } = useFetchYogaClassData();
+  const { yogaLessonData } = useFetchYogaLessonData();
 
   const navigate = useNavigate();
 
@@ -34,10 +34,6 @@ function YogaClassDetails({ currUser }) {
       );
     }
   };
-
-  // if (error) {
-  //   return <div>Error: {error}</div>;
-  // }
 
   if (!yogaClassData || !yogaLessonData) {
     return <LoadingAnimation />;
