@@ -1,42 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import LoadingAnimation from "../components/LoadingAnimation";
+import useFetchYogaLessonData from "../fetchingData/useFetchYogaLessonData";
 
 function EditYogaLesson() {
-  const [yoga_lesson, setYogaLesson] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const { yogaLessonData, updateYogaLessonData } = useFetchYogaLessonData();
+  const [, setLoading] = useState(true);
 
   const navigate = useNavigate();
 
   const { id } = useParams();
 
-  useEffect(() => {
-    async function fetchYogaClass() {
-      try {
-        const API_URL = "http://localhost:3000/api/v1";
-        const response = await fetch(`${API_URL}/yoga_lessons/${id}`);
-        console.log("API response:", response);
-        console.log(`Yoga lesson with ID ${id} has been loaded successfully.`);
-        if (response.ok) {
-          const json = await response.json();
-          console.log("Yoga lessons data:", json);
-          setYogaLesson(json);
-        } else {
-          throw response;
-        }
-      } catch (e) {
-        setError(`An error occurred while loading yoga lessons: ${e.message}`);
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchYogaClass();
-  }, [id]);
-
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setYogaLesson((prevYogaLesson) => ({ ...prevYogaLesson, [name]: value }));
+    updateYogaLessonData({ [name]: value });
   };
 
   const handleSubmit = async (e) => {
@@ -48,7 +25,7 @@ function EditYogaLesson() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(yoga_lesson),
+        body: JSON.stringify(yogaLessonData),
       });
       if (response.ok) {
         const json = await response.json();
@@ -64,7 +41,7 @@ function EditYogaLesson() {
     }
   };
 
-  if (!yoga_lesson) {
+  if (!yogaLessonData) {
     return <LoadingAnimation />;
   }
 
@@ -80,9 +57,7 @@ function EditYogaLesson() {
                 </h2>
               </div>
               <div className="card-body">
-                <form
-                  className=""
-                  onSubmit={handleSubmit}>
+                <form className="" onSubmit={handleSubmit}>
                   <div className="form-group my-2">
                     <label className="my-2" htmlFor="title">
                       Title
@@ -92,7 +67,7 @@ function EditYogaLesson() {
                       id="title"
                       className="form-control form-control-lg"
                       name="title"
-                      value={yoga_lesson.title}
+                      value={yogaLessonData.title}
                       onChange={handleChange}
                       required
                     />
@@ -106,7 +81,7 @@ function EditYogaLesson() {
                       id="description"
                       className="form-control form-control-lg"
                       name="description"
-                      value={yoga_lesson.description}
+                      value={yogaLessonData.description}
                       onChange={handleChange}
                       required
                     />
