@@ -2,19 +2,19 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "../pages/Home";
 import AboutPage from "../pages/AboutPage";
-import YogaLessonsList from "../features/YogaLessonsList";
-import YogaLessonDetails from "../features/YogaLessonDetails";
-import NewYogaLesson from "../features/NewYogaLesson";
-import EditYogaLesson from "../features/EditYogaLesson";
-import YogaClassesList from "../features/YogaClassesList";
-import YogaClassDetails from "../features/YogaClassDetails";
-import NewYogaClass from "../features/NewYogaClass";
-import EditYogaClass from "../features/EditYogaClass";
-import Login from "./Login";
-import SignUp from "./SignUp";
-import UserProfile from "../features/UserProfile";
-import EditUserInformation from "../features/EditUserInformation";
-import InstructorProfile from "../features/InstructorProfile";
+import YogaLessonsList from "../features/yogaLesson/YogaLessonsList";
+import YogaLessonDetails from "../features/yogaLesson/YogaLessonDetails";
+import NewYogaLesson from "../features/yogaLesson/NewYogaLesson";
+import EditYogaLesson from "../features/yogaLesson/EditYogaLesson";
+import YogaClassesList from "../features/yogaClass/YogaClassesList";
+import YogaClassDetails from "../features/yogaClass/YogaClassDetails";
+import NewYogaClass from "../features/yogaClass/NewYogaClass";
+import EditYogaClass from "../features/yogaClass/EditYogaClass";
+import Login from "../pages/Login";
+import SignUp from "../pages/SignUp";
+import UserProfile from "../pages/UserProfile";
+import EditUserInformation from "../features/profile/EditUserInformation";
+import InstructorProfile from "../pages/InstructorProfile";
 
 function AppRoutes({ currUser, setCurrUser }) {
   return (

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import Logout from "./Logout";
+import Logout from "../features/Logout";
 
 const links = [
   { name: "Home", to: "/", id: 1 },

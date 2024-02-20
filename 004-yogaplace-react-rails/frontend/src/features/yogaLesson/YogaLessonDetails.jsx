@@ -1,6 +1,6 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import LoadingAnimation from "../../components/LoadingAnimation";
+import LoadingAnimation from "../../features/LoadingAnimation";
 import useFetchYogaLessonData from "../../fetchingData/useFetchYogaLessonData";
 
 function formatDate(date) {
