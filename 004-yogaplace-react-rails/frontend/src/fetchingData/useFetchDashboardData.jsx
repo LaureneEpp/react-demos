@@ -3,7 +3,7 @@ import useFetchUserData from "./useFetchUserData";
 
 const useFetchDashboardData = ({ currUser }) => {
   const { userData } = useFetchUserData({ currUser });
-  const [loading, setLoading] = useState(true);
+  const [, setLoading] = useState(true);
   const [dashboardData, setDashboardData] = useState({
     usersList: null,
     instructorsList: null,
