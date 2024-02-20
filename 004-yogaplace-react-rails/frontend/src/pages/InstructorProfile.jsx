@@ -17,7 +17,7 @@ const InstructorProfile = ({ currUser }) => {
         onButtonClick={handleSidebarButtonClick}
         currUser={currUser}
       />
-      <div className=" flex-grow-1 d-flex flex-column  h-100 overflow-y-scroll">
+      <div className=" flex-grow-1 d-flex flex-column justify-content-center h-100 overflow-y-scroll">
         {selectedContent === "adminDashboard" && (
           <AdminDashboard currUser={currUser} />
         )}

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 function formatDate(date) {
   const options = { year: "numeric", month: "2-digit", day: "2-digit" };
@@ -5,7 +6,6 @@ function formatDate(date) {
 }
 
 function YogaClassesInstructorModalContent({ dashboardData }) {
-
   return (
     <>
       <h2 className=" display-6">List of your yoga classes</h2>
@@ -14,9 +14,14 @@ function YogaClassesInstructorModalContent({ dashboardData }) {
           {dashboardData.yogaClassesInstructorData &&
             dashboardData.yogaClassesInstructorData.map((y) => (
               <>
-                <li key={y.id} className="fw-normal p-1">
-                 <strong>{y.yoga_lesson.title}</strong> taking place in {y.location} on {formatDate(y.date)}
-                </li>
+                <Link
+                  to={`/yoga_classes/${y.id}`}
+                  className="text-decoration-none text-reset">
+                  <li key={y.id} className="fw-normal p-1">
+                    <strong>{y.yoga_lesson.title}</strong> taking place in{" "}
+                    {y.location} on {formatDate(y.date)}
+                  </li>
+                </Link>
               </>
             ))}
         </ol>
