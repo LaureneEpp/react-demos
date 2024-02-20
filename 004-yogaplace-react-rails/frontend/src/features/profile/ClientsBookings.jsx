@@ -3,6 +3,7 @@ import AllBookingsListModalContent from "../modalContent/AllBookingsListModalCon
 import { motion } from "framer-motion";
 import { useState } from "react";
 import Modal from "../../components/Modal";
+import LoadingAnimation from "../LoadingAnimation";
 
 function formatDate(date) {
   const options = { year: "numeric", month: "2-digit", day: "2-digit" };
@@ -36,6 +37,9 @@ const ClientsBookings = ({ currUser }) => {
     setModalContent(null);
   };
 
+  if (!dashboardData) {
+    return <LoadingAnimation />;
+  }
   return (
     <div className="mt-5 p-5 d-flex flex-column justify-content-center align-items-center overflow-auto">
       <Modal {...{ modal, setModal: closeModal, content: modalContent }} />
