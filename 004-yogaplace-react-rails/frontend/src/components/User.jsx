@@ -1,8 +1,8 @@
-import SignUp from "./SignUp";
-import Login from "./Login";
-import Logout from "./Logout";
-import InstructorProfile from "../features/InstructorProfile";
-import UserProfile from "../features/UserProfile";
+import SignUp from "../pages/SignUp";
+import Login from "../pages/Login";
+import Logout from "../features/Logout";
+import InstructorProfile from "../pages/InstructorProfile";
+import UserProfile from "../pages/UserProfile";
 import { useState } from "react";
 
 const User = ({ currUser, setCurrUser }) => {

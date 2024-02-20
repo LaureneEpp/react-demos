@@ -72,7 +72,7 @@ def dashboard
   render json: {
     all_users: @all_users,
     all_instructors: @all_instructors,
-    all_bookings: @all_bookings,
+    all_bookings: @all_bookings.as_json(include: [:user, yoga_class: {include: [:yoga_lesson]}]),
     yoga_classes_current_instructor: @yoga_classes_current_instructor.as_json(include: :yoga_lesson),
     yoga_classes_count: @yoga_classes_count,
     no_booking_yoga_classes_current_instructor: @no_booking_yoga_classes_current_instructor.as_json(include: :yoga_lesson), 

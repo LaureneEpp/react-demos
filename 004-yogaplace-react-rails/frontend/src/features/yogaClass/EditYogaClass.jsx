@@ -1,47 +1,45 @@
-import React, { useState, useEffect } from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
-import LoadingAnimation from "../components/LoadingAnimation";
-import useFetchYogaLessonData from "../fetchingData/useFetchYogaLessonData";
+import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import LoadingAnimation from "../LoadingAnimation";
+import useFetchYogaClassData from "../../fetchingData/useFetchYogaClassData";
 
-function EditYogaLesson() {
-  const { yogaLessonData, updateYogaLessonData } = useFetchYogaLessonData();
+function EditYogaClass() {
+  const { yogaClassData, updateYogaClassData } = useFetchYogaClassData();
   const [, setLoading] = useState(true);
 
   const navigate = useNavigate();
 
-  const { id } = useParams();
-
   const handleChange = (e) => {
     const { name, value } = e.target;
-    updateYogaLessonData({ [name]: value });
+    updateYogaClassData({ [name]: value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const API_URL = "http://localhost:3000/api/v1";
-      const response = await fetch(`${API_URL}/yoga_lessons/${id}`, {
+      const response = await fetch(`${API_URL}/yoga_classes/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(yogaLessonData),
+        body: JSON.stringify(yogaClassData),
       });
       if (response.ok) {
         const json = await response.json();
         console.log("success", json);
-        navigate(`/yoga_lessons/${id}`);
+        navigate(`/yoga_classes/${id}`);
       } else {
         throw response;
       }
     } catch (e) {
-      console.error("An error occurred while editing the yoga lesson:", e);
+      console.error("An error occurred while editing the yoga class:", e);
     } finally {
       setLoading(false);
     }
   };
 
-  if (!yogaLessonData) {
+  if (!yogaClassData) {
     return <LoadingAnimation />;
   }
 
@@ -53,7 +51,7 @@ function EditYogaLesson() {
             <div className="card bg-transparent border border-2 p-2">
               <div className="card-header p-3 d-flex flex-row">
                 <h2 className="card-title white-color display-4">
-                  Edit this lesson
+                  Edit this class
                 </h2>
               </div>
               <div className="card-body">
@@ -67,7 +65,7 @@ function EditYogaLesson() {
                       id="title"
                       className="form-control form-control-lg"
                       name="title"
-                      value={yogaLessonData.title}
+                      value={yogaClassData.yoga_lesson.title}
                       onChange={handleChange}
                       required
                     />
@@ -81,15 +79,42 @@ function EditYogaLesson() {
                       id="description"
                       className="form-control form-control-lg"
                       name="description"
-                      value={yogaLessonData.description}
+                      value={yogaClassData.yoga_lesson.description}
                       onChange={handleChange}
                       required
                     />
                   </div>
-
+                  <div className="form-group my-2">
+                    <label className="my-2" htmlFor="location">
+                      Location
+                    </label>
+                    <input
+                      type="text"
+                      id="location"
+                      className="form-control form-control-lg"
+                      name="location"
+                      value={yogaClassData.location}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+                  <div className="form-group my-2">
+                    <label className="my-2" htmlFor="date">
+                      Date
+                    </label>
+                    <input
+                      type="date"
+                      id="date"
+                      className="form-control form-control-lg"
+                      name="date"
+                      value={yogaClassData.date}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
                   <div className="d-flex">
                     <Link
-                      to={`/yoga_lessons/${id}`}
+                      to={`/yoga_classes/${id}`}
                       className="btn btn-lg secondary-color my-3 p-2"
                       role="button">
                       <svg
@@ -128,4 +153,4 @@ function EditYogaLesson() {
   );
 }
 
-export default EditYogaLesson;
+export default EditYogaClass;

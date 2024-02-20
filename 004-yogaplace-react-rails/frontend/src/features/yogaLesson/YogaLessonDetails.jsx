@@ -1,7 +1,7 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import LoadingAnimation from "../components/LoadingAnimation";
-import useFetchYogaLessonData from "../fetchingData/useFetchYogaLessonData";
+import LoadingAnimation from "../../components/LoadingAnimation";
+import useFetchYogaLessonData from "../../fetchingData/useFetchYogaLessonData";
 
 function formatDate(date) {
   const options = { year: "numeric", month: "2-digit", day: "2-digit" };
@@ -44,7 +44,7 @@ function YogaLessonDetails({ currUser }) {
     <div className="vh-100 d-flex flex-column align-items-center justify-content-center">
       <div className="jumbotron jumbotron-fluid bg-transparent px-4 margin-top-8">
         <div className="m-3">
-          <h2 className="display-4">{yogaLessonData.title}</h2>
+          <h3 className="display-4">{yogaLessonData.title}</h3>
           <p className="lead text-muted">{yogaLessonData.description}</p>
           <hr className="my-4" />
           <div className="d-flex">

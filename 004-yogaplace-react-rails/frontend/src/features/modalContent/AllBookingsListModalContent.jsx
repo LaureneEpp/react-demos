@@ -1,18 +1,14 @@
-import useFetchDashboardData from "../fetchingData/useFetchDashboardData";
-
 function formatDate(date) {
   const options = { year: "numeric", month: "2-digit", day: "2-digit" };
   return new Date(date).toLocaleDateString("en-US", options);
 }
 
-const ClientsBookings = ({ currUser }) => {
-  const dashboardData = useFetchDashboardData({ currUser });
-
+function AllBookingsListModalContent({ dashboardData }) {
   return (
-    <div className="mt-5 p-5 d-flex flex-column justify-content-center align-items-center overflow-auto">
-      <h3>Your bookings</h3>
-      <div className=" overflow-y-scroll my-3 w-75">
-        {dashboardData.bookingsInstructorData && (
+    <>
+      <h2 className=" display-6">List of all bookings</h2>
+      <div className="overflow-y-scroll my-3 w-75">
+        {dashboardData.bookingsList && (
           <div className="table-responsive">
             <table className="table">
               <thead>
@@ -38,7 +34,7 @@ const ClientsBookings = ({ currUser }) => {
                 </tr>
               </thead>
               <tbody>
-                {dashboardData.bookingsInstructorData.map((b, index) => (
+                {dashboardData.bookingsList.map((b, index) => (
                   <tr key={b.id}>
                     <th scope="row" className="bg-transparent text-white">
                       {index + 1}
@@ -65,8 +61,8 @@ const ClientsBookings = ({ currUser }) => {
           </div>
         )}
       </div>
-    </div>
+    </>
   );
-};
+}
 
-export default ClientsBookings;
+export default AllBookingsListModalContent;

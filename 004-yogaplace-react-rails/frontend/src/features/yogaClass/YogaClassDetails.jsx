@@ -1,8 +1,8 @@
 import { useParams, useNavigate, Link } from "react-router-dom";
-import LoadingAnimation from "../components/LoadingAnimation";
-import BookingButton from "./BookingButton";
-import useFetchYogaLessonData from "../fetchingData/useFetchYogaLessonData";
-import useFetchYogaClassData from "../fetchingData/useFetchYogaClassData";
+import LoadingAnimation from "../../components/LoadingAnimation";
+import BookingButton from "../BookingButton";
+import useFetchYogaLessonData from "../../fetchingData/useFetchYogaLessonData";
+import useFetchYogaClassData from "../../fetchingData/useFetchYogaClassData";
 
 function formatDate(date) {
   const options = { year: "numeric", month: "2-digit", day: "2-digit" };
@@ -43,7 +43,7 @@ function YogaClassDetails({ currUser }) {
     <div className="vh-100 d-flex flex-column align-items-center justify-content-center">
       <div className="jumbotron jumbotron-fluid bg-transparent px-4 margin-top-8">
         <div className="m-5">
-          <h1 className="display-4">{yogaLessonData.title}</h1>
+          <h3 className="display-4">{yogaLessonData.title}</h3>
 
           <p className="lead text-muted">{yogaLessonData.description}</p>
 
