@@ -43,7 +43,7 @@ function YogaClassDetails({ currUser }) {
     <div className="vh-100 d-flex flex-column align-items-center justify-content-center">
       <div className="jumbotron jumbotron-fluid bg-transparent px-4 margin-top-8">
         <div className="m-5">
-          <h1 className="display-4">{yogaLessonData.title}</h1>
+          <h3 className="display-4">{yogaLessonData.title}</h3>
 
           <p className="lead text-muted">{yogaLessonData.description}</p>
 
