@@ -1,7 +1,4 @@
 import { AnimatePresence, motion } from "framer-motion";
-// import YogaClassesInstructorModalContent from "../features/YogaClassesInstructorModalContent";
-// import UsersYogaClassListModalContent from "../features/UsersYogaClassListModalContent";
-// import useFetchDashboardData from "../fetchingData/useFetchDashboardData";
 
 const backdrop = {
   visible: { opacity: 1 },

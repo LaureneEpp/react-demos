@@ -1,42 +1,13 @@
-import { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import LoadingAnimation from "../components/LoadingAnimation";
 import { motion } from "framer-motion";
+import useFetchYogaLessonsList from "../fetchingData/useFetchYogaLessonsList";
 
 function YogaLessonsList({ currUser }) {
-  const [yoga_lessons, setYogaLessons] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [, setError] = useState(null);
-
-  const { id } = useParams();
-
-  useEffect(() => {
-    async function loadYogaLessons() {
-      try {
-        const API_URL = "http://localhost:3000/api/v1";
-        const response = await fetch(`${API_URL}/yoga_lessons`);
-        console.log("API response:", response);
-        console.log("Yoga lessons have been loaded successfully.");
-
-        if (response.ok) {
-          const json = await response.json();
-          console.log("Yoga lessons data:", json);
-          setYogaLessons(json);
-        } else {
-          throw new Error(`API request failed with status ${response.status}`);
-        }
-      } catch (e) {
-        setError(`An error occurred while loading yoga lessons: ${e.message}`);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    loadYogaLessons();
-  }, []);
+  const { yogaLessonsList } = useFetchYogaLessonsList(null);
 
   const lessonsByCategory = {};
-  yoga_lessons.forEach((yoga_lesson) => {
+  yogaLessonsList.forEach((yoga_lesson) => {
     const category = yoga_lesson.yoga_category.title;
     if (!lessonsByCategory[category]) {
       lessonsByCategory[category] = [];
@@ -44,7 +15,7 @@ function YogaLessonsList({ currUser }) {
     lessonsByCategory[category].push(yoga_lesson);
   });
 
-  if (loading) {
+  if (!yogaLessonsList) {
     return <LoadingAnimation />;
   }
 

@@ -3,6 +3,8 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { Link, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
+import useFetchYogaClassesList from "../fetchingData/useFetchYogaClassesList";
+
 
 function formatDate(date) {
   const options = { year: "numeric", month: "2-digit", day: "2-digit" };
@@ -12,34 +14,9 @@ function formatDate(date) {
 function YogaClassesList({ currUser }) {
   const [date, setDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(null);
-  const [yoga_classes, setYogaClasses] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
+  const { yogaClassesList } = useFetchYogaClassesList();
   const { id } = useParams();
 
-  useEffect(() => {
-    async function loadYogaClasses() {
-      try {
-        const baseURL = "http://localhost:3000";
-        const apiURL = `${baseURL}/api/v1/yoga_classes`;
-        const response = await fetch(apiURL);
-        // console.log("API response:", response);
-        if (response.ok) {
-          const json = await response.json();
-          setYogaClasses(json);
-        } else {
-          throw new Error(`API request failed with status ${response.status}`);
-        }
-      } catch (e) {
-        setError(`An error occurred while loading yoga classes: ${e.message}`);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    loadYogaClasses();
-  }, []);
 
   const handleDelete = async (id) => {
     try {
@@ -48,9 +25,9 @@ function YogaClassesList({ currUser }) {
         method: "DELETE",
       });
       if (response.ok) {
-        setYogaClasses(
-          yoga_classes.filter((yoga_class) => yoga_class.id !== id)
-        );
+        // setYogaClasses(
+        //   yogaClassesList.filter((yoga_class) => yoga_class.id !== id)
+        // );
       } else {
         throw response;
       }
@@ -62,7 +39,7 @@ function YogaClassesList({ currUser }) {
   };
 
   // Group yoga classes by date
-  const yogaClassesByDate = yoga_classes.reduce((result, yoga_class) => {
+  const yogaClassesByDate = yogaClassesList.reduce((result, yoga_class) => {
     const classDate = new Date(yoga_class.date).toDateString();
     if (!result[classDate]) {
       result[classDate] = [];

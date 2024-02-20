@@ -1,8 +1,7 @@
-/* eslint-disable react/jsx-key */
-import { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import LoadingAnimation from "../components/LoadingAnimation";
+import useFetchYogaLessonData from "../fetchingData/useFetchYogaLessonData";
 
 function formatDate(date) {
   const options = { year: "numeric", month: "2-digit", day: "2-digit" };
@@ -10,35 +9,10 @@ function formatDate(date) {
 }
 
 function YogaLessonDetails({ currUser }) {
-  const [yoga_lesson, setYogaLesson] = useState(null);
-  // const [yoga_classes, setYogaClasses] = useState(null);
-  const [error, setError] = useState(null);
+  const { yogaLessonData, error } = useFetchYogaLessonData();
   const navigate = useNavigate();
 
   const { id } = useParams();
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const API_URL = "http://localhost:3000/api/v1";
-
-        // Fetch the yoga lesson details
-        const lessonResponse = await fetch(`${API_URL}/yoga_lessons/${id}`);
-
-        if (lessonResponse.ok) {
-          const lessonData = await lessonResponse.json();
-          setYogaLesson(lessonData);
-        } else {
-          throw new Error(
-            `Failed to fetch yoga class data with status ${lessonResponse.status}`
-          );
-        }
-      } catch (e) {
-        setError(`An error occurred: ${e.message}`);
-      }
-    }
-    fetchData();
-  }, [id]);
 
   const deleteYogaLesson = async () => {
     try {
@@ -62,7 +36,7 @@ function YogaLessonDetails({ currUser }) {
     return <div>Error: {error}</div>;
   }
 
-  if (!yoga_lesson) {
+  if (!yogaLessonData) {
     return <LoadingAnimation />;
   }
 
@@ -70,8 +44,8 @@ function YogaLessonDetails({ currUser }) {
     <div className="vh-100 d-flex flex-column align-items-center justify-content-center">
       <div className="jumbotron jumbotron-fluid bg-transparent px-4 margin-top-8">
         <div className="m-3">
-          <h2 className="display-4">{yoga_lesson.title}</h2>
-          <p className="lead text-muted">{yoga_lesson.description}</p>
+          <h2 className="display-4">{yogaLessonData.title}</h2>
+          <p className="lead text-muted">{yogaLessonData.description}</p>
           <hr className="my-4" />
           <div className="d-flex">
             <Link
@@ -133,14 +107,14 @@ function YogaLessonDetails({ currUser }) {
         <div className="text-center">
           <h3>When & Where to practice?</h3>
           <div className="d-flex align-items-center justify-content-center align-content-center my-4 row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
-            {yoga_lesson.yoga_classes.map((yoga_class) => (
+            {yogaLessonData.yoga_classes.map((yoga_class) => (
               <Link
                 to={`/yoga_classes/${yoga_class.id}`}
+                key={yoga_class.id}
                 className="text-decoration-none white-color">
                 <motion.div
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
-                  key={yoga_class.id}
                   className="col border border-light m-2 p-3">
                   <div className="d-flex flex-column align-items-center">
                     <div className="d-flex flex-row">

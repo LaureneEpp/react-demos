@@ -57,10 +57,10 @@ def dashboard
    @no_booking_yoga_classes_current_instructor = YogaClass.left_joins(:bookings).where(bookings: { id: nil }).where(user_id: @user.id)
    @no_booking_yoga_classes_current_instructor_count = @no_booking_yoga_classes_current_instructor.count
   # List of bookings for classes created by current instructor
-  @bookings_current_instructor = Booking.joins(yoga_class: :yoga_lesson).where('yoga_classes.user_id = ?', @user.id).order('yoga_classes.id')
+  @bookings_current_instructor = Booking.joins(yoga_class: :yoga_lesson).where('yoga_classes.user_id = ? AND yoga_classes.date >= ?', @user.id, Date.today ).order('yoga_classes.id')
   @bookings_count = @bookings_current_instructor.count
   # List of clients for current instructor
-  @clients_current_instructor = User.joins(bookings: {yoga_class: :user}).where('yoga_classes.user_id = ?', 1).distinct
+  @clients_current_instructor = User.joins(bookings: {yoga_class: :user}).where('yoga_classes.user_id = ? AND yoga_classes.date >= ?', @user.id, Date.today ).distinct
   # List of clients per yoga_class
   @yoga_class_users_hash = {}
   @bookings_current_instructor.each do |booking|

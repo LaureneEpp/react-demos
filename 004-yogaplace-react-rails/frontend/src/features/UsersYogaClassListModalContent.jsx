@@ -1,5 +1,3 @@
-// import useFetchDashboardData from "../fetchingData/useFetchDashboardData";
-
 function UsersYogaClassListModalContent({ dashboardData }) {
   return (
     <>

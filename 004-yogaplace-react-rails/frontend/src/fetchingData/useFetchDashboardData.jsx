@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
-import useFetchUserData from './useFetchUserData';
+import { useState, useEffect } from "react";
+import useFetchUserData from "./useFetchUserData";
 
 const useFetchDashboardData = ({ currUser }) => {
   const { userData } = useFetchUserData({ currUser });
+  const [loading, setLoading] = useState(true);
   const [dashboardData, setDashboardData] = useState({
     usersList: null,
     instructorsList: null,
@@ -14,7 +15,7 @@ const useFetchDashboardData = ({ currUser }) => {
     bookingsCount: null,
     yogaClassUsersHash: null,
     bookingsList: null,
-    clientsCurrentInstructor: null
+    clientsCurrentInstructor: null,
   });
 
   useEffect(() => {
@@ -40,13 +41,16 @@ const useFetchDashboardData = ({ currUser }) => {
           yogaClassesInstructorData: data.yoga_classes_current_instructor,
           yogaClassesCount: data.yoga_classes_count,
           noBookingYogaClasses: data.no_booking_yoga_classes_current_instructor,
-          noBookingYogaClassesCount: data.no_booking_yoga_classes_current_instructor_count,
+          noBookingYogaClassesCount:
+            data.no_booking_yoga_classes_current_instructor_count,
           bookingsInstructorData: data.bookings_current_instructor,
           yogaClassUsersHash: data.yoga_class_users_hash,
-          clientsCurrentInstructor: data.clients_current_instructor
+          clientsCurrentInstructor: data.clients_current_instructor,
         });
       } catch (error) {
         console.error("Error fetching user data:", error.message);
+      } finally {
+        setLoading(false);
       }
     };
 
