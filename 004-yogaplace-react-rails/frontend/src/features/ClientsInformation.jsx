@@ -33,9 +33,9 @@ const ClientsInformation = ({ currUser }) => {
   };
 
   return (
-    <div className="d-flex flex-column align-items-center">
+    <div className="d-flex flex-column flex-start">
       <Modal {...{ modal, setModal: closeModal, content: modalContent }} />
-      <h3>Your clients</h3>
+      <h3 className="display-4 text-center">Your clients</h3>
       <div className="p-3 overflow-y-auto">
         {dashboardData.clientsCurrentInstructor && (
           <motion.div
@@ -68,15 +68,15 @@ const ClientsInformation = ({ currUser }) => {
               <tbody>
                 {dashboardData.clientsCurrentInstructor.map((u, index) => (
                   <tr key={u.id}>
-                    <th scope="row" className="bg-transparent text-white">
+                    <th scope="row" className="bg-transparent text-white text-center">
                       {index + 1}
                     </th>
-                    <td className="bg-transparent text-white">
+                    <td className="bg-transparent text-white text-center">
                       {u.first_name}
                     </td>
-                    <td className="bg-transparent text-white">{u.last_name}</td>
-                    <td className="bg-transparent text-white">{u.username}</td>
-                    <td className="bg-transparent text-white">{u.city}</td>
+                    <td className="bg-transparent text-white text-center">{u.last_name}</td>
+                    <td className="bg-transparent text-white text-center">{u.username}</td>
+                    <td className="bg-transparent text-white text-center">{u.city}</td>
                   </tr>
                 ))}
               </tbody>
@@ -84,8 +84,8 @@ const ClientsInformation = ({ currUser }) => {
           </motion.div>
         )}
       </div>
-      <div className="d-flex">
-        <h6>Have a look to the full list of users:</h6>
+      <div className="d-flex align-items-center">
+        <p className="text-muted my-3">Have a look to the full list of users:</p>
         <button
           className="btn btn-lg my-3"
           onClick={handleAllUsersButtonClick}>
