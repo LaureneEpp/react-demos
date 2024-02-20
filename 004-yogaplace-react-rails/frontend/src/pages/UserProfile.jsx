@@ -11,9 +11,9 @@ const UserProfile = ({ currUser }) => {
   };
 
   return (
-    <div className="container-profile vw-100 vh-100 d-flex">
+    <div className="container-profile h-100 d-flex">
       <ProfileSidebar onButtonClick={handleSidebarButtonClick} currUser={currUser}/>
-      <div className="d-flex flex-column align-items-center justify-content-center vw-100 vh-100">
+      <div className="flex-grow-1 d-flex flex-column justify-content-center align-items-center h-100 overflow-y-scroll">
         {selectedContent === "userInformation" && (
           <UserInformation currUser={currUser} />
         )}
