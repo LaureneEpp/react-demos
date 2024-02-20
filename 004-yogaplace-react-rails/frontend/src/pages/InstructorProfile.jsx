@@ -12,7 +12,7 @@ const InstructorProfile = ({ currUser }) => {
   };
 
   return (
-    <div className="container-profile d-flex h-100">
+    <div className="container-profile d-flex h-100 w-100">
       <ProfileSidebar
         onButtonClick={handleSidebarButtonClick}
         currUser={currUser}

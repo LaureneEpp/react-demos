@@ -46,7 +46,7 @@ const UserBookingsList = ({ currUser }) => {
 
   console.log(userBookings);
   return (
-    <>
+    <div className="d-flex flex-column align-items-center m-3" >
       <div className="text-center px-4 margin-top-8">
         <h3 className="text-uppercase">Your bookings</h3>
         <Link to="/yoga_classes" role="button">
@@ -66,9 +66,9 @@ const UserBookingsList = ({ currUser }) => {
           </motion.svg>
         </Link>
       </div>
-      <div className="p-3 overflow-y-auto">
+      <div className=" overflow-y-scroll my-3 w-75">
         {userBookings && userBookings.length > 0 ? (
-          <div className="table-responsive">
+          <div className="table-responsive h-100 w-100">
             <table className="table">
               <thead>
                 <tr>
@@ -116,7 +116,8 @@ const UserBookingsList = ({ currUser }) => {
           <p>No bookings found.</p>
         )}
       </div>
-    </>
+    </div>
+
   );
 };
 

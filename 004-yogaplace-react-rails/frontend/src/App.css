@@ -48,9 +48,9 @@
     align-items: center;
     justify-content: center;
     padding: 10% 0;
-    /* position: fixed; */
+    position: fixed;
     width: 100%;
-    /* margin-top: 3rem; */
+    z-index: 1;
   }
 
   .yoga-class-buttons {
@@ -59,9 +59,9 @@
 }
 
 @media screen and (min-width: 480px) {
-.card-info {
-  justify-content: space-around;
-}
+  .card-info {
+    justify-content: space-around;
+  }
 
   .new-form-title {
     flex-direction: column;
@@ -71,7 +71,7 @@
     flex-direction: column;
     justify-content: space-evenly;
   }
-/* 
+  /* 
   .fixed-sidebar {
     position: fixed;
     top: 0;
@@ -86,7 +86,6 @@
   .container-profile {
     flex-direction: row;
   } */
-
 }
 
 /* Calendar */
@@ -171,4 +170,3 @@ abbr[title] {
 }
 
 /* yoga-class */
-
