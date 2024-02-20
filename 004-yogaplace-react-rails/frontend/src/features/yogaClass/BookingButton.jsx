@@ -1,4 +1,4 @@
-import useFetchBookingData from "../fetchingData/useFetchBookingData";
+import useFetchBookingData from "../../fetchingData/useFetchBookingData";
 
 const BookingButton = ({ currUser, yogaClassId }) => {
   const { isBooked, handleBooking } = useFetchBookingData({

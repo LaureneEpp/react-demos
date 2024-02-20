@@ -1,8 +1,8 @@
 import { useState } from "react";
-import ProfileSidebar from "./ProfileSidebar";
-import AdminDashboard from "./AdminDashboard";
-import ClientsInformation from "./ClientsInformation";
-import ClientsBookings from "./ClientsBookings";
+import ProfileSidebar from "../features/profile/ProfileSidebar";
+import AdminDashboard from "../features/profile/AdminDashboard";
+import ClientsInformation from "../features/profile/ClientsInformation";
+import ClientsBookings from "../features/profile/ClientsBookings";
 
 const InstructorProfile = ({ currUser }) => {
   const [selectedContent, setSelectedContent] = useState("adminDashboard");

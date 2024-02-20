@@ -1,7 +1,7 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import LoadingAnimation from "../components/LoadingAnimation";
-import useFetchYogaLessonData from "../fetchingData/useFetchYogaLessonData";
+import LoadingAnimation from "../../components/LoadingAnimation";
+import useFetchYogaLessonData from "../../fetchingData/useFetchYogaLessonData";
 
 function formatDate(date) {
   const options = { year: "numeric", month: "2-digit", day: "2-digit" };

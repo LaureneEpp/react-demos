@@ -3,7 +3,7 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { Link, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
-import useFetchYogaClassesList from "../fetchingData/useFetchYogaClassesList";
+import useFetchYogaClassesList from "../../fetchingData/useFetchYogaClassesList";
 
 
 function formatDate(date) {

@@ -1,10 +1,15 @@
-import useFetchDashboardData from "../fetchingData/useFetchDashboardData";
+import useFetchDashboardData from "../../fetchingData/useFetchDashboardData";
+import AllBookingsListModalContent from "../modalContent/AllBookingsListModalContent";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import Modal from "../components/Modal";
-import AllUsersListModalContent from "./AllUsersListModalContent";
+import Modal from "../../components/Modal";
 
-const ClientsInformation = ({ currUser }) => {
+function formatDate(date) {
+  const options = { year: "numeric", month: "2-digit", day: "2-digit" };
+  return new Date(date).toLocaleDateString("en-US", options);
+}
+
+const ClientsBookings = ({ currUser }) => {
   const dashboardData = useFetchDashboardData({ currUser });
   const [modal, setModal] = useState(false);
   const [modalContent, setModalContent] = useState(null);
@@ -21,9 +26,8 @@ const ClientsInformation = ({ currUser }) => {
       <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7" />
     </svg>
   );
-
-  const handleAllUsersButtonClick = () => {
-    setModalContent(<AllUsersListModalContent {...{ dashboardData }} />);
+  const handleAllBookingsButtonClick = () => {
+    setModalContent(<AllBookingsListModalContent {...{ dashboardData }} />);
     setModal(true);
   };
 
@@ -33,11 +37,12 @@ const ClientsInformation = ({ currUser }) => {
   };
 
   return (
-    <div className="d-flex flex-column flex-start">
+    <div className="mt-5 p-5 d-flex flex-column justify-content-center align-items-center overflow-auto">
       <Modal {...{ modal, setModal: closeModal, content: modalContent }} />
-      <h3 className="display-4 text-center">Your clients</h3>
-      <div className="p-3 overflow-y-auto">
-        {dashboardData.clientsCurrentInstructor && (
+
+      <h3 className="display-4 text-center">Your bookings</h3>
+      <div className=" overflow-y-scroll my-3 w-75">
+        {dashboardData.bookingsInstructorData && (
           <motion.div
             animate={{
               scale: modal ? 0.8 : 1,
@@ -52,31 +57,43 @@ const ClientsInformation = ({ currUser }) => {
                     #
                   </th>
                   <th scope="col" className="bg-transparent text-white">
+                    Title
+                  </th>
+                  <th scope="col" className="bg-transparent text-white">
+                    Location
+                  </th>
+                  <th scope="col" className="bg-transparent text-white">
+                    Date
+                  </th>
+                  <th scope="col" className="bg-transparent text-white">
                     First name
                   </th>
                   <th scope="col" className="bg-transparent text-white">
                     Last name
                   </th>
-                  <th scope="col" className="bg-transparent text-white">
-                    Username
-                  </th>
-                  <th scope="col" className="bg-transparent text-white">
-                    Location
-                  </th>
                 </tr>
               </thead>
               <tbody>
-                {dashboardData.clientsCurrentInstructor.map((u, index) => (
-                  <tr key={u.id}>
-                    <th scope="row" className="bg-transparent text-white text-center">
+                {dashboardData.bookingsInstructorData.map((b, index) => (
+                  <tr key={b.id}>
+                    <th scope="row" className="bg-transparent text-white">
                       {index + 1}
                     </th>
-                    <td className="bg-transparent text-white text-center">
-                      {u.first_name}
+                    <td className="bg-transparent text-white">
+                      {b.yoga_class.yoga_lesson.title}
                     </td>
-                    <td className="bg-transparent text-white text-center">{u.last_name}</td>
-                    <td className="bg-transparent text-white text-center">{u.username}</td>
-                    <td className="bg-transparent text-white text-center">{u.city}</td>
+                    <td className="bg-transparent text-white">
+                      {b.yoga_class.location}
+                    </td>
+                    <td className="bg-transparent text-white">
+                      {formatDate(b.yoga_class.date)}
+                    </td>
+                    <td className="bg-transparent text-white">
+                      {b.user.first_name}
+                    </td>
+                    <td className="bg-transparent text-white">
+                      {b.user.last_name}
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -85,10 +102,12 @@ const ClientsInformation = ({ currUser }) => {
         )}
       </div>
       <div className="d-flex align-items-center">
-        <p className="text-muted my-3">Have a look to the full list of users:</p>
+        <p className="text-muted my-3">
+          Have a look to the full list of bookings:
+        </p>
         <button
           className="btn btn-lg my-3"
-          onClick={handleAllUsersButtonClick}>
+          onClick={handleAllBookingsButtonClick}>
           {modal ? "X" : svgModal}
         </button>
       </div>
@@ -96,4 +115,4 @@ const ClientsInformation = ({ currUser }) => {
   );
 };
 
-export default ClientsInformation;
+export default ClientsBookings;

@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import Modal from "../components/Modal";
-import useFetchDashboardData from "../fetchingData/useFetchDashboardData";
-import YogaClassesInstructorModalContent from "./YogaClassesInstructorModalContent";
-import UsersYogaClassListModalContent from "./UsersYogaClassListModalContent";
-import InstructorsListModalContent from "./InstructorsListModalContent";
-import NoBookingClassListModalContent from "./noBookingClassListModalContent";
+import Modal from "../../components/Modal";
+import useFetchDashboardData from "../../fetchingData/useFetchDashboardData";
+import YogaClassesInstructorModalContent from "../modalContent/YogaClassesInstructorModalContent";
+import UsersYogaClassListModalContent from "../modalContent/UsersYogaClassListModalContent";
+import InstructorsListModalContent from "../modalContent/InstructorsListModalContent";
+import NoBookingClassListModalContent from "../modalContent/NoBookingClassListModalContent";
 
 const AdminDashboard = ({ currUser }) => {
   const dashboardData = useFetchDashboardData({ currUser });

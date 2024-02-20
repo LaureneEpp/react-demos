@@ -1,8 +1,8 @@
 import { useParams, useNavigate, Link } from "react-router-dom";
-import LoadingAnimation from "../components/LoadingAnimation";
-import BookingButton from "./BookingButton";
-import useFetchYogaLessonData from "../fetchingData/useFetchYogaLessonData";
-import useFetchYogaClassData from "../fetchingData/useFetchYogaClassData";
+import LoadingAnimation from "../../components/LoadingAnimation";
+import BookingButton from "../BookingButton";
+import useFetchYogaLessonData from "../../fetchingData/useFetchYogaLessonData";
+import useFetchYogaClassData from "../../fetchingData/useFetchYogaClassData";
 
 function formatDate(date) {
   const options = { year: "numeric", month: "2-digit", day: "2-digit" };

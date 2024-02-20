@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import LoadingAnimation from "../components/LoadingAnimation";
+import LoadingAnimation from "../LoadingAnimation";
 import { motion } from "framer-motion";
 
 function formatDate(date) {
