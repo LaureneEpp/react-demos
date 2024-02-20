@@ -1,11 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";
-
 function CategoryLessons(category, yoga_lessons) {
-
   return (
-    <div
-      className="shadow-lg bg_terracota-color p-3 my-4 rounded-top">
+    <div className="shadow-lg bg_terracota-color p-3 my-4 rounded-top">
       <h3 className="m-2 py-3">{category}</h3>
       <div className="row">
         {yoga_lessons.map((yoga_lesson) => (

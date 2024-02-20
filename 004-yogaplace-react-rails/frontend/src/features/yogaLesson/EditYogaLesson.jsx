@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import LoadingAnimation from "../../components/LoadingAnimation";
+import LoadingAnimation from "../../features/LoadingAnimation";
 import useFetchYogaLessonData from "../../fetchingData/useFetchYogaLessonData";
 
 function EditYogaLesson() {
