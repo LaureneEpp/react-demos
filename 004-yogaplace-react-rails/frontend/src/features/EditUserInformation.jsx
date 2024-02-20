@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { useNavigate, useParams, Link } from "react-router-dom";
 
-
 const EditUserInformation = ({ currUser }) => {
   const [userProfile, setUserProfile] = useState({ ...currUser });
   const [formData, setFormData] = useState({
