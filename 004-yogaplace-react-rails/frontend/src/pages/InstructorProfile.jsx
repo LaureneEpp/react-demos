@@ -12,12 +12,12 @@ const InstructorProfile = ({ currUser }) => {
   };
 
   return (
-    <div className="container-profile d-flex vw-100">
+    <div className="container-profile d-flex h-100">
       <ProfileSidebar
         onButtonClick={handleSidebarButtonClick}
         currUser={currUser}
       />
-      <div className="flex-grow-1 d-flex flex-column align-items-center justify-content-center vh-100 overflow-hidden">
+      <div className=" flex-grow-1 d-flex flex-column  h-100 overflow-y-scroll">
         {selectedContent === "adminDashboard" && (
           <AdminDashboard currUser={currUser} />
         )}
