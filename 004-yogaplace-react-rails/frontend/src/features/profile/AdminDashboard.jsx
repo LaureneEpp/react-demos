@@ -97,7 +97,7 @@ const AdminDashboard = ({ currUser }) => {
 
   return (
     <>
-      <div className="container text-center">
+      <div className="container-admin text-center m-2 p-2 mt-5">
         <Modal {...{ modal, setModal: closeModal, content: modalContent }} />
         <div className="row justify-content-md-center">
           <motion.div

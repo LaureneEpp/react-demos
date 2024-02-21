@@ -4,6 +4,7 @@ import { useState } from "react";
 import Modal from "../../components/Modal";
 import AllUsersListModalContent from "../modalContent/AllUsersListModalContent";
 import LoadingAnimation from "../LoadingAnimation";
+// import UserCard from "../UserCard";
 
 const ClientsInformation = ({ currUser }) => {
   const dashboardData = useFetchDashboardData({ currUser });
@@ -38,66 +39,34 @@ const ClientsInformation = ({ currUser }) => {
   }
 
   return (
-    <div className="d-flex flex-column flex-start">
+    <div className="d-flex flex-column justify-content-center align-items-center overflow-auto p-2">
       <Modal {...{ modal, setModal: closeModal, content: modalContent }} />
-      <h3 className="display-4 text-center">Your clients</h3>
-      <div className="p-3 overflow-y-auto">
-        {dashboardData.clientsCurrentInstructor && (
-          <motion.div
-            animate={{
-              scale: modal ? 0.8 : 1,
-              opacity: modal ? 0.5 : 1,
-            }}
-            transition={{ type: "spring", bounce: 0, duration: 0.4 }}
-            className="table-responsive">
-            <table className="table">
-              <thead>
-                <tr>
-                  <th scope="col" className="bg-transparent text-white">
-                    #
-                  </th>
-                  <th scope="col" className="bg-transparent text-white">
-                    First name
-                  </th>
-                  <th scope="col" className="bg-transparent text-white">
-                    Last name
-                  </th>
-                  <th scope="col" className="bg-transparent text-white">
-                    Username
-                  </th>
-                  <th scope="col" className="bg-transparent text-white">
-                    Location
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {dashboardData.clientsCurrentInstructor.map((u, index) => (
-                  <tr key={u.id}>
-                    <th
-                      scope="row"
-                      className="bg-transparent text-white text-center">
-                      {index + 1}
-                    </th>
-                    <td className="bg-transparent text-white text-center">
-                      {u.first_name}
-                    </td>
-                    <td className="bg-transparent text-white text-center">
-                      {u.last_name}
-                    </td>
-                    <td className="bg-transparent text-white text-center">
-                      {u.username}
-                    </td>
-                    <td className="bg-transparent text-white text-center">
-                      {u.city}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </motion.div>
-        )}
+      <h3 className="display-4 text-center mb-3">Your clients</h3>
+      <div className="p-3 h-50 overflow-y-auto">
+        <div className="container text-center">
+          <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            {dashboardData.clientsCurrentInstructor &&
+              dashboardData.clientsCurrentInstructor.map((u) => (
+                <div key={u.id} className="col">
+                  <div className="card bg_orange-light-color shadow-lg text-white m-3" style={{width: "15rem"}}>
+                    <img src="..." className="card-img-top" alt="..."/>
+                    <div className="card-body">
+                      <h5 className="card-title">{u.first_name }{u.last_name}</h5>
+                      <p className="card-text">
+                        {u.city}
+                        {u.email}
+                      </p>
+                      <a href="#" className="btn btn-lg text-muted">
+                        + info
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              ))}
+          </div>
+        </div>
       </div>
-      <div className="d-flex align-items-center">
+      <div className="d-flex align-items-center ms-5 w-100">
         <p className="text-muted my-3">
           Have a look to the full list of users:
         </p>
