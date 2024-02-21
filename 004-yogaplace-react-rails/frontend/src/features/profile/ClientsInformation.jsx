@@ -39,11 +39,10 @@ const ClientsInformation = ({ currUser }) => {
   }
 
   return (
-    <div className="d-flex flex-column justify-content-center align-items-center overflow-auto p-2">
+    <div className="h-100 p-2">
       <Modal {...{ modal, setModal: closeModal, content: modalContent }} />
-      <h3 className="display-4 text-center mb-3">Your clients</h3>
-      <div className="p-3 h-50 overflow-y-auto">
-        <div className="container text-center">
+      <h3 className="display-4 text-center my-3">Your clients</h3>
+      <div className="p-3 h-100 overflow-y-auto">
           <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
             {dashboardData.clientsCurrentInstructor &&
               dashboardData.clientsCurrentInstructor.map((u) => (
@@ -64,7 +63,7 @@ const ClientsInformation = ({ currUser }) => {
                 </div>
               ))}
           </div>
-        </div>
+   
       </div>
       <div className="d-flex align-items-center ms-5 w-100">
         <p className="text-muted my-3">
