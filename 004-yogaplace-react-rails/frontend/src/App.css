@@ -45,12 +45,10 @@
     flex-direction: column;
   }
   .fixed-sidebar {
-    align-items: center;
-    justify-content: center;
+    display: inline-flex;
     padding: 10% 0;
-    /* position: fixed; */
     width: 100%;
-    /* margin-top: 3rem; */
+    /* z-index: 1; */
   }
 
   .yoga-class-buttons {
@@ -59,34 +57,28 @@
 }
 
 @media screen and (min-width: 480px) {
-.card-info {
-  justify-content: space-around;
-}
+  .card-info {
+    justify-content: space-around;
+  }
 
   .new-form-title {
     flex-direction: column;
   }
 
   .fixed-sidebar {
+    display: flex;
     flex-direction: column;
     justify-content: space-evenly;
   }
-/* 
-  .fixed-sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    padding: 10% 1rem; 
-    width: auto;
-        flex-direction: column;
-    justify-content: space-evenly;
-  }
-  
-  .container-profile {
-    flex-direction: row;
-  } */
 
+  .container-admin {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+
+  }
 }
 
 /* Calendar */
@@ -171,4 +163,3 @@ abbr[title] {
 }
 
 /* yoga-class */
-

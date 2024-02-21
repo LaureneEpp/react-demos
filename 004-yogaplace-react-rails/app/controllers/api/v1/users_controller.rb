@@ -48,7 +48,7 @@ def dashboard
   # List of all instructors
   @all_instructors = User.all.where(role: "instructor")
   #List of all bookings
-  @all_bookings = Booking.all.order(created_at: :desc)
+  @all_bookings = Booking.joins(yoga_class: :yoga_lesson).where('yoga_classes.date >= ?', Date.today).order(created_at: :desc)
   # List of all classes created by current intructor
   @yoga_classes_current_instructor = YogaClass.where(user_id: @user.id)
   # Count of all classes created by current intructor

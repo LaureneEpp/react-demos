@@ -31,8 +31,13 @@ function InstructorsListModalContent({ dashboardData }) {
                     <td className="bg-transparent text-white">
                       {i.first_name}
                     </td>
-                    <td className="bg-transparent text-white">{i.last_name}</td>
-                    <td className="bg-transparent text-white">{i.city}</td>
+                    <td className="bg-transparent text-white">
+                      {i.last_name}
+                    </td>
+                    <td className="bg-transparent text-white">
+                      {i.city}
+                    </td>
+
                   </tr>
                 ))}
               </tbody>
