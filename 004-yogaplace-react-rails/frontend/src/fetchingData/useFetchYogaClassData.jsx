@@ -4,47 +4,40 @@ import useFetchYogaLessonData from "./useFetchYogaLessonData";
 
 const useFetchYogaClassData = () => {
   const [yogaClassData, setYogaClassData] = useState(null);
-  const { yogaLessonData } = useFetchYogaLessonData();
-  const [error, setError] = useState(null);
   const { id } = useParams();
+  const { yogaLessonData } = useFetchYogaLessonData();
 
   useEffect(() => {
     async function fetchData() {
       try {
         const API_URL = "http://localhost:3000/api/v1";
-        const yogaClassResponse = await fetch(`${API_URL}/yoga_classes/${id}`);
-        console.log("API response:", yogaClassResponse);
 
-        if (yogaClassResponse.ok) {
+        // Fetch both yoga class and yoga lesson data in parallel
+        const [yogaClassResponse, yogaLessonResponse] = await Promise.all([
+          fetch(`${API_URL}/yoga_classes/${id}`),
+          fetch(`${API_URL}/yoga_lessons/${yogaClassData.yoga_lesson_id}`)
+        ]);
+
+        if (yogaClassResponse.ok && yogaLessonResponse.ok) {
           const yogaClassData = await yogaClassResponse.json();
-          console.log("Yoga classes data:", yogaClassData);
+          const yogaLessonData = await yogaLessonResponse.json();
 
           setYogaClassData(yogaClassData);
+          setYogaLessonData(yogaLessonData);
         } else {
           throw new Error(
-            `Failed to fetch yoga class data with status ${yogaClassResponse.status}`
+            `Failed to fetch data with status ${yogaClassResponse.status}`
           );
         }
       } catch (e) {
-        setError(`An error occurred: ${e.message}`);
+        console.error(`An error occurred: ${e.message}`);
       }
     }
 
-    if (yogaLessonData) {
-      fetchData();
-    }
-
     fetchData();
-  }, [yogaLessonData, id]);
+  }, [id]);
 
-  const updateYogaClassData = (updatedData) => {
-    setYogaClassData((prevYogaClass) => ({
-      ...prevYogaClass,
-      ...updatedData,
-    }));
-  };
-
-  return { yogaClassData, error, updateYogaClassData };
+  return { yogaClassData, yogaLessonData };
 };
 
 export default useFetchYogaClassData;

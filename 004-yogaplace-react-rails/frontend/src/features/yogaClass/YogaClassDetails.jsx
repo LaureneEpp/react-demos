@@ -10,15 +10,10 @@ function formatDate(date) {
   return new Date(date).toLocaleDateString("en-US", options);
 }
 
-function YogaClassDetails({ currUser }) {
-  const { yogaClassData } = useFetchYogaClassData();
-  const { yogaLessonData } = useFetchYogaLessonData();
-
-  const navigate = useNavigate();
+function YogaClassDetails() {
+  const { yogaClassData, yogaLessonData } = useFetchYogaClassData();
 
   const { id } = useParams();
-
-
 
   if (!yogaClassData || !yogaLessonData) {
     return <LoadingAnimation />;

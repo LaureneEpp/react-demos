@@ -4,8 +4,8 @@ class Api::V1::YogaClassesController < ApplicationController
 
   def index
     @yoga_classes = YogaClass.all.order(created_at: :desc)
-    render json: @yoga_classes, include: [:yoga_lesson => {:only => [:id, :title, :description]},
-                                        :user => {:only => [:id, :email, :first_name, :last_name, :username, :city, :role ]}] 
+    render json: @yoga_classes, include: [:yoga_lesson => { only: [:id, :title, :description] },
+                                          :user => { only: [:id, :email, :first_name, :last_name, :username, :city, :role] }]
   end
   
   def show
@@ -21,7 +21,9 @@ class Api::V1::YogaClassesController < ApplicationController
     else
       render json: @yoga_class.errors, status: :unprocessable_entity
     end
+    
   end
+  
 
   def update
     if @yoga_class.update(yoga_class_params)
@@ -39,9 +41,10 @@ class Api::V1::YogaClassesController < ApplicationController
   private
 
   def set_yoga_lesson
-    @yoga_lesson = YogaLesson.find_by(id: params[:yoga_class][:yoga_lesson_id])
-    render json: { error: 'YogaLesson not found' }, status: :not_found unless @yoga_lesson
-  end
+    @yoga_lesson = YogaLesson.find_by(id: params[:yoga_lesson_id])
+    Rails.logger.debug("Params: #{params.inspect}")
+    Rails.logger.debug("Yoga Lesson ID: #{params[:yoga_lesson_id]}")
+    end
   
 
   def set_yoga_class
