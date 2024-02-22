@@ -42,8 +42,6 @@ class Api::V1::YogaClassesController < ApplicationController
 
   def set_yoga_lesson
     @yoga_lesson = YogaLesson.find_by(id: params[:yoga_lesson_id])
-    Rails.logger.debug("Params: #{params.inspect}")
-    Rails.logger.debug("Yoga Lesson ID: #{params[:yoga_lesson_id]}")
     end
   
 

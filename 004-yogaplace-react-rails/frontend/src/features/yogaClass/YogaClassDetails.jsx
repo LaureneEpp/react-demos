@@ -10,12 +10,12 @@ function formatDate(date) {
   return new Date(date).toLocaleDateString("en-US", options);
 }
 
-function YogaClassDetails() {
-  const { yogaClassData, yogaLessonData } = useFetchYogaClassData();
+function YogaClassDetails({currUser}) {
+  const { yogaClassData } = useFetchYogaClassData();
 
   const { id } = useParams();
 
-  if (!yogaClassData || !yogaLessonData) {
+  if (!yogaClassData) {
     return <LoadingAnimation />;
   }
 
@@ -23,9 +23,9 @@ function YogaClassDetails() {
     <div className="vh-100 d-flex flex-column align-items-center justify-content-center">
       <div className="jumbotron jumbotron-fluid bg-transparent px-4 margin-top-8">
         <div className="m-5">
-          <h3 className="display-4">{yogaLessonData.title}</h3>
+          <h3 className="display-4">{yogaClassData.yoga_lesson.title}</h3>
 
-          <p className="lead text-muted">{yogaLessonData.description}</p>
+          <p className="lead text-muted">{yogaClassData.yoga_lesson.description}</p>
 
           <hr className="my-4" />
           <div className="card-info d-flex mb-3">
