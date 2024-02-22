@@ -107,7 +107,7 @@ function YogaClassDetails({currUser}) {
                     </svg>
                   </Link>
                   <p className="align-self-center my-3 p-2">|</p>
-                  <DeleteYogaClass key={yogaClassData.id} />
+                  <DeleteYogaClass yogaClassId={yogaClassData.id} />
                 </>
               )}
             </div>

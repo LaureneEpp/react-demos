@@ -1,16 +1,13 @@
 import { useNavigate } from "react-router-dom";
 
-import useFetchYogaClassData from "../../fetchingData/useFetchYogaClassData";
-
-function DeleteYogaClass() {
-  const { yogaClassData } = useFetchYogaClassData();
+function DeleteYogaClass({ yogaClassId, className }) {
   const navigate = useNavigate();
 
   const deleteYogaClass = async () => {
     try {
       const API_URL = "http://localhost:3000/api/v1";
       const response = await fetch(
-        `${API_URL}/yoga_classes/${yogaClassData.id}`,
+        `${API_URL}/yoga_classes/${yogaClassId}`,
         {
           method: "DELETE",
         }
@@ -28,7 +25,9 @@ function DeleteYogaClass() {
   };
 
   return (
-    <button onClick={deleteYogaClass} className="btn btn-lg my-3 p-2">
+    <button onClick={deleteYogaClass}
+    className={`btn btn-lg my-3 p-2 ${className}`}
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="35"
