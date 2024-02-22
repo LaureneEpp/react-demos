@@ -33,13 +33,16 @@ class Api::V1::YogaClassesController < ApplicationController
 
   def destroy
     @yoga_class.destroy
+    head :no_content
   end
 
   private
 
   def set_yoga_lesson
-    @yoga_lesson = YogaLesson.find(params[:yoga_class][:yoga_lesson_id])
+    @yoga_lesson = YogaLesson.find_by(id: params[:yoga_class][:yoga_lesson_id])
+    render json: { error: 'YogaLesson not found' }, status: :not_found unless @yoga_lesson
   end
+  
 
   def set_yoga_class
     @yoga_class = YogaClass.find(params[:id])

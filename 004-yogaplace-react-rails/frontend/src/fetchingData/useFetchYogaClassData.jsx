@@ -4,7 +4,7 @@ import useFetchYogaLessonData from "./useFetchYogaLessonData";
 
 const useFetchYogaClassData = () => {
   const [yogaClassData, setYogaClassData] = useState(null);
-  const { yogaLessonData } = useFetchYogaLessonData(null);
+  const { yogaLessonData } = useFetchYogaLessonData();
   const [error, setError] = useState(null);
   const { id } = useParams();
 
