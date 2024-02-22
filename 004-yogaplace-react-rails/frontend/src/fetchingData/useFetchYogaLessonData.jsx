@@ -11,18 +11,23 @@ const useFetchYogaLessonData = () => {
       try {
         const API_URL = "http://localhost:3000/api/v1";
         const lessonResponse = await fetch(`${API_URL}/yoga_lessons/${id}`);
-        console.log("API response:", lessonResponse);
+        console.log("Lesson API response:", lessonResponse);
 
 
         if (lessonResponse.ok) {
           const lessonData = await lessonResponse.json();
           console.log("Yoga lessons data:", lessonData);
 
+
           setYogaLessonData(lessonData);
         } else {
-          throw new Error(
-            `Failed to fetch yoga class data with status ${lessonResponse.status}`
-          );
+          if (lessonResponse.status === 404) {
+            setError("Yoga lesson not found");
+          } else {
+            throw new Error(
+              `Failed to fetch yoga lesson data with status ${lessonResponse.status}`
+            );
+          }
         }
       } catch (e) {
         setError(`An error occurred: ${e.message}`);
@@ -32,8 +37,8 @@ const useFetchYogaLessonData = () => {
   }, [id]);
 
   const updateYogaLessonData = (updatedData) => {
-    setYogaLessonData((prevYogaClass) => ({
-      ...prevYogaClass,
+    setYogaLessonData((prevYogaLesson) => ({
+      ...prevYogaLesson,
       ...updatedData,
     }));
   };

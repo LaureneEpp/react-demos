@@ -4,5 +4,5 @@ class YogaClass < ApplicationRecord
      belongs_to :yoga_lesson
      belongs_to :user
      has_one :yoga_category, through: :yoga_lesson
-     has_many :bookings
+     has_many :bookings, dependent: :destroy
 end

@@ -1,11 +1,9 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import useFetchYogaLessonData from "./useFetchYogaLessonData";
 
 const useFetchYogaClassData = () => {
   const [yogaClassData, setYogaClassData] = useState(null);
-  const { yogaLessonData } = useFetchYogaLessonData(null);
-  const [error, setError] = useState(null);
+  const [, setError] = useState(null);
   const { id } = useParams();
 
   useEffect(() => {
@@ -13,12 +11,11 @@ const useFetchYogaClassData = () => {
       try {
         const API_URL = "http://localhost:3000/api/v1";
         const yogaClassResponse = await fetch(`${API_URL}/yoga_classes/${id}`);
-        console.log("API response:", yogaClassResponse);
+        // console.log("API response:", yogaClassResponse);
 
         if (yogaClassResponse.ok) {
           const yogaClassData = await yogaClassResponse.json();
-          console.log("Yoga classes data:", yogaClassData);
-
+          // console.log("Yoga classes data:", yogaClassData);
           setYogaClassData(yogaClassData);
         } else {
           throw new Error(
@@ -30,12 +27,8 @@ const useFetchYogaClassData = () => {
       }
     }
 
-    if (yogaLessonData) {
-      fetchData();
-    }
-
     fetchData();
-  }, [yogaLessonData, id]);
+  }, [id]);
 
   const updateYogaClassData = (updatedData) => {
     setYogaClassData((prevYogaClass) => ({
@@ -44,7 +37,7 @@ const useFetchYogaClassData = () => {
     }));
   };
 
-  return { yogaClassData, error, updateYogaClassData };
+  return { yogaClassData, updateYogaClassData };
 };
 
 export default useFetchYogaClassData;

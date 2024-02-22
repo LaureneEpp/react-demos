@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { Link, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import useFetchYogaClassesList from "../../fetchingData/useFetchYogaClassesList";
+// import DeleteYogaClass from "./DeleteYogaClass";
 
 
 function formatDate(date) {
@@ -18,25 +19,25 @@ function YogaClassesList({ currUser }) {
   const { id } = useParams();
 
 
-  const handleDelete = async (id) => {
-    try {
-      const API_URL = "http://localhost:3000/api/v1";
-      const response = await fetch(`${API_URL}/yoga_classes/${id}`, {
-        method: "DELETE",
-      });
-      if (response.ok) {
-        // setYogaClasses(
-        //   yogaClassesList.filter((yoga_class) => yoga_class.id !== id)
-        // );
-      } else {
-        throw response;
-      }
-    } catch (e) {
-      console.error(
-        `An error occurred while deleting the yoga class: ${e.message}`
-      );
-    }
-  };
+  // const handleDelete = async (id) => {
+  //   try {
+  //     const API_URL = "http://localhost:3000/api/v1";
+  //     const response = await fetch(`${API_URL}/yoga_classes/${id}`, {
+  //       method: "DELETE",
+  //     });
+  //     if (response.ok) {
+  //       // setYogaClasses(
+  //       //   yogaClassesList.filter((yoga_class) => yoga_class.id !== id)
+  //       // );
+  //     } else {
+  //       throw response;
+  //     }
+  //   } catch (e) {
+  //     console.error(
+  //       `An error occurred while deleting the yoga class: ${e.message}`
+  //     );
+  //   }
+  // };
 
   // Group yoga classes by date
   const yogaClassesByDate = yogaClassesList.reduce((result, yoga_class) => {
@@ -63,19 +64,7 @@ function YogaClassesList({ currUser }) {
           className="border border-0 shadow m-3 p-3 bg_orange-light-color position-relative custom-yoga-class">
           {currUser && currUser.role === "instructor" && (
             <>
-              <button
-                onClick={() => handleDelete(yoga_class.id)}
-                className="btn btn-lg position-absolute top-0 start-100 translate-middle">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="30"
-                  height="30"
-                  fill="currentColor"
-                  className="bi bi-trash3-fill white-color"
-                  viewBox="0 0 16 16">
-                  <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
-                </svg>
-              </button>
+              {/* <DeleteYogaClass yogaClassId={yoga_class.id}  className="position-absolute top-0 start-100 translate-middle z-3"/> */}
             </>
           )}
           <Link
