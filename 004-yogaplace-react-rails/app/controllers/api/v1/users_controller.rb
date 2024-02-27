@@ -3,26 +3,31 @@ class Api::V1::UsersController < ApplicationController
 
   def index
     @users = User.all.order(created_at: :desc)
-    render json: @users
+
+    users_with_images = @users.map do |user|
+      if user.image.attached?
+        user.as_json.merge(image_image: url_for(user.image))
+      else
+        user.as_json.merge(image_image: nil)
+      end
+    end
+
+    render json: users_with_images
   end
   
   def show
-    @user = User.includes(bookings: [:yoga_class => [:yoga_lesson]])
-               .find_by(id: params[:id])
+    # @user = User.includes(bookings: [:yoga_class => [:yoga_lesson]])
+    #            .find_by(id: params[:id])
   
-    if @user.present?
-      render json: @user, include: {
-        bookings: {
-          # include: {
-          #   yoga_class: {
-          #     only: [:id, :location, :date, :yoga_lesson_id],
-          #     include: { yoga_lesson: { only: [:id, :title, :description] } }
-          #   }
-          # }
-        }
-      }
+    # if @user.present?
+    #   render json: @user
+    # else
+    #   render json: {}, status: :not_found
+    # end
+    if @user.image.attached?
+      render json: @user.as_json.merge(image_url: url_for(@user.image))
     else
-      render json: {}, status: :not_found
+      render json: @user.as_json.merge(image_url: nil), status: :not_found
     end
   end
   
@@ -91,7 +96,7 @@ end
   end
 
   def user_params
-    params.require(:user).permit(:email, :first_name, :last_name, :username, :city, :role, :password, :password_confirmation)
+    params.require(:user).permit(:email, :first_name, :last_name, :username, :city, :role, :password, :password_confirmation, :image)
   end
   
 end

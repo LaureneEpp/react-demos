@@ -1,7 +1,6 @@
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
-
 const Signup = ({ setCurrUser, setShow }) => {
   const navigate = useNavigate();
   const formRef = useRef();
@@ -34,7 +33,16 @@ const Signup = ({ setCurrUser, setShow }) => {
     const formData = new FormData(formRef.current);
     const data = Object.fromEntries(formData);
     const userInfo = {
-      user: { email: data.email, password: data.password, first_name: data.first_name, last_name: data.last_name, username: data.username, city: data.city, role: data.role },
+      user: {
+        email: data.email,
+        password: data.password,
+        first_name: data.first_name,
+        last_name: data.last_name,
+        username: data.username,
+        city: data.city,
+        role: data.role,
+        image: data.image
+      },
     };
     signup(userInfo);
     e.target.reset();
@@ -53,7 +61,20 @@ const Signup = ({ setCurrUser, setShow }) => {
             Signup
           </h3>
           <form ref={formRef} onSubmit={handleSubmit} className="m-4">
-          <div className="mb-3">
+            <div className="mb-3">
+              <label htmlFor="image" className="form-label">
+                Image
+              </label>
+              <input
+                type="file"
+                name="image"
+                className="form-control"m
+                id="image"
+                aria-describedby="imageHelp"
+                accept="image/*"
+              />
+            </div>
+            <div className="mb-3">
               <label htmlFor="inputFirstName" className="form-label">
                 Your first name
               </label>
@@ -113,8 +134,7 @@ const Signup = ({ setCurrUser, setShow }) => {
                 name="role"
                 className="form-select"
                 id="inputRole"
-                aria-describedby="roleHelp"
-              >
+                aria-describedby="roleHelp">
                 <option value="student">Student</option>
                 <option value="instructor">Instructor</option>
               </select>
