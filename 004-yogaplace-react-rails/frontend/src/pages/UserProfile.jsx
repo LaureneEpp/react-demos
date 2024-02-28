@@ -11,7 +11,7 @@ const UserProfile = ({ currUser }) => {
   };
 
   return (
-    <div className="container-profile h-100  w-100 d-flex">
+    <div className="container-profile h-100 w-100 d-flex justify-content-center align-items-center">
       <ProfileSidebar onButtonClick={handleSidebarButtonClick} currUser={currUser}/>
       <div className="h-100 w-100 overflow-y-scroll">
         {selectedContent === "userInformation" && (

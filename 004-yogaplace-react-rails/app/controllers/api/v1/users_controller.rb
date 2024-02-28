@@ -6,9 +6,9 @@ class Api::V1::UsersController < ApplicationController
 
     users_with_images = @users.map do |user|
       if user.image.attached?
-        user.as_json.merge(image_image: url_for(user.image))
+        user.as_json.merge(image_url: url_for(user.image))
       else
-        user.as_json.merge(image_image: nil)
+        user.as_json.merge(image_url: nil)
       end
     end
 
@@ -96,7 +96,7 @@ end
   end
 
   def user_params
-    params.require(:user).permit(:email, :first_name, :last_name, :username, :city, :role, :password, :password_confirmation, :image)
+    params.require(:user).permit(:email, :first_name, :last_name, :username, :city, :role, :password, :password_confirmation, :image_url)
   end
   
 end
