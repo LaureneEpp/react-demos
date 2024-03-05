@@ -11,6 +11,7 @@ const UserInformation = ({ currUser }) => {
   }
 
   return (
+    <div className="d-flex flex-column align-items-center m-3">
       <div className="card bg_primary-color border border-white mt-5 ">
         <div className="card-header p-3 d-flex flex-row align-items-center">
           <h2 className="card-title white-color display-4">About you</h2>
@@ -89,7 +90,7 @@ const UserInformation = ({ currUser }) => {
           </div>
         </div>
       </div>
-
+    </div>
   );
 };
 
