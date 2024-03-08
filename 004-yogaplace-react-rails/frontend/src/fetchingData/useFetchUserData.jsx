@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 const useFetchUserData = ({ currUser }) => {
-  const [usersList, setUsersList] = useState(null)
+  // const [usersList, setUsersList] = useState(null)
   const [userData, setUserData] = useState({...currUser});
   const [error, setError] = useState(null);
 
@@ -41,8 +41,14 @@ const useFetchUserData = ({ currUser }) => {
     // fetchUsers()
   }, [currUser]);
 
+  const updateUserData = (updatedData) => {
+    setUserData((prevUser) => ({
+      ...prevUser,
+      ...updatedData,
+    }));
+  };
 
-  return { userData, error };
+  return { userData, updateUserData, error };
 };
 
 export default useFetchUserData;
