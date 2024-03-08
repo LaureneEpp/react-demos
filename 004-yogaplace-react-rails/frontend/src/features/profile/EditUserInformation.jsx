@@ -1,74 +1,54 @@
-import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import { useNavigate, useParams, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import useFetchUserData from "../../fetchingData/useFetchUserData";
 
 const EditUserInformation = ({ currUser }) => {
-  const [userProfile, setUserProfile] = useState({ ...currUser });
-  const [formData, setFormData] = useState({
-    first_name: "",
-    last_name: "",
-    username: "",
-    city: "",
-    email: "",
-  });
+  const { userData, updateUserData } = useFetchUserData({ currUser });
+
   const navigate = useNavigate();
-  const { id } = useParams();
-
-  useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const API_URL = `http://localhost:3000/api/v1/users/${currUser.id}`;
-        const response = await fetch(API_URL);
-        if (!response.ok) {
-          throw new Error("Failed to fetch user data");
-        }
-        const userData = await response.json();
-        setUserProfile(userData);
-        setFormData({
-          first_name: userData.first_name,
-          last_name: userData.last_name,
-          username: userData.username,
-          city: userData.city,
-          email: userData.email,
-        });
-      } catch (error) {
-        console.error("Error fetching user data:", error.message);
-      }
-    };
-
-    fetchUserData();
-  }, [id, currUser.id]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    updateUserData({ [name]: value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const formData = new FormData();
+    formData.append("user[first_name]", userData.first_name);
+    formData.append("user[last_name]", userData.last_name);
+    formData.append("user[username]", userData.username);
+    formData.append("user[email]", userData.email);
+    formData.append("user[city]", userData.city);
+    formData.append("user[role]", userData.role);
+    formData.append("user[password]", userData.password);
+
     try {
       const API_URL = "http://localhost:3000/api/v1";
       const response = await fetch(`${API_URL}/users/${currUser.id}`, {
         method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          accept: "application/json",
-        },
-        body: JSON.stringify({ user: formData }),
+        // headers: {
+        //   "Content-Type": "application/json",
+        //   accept: "application/json",
+        // },
+        body: formData,
       });
 
-      const data = await response.json();
-      if (!response.ok) throw data.error;
-      localStorage.setItem("token", response.headers.get("Authorization"));
-      setUserProfile(data);
+      if (response.ok) {
+        console.log("Image uploaded successfully");
+        localStorage.setItem("token", response.headers.get("Authorization"));
+        // updateUserData(formData);
+      } else {
+        console.error("Image upload failed");
+      }
     } catch (error) {
       console.error("Error updating profile:", error.message);
     }
     navigate(`/${currUser.username}`);
   };
 
-  if (!userProfile) {
+  if (!userData) {
     return <div>Loading...</div>;
   }
 
@@ -100,7 +80,7 @@ const EditUserInformation = ({ currUser }) => {
                       className="form-control me-1"
                       id="first_name"
                       name="first_name"
-                      value={formData.first_name}
+                      value={userData.first_name}
                       onChange={handleChange}
                     />
 
@@ -109,7 +89,7 @@ const EditUserInformation = ({ currUser }) => {
                       className="form-control"
                       id="last_name"
                       name="last_name"
-                      value={formData.last_name}
+                      value={userData.last_name}
                       onChange={handleChange}
                     />
                     <hr className="my-2 bg-secondary" />
@@ -129,7 +109,7 @@ const EditUserInformation = ({ currUser }) => {
                       className="form-control"
                       id="username"
                       name="username"
-                      value={formData.username}
+                      value={userData.username}
                       onChange={handleChange}
                     />
                     <hr className="my-2 bg-secondary" />
@@ -149,7 +129,7 @@ const EditUserInformation = ({ currUser }) => {
                       className="form-control"
                       id="city"
                       name="city"
-                      value={formData.city}
+                      value={userData.city}
                       onChange={handleChange}
                     />
                     <hr className="my-2 bg-secondary" />
@@ -170,7 +150,7 @@ const EditUserInformation = ({ currUser }) => {
                       className="form-control"
                       id="email"
                       name="email"
-                      value={formData.email}
+                      value={userData.email}
                       onChange={handleChange}
                     />
                     <hr className="my-2 bg-secondary" />
