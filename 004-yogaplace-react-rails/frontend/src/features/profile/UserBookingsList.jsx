@@ -46,9 +46,9 @@ const UserBookingsList = ({ currUser }) => {
 
   console.log(userBookings);
   return (
-    <div className="d-flex flex-column align-items-center m-3" >
-      <div className="text-center px-4 margin-top-8">
-        <h3 className="text-uppercase">Your bookings</h3>
+    <div className="h-100 p-5" >
+      <div className="mt-5 text-center px-4">
+        <h3 className="display-4">Your bookings</h3>
         <Link to="/yoga_classes" role="button">
           <motion.svg
             xmlns="http://www.w3.org/2000/svg"
@@ -66,9 +66,9 @@ const UserBookingsList = ({ currUser }) => {
           </motion.svg>
         </Link>
       </div>
-      <div className=" overflow-y-scroll my-3 w-75">
+      <div className="w-100 h-100 overflow-y-scroll d-flex align-items-center justify-content-center my-3">
         {userBookings && userBookings.length > 0 ? (
-          <div className="table-responsive h-100 w-100">
+          <div className="table-responsive">
             <table className="table">
               <thead>
                 <tr>
