@@ -6,8 +6,9 @@ import YogaClassesInstructorModalContent from "../modalContent/YogaClassesInstru
 import UsersYogaClassListModalContent from "../modalContent/UsersYogaClassListModalContent";
 import InstructorsListModalContent from "../modalContent/InstructorsListModalContent";
 import NoBookingClassListModalContent from "../modalContent/NoBookingClassListModalContent";
+import LocationsListModalContent from "../modalContent/LocationsListModalContent"
 
-const AdminDashboard = ({ currUser }) => {
+const AdminDashboard = ({ currUser, onBookingsRedirect }) => {
   const dashboardData = useFetchDashboardData({ currUser });
   const [modal, setModal] = useState(false);
   const [modalContent, setModalContent] = useState(null);
@@ -32,10 +33,17 @@ const AdminDashboard = ({ currUser }) => {
       </p>
     </>
   );
+  const clientsCount = (
+    <>
+      <p className="fs-3 text-white uppercase px-4 my-3">
+        <strong>{dashboardData.clientsCurrentInstructorCount}</strong> clients
+      </p>
+    </>
+  );
   const bookingsCount = (
     <>
       <p className="fs-3 text-white uppercase px-4 my-3">
-        <strong>{dashboardData.bookingsCount}</strong> clients
+        <strong>{dashboardData.bookingsCount}</strong> bookings
       </p>
     </>
   );
@@ -90,6 +98,15 @@ const AdminDashboard = ({ currUser }) => {
     setModal(true);
   };
 
+  const handleBookingsButtonClick = () => {
+    onBookingsRedirect();
+  };
+
+  const handleLocationsgButtonClick = () => {
+    setModalContent(<LocationsListModalContent {...{ dashboardData }} />);
+    setModal(true);
+  };
+
   const closeModal = () => {
     setModal(false);
     setModalContent(null);
@@ -130,7 +147,7 @@ const AdminDashboard = ({ currUser }) => {
               Who are your clients ?
             </h5>
             <div className="d-flex align-items-center">
-              {bookingsCount}
+              {clientsCount}
               <button
                 className="btn btn-lg my-3"
                 onClick={handleUsersYogaClassListButtonClick}>
@@ -167,7 +184,7 @@ const AdminDashboard = ({ currUser }) => {
               <button
                 className="btn btn-lg my-3"
                 onClick={handleNoBookingButtonClick}>
-                {modal ? "X" : svgModal}
+                {svgModal}
               </button>
             </div>
           </motion.div>
@@ -177,9 +194,16 @@ const AdminDashboard = ({ currUser }) => {
               opacity: modal ? 0.5 : 1,
             }}
             transition={{ type: "spring", bounce: 0, duration: 0.4 }}
-            className="col-md-auto bg_terracota-color shadow-lg m-2 p-2 rounded-1">
-            <h5 className="fs-4 fw-light mt-2 p-1 word-wrap ">You have</h5>
-            <p>{dashboardData.bookingsCount} bookings</p>
+            className="col bg_terracota-color shadow-lg m-2 p-2 rounded-1 d-flex flex-column justify-content-center align-items-center">
+            <h5 className="fs-2 fw-light mt-2 p-1 word-wrap ">You have</h5>
+            <div className="d-flex align-items-center">
+              {bookingsCount}
+              <button
+                className="btn btn-lg my-3"
+                onClick={handleBookingsButtonClick}>
+                {svgModal}
+              </button>
+            </div>
           </motion.div>
           <motion.div
             animate={{
@@ -187,7 +211,18 @@ const AdminDashboard = ({ currUser }) => {
               opacity: modal ? 0.5 : 1,
             }}
             transition={{ type: "spring", bounce: 0, duration: 0.4 }}
-            className="col col-lg-2 bg_terracota-color shadow-lg m-2 p-2 rounded-1"></motion.div>
+            className="col bg_terracota-color shadow-lg m-2 p-2 rounded-1 d-flex flex-column justify-content-center align-items-center">
+            <h5 className="fs-2 fw-light mt-2 p-1 word-wrap ">Where are your classes?</h5>
+            <div className="d-flex align-items-center">
+              {/* {noBookingClass} */}
+              <button
+                className="btn btn-lg my-3"
+                onClick={handleLocationsgButtonClick}>
+                {svgModal}
+              </button>
+            </div>
+
+            </motion.div>
         </div>
       </div>
     </>
