@@ -214,7 +214,6 @@ const AdminDashboard = ({ currUser, onBookingsRedirect }) => {
             className="col bg_terracota-color shadow-lg m-2 p-2 rounded-1 d-flex flex-column justify-content-center align-items-center">
             <h5 className="fs-2 fw-light mt-2 p-1 word-wrap ">Where are your classes?</h5>
             <div className="d-flex align-items-center">
-              {/* {noBookingClass} */}
               <button
                 className="btn btn-lg my-3"
                 onClick={handleLocationsgButtonClick}>
