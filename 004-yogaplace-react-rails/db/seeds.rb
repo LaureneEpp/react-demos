@@ -18,6 +18,8 @@ User.create!(first_name: "test08", last_name: "test08", username: "test08", emai
 User.create!(first_name: "test09", last_name: "test09", username: "test09", email: "test09@test.org", password: "password", city: "bx")
 User.create!(first_name: "test10", last_name: "test10", username: "test10", email: "test10@test.org", password: "password", city: "bx")
 
+
+
 puts "Created #{User.count} users"
 
 10.times do 
