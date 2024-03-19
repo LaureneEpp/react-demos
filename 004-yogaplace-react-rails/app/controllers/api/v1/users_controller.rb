@@ -3,32 +3,33 @@ class Api::V1::UsersController < ApplicationController
 
   def index
     @users = User.all.order(created_at: :desc)
+    render json: @users
 
-    users_with_images = @users.map do |user|
-      if user.image.attached?
-        user.as_json.merge(image_url: url_for(user.image))
-      else
-        user.as_json.merge(image_url: nil)
-      end
-    end
+    # users_with_images = @users.map do |user|
+    #   if user.image.attached?
+    #     user.as_json.merge(image_url: url_for(user.image))
+    #   else
+    #     user.as_json.merge(image_url: nil)
+    #   end
+    # end
 
-    render json: users_with_images
+    # render json: users_with_images
   end
   
   def show
     # @user = User.includes(bookings: [:yoga_class => [:yoga_lesson]])
     #            .find_by(id: params[:id])
   
-    # if @user.present?
-    #   render json: @user
-    # else
-    #   render json: {}, status: :not_found
-    # end
-    if @user.image.attached?
-      render json: @user.as_json.merge(image_url: url_for(@user.image))
+    if @user.present?
+      render json: @user
     else
-      render json: @user.as_json.merge(image_url: nil), status: :not_found
+      render json: {}, status: :not_found
     end
+    # if @user.image.attached?
+    #   render json: @user.as_json.merge(image_url: url_for(@user.image))
+    # else
+    #   render json: @user.as_json.merge(image_url: nil), status: :not_found
+    # end
   end
   
   def edit
