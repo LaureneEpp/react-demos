@@ -10,7 +10,7 @@ function formatDate(date) {
   return new Date(date).toLocaleDateString("en-US", options);
 }
 
-function YogaClassDetails({currUser}) {
+function YogaClassDetails({ currUser }) {
   const { yogaClassData } = useFetchYogaClassData();
 
   const { id } = useParams();
@@ -24,7 +24,9 @@ function YogaClassDetails({currUser}) {
       <div className="jumbotron jumbotron-fluid bg-transparent px-4 margin-top-8">
         <div className="m-5">
           <h3 className="display-4">{yogaClassData.yoga_lesson.title}</h3>
-          <p className="lead text-muted">{yogaClassData.yoga_lesson.description}</p>
+          <p className="lead text-muted">
+            {yogaClassData.yoga_lesson.description}
+          </p>
 
           <hr className="my-4" />
           <div className="card-info d-flex mb-3">
@@ -51,8 +53,12 @@ function YogaClassDetails({currUser}) {
                 viewBox="0 0 16 16">
                 <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z" />
               </svg>
-              <Link to={`/users/${yogaClassData.user.username}`}>
-              <h5 className="fw-light m-2">{yogaClassData.user.username}</h5>
+              <Link to={`/users/${yogaClassData.user.username}`}
+              className="text-decoration-none text-white"
+              >
+                <h5 className="fw-light m-2">
+                  {yogaClassData.user.username}
+                </h5>
               </Link>
             </div>
             <div className="card-info-icon d-flex align-items-center">
