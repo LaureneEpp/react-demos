@@ -89,11 +89,7 @@ end
   end
 
   def user_params
-<<<<<<< HEAD
-    params.require(:user).permit(:email, :first_name, :last_name, :username, :city, :role, :password, :password_confirmation, :image_url)
-=======
     params.require(:user).permit(:email, :first_name, :last_name, :username, :city, :role, :password, :password_confirmation, :image)
->>>>>>> ea10d2e81b8197ab1d079ca47571e7d7e8a3a49b
   end
   
 end
