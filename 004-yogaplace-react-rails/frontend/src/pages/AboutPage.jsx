@@ -38,9 +38,9 @@ function Image({ id }) {
 function AboutPage() {
   return (
     <div className="h-100 d-flex flex-column align-items-center justify-content-center">
-      <div className="jumbotron jumbotron-fluid bg-transparent px-4 margin-top-8">
-        <div className="m-3">
-          <h3 className="display-4">About Us</h3>
+      <div className="text-center px-4 margin-top-84">
+        <div className="m-5">
+          <h2 className="display-4">About Us</h2>
           <p className="lead text-muted">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus
             pariatur, laudantium dicta repellat iure minus fugit, tenetur
@@ -50,7 +50,7 @@ function AboutPage() {
           <hr className="my-4" />
         </div>
       </div>
-      <div className="container overflow-auto align-self-center px-5">
+      <div className="p-3 overflow-y-auto">
         <div className="text-center">
           <h5 className="display-4">Our Team</h5>
           <div className="d-flex flex-column align-items-center justify-content-center my-4 overflow-scroll">

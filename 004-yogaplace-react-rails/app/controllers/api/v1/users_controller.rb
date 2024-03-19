@@ -1,5 +1,5 @@
 class Api::V1::UsersController < ApplicationController
-  before_action :set_user, only: [:show, :update, :destroy, :dashboard ]
+  before_action :set_user, only: [:show, :update, :destroy, :dashboard, :user_page ]
 
   def index
     @users = User.all.order(created_at: :desc)
@@ -7,28 +7,18 @@ class Api::V1::UsersController < ApplicationController
   end
   
   def show
-    @user = User.includes(bookings: [:yoga_class => [:yoga_lesson]])
-               .find_by(id: params[:id])
-  
     if @user.present?
-      render json: @user, include: {
-        bookings: {
-          # include: {
-          #   yoga_class: {
-          #     only: [:id, :location, :date, :yoga_lesson_id],
-          #     include: { yoga_lesson: { only: [:id, :title, :description] } }
-          #   }
-          # }
-        }
-      }
+      render json: @user
     else
       render json: {}, status: :not_found
     end
+
   end
   
   def edit
   end
 
+  
   def update
     if @user.update(user_params)
       render json: @user
@@ -36,7 +26,7 @@ class Api::V1::UsersController < ApplicationController
       render json: @user.errors, status: :unprocessable_entity
     end
   end
-
+  
 def dashboard
   if @user.nil?
     render json: { error: 'User not found' }, status: :not_found
@@ -76,7 +66,11 @@ def dashboard
     clients_current_instructor_count: @clients_current_instructor_count
   }
 end
- 
+
+  def user_page
+    render json: @user
+  end
+
   private
 
   def set_user

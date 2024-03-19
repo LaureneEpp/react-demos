@@ -15,6 +15,7 @@ import SignUp from "../pages/SignUp";
 import UserProfile from "../pages/UserProfile";
 import EditUserInformation from "../features/profile/EditUserInformation";
 import InstructorProfile from "../pages/InstructorProfile";
+import UserPage from "../pages/UserPage"
 
 function AppRoutes({ currUser, setCurrUser }) {
   return (
@@ -35,7 +36,10 @@ function AppRoutes({ currUser, setCurrUser }) {
         path="/dashboard"
         element={<InstructorProfile currUser={currUser} />}
       />
-
+      <Route
+        path="/users/:username"
+        element={<UserPage/>}
+      />
       <Route
         path="/yoga_lessons"
         element={<YogaLessonsList currUser={currUser} />}
@@ -56,7 +60,10 @@ function AppRoutes({ currUser, setCurrUser }) {
       />
       <Route path="/yoga_classes/:id/edit" element={<EditYogaClass />} />
 
-      <Route path="/yoga_classes/new" element={<NewYogaClass currUser={currUser} />} />
+      <Route
+        path="/yoga_classes/new"
+        element={<NewYogaClass currUser={currUser} />}
+      />
       <Route path="/yoga_lessons/new" element={<NewYogaLesson />} />
     </Routes>
   );

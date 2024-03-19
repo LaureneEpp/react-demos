@@ -1,3 +1,6 @@
+import { Link } from "react-router-dom";
+import profileDefault from "../../assets/profile_default.jpeg";
+
 function InstructorsListModalContent({ dashboardData }) {
   return (
     <>
@@ -11,7 +14,13 @@ function InstructorsListModalContent({ dashboardData }) {
                 <div
                   className="card bg_terracota-color shadow-lg text-white m-3"
                   style={{ width: "15rem" }}>
-                  <img src="..." className="card-img-top" alt="..." />
+                  <img
+                    src={profileDefault}
+                    alt="profileDefault"
+                    width={150}
+                    height={150}
+                    className="card-img-top object-fit-cover"
+                  />{" "}
                   <div className="card-body">
                     <h5 className="card-title">
                       {u.first_name}
@@ -21,9 +30,11 @@ function InstructorsListModalContent({ dashboardData }) {
                       {u.city}
                       {u.email}
                     </p>
-                    <a href="#" className="btn btn-lg text-muted">
+                    <Link
+                      to={`/users/${u.username}`}
+                      className="text-decoration-none text-white">
                       + info
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>

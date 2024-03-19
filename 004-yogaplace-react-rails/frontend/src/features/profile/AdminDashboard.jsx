@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import Modal from "../../components/Modal";
 import useFetchDashboardData from "../../fetchingData/useFetchDashboardData";
@@ -72,9 +73,13 @@ const AdminDashboard = ({ currUser, onBookingsRedirect }) => {
           </button>
         </>
       ) : (
-        dashboardData.instructorsList.map((y) => (
+          dashboardData.instructorsList.map((y) => (
           <p key={y.id}>
+              <Link to={`/users/${y.username}`}
+              className="text-decoration-none text-white"
+              >
             {y.first_name} {y.last_name}
+          </Link>
           </p>
         ))
       )}
