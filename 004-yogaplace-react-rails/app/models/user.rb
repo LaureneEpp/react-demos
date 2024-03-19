@@ -8,12 +8,12 @@ class User < ApplicationRecord
   has_many :bookings
   has_one_attached :image
 
-  after_create :attach_default_image
+  # after_create :attach_default_image
 
-  private
+  # private
 
-  def attach_default_image
-    default_image_path = Rails.root.join('frontend', 'src', 'assets', 'profile_default.jpeg')
-    self.image.attach(io: File.open(default_image_path), filename: 'profile_default.jpeg', content_type: 'application/jpeg')
-  end
+  # def attach_default_image
+  #   default_image_path = Rails.root.join('frontend', 'src', 'assets', 'profile_default.jpeg')
+  #   self.image.attach(io: File.open(default_image_path), filename: 'profile_default.jpeg', content_type: 'application/jpeg')
+  # end
 end

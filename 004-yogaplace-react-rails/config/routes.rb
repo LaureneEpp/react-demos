@@ -23,9 +23,11 @@ Rails.application.routes.draw do
       end
       resources :yoga_classes
       resources :bookings
-    end
+      get '/users/:username' => 'users#user_page'
+    end 
   end
   root 'homepage#index'
   get '/*path' => 'homepage#index'
   get '/about' => 'homepage#aboutpage'
+  
 end
