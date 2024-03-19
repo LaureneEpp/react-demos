@@ -16,6 +16,7 @@ const useFetchDashboardData = ({ currUser }) => {
     yogaClassUsersHash: null,
     bookingsList: null,
     clientsCurrentInstructor: null,
+    clientsCurrentInstructorCount: null,
   });
 
   useEffect(() => {
@@ -46,6 +47,7 @@ const useFetchDashboardData = ({ currUser }) => {
           bookingsInstructorData: data.bookings_current_instructor,
           yogaClassUsersHash: data.yoga_class_users_hash,
           clientsCurrentInstructor: data.clients_current_instructor,
+          clientsCurrentInstructorCount: data.clients_current_instructor_count
         });
       } catch (error) {
         console.error("Error fetching user data:", error.message);

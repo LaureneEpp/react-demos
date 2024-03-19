@@ -11,15 +11,19 @@ const InstructorProfile = ({ currUser }) => {
     setSelectedContent(content);
   };
 
+  const handleBookingsRedirect = () => {
+    setSelectedContent("clientsBookings");
+  };
+
   return (
-    <div className="container-profile w-100 h-100 d-flex overflow-auto">
+    <div className="container-profile w-100 h-100 d-flex">
       <ProfileSidebar
         onButtonClick={handleSidebarButtonClick}
         currUser={currUser}
       />
       <div className="h-100 w-100 overflow-y-scroll">
         {selectedContent === "adminDashboard" && (
-          <AdminDashboard currUser={currUser} />
+          <AdminDashboard currUser={currUser} onBookingsRedirect={handleBookingsRedirect}/>
         )}
         {selectedContent === "clientsInformation" && (
           <ClientsInformation currUser={currUser} />

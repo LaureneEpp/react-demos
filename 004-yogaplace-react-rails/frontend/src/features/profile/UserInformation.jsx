@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import useFetchUserData from "../../fetchingData/useFetchUserData";
+import profileDefault from "../../assets/profile_default.jpeg";
 
 const UserInformation = ({ currUser }) => {
   const { userData, error } = useFetchUserData({ currUser });
@@ -11,6 +12,7 @@ const UserInformation = ({ currUser }) => {
   }
 
   return (
+    <div className="d-flex flex-column justify-content-center align-items-center m-3 h-100">
       <div className="card bg_primary-color border border-white mt-5 ">
         <div className="card-header p-3 d-flex flex-row align-items-center">
           <h2 className="card-title white-color display-4">About you</h2>
@@ -34,6 +36,15 @@ const UserInformation = ({ currUser }) => {
           </Link>
         </div>
         <div className="card-body">
+          <div className="d-flex align-items-center justify-content-center">
+            <img
+              src={profileDefault}
+              alt="profileDefault"
+              width={150}
+              height={150}
+              className="rounded-circle"
+            />
+          </div>
           <div className="mb-3 lead white-color">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -89,7 +100,7 @@ const UserInformation = ({ currUser }) => {
           </div>
         </div>
       </div>
-
+    </div>
   );
 };
 

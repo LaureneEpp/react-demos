@@ -46,9 +46,9 @@ const UserBookingsList = ({ currUser }) => {
 
   console.log(userBookings);
   return (
-    <div className="d-flex flex-column align-items-center m-3" >
-      <div className="text-center px-4 margin-top-8">
-        <h3 className="text-uppercase">Your bookings</h3>
+    <div className="h-100 p-5">
+      <div className="mt-5 text-center px-4">
+        <h3 className="display-4">Your bookings</h3>
         <Link to="/yoga_classes" role="button">
           <motion.svg
             xmlns="http://www.w3.org/2000/svg"
@@ -66,25 +66,25 @@ const UserBookingsList = ({ currUser }) => {
           </motion.svg>
         </Link>
       </div>
-      <div className=" overflow-y-scroll my-3 w-75">
+      <div className="w-100 h-100 overflow-y-scroll d-flex align-items-center justify-content-center my-3">
         {userBookings && userBookings.length > 0 ? (
-          <div className="table-responsive h-100 w-100">
+          <div className="table-responsive h-100">
             <table className="table">
               <thead>
                 <tr>
-                  <th scope="col" className="bg-transparent text-white">
+                  <th scope="col" className="bg-transparent text-white text-center">
                     #
                   </th>
-                  <th scope="col" className="bg-transparent text-white">
+                  <th scope="col" className="bg-transparent text-white text-center">
                     Date
                   </th>
-                  <th scope="col" className="bg-transparent text-white">
+                  <th scope="col" className="bg-transparent text-white text-center">
                     Category
                   </th>
-                  <th scope="col" className="bg-transparent text-white">
+                  <th scope="col" className="bg-transparent text-white text-center">
                     Lesson
                   </th>
-                  <th scope="col" className="bg-transparent text-white">
+                  <th scope="col" className="bg-transparent text-white text-center">
                     Location
                   </th>
                 </tr>
@@ -92,19 +92,27 @@ const UserBookingsList = ({ currUser }) => {
               <tbody>
                 {userBookings.map((booking, index) => (
                   <tr key={booking.id}>
-                    <th scope="row" className="bg-transparent text-white">
+                    <th scope="row" className="bg-transparent text-white text-center">
                       {index + 1}
                     </th>
-                    <td className="bg-transparent text-white">
-                      {formatDate(booking.yoga_class.date)}
+                    <td className="bg-transparent text-white text-center">
+                      <Link to={`/yoga_classes/${booking.yoga_class_id}`} className="text-decoration-none text-white">
+                        {formatDate(booking.yoga_class.date)}
+                      </Link>
                     </td>
-                    <td className="bg-transparent text-white">
-                      {booking.yoga_class.yoga_lesson.yoga_category.title}
+                    <td className="bg-transparent text-white text-center">
+                      <Link
+                        to={`/yoga_lessons/${booking.yoga_class.yoga_lesson_id}`} className="text-decoration-none text-white">
+                        {booking.yoga_class.yoga_lesson.yoga_category.title}
+                      </Link>
                     </td>
-                    <td className="bg-transparent text-white">
-                      {booking.yoga_class.yoga_lesson.title}
+                    <td className="bg-transparent text-white text-center">
+                      <Link
+                        to={`/yoga_lessons/${booking.yoga_class.yoga_lesson_id}`} className="text-decoration-none text-white">
+                        {booking.yoga_class.yoga_lesson.title}
+                      </Link>
                     </td>
-                    <td className="bg-transparent text-white">
+                    <td className="bg-transparent text-white text-center">
                       {booking.yoga_class.location}
                     </td>
                   </tr>
@@ -117,7 +125,6 @@ const UserBookingsList = ({ currUser }) => {
         )}
       </div>
     </div>
-
   );
 };
 

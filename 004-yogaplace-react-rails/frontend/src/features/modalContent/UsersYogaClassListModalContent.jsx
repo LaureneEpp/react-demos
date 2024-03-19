@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function UsersYogaClassListModalContent({ dashboardData }) {
   return (
     <>
@@ -9,6 +11,7 @@ function UsersYogaClassListModalContent({ dashboardData }) {
               <>
                 <ul className="list-unstyled text-muted text-start">
                   <li className="fw-bold">
+                    Link
                     {title}
                     <ol className="text-start">
                       {users.map((user) => (
