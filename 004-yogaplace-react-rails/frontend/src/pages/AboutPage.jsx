@@ -37,31 +37,29 @@ function Image({ id }) {
 
 function AboutPage() {
   return (
-    <div className="vw-100 d-flex align-items-center justify-content-center">
-      <div className="container bg-transparent">
-        <div className="mt-5">
-          <div className="about-section container-fluid mb-5">
-            <h2 className="display-4">About Us</h2>
-            <p className="lead text-muted">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Temporibus pariatur, laudantium dicta repellat iure minus fugit,
-              tenetur facilis, nobis illum voluptatibus deserunt eum enim
-              minima! Aliquam dolorem sed rerum accusamus.
-            </p>
-            <hr className="my-4" />
-          </div>
-          <div className="team-section">
-            <div className="text-center">
-              <h5 className="display-4">Our Team</h5>
-              <div className="d-flex flex-column align-items-center justify-content-center my-4 overflow-scroll">
-                {[1, 2, 3].map((image) => (
-                  <Image key={image} id={image} />
-                ))}
-              </div>
+    <div className="vh-100 d-flex flex-column align-items-center justify-content-center">
+      <div className="text-center px-4 margin-top-84">
+        <div className="m-5">
+          <h2 className="display-4">About Us</h2>
+          <p className="lead text-muted">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus
+            pariatur, laudantium dicta repellat iure minus fugit, tenetur
+            facilis, nobis illum voluptatibus deserunt eum enim minima! Aliquam
+            dolorem sed rerum accusamus.
+          </p>
+          <hr className="my-4" />
+        </div>
+      </div>
+      <div className="p-3 overflow-y-auto">
+          <div className="text-center">
+            <h5 className="display-4">Our Team</h5>
+            <div className="d-flex flex-column align-items-center justify-content-center my-4 overflow-scroll">
+              {[1, 2, 3].map((image) => (
+                <Image key={image} id={image} />
+              ))}
             </div>
           </div>
         </div>
-      </div>
     </div>
   );
 }

@@ -24,7 +24,6 @@ function YogaClassDetails({currUser}) {
       <div className="jumbotron jumbotron-fluid bg-transparent px-4 margin-top-8">
         <div className="m-5">
           <h3 className="display-4">{yogaClassData.yoga_lesson.title}</h3>
-
           <p className="lead text-muted">{yogaClassData.yoga_lesson.description}</p>
 
           <hr className="my-4" />
