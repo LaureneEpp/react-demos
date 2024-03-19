@@ -1,40 +1,24 @@
 class Api::V1::UsersController < ApplicationController
-  before_action :set_user, only: [:show, :update, :destroy, :dashboard ]
+  before_action :set_user, only: [:show, :update, :destroy, :dashboard, :user_page ]
 
   def index
     @users = User.all.order(created_at: :desc)
     render json: @users
-
-    # users_with_images = @users.map do |user|
-    #   if user.image.attached?
-    #     user.as_json.merge(image_url: url_for(user.image))
-    #   else
-    #     user.as_json.merge(image_url: nil)
-    #   end
-    # end
-
-    # render json: users_with_images
   end
   
   def show
-    # @user = User.includes(bookings: [:yoga_class => [:yoga_lesson]])
-    #            .find_by(id: params[:id])
-  
     if @user.present?
       render json: @user
     else
       render json: {}, status: :not_found
     end
-    # if @user.image.attached?
-    #   render json: @user.as_json.merge(image_url: url_for(@user.image))
-    # else
-    #   render json: @user.as_json.merge(image_url: nil), status: :not_found
-    # end
+
   end
   
   def edit
   end
 
+  
   def update
     if @user.update(user_params)
       render json: @user
@@ -42,7 +26,7 @@ class Api::V1::UsersController < ApplicationController
       render json: @user.errors, status: :unprocessable_entity
     end
   end
-
+  
 def dashboard
   if @user.nil?
     render json: { error: 'User not found' }, status: :not_found
@@ -82,7 +66,11 @@ def dashboard
     clients_current_instructor_count: @clients_current_instructor_count
   }
 end
- 
+
+  def user_page
+    render json: @user
+  end
+
   private
 
   def set_user

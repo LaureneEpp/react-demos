@@ -37,7 +37,7 @@ function Image({ id }) {
 
 function AboutPage() {
   return (
-    <div className="vh-100 d-flex flex-column align-items-center justify-content-center">
+    <div className="h-100 d-flex flex-column align-items-center justify-content-center">
       <div className="text-center px-4 margin-top-84">
         <div className="m-5">
           <h2 className="display-4">About Us</h2>
