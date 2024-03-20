@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import PropTypes from "prop-types";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 
 const Login = ({ setCurrUser, setShow }) => {
   const navigate = useNavigate();
@@ -40,16 +40,18 @@ const Login = ({ setCurrUser, setShow }) => {
     e.target.reset();
   };
 
-  const handleClick = (e) => {
-    e.preventDefault();
-    setShow(false);
-  };
+  // const handleClick = (e) => {
+  //   e.preventDefault();
+  //   setShow(false);
+  // };
 
   return (
     <div className="vw-100 vh-100 d-flex align-items-center justify-content-center">
       <div className="jumbotron jumbotron-fluid bg-transparent">
         <div className="container">
-          <h3 className="d-flex justify-content-center text-uppercase fs-2">Login</h3>
+          <h3 className="d-flex justify-content-center text-uppercase fs-2">
+            Login
+          </h3>
           <form ref={formRef} onSubmit={handleSubmit} className="m-4">
             <div className="mb-3">
               <label htmlFor="exampleInputEmail1" className="form-label">
@@ -73,20 +75,33 @@ const Login = ({ setCurrUser, setShow }) => {
                 Password
               </label>
               <input
-                type="password" name="password" placeholder="password"
+                type="password"
+                name="password"
+                placeholder="password"
                 className="form-control"
                 id="exampleInputPassword1"
               />
             </div>
-            <button type="submit" value="Login" className="btn validate-button mt-3">Submit</button>
+            <button
+              type="submit"
+              value="Login"
+              className="btn validate-button mt-3">
+              Submit
+            </button>
             <div className="mb-3">
               <div className="form-text white-color py-4">
-            Not registered yet:{" "}
-            <a href="#signup" onClick={handleClick} className="white-color fw-semibold">
-              signup
-            </a>{" "}
-          </div>
-          </div>
+                <p>
+                  {" "}
+                  Not registered yet:{" "}
+                  <Link
+                    to={`/signup`}
+                    // onClick={handleClick}
+                    className="white-color fw-semibold">
+                    Signup
+                  </Link>
+                </p>
+              </div>
+            </div>
           </form>
         </div>
       </div>
