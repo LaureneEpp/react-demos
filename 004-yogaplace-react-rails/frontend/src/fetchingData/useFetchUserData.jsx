@@ -20,25 +20,28 @@ const useFetchUserData = ({ currUser }) => {
         setError(`An error occurred while fetching user data: ${error.message}`);
       }
     };
-
-    // const fetchUsers = async () => {
-    //   try {
-    //     const response = await fetch('http://localhost:3000/api/v1/users');
-    //     if (!response.ok) {
-    //       throw new Error(`Failed to fetch user data with status ${response.status}`);
-    //     }
-
-    //     const usersList = await response.json();
-    //     console.log(usersList)
-    //     setUsersList(usersList)
-    //   } catch (error) {
-    //     setError(`An error occurred while fetching user data: ${error.message}`);
-    //   }
-    // }
     fetchUserData();
-    // fetchUsers()
   }, [currUser]);
 
+  // useEffect(() => {
+  //   const fetchUsers = async () => {
+  //     try {
+  //       const response = await fetch('http://localhost:3000/api/v1/users');
+  //       if (!response.ok) {
+  //         throw new Error(`Failed to fetch user data with status ${response.status}`);
+  //       }
+
+  //       const usersList = await response.json();
+  //       console.log(usersList)
+  //       setUsersList(usersList)
+  //     } catch (error) {
+  //       setError(`An error occurred while fetching user data: ${error.message}`);
+  //     }
+  //   }
+  //   fetchUsers();
+
+
+  // }, [])
 
   const updateUserData = (updatedData) => {
     setUserData((prevUser) => ({

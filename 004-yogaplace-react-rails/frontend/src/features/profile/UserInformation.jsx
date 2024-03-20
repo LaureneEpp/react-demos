@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import useFetchUserData from "../../fetchingData/useFetchUserData";
-import profileDefault from "../../assets/profile_default.jpeg";
 
 const UserInformation = ({ currUser }) => {
   const { userData, error } = useFetchUserData({ currUser });
@@ -38,7 +37,7 @@ const UserInformation = ({ currUser }) => {
         <div className="card-body">
           <div className="d-flex align-items-center justify-content-center">
             <img
-              src={profileDefault}
+              src={`/profile_default.jpeg`}
               alt="profileDefault"
               width={150}
               height={150}

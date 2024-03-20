@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import profileDefault from "../../assets/profile_default.jpeg";
 
 function InstructorsListModalContent({ dashboardData }) {
   return (
@@ -15,7 +14,7 @@ function InstructorsListModalContent({ dashboardData }) {
                   className="card bg_terracota-color shadow-lg text-white m-3"
                   style={{ width: "15rem" }}>
                   <img
-                    src={profileDefault}
+                    src={`/profile_default.jpeg`}
                     alt="profileDefault"
                     width={150}
                     height={150}

@@ -4,7 +4,6 @@ import useFetchDashboardData from "../../fetchingData/useFetchDashboardData";
 import Modal from "../../components/Modal";
 import AllUsersListModalContent from "../modalContent/AllUsersListModalContent";
 import LoadingAnimation from "../LoadingAnimation";
-import profileDefault from "../../assets/profile_default.jpeg";
 
 const ClientsInformation = ({ currUser }) => {
   const dashboardData = useFetchDashboardData({ currUser });
@@ -51,7 +50,7 @@ const ClientsInformation = ({ currUser }) => {
                   className="card bg_terracota-color shadow-lg text-white m-3"
                   style={{ width: "15rem" }}>
                   <img
-                    src={profileDefault}
+                    src={`/profile_default.jpeg`}
                     alt="profileDefault"
                     width={150}
                     height={150}
