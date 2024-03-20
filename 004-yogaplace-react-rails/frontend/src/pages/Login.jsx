@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import PropTypes from "prop-types";
-import { useNavigate, useParams, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const Login = ({ setCurrUser, setShow }) => {
   const navigate = useNavigate();
@@ -40,10 +40,6 @@ const Login = ({ setCurrUser, setShow }) => {
     e.target.reset();
   };
 
-  // const handleClick = (e) => {
-  //   e.preventDefault();
-  //   setShow(false);
-  // };
 
   return (
     <div className="vw-100 vh-100 d-flex align-items-center justify-content-center">
@@ -95,7 +91,6 @@ const Login = ({ setCurrUser, setShow }) => {
                   Not registered yet:{" "}
                   <Link
                     to={`/signup`}
-                    // onClick={handleClick}
                     className="white-color fw-semibold">
                     Signup
                   </Link>
