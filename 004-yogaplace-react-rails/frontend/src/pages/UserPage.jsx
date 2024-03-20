@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import useFetchUsersListData from "../fetchingData/useFetchUsersListData";
 import LoadingAnimation from "../features/LoadingAnimation";
-import profileDefault from "../assets/profile_default.jpeg";
 
-function UserPage() {
+function UserPage({ currUser }) {
   const [user, setUser] = useState(null);
   const { usersList } = useFetchUsersListData();
   const { username } = useParams();
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     if (usersList) {
@@ -16,12 +17,13 @@ function UserPage() {
     }
   }, [usersList, user]);
 
+  if (!currUser) {
+    navigate('/login');
+  }
+
   if (!user) {
     return <LoadingAnimation />;
   }
-
-  console.log(usersList);
-  console.log(user);
 
   return (
     <div className="vh-100 d-flex flex-column align-items-center justify-content-center">
@@ -30,7 +32,10 @@ function UserPage() {
           <h3 className="display-4">
             {user.first_name} {user.last_name}
           </h3>
-                  <p className="lead text-muted">{user.username} is <strong style={{background: "white"}}>{user.role}</strong>.</p>
+          <p className="lead text-muted">
+            {user.username} is{" "}
+            <strong style={{ background: "white" }}>{user.role}</strong>.
+          </p>
           <hr className="my-4" />
           <div className="card-info d-flex mb-3">
             <div className="card-info-icon d-flex align-items-center">
@@ -80,6 +85,11 @@ function UserPage() {
             </div>
           </div>
         </div>
+      {currUser && currUser.role === "instructor" && (
+        <div>
+          <h1>TEST</h1>
+        </div>
+      )}
       </div>
     </div>
   );

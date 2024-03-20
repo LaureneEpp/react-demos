@@ -1,5 +1,5 @@
 class Api::V1::UsersController < ApplicationController
-  before_action :set_user, only: [:show, :update, :destroy, :dashboard, :user_page ]
+  before_action :set_user, only: [:show, :update, :destroy, :dashboard, :user_page]
 
   def index
     @users = User.all.order(created_at: :desc)
@@ -17,7 +17,6 @@ class Api::V1::UsersController < ApplicationController
   
   def edit
   end
-
   
   def update
     if @user.update(user_params)
@@ -68,7 +67,11 @@ def dashboard
 end
 
   def user_page
-    render json: @user
+    @bookings = Booking.where(user_id: @user)
+
+    render json:  {
+      bookings: @bookings.as_json(include: { yoga_class: { include: :yoga_lesson } })
+    }
   end
 
   private

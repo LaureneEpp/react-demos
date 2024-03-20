@@ -38,7 +38,7 @@ function AppRoutes({ currUser, setCurrUser }) {
       />
       <Route
         path="/users/:username"
-        element={<UserPage/>}
+        element={<UserPage currUser={currUser}/>}
       />
       <Route
         path="/yoga_lessons"
