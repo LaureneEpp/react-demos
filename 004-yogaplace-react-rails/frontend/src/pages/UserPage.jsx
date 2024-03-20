@@ -57,9 +57,10 @@ function UserPage({ currUser }) {
   }
 
   return (
-    <div className="vh-100 d-flex flex-column align-items-center justify-content-center">
-      <div className="jumbotron jumbotron-fluid bg-transparent px-4 margin-top-8">
-        <div className="m-5">
+    <div className="h-100 d-flex flex-column align-items-center justify-content-center">
+      <div className="text-center px-4 mt-2">
+        {" "}
+        <div className="m-2">
           <h3 className="display-4">
             {user.first_name} {user.last_name}
           </h3>
@@ -116,10 +117,11 @@ function UserPage({ currUser }) {
             </div>
           </div>
         </div>
-        {currUser && currUser.role === "instructor" && (
-          <div className="d-flex align-items-center justify-content-center align-content-center my-4 row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
-            {userBookingsList.map((userBooking) => (
-              <Link
+      </div>
+      {currUser && currUser.role === "instructor" && (
+        <div className="p-3 overflow-y-auto d-flex row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+          {userBookingsList.map((userBooking) => (
+            <Link
               to={`/yoga_classes/${userBooking.yoga_class_id}`}
               key={userBooking.id}
               className="text-decoration-none white-color">
@@ -157,10 +159,9 @@ function UserPage({ currUser }) {
                 </div>
               </motion.div>
             </Link>
-            ))}
-          </div>
-        )}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
