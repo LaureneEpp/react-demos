@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
 function useFetchBookingData({ currUser, yogaClassId }) {
+  // const [bookingsList, setBookingsList] = useState(null);
   const [isBooked, setIsBooked] = useState(false);
   const [booking, setBooking] = useState(null);
 
@@ -17,13 +18,12 @@ function useFetchBookingData({ currUser, yogaClassId }) {
 
         if (response.ok) {
           const bookings = await response.json();
-          // console.log(bookings);
           const userBooking = bookings.find(
             (booking) =>
               booking.user_id === currUser.id &&
               booking.yoga_class_id === yogaClassId
           );
-
+          // setBookingsList(bookings)
           if (userBooking) {
             setBooking(userBooking);
             setIsBooked(true);
@@ -34,7 +34,8 @@ function useFetchBookingData({ currUser, yogaClassId }) {
       } catch (error) {
         console.error("Error during booking:", error.message);
       }
-    }
+    };
+    
     checkBookingStatus();
   }, [currUser, yogaClassId]);
 
@@ -93,6 +94,27 @@ function useFetchBookingData({ currUser, yogaClassId }) {
     }
   };
 
+  // console.log(bookingsList)
+  // const fetchBookings = async () => {
+  //   try {
+  //     const API_URL = "http://localhost:3000/api/v1";
+  //     const response = await fetch(`${API_URL}/bookings`, {
+  //       method: "GET",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //     });
+  //     if (response.ok) {
+  //       const bookingsList = await response.json();
+  //       setBookingsList(bookingsList);
+  //     } else {
+  //       console.error("Failed to check booking status");
+  //     }
+  //   } catch (error) {
+  //     console.error("Error during booking:", error.message);
+  //   }
+  //   fetchBookings();
+  // };
   return { isBooked, handleBooking };
 }
 

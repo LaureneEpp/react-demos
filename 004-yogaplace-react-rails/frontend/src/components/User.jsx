@@ -4,7 +4,6 @@ import Logout from "../features/Logout";
 import InstructorProfile from "../pages/InstructorProfile";
 import UserProfile from "../pages/UserProfile";
 import { useState } from "react";
-import UserPage from "../pages/UserPage";
 
 const User = ({ currUser, setCurrUser }) => {
   const [showLogin, setShowLogin] = useState(true);
@@ -18,7 +17,6 @@ const User = ({ currUser, setCurrUser }) => {
           <UserProfile currUser={currUser} />
         )}
         <Logout setCurrUser={setCurrUser} />
-        <UserPage currUser={currUser} />
       </div>
     );
   } else {

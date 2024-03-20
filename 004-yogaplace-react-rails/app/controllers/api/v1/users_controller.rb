@@ -12,7 +12,6 @@ class Api::V1::UsersController < ApplicationController
     else
       render json: {}, status: :not_found
     end
-
   end
   
   def edit
@@ -66,13 +65,11 @@ def dashboard
   }
 end
 
-  def user_page
-    @bookings = Booking.where(user_id: @user)
+def user_page
+  @bookings = Booking.includes(:yoga_class => :yoga_lesson).where(user_id: @user.id)
+  render json: @bookings.as_json(include: { yoga_class: { include: :yoga_lesson } })
+end
 
-    render json:  {
-      bookings: @bookings.as_json(include: { yoga_class: { include: :yoga_lesson } })
-    }
-  end
 
   private
 

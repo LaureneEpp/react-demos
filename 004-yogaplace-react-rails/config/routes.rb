@@ -11,11 +11,12 @@ Rails.application.routes.draw do
       sessions: 'users/sessions',
       registrations: 'users/registrations'
     }
-    resources :users, only: [:show, :edit, :update]
+    # resources :users, only: [:show, :edit, :update]
 
   namespace :api do
     namespace :v1 do
       resources :users
+      get '/users/:username' => 'users#user_page'
       get "dashboard/:id", to: "users#dashboard", as: :dashboard
       resources :yoga_categories
       resources :yoga_lessons do
@@ -23,7 +24,6 @@ Rails.application.routes.draw do
       end
       resources :yoga_classes
       resources :bookings
-      get '/users/:username' => 'users#user_page'
     end 
   end
   root 'homepage#index'
