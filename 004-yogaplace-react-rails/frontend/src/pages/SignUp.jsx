@@ -11,8 +11,50 @@ const Signup = ({ setCurrUser }) => {
     role: "",
     password: "",
   });
+  const [errors, setErrors] = useState({
+    first_name: "",
+    last_name: "",
+    username: "",
+    email: "",
+    city: "",
+    role: "",
+    password: "",
+  });
 
   const navigate = useNavigate();
+
+  const validateForm = () => {
+    let isValid = true;
+    const newErrors = { ...errors };
+
+    const requiredFields = ["first_name", "last_name", "username", "city"];
+    requiredFields.forEach((field) => {
+      if (userData[field].trim() === "") {
+        newErrors[field] = `Your ${field.split("_").join(" ")} is required`;
+        isValid = false;
+      } else {
+        newErrors[field] = "";
+      }
+    });
+
+    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    if (!userData.email.match(emailPattern)) {
+      newErrors.email = "Invalid email address";
+      isValid = false;
+    } else {
+      newErrors.email = "";
+    }
+
+    if (userData.password.length < 6) {
+      newErrors.password = "Password must be at least 6 characters long";
+      isValid = false;
+    } else {
+      newErrors.password = "";
+    }
+
+    setErrors(newErrors);
+    return isValid;
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -22,10 +64,14 @@ const Signup = ({ setCurrUser }) => {
     }));
   };
 
+  if (!errors) {
+    
+  }
 
-  
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    if (!validateForm()) return;
 
     const formData = new FormData();
     formData.append("user[first_name]", userData.first_name);
@@ -81,6 +127,11 @@ const Signup = ({ setCurrUser }) => {
               value={userData.first_name}
               onChange={handleChange}
             />
+            {errors.first_name && (
+              <span className="error bg_secondary-color shadow-sm fw-semibold p-2 m-2">
+                {errors.first_name}
+              </span>
+            )}
           </div>
           <div className="mb-3">
             <label htmlFor="inputLastName" className="form-label">
@@ -95,8 +146,12 @@ const Signup = ({ setCurrUser }) => {
               aria-describedby="lastNameHelp"
               value={userData.last_name}
               onChange={handleChange}
-
             />
+            {errors.last_name && (
+              <span className="error bg_secondary-color shadow-sm fw-semibold p-2 m-2">
+                {errors.last_name}
+              </span>
+            )}
           </div>
           <div className="mb-3">
             <label htmlFor="inputUsername" className="form-label">
@@ -111,8 +166,12 @@ const Signup = ({ setCurrUser }) => {
               aria-describedby="usernameHelp"
               value={userData.username}
               onChange={handleChange}
-
             />
+            {errors.username && (
+              <span className="error bg_secondary-color shadow-sm fw-semibold p-2 m-2">
+                {errors.username}
+              </span>
+            )}
           </div>
           <div className="mb-3">
             <label htmlFor="inputCity" className="form-label">
@@ -127,8 +186,12 @@ const Signup = ({ setCurrUser }) => {
               aria-describedby="firstNameHelp"
               value={userData.city}
               onChange={handleChange}
-
             />
+            {errors.city && (
+              <span className="error bg_secondary-color shadow-sm fw-semibold p-2 m-2">
+                {errors.city}
+              </span>
+            )}
           </div>
           <div className="mb-3">
             <label htmlFor="inputRole" className="form-label">
@@ -140,8 +203,7 @@ const Signup = ({ setCurrUser }) => {
               id="inputRole"
               aria-describedby="roleHelp"
               value={userData.role}
-              onChange={handleChange}
-            >
+              onChange={handleChange}>
               <option value="student">Student</option>
               <option value="instructor">Instructor</option>
             </select>
@@ -153,14 +215,18 @@ const Signup = ({ setCurrUser }) => {
             <input
               type="email"
               name="email"
-              placeholder="email"
+              placeholder="What is your email?"
               className="form-control"
               id="inputEmail"
               aria-describedby="emailHelp"
               value={userData.email}
               onChange={handleChange}
-
             />
+            {errors.email && (
+              <span className="error bg_secondary-color shadow-sm fw-semibold p-2 m-2">
+                {errors.email}
+              </span>
+            )}
           </div>
           <div className="mb-3">
             <label htmlFor="inputPassword" className="form-label">
@@ -169,13 +235,17 @@ const Signup = ({ setCurrUser }) => {
             <input
               type="password"
               name="password"
-              placeholder="password"
+              placeholder="Choose a password"
               className="form-control"
               id="inputPassword"
               value={userData.password}
               onChange={handleChange}
-
             />
+            {errors.password && (
+              <span className="error bg_secondary-color shadow-sm fw-semibold p-2 m-2">
+                {errors.password}
+              </span>
+            )}
           </div>
           <button
             type="submit"
@@ -184,16 +254,16 @@ const Signup = ({ setCurrUser }) => {
             Submit
           </button>
         </form>
-          <div className="mb-3">
-            <div className="form-text white-color py-4">
-              <p>
-                Already registered:{" "}
-                <Link to={`/login`} className="white-color fw-semibold">
-                  Login
-                </Link>
-              </p>
-            </div>
+        <div className="mb-3">
+          <div className="form-text white-color py-4">
+            <p>
+              Already registered:{" "}
+              <Link to={`/login`} className="white-color fw-semibold">
+                Login
+              </Link>
+            </p>
           </div>
+        </div>
       </div>
     </div>
   );
