@@ -6,7 +6,35 @@ const Login = ({ setCurrUser }) => {
     email: "",
     password: "",
   });
+
+  const [errors, setErrors] = useState({
+    email: "",
+    password: "",
+  });
   const navigate = useNavigate();
+
+  const validateForm = () => {
+    let isValid = true;
+    const newErrors = { ...errors };
+
+    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    if (!userData.email.match(emailPattern)) {
+      newErrors.email = "Invalid email address";
+      isValid = false;
+    } else {
+      newErrors.email = "";
+    }
+
+    if (userData.password.length < 6) {
+      newErrors.password = "Password must be at least 6 characters long";
+      isValid = false;
+    } else {
+      newErrors.password = "";
+    }
+
+    setErrors(newErrors);
+    return isValid;
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -18,6 +46,8 @@ const Login = ({ setCurrUser }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!validateForm()) return;
 
     const formData = new FormData();
     formData.append("user[email]", userData.email);
@@ -77,10 +107,11 @@ const Login = ({ setCurrUser }) => {
                 aria-describedby="emailHelp"
                 onChange={handleChange}
               />
-              <div id="emailHelp" className="form-text">
-                {" "}
-                We will never share your email with anyone else.
-              </div>
+              {errors.email && (
+                <span className="error bg_secondary-color shadow-sm fw-semibold p-2 m-2">
+                  {errors.email}
+                </span>
+              )}
             </div>
             <div className="mb-3">
               <label htmlFor="InputPassword" className="form-label">
@@ -94,8 +125,12 @@ const Login = ({ setCurrUser }) => {
                 id="InputPassword"
                 onChange={handleChange}
               />
+              {errors.password && (
+                <span className="error bg_secondary-color shadow-sm fw-semibold p-2 m-2">
+                  {errors.password}
+                </span>
+              )}
             </div>
-
             <button
               type="submit"
               value="Login"
