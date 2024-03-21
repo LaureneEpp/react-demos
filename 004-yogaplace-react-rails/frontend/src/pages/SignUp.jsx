@@ -65,95 +65,120 @@ const Signup = ({ setCurrUser, setShow }) => {
       </div>
       <div className="p-5 overflow-y-auto">
         <form onSubmit={handleSubmit}>
-          <label>
-            First Name:
+          <div className="mb-3">
+            <label htmlFor="inputFirstName" className="form-label">
+              Your first name
+            </label>
             <input
+              type="first_name"
               name="first_name"
-              type="text"
+              placeholder="What is your first name?"
+              className="form-control"
+              id="inputFirstName"
+              aria-describedby="firstNameHelp"
               value={userData.first_name}
-              onChange={handleChange}
             />
-          </label>
-          <br />
-          <label>
-            Last Name:
+          </div>
+          <div className="mb-3">
+            <label htmlFor="inputLastName" className="form-label">
+              Your last name
+            </label>
             <input
+              type="last_name"
               name="last_name"
-              type="text"
+              placeholder="What is your last name?"
+              className="form-control"
+              id="inputLastName"
+              aria-describedby="lastNameHelp"
               value={userData.last_name}
-              onChange={handleChange}
             />
-          </label>
-          <br />
-          <label>
-            Username:
+          </div>
+          <div className="mb-3">
+            <label htmlFor="inputUsername" className="form-label">
+              Your username
+            </label>
             <input
+              type="username"
               name="username"
-              type="text"
+              placeholder="What is your username?"
+              className="form-control"
+              id="inputUsername"
+              aria-describedby="usernameHelp"
               value={userData.username}
-              onChange={handleChange}
             />
-          </label>
-          <br />
-          <label>
-            Email:
+          </div>
+          <div className="mb-3">
+            <label htmlFor="inputCity" className="form-label">
+              Your city
+            </label>
             <input
-              name="email"
-              type="text"
-              value={userData.email}
-              onChange={handleChange}
-            />
-          </label>
-          <br />
-          <label>
-            City:
-            <input
+              type="city"
               name="city"
-              type="text"
+              placeholder="Where do you live?"
+              className="form-control"
+              id="inputFirstName"
+              aria-describedby="firstNameHelp"
               value={userData.city}
-              onChange={handleChange}
             />
-          </label>
-          <br />
-          <label>
-            Role:
-            <input
+          </div>
+          <div className="mb-3">
+            <label htmlFor="inputRole" className="form-label">
+              Select your role:
+            </label>
+            <select
               name="role"
-              type="text"
-              value={userData.role}
-              onChange={handleChange}
-            />
-          </label>
-          <br />
-          <label>
-            Password:
+              className="form-select"
+              id="inputRole"
+              aria-describedby="roleHelp"
+              value={userData.role}>
+              <option value="student">Student</option>
+              <option value="instructor">Instructor</option>
+            </select>
+          </div>
+          <div className="mb-3">
+            <label htmlFor="inputEmail" className="form-label">
+              Email address
+            </label>
             <input
-              name="password"
-              type="text"
-              value={userData.password}
-              onChange={handleChange}
+              type="email"
+              name="email"
+              placeholder="email"
+              className="form-control"
+              id="inputEmail"
+              aria-describedby="emailHelp"
+              value={userData.email}
             />
-          </label>
-          <br />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="inputPassword" className="form-label">
+              Password
+            </label>
+            <input
+              type="password"
+              name="password"
+              placeholder="password"
+              className="form-control"
+              id="inputPassword"
+              value={userData.password}
+            />
+          </div>
           <button
             type="submit"
             value="Signup"
             className="btn validate-button mt-3">
             Submit
           </button>
-        </form>
-        <div className="mb-3">
-              <div className="form-text white-color py-4">
-                <p>
+          <div className="mb-3">
+            <div className="form-text white-color py-4">
+              <p>
                 Already registered:{" "}
-                  <Link
-                    to={`/login`}
-                    className="white-color fw-semibold">
-                    Login
-                  </Link>
-                </p>
-              </div>
+                <Link to={`/login`} className="white-color fw-semibold">
+                  Login
+                </Link>
+              </p>
             </div>
+          </div>
+        </form>
       </div>
     </div>
   );
