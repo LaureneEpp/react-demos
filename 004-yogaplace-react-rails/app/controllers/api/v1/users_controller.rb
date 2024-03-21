@@ -2,7 +2,7 @@ class Api::V1::UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy, :dashboard, :user_page]
 
   def index
-    @users = User.all.order(created_at: :desc)
+    @users = User.all.where.not(id: @user).order(created_at: :desc)
     render json: @users
   end
   
@@ -32,7 +32,7 @@ def dashboard
   end
 
   @all_users = User.all.where.not(role: "instructor")   # List of all students
-  @all_instructors = User.all.where(role: "instructor") # List of all instructors
+  @all_instructors = User.all.where(role: "instructor").where.not(id: @user) # List of all instructors
   @all_bookings = Booking.joins(yoga_class: :yoga_lesson).where('yoga_classes.date >= ?', Date.today).order(created_at: :desc) #List of all bookings
   @yoga_classes_current_instructor = YogaClass.where(user_id: @user.id) # List of all classes created by current intructor
   @yoga_classes_count = @yoga_classes_current_instructor.count  # Count of all classes created by current intructor
@@ -40,7 +40,7 @@ def dashboard
   @no_booking_yoga_classes_current_instructor_count = @no_booking_yoga_classes_current_instructor.count
   @bookings_current_instructor = Booking.joins(yoga_class: :yoga_lesson).where('yoga_classes.user_id = ? AND yoga_classes.date >= ?', @user.id, Date.today ).order('yoga_classes.id') # List of bookings for classes created by current instructor
   @bookings_count = @bookings_current_instructor.count
-  @clients_current_instructor = User.joins(bookings: {yoga_class: :user}).where('yoga_classes.user_id = ? AND yoga_classes.date >= ?', @user.id, Date.today ).distinct # List of clients for current instructor
+  @clients_current_instructor = User.joins(bookings: {yoga_class: :user}).where('yoga_classes.user_id = ? AND yoga_classes.date >= ?', @user.id, Date.today ).where.not(id: @user).distinct # List of clients for current instructor
   @clients_current_instructor_count = @clients_current_instructor.count # Count of all clients for current instructor
   @yoga_class_users_hash = {}   # List of clients per yoga_class
   @bookings_current_instructor.each do |booking|
