@@ -22,6 +22,8 @@ const Signup = ({ setCurrUser, setShow }) => {
     }));
   };
 
+
+  
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -77,6 +79,7 @@ const Signup = ({ setCurrUser, setShow }) => {
               id="inputFirstName"
               aria-describedby="firstNameHelp"
               value={userData.first_name}
+              onChange={handleChange}
             />
           </div>
           <div className="mb-3">
@@ -91,6 +94,8 @@ const Signup = ({ setCurrUser, setShow }) => {
               id="inputLastName"
               aria-describedby="lastNameHelp"
               value={userData.last_name}
+              onChange={handleChange}
+
             />
           </div>
           <div className="mb-3">
@@ -105,6 +110,8 @@ const Signup = ({ setCurrUser, setShow }) => {
               id="inputUsername"
               aria-describedby="usernameHelp"
               value={userData.username}
+              onChange={handleChange}
+
             />
           </div>
           <div className="mb-3">
@@ -119,6 +126,8 @@ const Signup = ({ setCurrUser, setShow }) => {
               id="inputFirstName"
               aria-describedby="firstNameHelp"
               value={userData.city}
+              onChange={handleChange}
+
             />
           </div>
           <div className="mb-3">
@@ -130,7 +139,9 @@ const Signup = ({ setCurrUser, setShow }) => {
               className="form-select"
               id="inputRole"
               aria-describedby="roleHelp"
-              value={userData.role}>
+              value={userData.role}
+              onChange={handleChange}
+            >
               <option value="student">Student</option>
               <option value="instructor">Instructor</option>
             </select>
@@ -147,6 +158,8 @@ const Signup = ({ setCurrUser, setShow }) => {
               id="inputEmail"
               aria-describedby="emailHelp"
               value={userData.email}
+              onChange={handleChange}
+
             />
           </div>
           <div className="mb-3">
@@ -160,6 +173,8 @@ const Signup = ({ setCurrUser, setShow }) => {
               className="form-control"
               id="inputPassword"
               value={userData.password}
+              onChange={handleChange}
+
             />
           </div>
           <button
@@ -168,6 +183,7 @@ const Signup = ({ setCurrUser, setShow }) => {
             className="btn validate-button mt-3">
             Submit
           </button>
+        </form>
           <div className="mb-3">
             <div className="form-text white-color py-4">
               <p>
@@ -178,7 +194,6 @@ const Signup = ({ setCurrUser, setShow }) => {
               </p>
             </div>
           </div>
-        </form>
       </div>
     </div>
   );
