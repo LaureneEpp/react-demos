@@ -55,11 +55,14 @@ const Login = ({ setCurrUser }) => {
   };
 
   return (
-    <div className="w-100 h-100 d-flex align-items-center justify-content-center">
-      <div className=" p-5 mb-4  rounded-3 bg-transparent">
-          <h3 className="d-flex justify-content-center text-uppercase fs-2">
-            Login
-          </h3>
+    <div className="w-100 h-100 d-flex flex-column align-items-center justify-content-center">
+      <div className="p-3 mb-2 rounded-3 bg-transparent">
+        <h3 className="d-flex justify-content-center text-uppercase fs-2">
+          Login
+        </h3>
+      </div>
+      <div className="overflow-y-scroll w-50">
+        <div className="container-fluid">
           <form onSubmit={handleSubmit} className="m-4">
             <div className="mb-3">
               <label htmlFor="InputEmail" className="form-label">
@@ -111,6 +114,7 @@ const Login = ({ setCurrUser }) => {
               </div>
             </div>
           </form>
+        </div>
       </div>
     </div>
   );
