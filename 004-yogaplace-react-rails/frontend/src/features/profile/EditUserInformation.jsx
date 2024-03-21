@@ -28,17 +28,12 @@ const EditUserInformation = ({ currUser }) => {
       const API_URL = "http://localhost:3000/api/v1";
       const response = await fetch(`${API_URL}/users/${currUser.id}`, {
         method: "PATCH",
-        // headers: {
-        //   "Content-Type": "application/json",
-        //   accept: "application/json",
-        // },
         body: formData,
       });
 
       if (response.ok) {
         console.log("Image uploaded successfully");
         localStorage.setItem("token", response.headers.get("Authorization"));
-        // updateUserData(formData);
       } else {
         console.error("Image upload failed");
       }

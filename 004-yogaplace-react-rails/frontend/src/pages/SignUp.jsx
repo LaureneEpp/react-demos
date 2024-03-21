@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
-const Signup = ({ setCurrUser, setShow }) => {
+const Signup = ({ setCurrUser }) => {
   const [userData, setUserData] = useState({
     first_name: "",
     last_name: "",

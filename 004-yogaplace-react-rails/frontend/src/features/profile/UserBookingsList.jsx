@@ -24,7 +24,6 @@ const UserBookingsList = ({ currUser }) => {
           const userBookings = userBookingsData.filter(
             (booking) => booking.user_id === currUser.id
           );
-          console.log(userBookings);
           setUserBookings(userBookings);
         } else {
           throw new Error(
@@ -44,7 +43,6 @@ const UserBookingsList = ({ currUser }) => {
     return <LoadingAnimation />;
   }
 
-  console.log(userBookings);
   return (
     <div className="h-100 p-5">
       <div className="mt-5 text-center px-4">

@@ -15,16 +15,6 @@ function Modal({ modal, setModal, content }) {
           initial="hidden"
           animate="visible">
           <motion.div
-            // initial={{ y: 50, opacity: 0 }}
-            // animate={{
-            //   y: 0,
-            //   opacity: 1,
-            // }}
-            // exit={{
-            //   y: -50,
-            //   opacity: 0,
-            // }}
-            // transition={{ type: "spring", bounce: 0, duration: 0.4 }}
             className="h-75 w-75 shadow rounded-1 bg_orange-light-color border border-white border-2 d-flex flex-column justify-content-center align-content-center position-relative  mt-5">
             <button
               onClick={() => setModal(true)}

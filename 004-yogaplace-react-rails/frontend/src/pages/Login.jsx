@@ -1,5 +1,4 @@
 import { useState } from "react";
-// import PropTypes from "prop-types";
 import { useNavigate, Link } from "react-router-dom";
 
 const Login = ({ setCurrUser }) => {
@@ -7,7 +6,6 @@ const Login = ({ setCurrUser }) => {
     email: "",
     password: "",
   });
-
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -36,7 +34,6 @@ const Login = ({ setCurrUser }) => {
         body: formData,
       });
 
-      console.log(response);
       if (response.ok) {
         const data = await response.json();
         localStorage.setItem("token", response.headers.get("Authorization"));
@@ -78,7 +75,6 @@ const Login = ({ setCurrUser }) => {
                 aria-describedby="emailHelp"
                 onChange={handleChange}
               />
-
               <div id="emailHelp" className="form-text">
                 {" "}
                 We will never share your email with anyone else.
