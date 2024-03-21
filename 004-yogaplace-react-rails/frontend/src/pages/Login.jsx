@@ -55,9 +55,8 @@ const Login = ({ setCurrUser }) => {
   };
 
   return (
-    <div className="vw-100 vh-100 d-flex align-items-center justify-content-center">
-      <div className="jumbotron jumbotron-fluid bg-transparent">
-        <div className="container">
+    <div className="w-100 h-100 d-flex align-items-center justify-content-center">
+      <div className=" p-5 mb-4  rounded-3 bg-transparent">
           <h3 className="d-flex justify-content-center text-uppercase fs-2">
             Login
           </h3>
@@ -112,7 +111,6 @@ const Login = ({ setCurrUser }) => {
               </div>
             </div>
           </form>
-        </div>
       </div>
     </div>
   );
