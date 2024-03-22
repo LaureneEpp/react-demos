@@ -2,23 +2,38 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 const useFetchYogaLessonData = () => {
-  const [yogaLessonData, setYogaLessonData] = useState(null);
-  const [error, setError] = useState(null);
+  const [yogaLessonData, setYogaLessonData] = useState();
+  const [yogaLessonsList, setYogaLessonsList] = useState([]);
+  const [error, setError] = useState();
+  const [, setLoading] = useState(true);
   const { id } = useParams();
 
   useEffect(() => {
-    async function fetchData() {
+    const API_URL = "http://localhost:3000/api/v1";
+
+    async function fetchYogaLessonsList() {
       try {
-        const API_URL = "http://localhost:3000/api/v1";
+        const response = await fetch(`${API_URL}/yoga_lessons`);
+        if (response.ok) {
+          const json = await response.json();
+          setYogaLessonsList(json);
+        } else {
+          throw new Error(`API request failed with status ${response.status}`);
+        }
+      } catch (error) {
+        setError(
+          `An error occurred while loading yoga lessons: ${error.message}`
+        );
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    async function fetchYogaLessonData() {
+      try {
         const lessonResponse = await fetch(`${API_URL}/yoga_lessons/${id}`);
-        console.log("Lesson API response:", lessonResponse);
-
-
         if (lessonResponse.ok) {
           const lessonData = await lessonResponse.json();
-          console.log("Yoga lessons data:", lessonData);
-
-
           setYogaLessonData(lessonData);
         } else {
           if (lessonResponse.status === 404) {
@@ -29,12 +44,13 @@ const useFetchYogaLessonData = () => {
             );
           }
         }
-      } catch (e) {
-        setError(`An error occurred: ${e.message}`);
+      } catch (error) {
+        setError(`An error occurred: ${error.message}`);
       }
     }
-    fetchData();
-  }, [id]);
+    fetchYogaLessonsList();
+    fetchYogaLessonData();
+  }, [id, error]);
 
   const updateYogaLessonData = (updatedData) => {
     setYogaLessonData((prevYogaLesson) => ({
@@ -43,7 +59,7 @@ const useFetchYogaLessonData = () => {
     }));
   };
 
-  return { yogaLessonData, error, updateYogaLessonData };
+  return { yogaLessonData, yogaLessonsList, updateYogaLessonData, error };
 };
 
 export default useFetchYogaLessonData;

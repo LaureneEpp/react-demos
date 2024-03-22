@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import LoadingAnimation from "../../features/LoadingAnimation";
 import { motion } from "framer-motion";
-import useFetchYogaLessonsList from "../../fetchingData/useFetchYogaLessonsList";
+import useFetchYogaLessonData from "../../fetchingData/useFetchYogaLessonData";
 
 function YogaLessonsList({ currUser }) {
-  const { yogaLessonsList } = useFetchYogaLessonsList(null);
+  const { yogaLessonsList } = useFetchYogaLessonData(null);
 
   const lessonsByCategory = {};
   yogaLessonsList.forEach((yoga_lesson) => {
