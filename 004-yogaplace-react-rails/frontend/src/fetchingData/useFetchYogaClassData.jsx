@@ -11,22 +11,25 @@ const useFetchYogaClassData = () => {
   useEffect(() => {
     const API_URL = "http://localhost:3000/api/v1";
 
-    async function loadYogaClasses() {
+    const loadYogaClasses = async () => {
       try {
         const yogaClassesResponse = await fetch(`${API_URL}/yoga_classes`);
         if (yogaClassesResponse.ok) {
           const json = await yogaClassesResponse.json();
           setYogaClassesList(json);
         } else {
-          throw new Error(`API request failed with status ${yogaClassesResponse.status}`);
+          throw new Error(
+            `API request failed with status ${yogaClassesResponse.status}`
+          );
         }
       } catch (e) {
         setError(`An error occurred while loading yoga classes: ${e.message}`);
       } finally {
         setLoading(false);
       }
-    }
-    async function fetchYogaData() {
+    };
+
+    const fetchYogaData = async() =>  {
       try {
         const yogaClassResponse = await fetch(`${API_URL}/yoga_classes/${id}`);
         if (yogaClassResponse.ok) {

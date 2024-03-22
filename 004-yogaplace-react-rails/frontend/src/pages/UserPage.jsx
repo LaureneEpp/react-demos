@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import useFetchUsersListData from "../fetchingData/useFetchUsersListData";
+import useFetchUserData from "../fetchingData/useFetchUserData";
 import LoadingAnimation from "../features/LoadingAnimation";
 import { motion } from "framer-motion";
 
@@ -10,7 +10,7 @@ function formatDate(date) {
 }
 
 function UserPage({ currUser }) {
-  const { usersList } = useFetchUsersListData();
+  const { usersList } = useFetchUserData();
   const [userBookingsList, setUserBookingsList] = useState([]);
   const [user, setUser] = useState(null);
   const { username } = useParams();

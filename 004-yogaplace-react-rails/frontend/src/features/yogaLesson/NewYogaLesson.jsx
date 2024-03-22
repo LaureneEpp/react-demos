@@ -1,71 +1,55 @@
-
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form"
+import { useForm } from "react-hook-form";
+import useFetchYogaLessonData from "../../fetchingData/useFetchYogaLessonData";
 
 function NewYogaLesson() {
-
-
-  const [formData, setFormData] = useState({
+  const { yogaCategoriesList } = useFetchYogaLessonData();
+  const [yogaLessonData, setYogaLessonData] = useState({
     title: "",
     description: "",
     yoga_category_id: "",
   });
-
-  const [yoga_categories, setYogaCategories] = useState([]);
+  const [, setError] = useState(null);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    async function fetchLessons() {
-      try {
-        const baseURL = "http://localhost:3000";
-        const apiUrl = `${baseURL}/api/v1/yoga_categories`;
-        const response = await fetch(apiUrl);
-
-        if (response.ok) {
-          const data = await response.json();
-          console.log(data);
-          setYogaCategories(data);
-        } else {
-          console.log("Failed to fetch categories");
-        }
-      } catch (error) {
-        console.error("An error occurred while fetching categories:", error);
-      }
-    }
-    fetchLessons();
-  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      const baseURL = "http://localhost:3000";
-      const apiUrl = `${baseURL}/api/v1/yoga_lessons`;
+    const formData = new FormData();
+    formData.append("yoga_lesson[title]", yogaLessonData.title);
+    formData.append("yoga_lesson[description]", yogaLessonData.description);
+    formData.append("yoga_lesson[yoga_category_id]", yogaLessonData.yoga_category_id);
 
-      const response = await fetch(apiUrl, {
+    try {
+      const API_URL = "http://localhost:3000/api/v1";
+      const yogaLessonsResponse = await fetch(`${API_URL}/yoga_lessons`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          accept: "application/json",
         },
-        body: JSON.stringify({ yoga_lesson: formData }),
+        body: formData,
       });
 
-      if (response.status === 201) {
-        const yoga_lesson = await response.json();
-        console.log("Yoga lesson has been created successfully.");
+      if (yogaLessonsResponse.ok) {
+        const json = await yogaLessonsResponse.json();
+        setYogaLessonData(json)
         navigate(`/yoga_lessons`);
       } else {
-        console.warn("Unexpected response status:", response.status);
+        throw new Error(
+          `Failed to fetch yoga lesson data with status ${yogaLessonsResponse.status}`
+        );
       }
     } catch (error) {
-      console.error("An error occurred while creating the yoga lesson:", error);
+      setError(
+        `An error occurred while fetching user data: ${error.message}`
+      );
     }
   };
 
   const handleCategorySelect = (e) => {
     const selectedCategoryId = e.target.value;
-    setFormData((prevFormData) => ({
+    setYogaLessonData((prevFormData) => ({
       ...prevFormData,
       yoga_category_id: selectedCategoryId,
     }));
@@ -73,7 +57,7 @@ function NewYogaLesson() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
+    setYogaLessonData((prevFormData) => ({ ...prevFormData, [name]: value }));
   };
   return (
     <div className="vh-100 m-4">
@@ -105,12 +89,12 @@ function NewYogaLesson() {
                 id="yoga_category"
                 className="form-control form-control-lg"
                 name="yoga_category_id"
-                value={formData.yoga_category_id}
+                value={yogaLessonData.yoga_category_id}
                 onChange={handleCategorySelect}
                 required>
                 <option value="">Select a category</option>
-                {yoga_categories.map((category) => (
-                  <option key={yoga_categories.id} value={category.id}>
+                {yogaCategoriesList.map((category) => (
+                  <option key={yogaCategoriesList.id} value={category.id}>
                     {category.title}
                   </option>
                 ))}
@@ -125,7 +109,7 @@ function NewYogaLesson() {
                 id="title"
                 className="form-control form-control-lg"
                 name="title"
-                value={formData.title}
+                value={yogaLessonData.title}
                 onChange={handleChange}
                 required
               />
@@ -139,7 +123,7 @@ function NewYogaLesson() {
                 id="description"
                 className="form-control form-control-lg"
                 name="description"
-                value={formData.description}
+                value={yogaLessonData.description}
                 onChange={handleChange}
                 required
               />
