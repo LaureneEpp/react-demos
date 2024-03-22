@@ -2,33 +2,48 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 const useFetchYogaClassData = () => {
+  const [yogaClassesList, setYogaClassesList] = useState([]);
   const [yogaClassData, setYogaClassData] = useState(null);
-  const [, setError] = useState(null);
+  const [error, setError] = useState(null);
+  const [, setLoading] = useState(true);
   const { id } = useParams();
 
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const API_URL = "http://localhost:3000/api/v1";
-        const yogaClassResponse = await fetch(`${API_URL}/yoga_classes/${id}`);
-        // console.log("API response:", yogaClassResponse);
+    const API_URL = "http://localhost:3000/api/v1";
 
+    async function loadYogaClasses() {
+      try {
+        const yogaClassesResponse = await fetch(`${API_URL}/yoga_classes`);
+        if (yogaClassesResponse.ok) {
+          const json = await yogaClassesResponse.json();
+          setYogaClassesList(json);
+        } else {
+          throw new Error(`API request failed with status ${yogaClassesResponse.status}`);
+        }
+      } catch (e) {
+        setError(`An error occurred while loading yoga classes: ${e.message}`);
+      } finally {
+        setLoading(false);
+      }
+    }
+    async function fetchYogaData() {
+      try {
+        const yogaClassResponse = await fetch(`${API_URL}/yoga_classes/${id}`);
         if (yogaClassResponse.ok) {
           const yogaClassData = await yogaClassResponse.json();
-          // console.log("Yoga classes data:", yogaClassData);
           setYogaClassData(yogaClassData);
         } else {
           throw new Error(
             `Failed to fetch yoga class data with status ${yogaClassResponse.status}`
           );
         }
-      } catch (e) {
-        setError(`An error occurred: ${e.message}`);
+      } catch (error) {
+        setError(`An error occurred: ${error.message}`);
       }
     }
-
-    fetchData();
-  }, [id]);
+    loadYogaClasses();
+    fetchYogaData();
+  }, [id, error]);
 
   const updateYogaClassData = (updatedData) => {
     setYogaClassData((prevYogaClass) => ({
@@ -37,7 +52,7 @@ const useFetchYogaClassData = () => {
     }));
   };
 
-  return { yogaClassData, updateYogaClassData };
+  return { yogaClassData, yogaClassesList, updateYogaClassData, error };
 };
 
 export default useFetchYogaClassData;

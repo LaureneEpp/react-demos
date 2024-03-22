@@ -3,9 +3,6 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { Link, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
-import useFetchYogaClassesList from "../../fetchingData/useFetchYogaClassesList";
-// import DeleteYogaClass from "./DeleteYogaClass";
-
 
 function formatDate(date) {
   const options = { year: "numeric", month: "2-digit", day: "2-digit" };
@@ -15,7 +12,7 @@ function formatDate(date) {
 function YogaClassesList({ currUser }) {
   const [date, setDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(null);
-  const { yogaClassesList } = useFetchYogaClassesList();
+  const { yogaClassesList } = useFetchYogaClassData();
   const { id } = useParams();
 
 
