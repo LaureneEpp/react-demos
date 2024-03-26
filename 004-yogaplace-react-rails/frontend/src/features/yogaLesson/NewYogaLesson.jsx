@@ -13,6 +13,7 @@ function NewYogaLesson() {
   const [, setError] = useState(null);
   const navigate = useNavigate();
 
+  console.log(yogaCategoriesList)
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -42,10 +43,11 @@ function NewYogaLesson() {
       }
     } catch (error) {
       setError(
-        `An error occurred while fetching user data: ${error.message}`
+        `An error occurred while fetching lesson data: ${error.message}`
       );
     }
   };
+
 
   const handleCategorySelect = (e) => {
     const selectedCategoryId = e.target.value;
@@ -94,7 +96,7 @@ function NewYogaLesson() {
                 required>
                 <option value="">Select a category</option>
                 {yogaCategoriesList.map((category) => (
-                  <option key={yogaCategoriesList.id} value={category.id}>
+                  <option key={category.id} value={category.id}>
                     {category.title}
                   </option>
                 ))}

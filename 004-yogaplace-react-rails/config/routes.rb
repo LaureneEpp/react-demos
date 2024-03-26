@@ -19,9 +19,7 @@ Rails.application.routes.draw do
       get '/users/:username' => 'users#user_page'
       get "dashboard/:id", to: "users#dashboard", as: :dashboard
       resources :yoga_categories
-      resources :yoga_lessons do
-        resources :yoga_classes, except: [:index, :delete]
-      end
+      resources :yoga_lessons
       resources :yoga_classes
       resources :bookings
     end 

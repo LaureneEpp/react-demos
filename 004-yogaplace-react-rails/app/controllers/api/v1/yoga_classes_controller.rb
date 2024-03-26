@@ -1,5 +1,4 @@
 class Api::V1::YogaClassesController < ApplicationController
-  before_action :set_yoga_lesson, only: [:create]
   before_action :set_yoga_class, only: %i[ show update destroy ]
 
   def index
@@ -10,20 +9,20 @@ class Api::V1::YogaClassesController < ApplicationController
   
   def show
     render json: @yoga_class, include: [:user => {:only => [:id, :email, :first_name, :last_name, :username, :city, :role ]}, :yoga_lesson => {:only => [:id, :title, :description]}]
+  end
 
+  def new
   end
 
   def create
-    @yoga_class = @yoga_lesson.yoga_classes.new(yoga_class_params)
-  
+    @yoga_class = YogaClass.new(yoga_class_params)
+    
     if @yoga_class.save
-      render json: @yoga_class, status: :created, location: api_v1_yoga_class_url(@yoga_class)
+      render json: @yoga_class, status: :created, location: api_v1_yoga_classes_url
     else
       render json: @yoga_class.errors, status: :unprocessable_entity
     end
-    
   end
-  
 
   def update
     if @yoga_class.update(yoga_class_params)
@@ -39,11 +38,6 @@ class Api::V1::YogaClassesController < ApplicationController
   end
 
   private
-
-  def set_yoga_lesson
-    @yoga_lesson = YogaLesson.find_by(id: params[:yoga_lesson_id])
-    end
-  
 
   def set_yoga_class
     @yoga_class = YogaClass.find(params[:id])

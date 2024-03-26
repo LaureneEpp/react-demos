@@ -5,16 +5,19 @@ const useFetchYogaLessonData = () => {
   const [yogaCategoriesList, setYogaCategoriesList] = useState([]);
   const [yogaLessonData, setYogaLessonData] = useState();
   const [yogaLessonsList, setYogaLessonsList] = useState([]);
-  const [error, setError] = useState();
+  const [, setError] = useState(null);
   const [, setLoading] = useState(true);
   const { id } = useParams();
+  const API_URL = "http://localhost:3000/api/v1";
 
   useEffect(() => {
-    const API_URL = "http://localhost:3000/api/v1";
 
     const fetchYogaCategoriesList = async () => {
       try {
-        const yogaCategoriesResponse = await fetch(`${API_URL}/yoga_categories`);
+        const yogaCategoriesResponse = await fetch(
+          `${API_URL}/yoga_categories`
+        );
+
         if (yogaCategoriesResponse.ok) {
           const json = await yogaCategoriesResponse.json();
           setYogaCategoriesList(json);
@@ -43,8 +46,6 @@ const useFetchYogaLessonData = () => {
         setError(
           `An error occurred while loading yoga lessons: ${error.message}`
         );
-      } finally {
-        setLoading(false);
       }
     };
 
@@ -70,7 +71,7 @@ const useFetchYogaLessonData = () => {
     fetchYogaCategoriesList();
     fetchYogaLessonsList();
     fetchYogaLessonData();
-  }, [id, error]);
+  }, []);
 
   const updateYogaLessonData = (updatedData) => {
     setYogaLessonData((prevYogaLesson) => ({
@@ -83,8 +84,8 @@ const useFetchYogaLessonData = () => {
     yogaCategoriesList,
     yogaLessonsList,
     yogaLessonData,
-    updateYogaLessonData,
-    error,
+    API_URL,
+    updateYogaLessonData
   };
 };
 
