@@ -116,10 +116,18 @@ const ClientsBookings = ({ currUser }) => {
                       {b.yoga_class.location}
                     </td>
                     <td className="bg-transparent text-white text-center">
+                      <Link
+                        to={`/users/${b.user.username}`}
+                        className="text-decoration-none text-white">
                       {b.user.first_name}
+                      </Link>
                     </td>
                     <td className="bg-transparent text-white text-center">
+                      <Link
+                        to={`/users/${b.user.username}`}
+                        className="text-decoration-none text-white">
                       {b.user.last_name}
+                      </Link>
                     </td>
                   </tr>
                 ))}
