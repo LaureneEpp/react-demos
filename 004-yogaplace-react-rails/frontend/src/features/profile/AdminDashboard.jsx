@@ -147,7 +147,7 @@ const AdminDashboard = ({ currUser, onBookingsRedirect }) => {
               opacity: modal ? 0.5 : 1,
             }}
             transition={{ type: "spring", bounce: 0, duration: 0.4 }}
-            className="col-md-auto bg_terracota-color shadow-lg m-2 p-2 rounded-1 d-flex flex-column justify-content-center align-items-center">
+            className="col col-md-auto bg_terracota-color shadow-lg m-2 p-2 rounded-1 d-flex flex-column justify-content-center align-items-center">
             <h5 className="fs-2 fw-light mt-2 p-1 word-wrap ">
               Who are your clients ?
             </h5>
