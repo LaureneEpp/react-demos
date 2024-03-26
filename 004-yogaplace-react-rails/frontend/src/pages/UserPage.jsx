@@ -10,7 +10,7 @@ function formatDate(date) {
 }
 
 function UserPage({ currUser }) {
-  const { usersList } = useFetchUserData();
+  const { usersList } = useFetchUserData({currUser});
   const [userBookingsList, setUserBookingsList] = useState([]);
   const [user, setUser] = useState(null);
   const { username } = useParams();

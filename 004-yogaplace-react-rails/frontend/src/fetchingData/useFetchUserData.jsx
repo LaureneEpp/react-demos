@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 const useFetchUserData = ({ currUser }) => {
   const [usersList, setUsersList] = useState([]);
   const [userData, setUserData] = useState({ ...currUser });
-  const [error, setError] = useState(null);
+  const [, setError] = useState(null);
 
   useEffect(() => {
     const API_URL = "http://localhost:3000/api/v1";
@@ -45,7 +45,7 @@ const useFetchUserData = ({ currUser }) => {
     };
     fetchUsers();
     fetchUserData();
-  }, [currUser, error]);
+  }, []);
 
   const updateUserData = (updatedData) => {
     setUserData((prevUser) => ({
@@ -54,7 +54,7 @@ const useFetchUserData = ({ currUser }) => {
     }));
   };
 
-  return { userData, usersList, updateUserData, error };
+  return { userData, usersList, updateUserData };
 };
 
 export default useFetchUserData;
