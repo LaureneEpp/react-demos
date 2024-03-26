@@ -45,7 +45,7 @@ const ClientsInformation = ({ currUser }) => {
         <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
           {dashboardData.clientsCurrentInstructor &&
             dashboardData.clientsCurrentInstructor.map((u) => (
-              <div key={u.id} className="col">
+              <div key={u.id} className="col d-flex justify-content-center">
                 <div
                   className="card bg_terracota-color shadow-lg text-white m-3"
                   style={{ width: "15rem" }}>
