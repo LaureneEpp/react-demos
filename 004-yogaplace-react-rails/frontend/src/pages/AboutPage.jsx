@@ -33,7 +33,7 @@ function Image() {
 }
 
 function AboutPage({currUser}) {
-  const { userData, usersList, updateUserData } = useFetchUserData({ currUser });
+  const { usersList,  } = useFetchUserData({ currUser });
   const [instructorsList, setInstructorsList] = useState([]);
 
   useEffect(() => {
