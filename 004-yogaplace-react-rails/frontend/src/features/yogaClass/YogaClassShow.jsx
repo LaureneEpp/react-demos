@@ -1,5 +1,5 @@
 import { useParams, useNavigate, Link } from "react-router-dom";
-import LoadingAnimation from "../../features/LoadingAnimation";
+import LoadingAnimation from "../LoadingAnimation";
 import BookingButton from "./BookingButton";
 import useFetchYogaLessonData from "../../fetchingData/useFetchYogaLessonData";
 import useFetchYogaClassData from "../../fetchingData/useFetchYogaClassData";

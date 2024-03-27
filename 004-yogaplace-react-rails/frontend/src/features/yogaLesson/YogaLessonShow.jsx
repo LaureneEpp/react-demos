@@ -1,8 +1,8 @@
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import LoadingAnimation from "../../features/LoadingAnimation";
+import LoadingAnimation from "../LoadingAnimation";
 import useFetchYogaLessonData from "../../fetchingData/useFetchYogaLessonData";
-import DeleteYogaLesson from "./DeleteYogaLesson";
+import DeleteYogaLesson from "./YogaLessonDelete";
 import HomeIcon from "../../assets/icons/homeIcon";
 import EditIcon from "../../assets/icons/EditIcon";
 import LocationIcon from "../../assets/icons/LocationIcon";

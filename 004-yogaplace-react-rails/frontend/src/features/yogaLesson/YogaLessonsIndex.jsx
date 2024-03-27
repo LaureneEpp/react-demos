@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import LoadingAnimation from "../../features/LoadingAnimation";
+import LoadingAnimation from "../LoadingAnimation";
 import { motion } from "framer-motion";
 import useFetchYogaLessonData from "../../fetchingData/useFetchYogaLessonData";
 import PlusIcon from "../../assets/icons/PlusIcon"
