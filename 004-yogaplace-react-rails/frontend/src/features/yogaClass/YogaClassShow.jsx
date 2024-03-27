@@ -3,7 +3,7 @@ import LoadingAnimation from "../LoadingAnimation";
 import BookingButton from "./BookingButton";
 import useFetchYogaLessonData from "../../fetchingData/useFetchYogaLessonData";
 import useFetchYogaClassData from "../../fetchingData/useFetchYogaClassData";
-import DeleteYogaClass from "./DeleteYogaClass";
+import YogaClassDelete from "./YogaClassDelete";
 import HomeIcon from "../../assets/icons/homeIcon";
 import EditIcon from "../../assets/icons/EditIcon";
 import LocationIcon from "../../assets/icons/LocationIcon";
@@ -36,22 +36,20 @@ function YogaClassShow({ currUser }) {
           <hr className="my-4" />
           <div className="card-info d-flex mb-3">
             <div className="card-info-icon d-flex align-items-center">
-              <LocationIcon width={25} height={25}/>
+              <LocationIcon width={25} height={25} />
               <h5 className="fw-light m-2">{yogaClassData.location}</h5>
             </div>
             <div className="card-info-icon d-flex align-items-center">
-            <IdentityIcon width={25} height={25}/>
+              <IdentityIcon width={25} height={25} />
 
-              <Link to={`/users/${yogaClassData.user.username}`}
-              className="text-decoration-none text-white"
-              >
-                <h5 className="fw-light m-2">
-                  {yogaClassData.user.username}
-                </h5>
+              <Link
+                to={`/users/${yogaClassData.user.username}`}
+                className="text-decoration-none text-white">
+                <h5 className="fw-light m-2">{yogaClassData.user.username}</h5>
               </Link>
             </div>
             <div className="card-info-icon d-flex align-items-center">
-              <CalendarIcon/>
+              <CalendarIcon />
               <h5 className="fw-light m-2">{formatDate(yogaClassData.date)}</h5>
             </div>
           </div>
@@ -71,10 +69,10 @@ function YogaClassShow({ currUser }) {
                     to={`/yoga_classes/${id}/edit`}
                     className="btn btn-lg terracota-color my-3 p-2"
                     role="button">
-                      <EditIcon/>
+                    <EditIcon />
                   </Link>
                   <p className="align-self-center my-3 p-2">|</p>
-                  <DeleteYogaClass yogaClassId={yogaClassData.id} />
+                  <YogaClassDelete yogaClassId={yogaClassData.id} />
                 </>
               )}
             </div>
