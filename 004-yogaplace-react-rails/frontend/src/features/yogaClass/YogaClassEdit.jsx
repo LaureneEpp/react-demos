@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useNavigate, Link, useParams } from "react-router-dom";
 import LoadingAnimation from "../LoadingAnimation";
-import useFetchYogaClassData from "../../services/useFetchYogaClassData";
 import ArrowLeftIcon from "../../assets/icons/ArrowLeftIcon";
 import CheckIcon from "../../assets/icons/CheckIcon";
+import useFetchYogaClassData from "../../services/useFetchYogaClassData";
 
 function YogaClassEdit() {
   const { yogaClassData, updateYogaClassData } = useFetchYogaClassData();

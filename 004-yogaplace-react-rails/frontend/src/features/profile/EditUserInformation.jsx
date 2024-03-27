@@ -1,11 +1,11 @@
-import PropTypes from "prop-types";
 import { useNavigate, Link } from "react-router-dom";
-import useFetchUserData from "../../services/useFetchUserData";
+import PropTypes from "prop-types";
 import CheckIcon from "../../assets/icons/CheckIcon";
 import ArrowLeftIcon from "../../assets/icons/ArrowLeftIcon";
 import IdentityIcon from "../../assets/icons/IdentityIcon";
 import LocationIcon from "../../assets/icons/LocationIcon";
 import EmailIcon from "../../assets/icons/EmailIcon";
+import useFetchUserData from "../../services/useFetchUserData";
 
 
 const EditUserInformation = ({ currUser }) => {

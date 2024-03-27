@@ -1,11 +1,11 @@
-import useFetchDashboardData from "../../services/useFetchDashboardData";
-import AllBookingsListModalContent from "../modalContent/AllBookingsListModalContent";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import Modal from "../../components/Modal";
-import LoadingAnimation from "../LoadingAnimation";
 import EyeIcon from "../../assets/icons/EyeIcon";
+import LoadingAnimation from "../LoadingAnimation";
+import useFetchDashboardData from "../../services/useFetchDashboardData";
+import AllBookingsListModalContent from "../modalContent/AllBookingsListModalContent";
 
 function formatDate(date) {
   const options = { year: "numeric", month: "2-digit", day: "2-digit" };

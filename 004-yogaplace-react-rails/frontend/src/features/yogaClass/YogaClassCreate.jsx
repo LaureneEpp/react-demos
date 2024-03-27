@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import useFetchYogaLessonData from "../../services/useFetchYogaLessonData";
 import CheckIcon from "../../assets/icons/CheckIcon";
 import ArrowLeftIcon from "../../assets/icons/ArrowLeftIcon";
+import useFetchYogaLessonData from "../../services/useFetchYogaLessonData";
 
 function YogaClassCreate({ currUser }) {
   const { yogaLessonsList, API_URL } = useFetchYogaLessonData();

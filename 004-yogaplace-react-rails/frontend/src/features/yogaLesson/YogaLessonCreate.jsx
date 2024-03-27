@@ -1,20 +1,11 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-// import { useForm } from "react-hook-form";
-import useFetchYogaLessonData from "../../services/useFetchYogaLessonData";
 import CheckIcon from "../../assets/icons/CheckIcon";
 import ArrowLeftIcon from "../../assets/icons/ArrowLeftIcon";
+import useFetchYogaLessonData from "../../services/useFetchYogaLessonData";
 
 function YogaLessonCreate() {
-//   const {
-//     register,
-//     handleSubmit,
-//     watch,
-//     formState: { errors },
-//   } = useForm();
-//   const onSubmit = (data) => {
-//     alert(JSON.stringify(data));
-// }; 
+
   const { yogaCategoriesList } = useFetchYogaLessonData();
   const [yogaLessonData, setYogaLessonData] = useState({
     title: "",

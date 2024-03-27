@@ -1,9 +1,9 @@
+import { useState } from "react";
 import SignUp from "../pages/SignUp";
 import Login from "../pages/Login";
 import Logout from "../features/Logout";
 import InstructorProfile from "../pages/InstructorProfile";
 import UserProfile from "../pages/UserProfile";
-import { useState } from "react";
 
 const User = ({ currUser, setCurrUser }) => {
   const [showLogin, setShowLogin] = useState(true);

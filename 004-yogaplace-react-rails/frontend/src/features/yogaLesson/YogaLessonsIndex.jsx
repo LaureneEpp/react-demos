@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import LoadingAnimation from "../LoadingAnimation";
 import { motion } from "framer-motion";
-import useFetchYogaLessonData from "../../services/useFetchYogaLessonData";
+import LoadingAnimation from "../LoadingAnimation";
 import PlusIcon from "../../assets/icons/PlusIcon"
+import useFetchYogaLessonData from "../../services/useFetchYogaLessonData";
 
 function YogaLessonsIndex({ currUser }) {
   const { yogaLessonsList } = useFetchYogaLessonData(null);

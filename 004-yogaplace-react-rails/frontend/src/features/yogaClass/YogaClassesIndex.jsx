@@ -1,12 +1,12 @@
 import { useState } from "react";
-import Calendar from "react-calendar";
-import "react-calendar/dist/Calendar.css";
 import { Link, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
-import useFetchYogaClassData from "../../services/useFetchYogaClassData";
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
 import IdentityIcon from "../../assets/icons/IdentityIcon";
 import LocationIcon from "../../assets/icons/LocationIcon";
 import PlusIcon from "../../assets/icons/PlusIcon";
+import useFetchYogaClassData from "../../services/useFetchYogaClassData";
 
 function formatDate(date) {
   const options = { year: "numeric", month: "2-digit", day: "2-digit" };

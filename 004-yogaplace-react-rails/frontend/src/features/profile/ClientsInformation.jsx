@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import useFetchDashboardData from "../../services/useFetchDashboardData";
-import Modal from "../../components/Modal";
-import AllUsersListModalContent from "../modalContent/AllUsersListModalContent";
 import LoadingAnimation from "../LoadingAnimation";
+import Modal from "../../components/Modal";
 import EyeIcon from "../../assets/icons/EyeIcon";
+import useFetchDashboardData from "../../services/useFetchDashboardData";
+import AllUsersListModalContent from "../modalContent/AllUsersListModalContent";
 
 const ClientsInformation = ({ currUser }) => {
   const dashboardData = useFetchDashboardData({ currUser });

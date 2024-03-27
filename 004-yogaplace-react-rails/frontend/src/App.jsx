@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
-import AppRoutes from "./components/AppRoutes";
+import AppRoutes from "./navigation/AppRoutes";
 import Navbar from "./components/Navbar";
-import "./App.css";
+import "./styles/App.css";
 
 function App() {
   const [currUser, setCurrUser] = useState(() => {

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import LoadingAnimation from "../LoadingAnimation";
 import { motion } from "framer-motion";
+import LoadingAnimation from "../LoadingAnimation";
 
 function formatDate(date) {
   const options = { year: "numeric", month: "2-digit", day: "2-digit" };

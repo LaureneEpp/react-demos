@@ -1,11 +1,10 @@
-import { useState, useEffect } from "react";
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import useFetchUserData from "../../services/useFetchUserData";
+import PropTypes from "prop-types";
 import EditIcon from "../../assets/icons/EditIcon";
 import IdentityIcon from "../../assets/icons/IdentityIcon";
 import LocationIcon from "../../assets/icons/LocationIcon";
 import EmailIcon from "../../assets/icons/EmailIcon";
+import useFetchUserData from "../../services/useFetchUserData";
 
 
 const UserInformation = ({ currUser }) => {

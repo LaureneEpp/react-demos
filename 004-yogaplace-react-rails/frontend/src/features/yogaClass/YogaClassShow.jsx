@@ -1,14 +1,14 @@
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import LoadingAnimation from "../LoadingAnimation";
 import BookingButton from "./BookingButton";
-import useFetchYogaLessonData from "../../services/useFetchYogaLessonData";
-import useFetchYogaClassData from "../../services/useFetchYogaClassData";
-import YogaClassDelete from "./YogaClassDelete";
 import HomeIcon from "../../assets/icons/homeIcon";
 import EditIcon from "../../assets/icons/EditIcon";
 import LocationIcon from "../../assets/icons/LocationIcon";
 import IdentityIcon from "../../assets/icons/IdentityIcon";
 import CalendarIcon from "../../assets/icons/CalendarIcon";
+import useFetchYogaLessonData from "../../services/useFetchYogaLessonData";
+import useFetchYogaClassData from "../../services/useFetchYogaClassData";
+import YogaClassDelete from "./YogaClassDelete";
 
 function formatDate(date) {
   const options = { year: "numeric", month: "2-digit", day: "2-digit" };
