@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import Modal from "../../components/Modal";
-import useFetchDashboardData from "../../fetchingData/useFetchDashboardData";
+import useFetchDashboardData from "../../services/useFetchDashboardData";
 import YogaClassesInstructorModalContent from "../modalContent/YogaClassesInstructorModalContent";
 import UsersYogaClassListModalContent from "../modalContent/UsersYogaClassListModalContent";
 import InstructorsListModalContent from "../modalContent/InstructorsListModalContent";

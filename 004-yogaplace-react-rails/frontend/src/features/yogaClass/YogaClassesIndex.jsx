@@ -3,7 +3,7 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { Link, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
-import useFetchYogaClassData from "../../fetchingData/useFetchYogaClassData";
+import useFetchYogaClassData from "../../services/useFetchYogaClassData";
 import IdentityIcon from "../../assets/icons/IdentityIcon";
 import LocationIcon from "../../assets/icons/LocationIcon";
 import PlusIcon from "../../assets/icons/PlusIcon";

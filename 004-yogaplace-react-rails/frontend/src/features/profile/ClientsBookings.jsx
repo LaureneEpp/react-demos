@@ -1,4 +1,4 @@
-import useFetchDashboardData from "../../fetchingData/useFetchDashboardData";
+import useFetchDashboardData from "../../services/useFetchDashboardData";
 import AllBookingsListModalContent from "../modalContent/AllBookingsListModalContent";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";

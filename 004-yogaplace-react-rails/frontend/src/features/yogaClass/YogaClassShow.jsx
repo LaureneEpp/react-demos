@@ -1,8 +1,8 @@
 import { useParams, useNavigate, Link } from "react-router-dom";
 import LoadingAnimation from "../LoadingAnimation";
 import BookingButton from "./BookingButton";
-import useFetchYogaLessonData from "../../fetchingData/useFetchYogaLessonData";
-import useFetchYogaClassData from "../../fetchingData/useFetchYogaClassData";
+import useFetchYogaLessonData from "../../services/useFetchYogaLessonData";
+import useFetchYogaClassData from "../../services/useFetchYogaClassData";
 import YogaClassDelete from "./YogaClassDelete";
 import HomeIcon from "../../assets/icons/homeIcon";
 import EditIcon from "../../assets/icons/EditIcon";

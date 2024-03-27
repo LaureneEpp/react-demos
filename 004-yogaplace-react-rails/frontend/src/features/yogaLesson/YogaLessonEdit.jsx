@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import LoadingAnimation from "../../features/LoadingAnimation";
-import useFetchYogaLessonData from "../../fetchingData/useFetchYogaLessonData";
+import useFetchYogaLessonData from "../../services/useFetchYogaLessonData";
 import ArrowLeftIcon from "../../assets/icons/ArrowLeftIcon";
 import CheckIcon from "../../assets/icons/CheckIcon";
 

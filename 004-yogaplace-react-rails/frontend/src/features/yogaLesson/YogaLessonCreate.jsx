@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 // import { useForm } from "react-hook-form";
-import useFetchYogaLessonData from "../../fetchingData/useFetchYogaLessonData";
+import useFetchYogaLessonData from "../../services/useFetchYogaLessonData";
 import CheckIcon from "../../assets/icons/CheckIcon";
 import ArrowLeftIcon from "../../assets/icons/ArrowLeftIcon";
 

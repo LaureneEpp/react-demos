@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { useNavigate, Link } from "react-router-dom";
-import useFetchUserData from "../../fetchingData/useFetchUserData";
+import useFetchUserData from "../../services/useFetchUserData";
 import CheckIcon from "../../assets/icons/CheckIcon";
 import ArrowLeftIcon from "../../assets/icons/ArrowLeftIcon";
 import IdentityIcon from "../../assets/icons/IdentityIcon";

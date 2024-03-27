@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import useFetchDashboardData from "../../fetchingData/useFetchDashboardData";
+import useFetchDashboardData from "../../services/useFetchDashboardData";
 import Modal from "../../components/Modal";
 import AllUsersListModalContent from "../modalContent/AllUsersListModalContent";
 import LoadingAnimation from "../LoadingAnimation";

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import useFetchUserData from "../../fetchingData/useFetchUserData";
+import useFetchUserData from "../../services/useFetchUserData";
 import EditIcon from "../../assets/icons/EditIcon";
 import IdentityIcon from "../../assets/icons/IdentityIcon";
 import LocationIcon from "../../assets/icons/LocationIcon";
