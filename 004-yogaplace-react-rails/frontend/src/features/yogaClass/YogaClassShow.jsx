@@ -1,6 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import LoadingAnimation from "../LoadingAnimation";
 import BookingButton from "./BookingButton";
+import formatDate from "../../config/formatDate";
 import HomeIcon from "../../assets/icons/homeIcon";
 import EditIcon from "../../assets/icons/EditIcon";
 import LocationIcon from "../../assets/icons/LocationIcon";
@@ -9,11 +10,6 @@ import CalendarIcon from "../../assets/icons/CalendarIcon";
 import useFetchYogaLessonData from "../../services/useFetchYogaLessonData";
 import useFetchYogaClassData from "../../services/useFetchYogaClassData";
 import YogaClassDelete from "./YogaClassDelete";
-
-function formatDate(date) {
-  const options = { year: "numeric", month: "2-digit", day: "2-digit" };
-  return new Date(date).toLocaleDateString("en-US", options);
-}
 
 function YogaClassShow({ currUser }) {
   const { yogaClassData } = useFetchYogaClassData();

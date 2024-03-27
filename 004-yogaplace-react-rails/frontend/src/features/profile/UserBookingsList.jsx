@@ -2,11 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import LoadingAnimation from "../LoadingAnimation";
-
-function formatDate(date) {
-  const options = { year: "numeric", month: "2-digit", day: "2-digit" };
-  return new Date(date).toLocaleDateString("en-US", options);
-}
+import formatDate from "../../config/formatDate";
 
 const UserBookingsList = ({ currUser }) => {
   const [userBookings, setUserBookings] = useState(null);

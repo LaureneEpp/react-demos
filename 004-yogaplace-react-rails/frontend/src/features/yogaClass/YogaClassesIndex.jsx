@@ -7,37 +7,13 @@ import IdentityIcon from "../../assets/icons/IdentityIcon";
 import LocationIcon from "../../assets/icons/LocationIcon";
 import PlusIcon from "../../assets/icons/PlusIcon";
 import useFetchYogaClassData from "../../services/useFetchYogaClassData";
-
-function formatDate(date) {
-  const options = { year: "numeric", month: "2-digit", day: "2-digit" };
-  return new Date(date).toLocaleDateString("en-US", options);
-}
+import formatDate from "../../config/formatDate";
 
 function YogaClassesIndex({ currUser }) {
   const [date, setDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(null);
   const { yogaClassesList } = useFetchYogaClassData();
   const { id } = useParams();
-
-  // const handleDelete = async (id) => {
-  //   try {
-  //     const API_URL = "http://localhost:3000/api/v1";
-  //     const response = await fetch(`${API_URL}/yoga_classes/${id}`, {
-  //       method: "DELETE",
-  //     });
-  //     if (response.ok) {
-  //       // setYogaClasses(
-  //       //   yogaClassesList.filter((yoga_class) => yoga_class.id !== id)
-  //       // );
-  //     } else {
-  //       throw response;
-  //     }
-  //   } catch (e) {
-  //     console.error(
-  //       `An error occurred while deleting the yoga class: ${e.message}`
-  //     );
-  //   }
-  // };
 
   // Group yoga classes by date
   const yogaClassesByDate = yogaClassesList.reduce((result, yoga_class) => {

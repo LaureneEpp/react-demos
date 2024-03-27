@@ -2,17 +2,13 @@ import { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import LoadingAnimation from "../features/LoadingAnimation";
+import formatDate from "../config/formatDate";
 import HomeIcon from "../assets/icons/homeIcon";
 import LocationIcon from "../assets/icons/LocationIcon";
 import EmailIcon from "../assets/icons/EmailIcon";
 import CalendarIcon from "../assets/icons/CalendarIcon";
 import useFetchUserData from "../services/useFetchUserData";
 
-
-function formatDate(date) {
-  const options = { year: "numeric", month: "2-digit", day: "2-digit" };
-  return new Date(date).toLocaleDateString("en-US", options);
-}
 
 function UserPage({ currUser }) {
   const { usersList } = useFetchUserData({currUser});

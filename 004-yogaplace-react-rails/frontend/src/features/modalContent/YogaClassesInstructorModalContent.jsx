@@ -1,9 +1,5 @@
 import { Link } from "react-router-dom";
-
-function formatDate(date) {
-  const options = { year: "numeric", month: "2-digit", day: "2-digit" };
-  return new Date(date).toLocaleDateString("en-US", options);
-}
+import formatDate from "../../config/formatDate";
 
 function YogaClassesInstructorModalContent({ dashboardData }) {
   return (

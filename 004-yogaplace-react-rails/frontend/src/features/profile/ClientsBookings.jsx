@@ -4,13 +4,10 @@ import { useState } from "react";
 import Modal from "../../components/Modal";
 import EyeIcon from "../../assets/icons/EyeIcon";
 import LoadingAnimation from "../LoadingAnimation";
+import formatDate from "../../config/formatDate";
 import useFetchDashboardData from "../../services/useFetchDashboardData";
 import AllBookingsListModalContent from "../modalContent/AllBookingsListModalContent";
 
-function formatDate(date) {
-  const options = { year: "numeric", month: "2-digit", day: "2-digit" };
-  return new Date(date).toLocaleDateString("en-US", options);
-}
 
 const ClientsBookings = ({ currUser }) => {
   const dashboardData = useFetchDashboardData({ currUser });

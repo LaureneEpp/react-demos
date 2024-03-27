@@ -1,6 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import LoadingAnimation from "../LoadingAnimation";
+import formatDate from "../../config/formatDate";
 import HomeIcon from "../../assets/icons/homeIcon";
 import EditIcon from "../../assets/icons/EditIcon";
 import LocationIcon from "../../assets/icons/LocationIcon";
@@ -8,10 +9,6 @@ import CalendarIcon from "../../assets/icons/CalendarIcon";
 import useFetchYogaLessonData from "../../services/useFetchYogaLessonData";
 import DeleteYogaLesson from "./YogaLessonDelete";
 
-function formatDate(date) {
-  const options = { year: "numeric", month: "2-digit", day: "2-digit" };
-  return new Date(date).toLocaleDateString("en-US", options);
-}
 
 function YogaLessonShow({ currUser }) {
   const { yogaLessonData, error } = useFetchYogaLessonData();
