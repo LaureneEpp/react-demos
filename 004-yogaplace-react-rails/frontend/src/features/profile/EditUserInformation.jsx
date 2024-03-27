@@ -1,12 +1,10 @@
 import { useNavigate, Link } from "react-router-dom";
-import PropTypes from "prop-types";
 import CheckIcon from "../../assets/icons/CheckIcon";
 import ArrowLeftIcon from "../../assets/icons/ArrowLeftIcon";
 import IdentityIcon from "../../assets/icons/IdentityIcon";
 import LocationIcon from "../../assets/icons/LocationIcon";
 import EmailIcon from "../../assets/icons/EmailIcon";
 import useFetchUserData from "../../services/useFetchUserData";
-
 
 const EditUserInformation = ({ currUser }) => {
   const { userData, updateUserData } = useFetchUserData({ currUser });
@@ -67,7 +65,7 @@ const EditUserInformation = ({ currUser }) => {
               <div className="card-body">
                 <form onSubmit={handleSubmit} className="pt-4">
                   <div className="mb-3 lead white-color d-flex flex-row align-items-center">
-                    <IdentityIcon width={25} height={25}/>
+                    <IdentityIcon width={25} height={25} />
                     <input
                       type="first_name"
                       className="form-control me-1"
@@ -88,7 +86,7 @@ const EditUserInformation = ({ currUser }) => {
                     <hr className="my-2 bg-secondary" />
                   </div>
                   <div className="mb-3 lead white-color d-flex flex-row align-items-center">
-                    <IdentityIcon width={25} height={25}/>
+                    <IdentityIcon width={25} height={25} />
                     <input
                       type="username"
                       className="form-control"
@@ -100,7 +98,7 @@ const EditUserInformation = ({ currUser }) => {
                     <hr className="my-2 bg-secondary" />
                   </div>
                   <div className="mb-3 lead white-color d-flex flex-row align-items-center">
-                    <LocationIcon width={25} height={25}/>
+                    <LocationIcon width={25} height={25} />
                     <input
                       type="city"
                       className="form-control"
@@ -112,7 +110,7 @@ const EditUserInformation = ({ currUser }) => {
                     <hr className="my-2 bg-secondary" />
                   </div>
                   <div className="mb-3 lead white-color d-flex flex-row align-items-center">
-                    <EmailIcon/>
+                    <EmailIcon />
                     <input
                       type="email"
                       className="form-control"
@@ -128,10 +126,10 @@ const EditUserInformation = ({ currUser }) => {
                       to={`/${currUser.username}`}
                       className="btn btn-lg secondary-color my-3 p-2"
                       role="button">
-                      <ArrowLeftIcon/>
+                      <ArrowLeftIcon />
                     </Link>
                     <button type="submit" className="btn my-3">
-                      <CheckIcon/>
+                      <CheckIcon />
                     </button>
                   </div>
                 </form>
@@ -142,18 +140,6 @@ const EditUserInformation = ({ currUser }) => {
       </div>
     </div>
   );
-};
-
-EditUserInformation.propTypes = {
-  currUser: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    first_name: PropTypes.string.isRequired,
-    last_name: PropTypes.string.isRequired,
-    username: PropTypes.string.isRequired,
-    city: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired,
-  }).isRequired,
-  updateUserProfile: PropTypes.func.isRequired,
 };
 
 export default EditUserInformation;

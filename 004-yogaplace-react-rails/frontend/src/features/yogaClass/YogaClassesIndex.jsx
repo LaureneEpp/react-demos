@@ -7,7 +7,6 @@ import IdentityIcon from "../../assets/icons/IdentityIcon";
 import LocationIcon from "../../assets/icons/LocationIcon";
 import PlusIcon from "../../assets/icons/PlusIcon";
 import useFetchYogaClassData from "../../services/useFetchYogaClassData";
-import formatDate from "../../config/formatDate";
 
 function YogaClassesIndex({ currUser }) {
   const [date, setDate] = useState(new Date());
