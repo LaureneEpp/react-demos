@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import LoadingAnimation from "../../features/LoadingAnimation";
 import useFetchYogaLessonData from "../../fetchingData/useFetchYogaLessonData";
+import ArrowLeftIcon from "../../assets/icons/ArrowLeftIcon";
+import CheckIcon from "../../assets/icons/CheckIcon";
 
 function EditYogaLesson() {
   const { yogaLessonData, updateYogaLessonData } = useFetchYogaLessonData();
@@ -92,30 +94,11 @@ function EditYogaLesson() {
                       to={`/yoga_lessons/${id}`}
                       className="btn btn-lg secondary-color my-3 p-2"
                       role="button">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="30"
-                        height="30"
-                        fill="currentColor"
-                        className="bi bi-arrow-left-circle"
-                        viewBox="0 0 16 16">
-                        <path
-                          fillRule="evenodd"
-                          d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"
-                        />
-                      </svg>
+                      <ArrowLeftIcon />
                     </Link>
 
                     <button type="submit" className="btn my-3">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="30"
-                        height="30"
-                        fill="currentColor"
-                        className="bi bi-check-lg secondary-color"
-                        viewBox="0 0 16 16">
-                        <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z" />
-                      </svg>
+                      <CheckIcon />
                     </button>
                   </div>
                 </form>

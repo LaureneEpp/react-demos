@@ -8,6 +8,7 @@ import UsersYogaClassListModalContent from "../modalContent/UsersYogaClassListMo
 import InstructorsListModalContent from "../modalContent/InstructorsListModalContent";
 import NoBookingClassListModalContent from "../modalContent/NoBookingClassListModalContent";
 import LocationsListModalContent from "../modalContent/LocationsListModalContent"
+import EyeIcon from "../../assets/icons/EyeIcon";
 
 const AdminDashboard = ({ currUser, onBookingsRedirect }) => {
   const dashboardData = useFetchDashboardData({ currUser });
@@ -15,16 +16,7 @@ const AdminDashboard = ({ currUser, onBookingsRedirect }) => {
   const [modalContent, setModalContent] = useState(null);
 
   const svgModal = (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="35"
-      height="35"
-      fill="white"
-      className="bi bi-eye-fill me-1"
-      viewBox="0 0 16 16">
-      <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0" />
-      <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7" />
-    </svg>
+    <EyeIcon/>
   );
 
   const yogaClassCount = (

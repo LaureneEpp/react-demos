@@ -1,8 +1,13 @@
 import { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 import useFetchUserData from "../fetchingData/useFetchUserData";
 import LoadingAnimation from "../features/LoadingAnimation";
-import { motion } from "framer-motion";
+import HomeIcon from "../assets/icons/homeIcon";
+import LocationIcon from "../assets/icons/LocationIcon";
+import EmailIcon from "../assets/icons/EmailIcon";
+import CalendarIcon from "../assets/icons/CalendarIcon";
+
 
 function formatDate(date) {
   const options = { year: "numeric", month: "2-digit", day: "2-digit" };
@@ -71,48 +76,22 @@ function UserPage({ currUser }) {
           <hr className="my-4" />
           <div className="card-info d-flex mb-3">
             <div className="card-info-icon d-flex align-items-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="22"
-                height="22"
-                fill="currentColor"
-                className="bi bi-geo-alt"
-                viewBox="0 0 16 16">
-                <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z" />
-                <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-              </svg>
+              <LocationIcon width={25} height={25}/>
               <h5 className="fw-light m-2">{user.city}</h5>
             </div>
             <div className="card-info-icon d-flex align-items-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="22"
-                height="22"
-                fill="currentColor"
-                className="bi bi-envelope-at"
-                viewBox="0 0 16 16">
-                <path d="M2 2a2 2 0 0 0-2 2v8.01A2 2 0 0 0 2 14h5.5a.5.5 0 0 0 0-1H2a1 1 0 0 1-.966-.741l5.64-3.471L8 9.583l7-4.2V8.5a.5.5 0 0 0 1 0V4a2 2 0 0 0-2-2zm3.708 6.208L1 11.105V5.383zM1 4.217V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v.217l-7 4.2z" />
-                <path d="M14.247 14.269c1.01 0 1.587-.857 1.587-2.025v-.21C15.834 10.43 14.64 9 12.52 9h-.035C10.42 9 9 10.36 9 12.432v.214C9 14.82 10.438 16 12.358 16h.044c.594 0 1.018-.074 1.237-.175v-.73c-.245.11-.673.18-1.18.18h-.044c-1.334 0-2.571-.788-2.571-2.655v-.157c0-1.657 1.058-2.724 2.64-2.724h.04c1.535 0 2.484 1.05 2.484 2.326v.118c0 .975-.324 1.39-.639 1.39-.232 0-.41-.148-.41-.42v-2.19h-.906v.569h-.03c-.084-.298-.368-.63-.954-.63-.778 0-1.259.555-1.259 1.4v.528c0 .892.49 1.434 1.26 1.434.471 0 .896-.227 1.014-.643h.043c.118.42.617.648 1.12.648m-2.453-1.588v-.227c0-.546.227-.791.573-.791.297 0 .572.192.572.708v.367c0 .573-.253.744-.564.744-.354 0-.581-.215-.581-.8Z" />
-              </svg>
+            <EmailIcon/>
               <h5 className="fw-light m-2">{user.email}</h5>
             </div>
           </div>
           <hr className="my-4" />
           <div className="yoga-class-buttons d-flex justify-content-between">
             <div className="d-flex">
-              <Link
+            <Link
                 to="/"
                 className="btn btn-lg secondary-color my-3 p-2"
                 role="button">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="35"
-                  height="35"
-                  fill="currentColor"
-                  className="bi bi-house-door-fill"
-                  viewBox="0 0 16 16">
-                  <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5Z" />
-                </svg>
+                <HomeIcon />
               </Link>
             </div>
           </div>
@@ -130,30 +109,12 @@ function UserPage({ currUser }) {
                 whileTap={{ scale: 0.9 }}
                 className="col border border-light m-2 p-3">
                 <div className="d-flex flex-column align-items-center">
-                  <div className="d-flex flex-row">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="25"
-                      height="25"
-                      fill="currentColor"
-                      className="bi bi-geo-alt mx-2"
-                      viewBox="0 0 16 16">
-                      <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z" />
-                      <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                    </svg>
+                  <div className="d-flex flex-row w-100">
+                    <LocationIcon width={25} height={25}/>
                     <p>{userBooking.yoga_class.location}</p>
                   </div>
-                  <div className="d-flex flex-row">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="25"
-                      height="25"
-                      fill="currentColor"
-                      className="bi bi-calendar-event mx-2"
-                      viewBox="0 0 16 16">
-                      <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z" />
-                      <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
-                    </svg>
+                  <div className="d-flex flex-row w-100">
+                    <CalendarIcon/>
                     <p>{formatDate(userBooking.yoga_class.date)}</p>
                   </div>
                 </div>

@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import LoadingAnimation from "../../features/LoadingAnimation";
 import { motion } from "framer-motion";
 import useFetchYogaLessonData from "../../fetchingData/useFetchYogaLessonData";
+import PlusIcon from "../../assets/icons/PlusIcon"
 
 function YogaLessonsList({ currUser }) {
   const { yogaLessonsList } = useFetchYogaLessonData(null);
@@ -29,15 +30,7 @@ function YogaLessonsList({ currUser }) {
         {currUser && currUser.role === "instructor" && (
           <>
             <Link to="/yoga_lessons/new" className="btn btn-lg">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="30"
-                height="30"
-                fill="currentColor"
-                className="bi bi-plus-circle-fill secondary-color"
-                viewBox="0 0 16 16">
-                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
-              </svg>
+              <PlusIcon/>
             </Link>
           </>
         )}

@@ -2,8 +2,19 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import useFetchYogaLessonData from "../../fetchingData/useFetchYogaLessonData";
+import CheckIcon from "../../assets/icons/CheckIcon";
+import ArrowLeftIcon from "../../assets/icons/ArrowLeftIcon";
 
 function NewYogaLesson() {
+//   const {
+//     register,
+//     handleSubmit,
+//     watch,
+//     formState: { errors },
+//   } = useForm();
+//   const onSubmit = (data) => {
+//     alert(JSON.stringify(data));
+// }; 
   const { yogaCategoriesList } = useFetchYogaLessonData();
   const [yogaLessonData, setYogaLessonData] = useState({
     title: "",
@@ -13,14 +24,17 @@ function NewYogaLesson() {
   const [, setError] = useState(null);
   const navigate = useNavigate();
 
-  console.log(yogaCategoriesList)
+  console.log(yogaCategoriesList);
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const formData = new FormData();
     formData.append("yoga_lesson[title]", yogaLessonData.title);
     formData.append("yoga_lesson[description]", yogaLessonData.description);
-    formData.append("yoga_lesson[yoga_category_id]", yogaLessonData.yoga_category_id);
+    formData.append(
+      "yoga_lesson[yoga_category_id]",
+      yogaLessonData.yoga_category_id
+    );
 
     try {
       const API_URL = "http://localhost:3000/api/v1";
@@ -34,7 +48,7 @@ function NewYogaLesson() {
 
       if (yogaLessonsResponse.ok) {
         const json = await yogaLessonsResponse.json();
-        setYogaLessonData(json)
+        setYogaLessonData(json);
         navigate(`/yoga_lessons`);
       } else {
         throw new Error(
@@ -47,7 +61,6 @@ function NewYogaLesson() {
       );
     }
   };
-
 
   const handleCategorySelect = (e) => {
     const selectedCategoryId = e.target.value;
@@ -135,30 +148,11 @@ function NewYogaLesson() {
                 to="/yoga_lessons"
                 className="btn btn-lg secondary-color my-3 p-2"
                 role="button">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="30"
-                  height="30"
-                  fill="currentColor"
-                  className="bi bi-arrow-left-circle"
-                  viewBox="0 0 16 16">
-                  <path
-                    fillRule="evenodd"
-                    d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"
-                  />
-                </svg>
+                <ArrowLeftIcon/>
               </Link>
 
               <button type="submit" className="btn my-3">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="30"
-                  height="30"
-                  fill="currentColor"
-                  className="bi bi-plus-circle-fill secondary-color"
-                  viewBox="0 0 16 16">
-                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
-                </svg>
+                <CheckIcon/>
               </button>
             </div>
           </form>
