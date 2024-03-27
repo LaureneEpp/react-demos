@@ -15,7 +15,7 @@ function formatDate(date) {
   return new Date(date).toLocaleDateString("en-US", options);
 }
 
-function YogaClassDetails({ currUser }) {
+function YogaClassShow({ currUser }) {
   const { yogaClassData } = useFetchYogaClassData();
 
   const { id } = useParams();
@@ -93,4 +93,4 @@ function YogaClassDetails({ currUser }) {
   );
 }
 
-export default YogaClassDetails;
+export default YogaClassShow;

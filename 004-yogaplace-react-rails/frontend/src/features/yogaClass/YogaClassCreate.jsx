@@ -4,7 +4,7 @@ import useFetchYogaLessonData from "../../fetchingData/useFetchYogaLessonData";
 import CheckIcon from "../../assets/icons/CheckIcon";
 import ArrowLeftIcon from "../../assets/icons/ArrowLeftIcon";
 
-function NewYogaClass({ currUser }) {
+function YogaClassCreate({ currUser }) {
   const { yogaLessonsList, API_URL } = useFetchYogaLessonData();
   const [error, setError] = useState(null);
   const [yogaClassData, setYogaClassData] = useState({
@@ -148,4 +148,4 @@ function NewYogaClass({ currUser }) {
   );
 }
 
-export default NewYogaClass;
+export default YogaClassCreate;

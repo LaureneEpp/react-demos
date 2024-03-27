@@ -5,7 +5,7 @@ import useFetchYogaLessonData from "../../fetchingData/useFetchYogaLessonData";
 import CheckIcon from "../../assets/icons/CheckIcon";
 import ArrowLeftIcon from "../../assets/icons/ArrowLeftIcon";
 
-function NewYogaLesson() {
+function YogaLessonCreate() {
 //   const {
 //     register,
 //     handleSubmit,
@@ -162,4 +162,4 @@ function NewYogaLesson() {
   );
 }
 
-export default NewYogaLesson;
+export default YogaLessonCreate;

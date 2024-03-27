@@ -5,7 +5,7 @@ import useFetchYogaClassData from "../../fetchingData/useFetchYogaClassData";
 import ArrowLeftIcon from "../../assets/icons/ArrowLeftIcon";
 import CheckIcon from "../../assets/icons/CheckIcon";
 
-function EditYogaClass() {
+function YogaClassEdit() {
   const { yogaClassData, updateYogaClassData } = useFetchYogaClassData();
   const [, setLoading] = useState(true);
 
@@ -137,4 +137,4 @@ function EditYogaClass() {
   );
 }
 
-export default EditYogaClass;
+export default YogaClassEdit;

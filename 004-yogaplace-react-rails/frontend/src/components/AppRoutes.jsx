@@ -1,15 +1,14 @@
-import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "../pages/Home";
 import AboutPage from "../pages/AboutPage";
-import YogaLessonsList from "../features/yogaLesson/YogaLessonsList";
-import YogaLessonDetails from "../features/yogaLesson/YogaLessonDetails";
-import NewYogaLesson from "../features/yogaLesson/NewYogaLesson";
-import EditYogaLesson from "../features/yogaLesson/EditYogaLesson";
-import YogaClassesList from "../features/yogaClass/YogaClassesList";
-import YogaClassDetails from "../features/yogaClass/YogaClassDetails";
-import NewYogaClass from "../features/yogaClass/NewYogaClass";
-import EditYogaClass from "../features/yogaClass/EditYogaClass";
+import YogaLessonsIndex from "../features/yogaLesson/YogaLessonsIndex";
+import YogaLessonShow from "../features/yogaLesson/YogaLessonShow";
+import YogaLessonCreate from "../features/yogaLesson/YogaLessonCreate";
+import YogaLessonEdit from "../features/yogaLesson/YogaLessonEdit";
+import YogaClassesIndex from "../features/yogaClass/YogaClassesIndex";
+import YogaClassShow from "../features/yogaClass/YogaClassShow";
+import YogaClassCreate from "../features/yogaClass/YogaClassCreate";
+import YogaClassEdit from "../features/yogaClass/YogaClassEdit";
 import Login from "../pages/Login";
 import SignUp from "../pages/SignUp";
 import UserProfile from "../pages/UserProfile";
@@ -42,29 +41,29 @@ function AppRoutes({ currUser, setCurrUser }) {
       />
       <Route
         path="/yoga_lessons"
-        element={<YogaLessonsList currUser={currUser} />}
+        element={<YogaLessonsIndex currUser={currUser} />}
       />
       <Route
         path="/yoga_lessons/:id"
-        element={<YogaLessonDetails currUser={currUser} />}
+        element={<YogaLessonShow currUser={currUser} />}
       />
-      <Route path="/yoga_lessons/:id/edit" element={<EditYogaLesson />} />
+      <Route path="/yoga_lessons/:id/edit" element={<YogaLessonEdit />} />
 
       <Route
         path="/yoga_classes"
-        element={<YogaClassesList currUser={currUser} />}
+        element={<YogaClassesIndex currUser={currUser} />}
       />
       <Route
         path="/yoga_classes/:id"
-        element={<YogaClassDetails currUser={currUser} />}
+        element={<YogaClassShow currUser={currUser} />}
       />
-      <Route path="/yoga_classes/:id/edit" element={<EditYogaClass />} />
+      <Route path="/yoga_classes/:id/edit" element={<YogaClassEdit />} />
 
       <Route
         path="/yoga_classes/new"
-        element={<NewYogaClass currUser={currUser} />}
+        element={<YogaClassCreate currUser={currUser} />}
       />
-      <Route path="/yoga_lessons/new" element={<NewYogaLesson />} />
+      <Route path="/yoga_lessons/new" element={<YogaLessonCreate />} />
     </Routes>
   );
 }

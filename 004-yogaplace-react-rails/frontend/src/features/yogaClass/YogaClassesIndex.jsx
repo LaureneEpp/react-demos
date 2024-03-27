@@ -13,7 +13,7 @@ function formatDate(date) {
   return new Date(date).toLocaleDateString("en-US", options);
 }
 
-function YogaClassesList({ currUser }) {
+function YogaClassesIndex({ currUser }) {
   const [date, setDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(null);
   const { yogaClassesList } = useFetchYogaClassData();
@@ -134,4 +134,4 @@ function YogaClassesList({ currUser }) {
   );
 }
 
-export default YogaClassesList;
+export default YogaClassesIndex;

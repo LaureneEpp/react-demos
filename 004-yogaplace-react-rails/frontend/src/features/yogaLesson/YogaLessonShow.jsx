@@ -13,7 +13,7 @@ function formatDate(date) {
   return new Date(date).toLocaleDateString("en-US", options);
 }
 
-function YogaLessonDetails({ currUser }) {
+function YogaLessonShow({ currUser }) {
   const { yogaLessonData, error } = useFetchYogaLessonData();
 
   const { id } = useParams();
@@ -90,4 +90,4 @@ function YogaLessonDetails({ currUser }) {
   );
 }
 
-export default YogaLessonDetails;
+export default YogaLessonShow;

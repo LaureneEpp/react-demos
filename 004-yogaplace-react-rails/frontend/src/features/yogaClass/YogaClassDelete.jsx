@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import DeleteIcon from "../../assets/icons/DeleteIcon";
 
-function DeleteYogaClass({ yogaClassId, className }) {
+function YogaClassDelete({ yogaClassId, className }) {
   const navigate = useNavigate();
 
   const deleteYogaClass = async () => {
@@ -33,4 +33,4 @@ function DeleteYogaClass({ yogaClassId, className }) {
     </button>
   );
 }
-export default DeleteYogaClass;
+export default YogaClassDelete;

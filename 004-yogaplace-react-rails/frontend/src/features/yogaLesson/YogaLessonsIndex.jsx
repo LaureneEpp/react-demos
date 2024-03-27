@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import useFetchYogaLessonData from "../../fetchingData/useFetchYogaLessonData";
 import PlusIcon from "../../assets/icons/PlusIcon"
 
-function YogaLessonsList({ currUser }) {
+function YogaLessonsIndex({ currUser }) {
   const { yogaLessonsList } = useFetchYogaLessonData(null);
 
   const lessonsByCategory = {};
@@ -65,4 +65,4 @@ function YogaLessonsList({ currUser }) {
   );
 }
 
-export default YogaLessonsList;
+export default YogaLessonsIndex;
