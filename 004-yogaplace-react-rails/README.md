@@ -12,5 +12,5 @@ Work in progress: user management and booking management.
 
 
 
-https://github.com/LaureneEpp/react-demos/assets/70053268/c43244b1-1c63-41d2-8c72-444ef1d35579
+https://github.com/LaureneEpp/react-demos/assets/70053268/a30b5f6a-e3a0-4406-adc6-76402bc26367
 
