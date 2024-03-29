@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-// import { useForm } from "react-hook-form";
-import useFetchYogaLessonData from "../../services/useFetchYogaLessonData";
+import BackButton from "../../components/Button/BackButton";
 import CheckIcon from "../../assets/icons/CheckIcon";
-import ArrowLeftIcon from "../../assets/icons/ArrowLeftIcon";
+import useFetchYogaLessonData from "../../services/useFetchYogaLessonData";
 
 function YogaClassCreate({ currUser }) {
   const { yogaLessonsList, API_URL } = useFetchYogaLessonData();
@@ -132,12 +131,7 @@ function YogaClassCreate({ currUser }) {
               />
             </div>
             <div className="d-flex">
-              <Link
-                to="/yoga_classes"
-                className="btn btn-lg secondary-color my-3 p-2"
-                role="button">
-                <ArrowLeftIcon />
-              </Link>
+              <BackButton path={"/yoga_classes"} />
               <button type="submit" className="btn my-3">
                 <CheckIcon />
               </button>

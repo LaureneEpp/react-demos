@@ -1,8 +1,8 @@
 import { useForm, Form } from "react-hook-form";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import BackButton from "../../components/Button/BackButton";
 import CheckIcon from "../../assets/icons/CheckIcon";
-import ArrowLeftIcon from "../../assets/icons/ArrowLeftIcon";
 import useFetchYogaLessonData from "../../services/useFetchYogaLessonData";
 
 function YogaLessonCreate() {
@@ -90,12 +90,7 @@ function YogaLessonCreate() {
               {errors.description && <p>This field is required!</p>}
             </div>
             <div className="d-flex">
-              <Link
-                to="/yoga_lessons"
-                className="btn btn-lg secondary-color my-3 p-2"
-                role="button">
-                <ArrowLeftIcon />
-              </Link>
+              <BackButton path={"/yoga_lessons"} />
               <button type="submit" className="btn my-3">
                 <CheckIcon />
               </button>

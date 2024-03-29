@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link, useParams } from "react-router-dom";
 import LoadingAnimation from "../LoadingAnimation";
-import ArrowLeftIcon from "../../assets/icons/ArrowLeftIcon";
+import BackButton from "../../components/Button/BackButton";
 import CheckIcon from "../../assets/icons/CheckIcon";
 import useFetchYogaClassData from "../../services/useFetchYogaClassData";
 
@@ -116,13 +116,7 @@ function YogaClassEdit() {
                     />
                   </div>
                   <div className="d-flex">
-                    <Link
-                      to={`/yoga_classes/${id}`}
-                      className="btn btn-lg secondary-color my-3 p-2"
-                      role="button">
-                      <ArrowLeftIcon/>
-                    </Link>
-
+                    <BackButton path={`/yoga_classes/${id}`} />
                     <button type="submit" className="btn my-3">
                       <CheckIcon/>
                     </button>
