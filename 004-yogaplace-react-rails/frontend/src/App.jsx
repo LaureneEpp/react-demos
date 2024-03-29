@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import AppRoutes from "./navigation/AppRoutes";
-import Navbar from "./components/Navbar";
+import Navbar from "./navigation/Navbar";
 import "./styles/App.css";
 
 function App() {
