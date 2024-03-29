@@ -8,34 +8,13 @@
 
 /* Forms */
 
-.new-form {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-}
-
-.new-form-title {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
 @media screen and (max-width: 480px) {
   .card-info {
     flex-direction: column;
     align-items: flex-end;
   }
 
-  .new-form {
-    flex-direction: column;
-  }
 
-  .new-form-title {
-    display: flex;
-    flex-direction: row;
-  }
 
   form {
     margin: 2rem 0;
@@ -59,10 +38,6 @@
 @media screen and (min-width: 480px) {
   .card-info {
     justify-content: space-around;
-  }
-
-  .new-form-title {
-    flex-direction: column;
   }
 
   .fixed-sidebar {
