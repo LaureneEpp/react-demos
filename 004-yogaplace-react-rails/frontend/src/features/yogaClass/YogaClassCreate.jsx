@@ -1,23 +1,29 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import BackButton from "../../components/Button/BackButton";
 import SubmitButton from "../../components/Button/SubmitButton"
 import useFetchYogaLessonData from "../../services/useFetchYogaLessonData";
 
 function YogaClassCreate({ currUser }) {
-  const { yogaLessonsList, API_URL } = useFetchYogaLessonData();
-  const [error, setError] = useState(null);
-  const [yogaClassData, setYogaClassData] = useState({
-    location: "",
-    date: "",
-    yoga_lesson_id: "",
-    user_id: "",
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      location: "",
+      date: "",
+      yoga_lesson_id: "",
+      user_id: "",
+    },
   });
+  const { yogaLessonsList, setYogaClassData, API_URL } = useFetchYogaLessonData();
+    useFetchYogaLessonData();
   const navigate = useNavigate();
+  const [, setError] = useState(null);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
+  const onSubmit = async (yogaClassData) => {
     const formData = new FormData();
     formData.append("yoga_class[location]", yogaClassData.location);
     formData.append("yoga_class[date]", yogaClassData.date);
@@ -27,39 +33,22 @@ function YogaClassCreate({ currUser }) {
     try {
       const yogaClassResponse = await fetch(`${API_URL}/yoga_classes`, {
         method: "POST",
-        headers: {
-          accept: "application/json",
-        },
         body: formData,
       });
 
-      if (yogaClassResponse.ok) {
-        const json = await yogaClassResponse.json();
-        setYogaClassData(json);
-        navigate(`/yoga_classes`);
-      } else {
+      if (!yogaClassResponse.ok) {
         throw new Error(
-          `Failed to create yoga class (${yogaClassResponse.status}): ${error.message}`
+          `Failed to fetch yoga class data with status ${yogaClassResponse.status}`
         );
       }
+      const json = await yogaClassResponse.json();
+      setYogaClassData(json);
     } catch (error) {
       setError(
-        `An error occurred while creating the yoga class: ${error.message}`
-      );
-    }
-  };
-
-  const handleLessonSelect = (e) => {
-    const selectedLessonId = e.target.value;
-    setYogaClassData((prevFormData) => ({
-      ...prevFormData,
-      yoga_lesson_id: selectedLessonId,
-    }));
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setYogaClassData((prevFormData) => ({ ...prevFormData, [name]: value }));
+        `An error occurred while fetching lesson data: ${error.message}`
+        );
+      }
+      navigate(`/yoga_classes`);
   };
 
   return (
@@ -82,18 +71,11 @@ function YogaClassCreate({ currUser }) {
           <h2 className="text-uppercase fw-semibold">S</h2>
         </div> */}
         <div className="col-9 d-flex flex-column align-items-center justify-content-center">
-          <form className=" border border-2 p-4" onSubmit={handleSubmit}>
+          <form className=" border border-2 p-4"onSubmit={handleSubmit(onSubmit)}>
             <div className="form-group my-2">
-              <label className="my-2" htmlFor="lesson">
-                Choose a Yoga Lesson
-              </label>
-              <select
-                id="yoga_lesson"
-                className="form-control form-control-lg"
-                name="yoga_lesson_id"
-                value={yogaClassData.yoga_lesson_id}
-                onChange={handleLessonSelect}
-                required>
+            <select
+                {...register("yoga_lesson_id", { required: true })}
+                className="form-control form-control-lg">
                 <option value="">Select a lesson</option>
                 {yogaLessonsList.map((lesson) => (
                   <option key={lesson.id} value={lesson.id}>
@@ -101,34 +83,25 @@ function YogaClassCreate({ currUser }) {
                   </option>
                 ))}
               </select>
+              {errors.yoga_lesson_id && <p>This field is required!</p>}
             </div>
             <div className="form-group my-2">
-              <label className="my-2" htmlFor="location">
-                Location
-              </label>
-              <input
-                type="text"
-                id="location"
+            <input
+                {...register("location", { required: true })}
+                placeholder="Location"
                 className="form-control form-control-lg"
-                name="location"
-                value={yogaClassData.location}
-                onChange={handleChange}
-                required
               />
+              {errors.location && <p>This field is required!</p>}
             </div>
             <div className="form-group my-2">
-              <label className="my-2" htmlFor="date">
-                Date
-              </label>
-              <input
+            <input
+                {...register("date", { required: true })}
                 type="date"
-                id="date"
+                placeholder="Date"
                 className="form-control form-control-lg"
-                name="date"
-                value={yogaClassData.date}
-                onChange={handleChange}
-                required
               />
+              {errors.date && <p>This field is required!</p>}
+
             </div>
             <div className="d-flex">
               <BackButton path={"/yoga_classes"} />

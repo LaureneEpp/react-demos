@@ -52,7 +52,7 @@ const useFetchYogaClassData = () => {
     }));
   };
 
-  return { yogaClassData, yogaClassesList, updateYogaClassData, API_URL,  error };
+  return { yogaClassData, setYogaClassData, yogaClassesList, updateYogaClassData, API_URL,  error };
 };
 
 export default useFetchYogaClassData;
