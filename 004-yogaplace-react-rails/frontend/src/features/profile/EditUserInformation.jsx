@@ -1,6 +1,6 @@
 import { useNavigate, Link } from "react-router-dom";
 import BackButton from "../../components/Button/BackButton";
-import CheckIcon from "../../assets/icons/CheckIcon";
+import SubmitButton from "../../components/Button/SubmitButton";
 import IdentityIcon from "../../assets/icons/IdentityIcon";
 import LocationIcon from "../../assets/icons/LocationIcon";
 import EmailIcon from "../../assets/icons/EmailIcon";
@@ -122,11 +122,8 @@ const EditUserInformation = ({ currUser }) => {
                     <hr className="my-2 bg-secondary" />
                   </div>
                   <div className="d-flex">
-
                     <BackButton path={`/${currUser.username}`} />
-                    <button type="submit" className="btn my-3">
-                      <CheckIcon />
-                    </button>
+                    <SubmitButton />
                   </div>
                 </form>
               </div>

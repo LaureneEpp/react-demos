@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import BackButton from "../../components/Button/BackButton";
-import CheckIcon from "../../assets/icons/CheckIcon";
+import SubmitButton from "../../components/Button/SubmitButton"
 import useFetchYogaLessonData from "../../services/useFetchYogaLessonData";
 
 function YogaClassCreate({ currUser }) {
@@ -132,9 +132,7 @@ function YogaClassCreate({ currUser }) {
             </div>
             <div className="d-flex">
               <BackButton path={"/yoga_classes"} />
-              <button type="submit" className="btn my-3">
-                <CheckIcon />
-              </button>
+              <SubmitButton/>
             </div>
           </form>
         </div>

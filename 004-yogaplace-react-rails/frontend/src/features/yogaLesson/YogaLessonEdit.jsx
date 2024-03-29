@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import LoadingAnimation from "../../features/LoadingAnimation";
 import BackButton from "../../components/Button/BackButton";
-import CheckIcon from "../../assets/icons/CheckIcon";
+import SubmitButton from "../../components/Button/SubmitButton";
 import useFetchYogaLessonData from "../../services/useFetchYogaLessonData";
 
 function YogaLessonEdit() {
@@ -90,9 +90,7 @@ function YogaLessonEdit() {
                   </div>
                   <div className="d-flex">
                     <BackButton path={`/yoga_lessons/${id}`} />
-                    <button type="submit" className="btn my-3">
-                      <CheckIcon />
-                    </button>
+                    <SubmitButton/>
                   </div>
                 </form>
               </div>

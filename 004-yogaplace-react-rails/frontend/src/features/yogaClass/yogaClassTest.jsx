@@ -138,9 +138,8 @@ function YogaClassCreate({ currUser }) {
                 role="button">
                 <ArrowLeftIcon />
               </Link>
-              <button type="submit" className="btn my-3">
-                <CheckIcon />
-              </button>
+                    <SubmitButton/>
+
             </div>
           </form>
         </div>
