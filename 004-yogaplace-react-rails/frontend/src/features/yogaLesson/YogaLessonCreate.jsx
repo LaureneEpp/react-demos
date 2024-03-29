@@ -1,6 +1,6 @@
-import { useForm, Form } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 import BackButton from "../../components/Button/BackButton";
 import SubmitButton from "../../components/Button/SubmitButton"
 import useFetchYogaLessonData from "../../services/useFetchYogaLessonData";
@@ -26,10 +26,7 @@ function YogaLessonCreate() {
     const formData = new FormData();
     formData.append("yoga_lesson[title]", yogaLessonData.title);
     formData.append("yoga_lesson[description]", yogaLessonData.description);
-    formData.append(
-      "yoga_lesson[yoga_category_id]",
-      yogaLessonData.yoga_category_id
-    );
+    formData.append("yoga_lesson[yoga_category_id]",yogaLessonData.yoga_category_id);
 
     try {
       const yogaLessonsResponse = await fetch(`${API_URL}/yoga_lessons`, {
