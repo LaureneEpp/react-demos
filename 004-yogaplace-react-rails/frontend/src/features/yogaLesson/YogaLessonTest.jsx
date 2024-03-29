@@ -1,32 +1,35 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-// import { useForm } from "react-hook-form";
-import useFetchYogaLessonData from "../../services/useFetchYogaLessonData";
 import CheckIcon from "../../assets/icons/CheckIcon";
 import ArrowLeftIcon from "../../assets/icons/ArrowLeftIcon";
+import useFetchYogaLessonData from "../../services/useFetchYogaLessonData";
 
-function YogaClassCreate({ currUser }) {
-  const { yogaLessonsList, API_URL } = useFetchYogaLessonData();
-  const [error, setError] = useState(null);
-  const [yogaClassData, setYogaClassData] = useState({
-    location: "",
-    date: "",
-    yoga_lesson_id: "",
-    user_id: "",
+function YogaLessonCreate() {
+
+  const { yogaCategoriesList } = useFetchYogaLessonData();
+  const [yogaLessonData, setYogaLessonData] = useState({
+    title: "",
+    description: "",
+    yoga_category_id: "",
   });
+  const [, setError] = useState(null);
   const navigate = useNavigate();
 
+  console.log(yogaCategoriesList);
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append("yoga_class[location]", yogaClassData.location);
-    formData.append("yoga_class[date]", yogaClassData.date);
-    formData.append("yoga_class[yoga_lesson_id]", yogaClassData.yoga_lesson_id);
-    formData.append("yoga_class[user_id]", currUser.id);
+    formData.append("yoga_lesson[title]", yogaLessonData.title);
+    formData.append("yoga_lesson[description]", yogaLessonData.description);
+    formData.append(
+      "yoga_lesson[yoga_category_id]",
+      yogaLessonData.yoga_category_id
+    );
 
     try {
-      const yogaClassResponse = await fetch(`${API_URL}/yoga_classes`, {
+      const API_URL = "http://localhost:3000/api/v1";
+      const yogaLessonsResponse = await fetch(`${API_URL}/yoga_lessons`, {
         method: "POST",
         headers: {
           accept: "application/json",
@@ -34,39 +37,38 @@ function YogaClassCreate({ currUser }) {
         body: formData,
       });
 
-      if (yogaClassResponse.ok) {
-        const json = await yogaClassResponse.json();
-        setYogaClassData(json);
-        navigate(`/yoga_classes`);
+      if (yogaLessonsResponse.ok) {
+        const json = await yogaLessonsResponse.json();
+        setYogaLessonData(json);
+        navigate(`/yoga_lessons`);
       } else {
         throw new Error(
-          `Failed to create yoga class (${yogaClassResponse.status}): ${error.message}`
+          `Failed to fetch yoga lesson data with status ${yogaLessonsResponse.status}`
         );
       }
     } catch (error) {
       setError(
-        `An error occurred while creating the yoga class: ${error.message}`
+        `An error occurred while fetching lesson data: ${error.message}`
       );
     }
   };
 
-  const handleLessonSelect = (e) => {
-    const selectedLessonId = e.target.value;
-    setYogaClassData((prevFormData) => ({
+  const handleCategorySelect = (e) => {
+    const selectedCategoryId = e.target.value;
+    setYogaLessonData((prevFormData) => ({
       ...prevFormData,
-      yoga_lesson_id: selectedLessonId,
+      yoga_category_id: selectedCategoryId,
     }));
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setYogaClassData((prevFormData) => ({ ...prevFormData, [name]: value }));
+    setYogaLessonData((prevFormData) => ({ ...prevFormData, [name]: value }));
   };
-
   return (
     <div className="vh-100 m-4">
       <div className="new-form">
-        {/* <div className="new-form-title col-3">
+        <div className="new-form-title col-3">
           <h2 className="text-uppercase fw-semibold">N</h2>
           <h2 className="text-uppercase fw-semibold">E</h2>
           <h2 className="text-uppercase fw-semibold">W</h2>
@@ -76,70 +78,72 @@ function YogaClassCreate({ currUser }) {
           <h2 className="text-uppercase fw-semibold">G</h2>
           <h2 className="text-uppercase fw-semibold">A</h2>
           <h2 className="text-uppercase fw-semibold">*</h2>
-          <h2 className="text-uppercase fw-semibold">C</h2>
           <h2 className="text-uppercase fw-semibold">L</h2>
-          <h2 className="text-uppercase fw-semibold">A</h2>
+          <h2 className="text-uppercase fw-semibold">E</h2>
           <h2 className="text-uppercase fw-semibold">S</h2>
           <h2 className="text-uppercase fw-semibold">S</h2>
-        </div> */}
+          <h2 className="text-uppercase fw-semibold">O</h2>
+          <h2 className="text-uppercase fw-semibold">N</h2>
+        </div>
         <div className="col-9 d-flex flex-column align-items-center justify-content-center">
           <form className=" border border-2 p-4" onSubmit={handleSubmit}>
             <div className="form-group my-2">
-              <label className="my-2" htmlFor="lesson">
-                Choose a Yoga Lesson
+              <label className="my-2" htmlFor="category">
+                Choose a Yoga Category
               </label>
               <select
-                id="yoga_lesson"
+                id="yoga_category"
                 className="form-control form-control-lg"
-                name="yoga_lesson_id"
-                value={yogaClassData.yoga_lesson_id}
-                onChange={handleLessonSelect}
+                name="yoga_category_id"
+                value={yogaLessonData.yoga_category_id}
+                onChange={handleCategorySelect}
                 required>
-                <option value="">Select a lesson</option>
-                {yogaLessonsList.map((lesson) => (
-                  <option key={lesson.id} value={lesson.id}>
-                    {lesson.title}
+                <option value="">Select a category</option>
+                {yogaCategoriesList.map((category) => (
+                  <option key={category.id} value={category.id}>
+                    {category.title}
                   </option>
                 ))}
               </select>
             </div>
             <div className="form-group my-2">
-              <label className="my-2" htmlFor="location">
-                Location
+              <label className="my-2" htmlFor="title">
+                Title
               </label>
               <input
                 type="text"
-                id="location"
+                id="title"
                 className="form-control form-control-lg"
-                name="location"
-                value={yogaClassData.location}
+                name="title"
+                value={yogaLessonData.title}
                 onChange={handleChange}
                 required
               />
             </div>
             <div className="form-group my-2">
-              <label className="my-2" htmlFor="date">
-                Date
+              <label className="my-2" htmlFor="description">
+                Description
               </label>
               <input
-                type="date"
-                id="date"
+                type="text"
+                id="description"
                 className="form-control form-control-lg"
-                name="date"
-                value={yogaClassData.date}
+                name="description"
+                value={yogaLessonData.description}
                 onChange={handleChange}
                 required
               />
             </div>
             <div className="d-flex">
               <Link
-                to="/yoga_classes"
+                to="/yoga_lessons"
                 className="btn btn-lg secondary-color my-3 p-2"
                 role="button">
-                <ArrowLeftIcon />
+                <ArrowLeftIcon/>
               </Link>
+
               <button type="submit" className="btn my-3">
-                <CheckIcon />
+                <CheckIcon/>
               </button>
             </div>
           </form>
@@ -149,4 +153,4 @@ function YogaClassCreate({ currUser }) {
   );
 }
 
-export default YogaClassCreate;
+export default YogaLessonCreate;

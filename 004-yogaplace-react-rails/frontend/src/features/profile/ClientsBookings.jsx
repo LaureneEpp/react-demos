@@ -8,15 +8,11 @@ import formatDate from "../../config/formatDate";
 import useFetchDashboardData from "../../services/useFetchDashboardData";
 import AllBookingsListModalContent from "../modalContent/AllBookingsListModalContent";
 
-
 const ClientsBookings = ({ currUser }) => {
   const dashboardData = useFetchDashboardData({ currUser });
   const [modal, setModal] = useState(false);
   const [modalContent, setModalContent] = useState(null);
 
-  const svgModal = (
-    <EyeIcon/>
-  );
   const handleAllBookingsButtonClick = () => {
     setModalContent(<AllBookingsListModalContent {...{ dashboardData }} />);
     setModal(true);
@@ -27,9 +23,8 @@ const ClientsBookings = ({ currUser }) => {
     setModalContent(null);
   };
 
-  if (!dashboardData) {
-    return <LoadingAnimation />;
-  }
+  if (!dashboardData) return <LoadingAnimation />;
+
   return (
     <div className="mt-5 p-5 d-flex flex-column justify-content-center align-items-center overflow-auto">
       <Modal {...{ modal, setModal: closeModal, content: modalContent }} />
@@ -108,14 +103,14 @@ const ClientsBookings = ({ currUser }) => {
                       <Link
                         to={`/users/${b.user.username}`}
                         className="text-decoration-none text-white">
-                      {b.user.first_name}
+                        {b.user.first_name}
                       </Link>
                     </td>
                     <td className="bg-transparent text-white text-center">
                       <Link
                         to={`/users/${b.user.username}`}
                         className="text-decoration-none text-white">
-                      {b.user.last_name}
+                        {b.user.last_name}
                       </Link>
                     </td>
                   </tr>
@@ -132,7 +127,7 @@ const ClientsBookings = ({ currUser }) => {
         <button
           className="btn btn-lg my-3"
           onClick={handleAllBookingsButtonClick}>
-          {modal ? "X" : svgModal}
+          {modal ? "X" : <EyeIcon />}
         </button>
       </div>
     </div>

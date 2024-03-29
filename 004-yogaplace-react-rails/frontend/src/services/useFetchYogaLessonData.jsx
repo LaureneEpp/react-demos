@@ -83,6 +83,7 @@ const useFetchYogaLessonData = () => {
   return {
     yogaCategoriesList,
     yogaLessonsList,
+    setYogaLessonData,
     yogaLessonData,
     API_URL,
     updateYogaLessonData

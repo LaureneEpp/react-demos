@@ -7,7 +7,6 @@ import EditIcon from "../../assets/icons/EditIcon";
 import LocationIcon from "../../assets/icons/LocationIcon";
 import IdentityIcon from "../../assets/icons/IdentityIcon";
 import CalendarIcon from "../../assets/icons/CalendarIcon";
-import useFetchYogaLessonData from "../../services/useFetchYogaLessonData";
 import useFetchYogaClassData from "../../services/useFetchYogaClassData";
 import YogaClassDelete from "./YogaClassDelete";
 
