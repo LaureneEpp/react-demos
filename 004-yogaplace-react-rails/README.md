@@ -4,13 +4,16 @@ This website is built with Ruby on Rails and API endpoints as backend, and the f
 
 Key features: 
 
-1- Yoga Lessons Overview: View detailed information about yoga lessons;
+1 - **Yoga Lessons Overview**: View detailed information about yoga lessons;
 
-2 - Agenda: Check the schedule for upcoming yoga classes (date and location);
+2 - **Agenda**: Check the schedule for upcoming yoga classes (date and location);
 
-Work in progress: user management and booking management. 
+3 - **User management**: either as instructor or student, the dashboard will change accordingly.
+
+4 - **Booking management**: the user can book classes which will be displayed on its personal page. 
+
+Work in progress: booking validation system for instructor + implementing more Framer Motion features. 
 
 
-
-https://github.com/LaureneEpp/react-demos/assets/70053268/c43244b1-1c63-41d2-8c72-444ef1d35579
+https://github.com/LaureneEpp/react-demos/assets/70053268/a30b5f6a-e3a0-4406-adc6-76402bc26367
 
