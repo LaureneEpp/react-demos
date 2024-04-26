@@ -1,12 +1,11 @@
 import React from 'react';
 import './App.css';
+import Main from './components/Main'
 
 function App() {
   return (
     <div className="App">
-      <h1 className="text-1xl font-light underline">
-      Hello world!
-      </h1>
+      <Main></Main>
     </div>
   );
 }
