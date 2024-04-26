@@ -1,4 +1,12 @@
-.App {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+}
+
+
+/* .App {
   text-align: center;
 }
 
@@ -36,4 +44,4 @@
   100% {
     transform: translateY(0px);
   }
-}
+} */
