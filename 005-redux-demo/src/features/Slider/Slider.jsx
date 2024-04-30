@@ -1,4 +1,4 @@
-import { nextSlide, prevSlide, dotSlide } from "../slices/sliderSlice";
+import { nextSlide, prevSlide, dotSlide } from "./sliderSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { sliderData } from "../../assets/data";
 
