@@ -51,7 +51,7 @@ export default function NavBar() {
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
                       <a
-                        key={item.name}
+                        key={item.id}
                         href={item.href}
                         className={classNames(
                           item.current
@@ -144,7 +144,7 @@ export default function NavBar() {
             <div className="space-y-1 px-2 pb-3 pt-2">
               {navigation.map((item) => (
                 <Disclosure.Button
-                  key={item.name}
+                  key={item.id}
                   as="a"
                   href={item.href}
                   className={classNames(
