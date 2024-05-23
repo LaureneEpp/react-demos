@@ -1,13 +1,21 @@
 // NavBar template from TailwindCSS
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import {
+  Bars3Icon,
+  BellIcon,
+  XMarkIcon,
+  ShoppingCartIcon,
+} from "@heroicons/react/24/outline";
+import { Link } from "react-router-dom";
+import Cart from "../features/Cart/Cart";
+import { useState } from "react";
+import { useSelector } from "react-redux";
 
 const navigation = [
-  { name: "Dashboard", href: "#", current: true },
-  { name: "Articles", href: "#", current: false },
-  { name: "Cart", href: "#", current: false },
-  { name: "Calendar", href: "#", current: false },
+  { name: "Dashboard", path: "/", current: true },
+  { name: "Articles", path: "#", current: false },
+  { name: "Calendar", path: "#", current: false },
 ];
 
 function classNames(...classes) {
@@ -15,6 +23,14 @@ function classNames(...classes) {
 }
 
 export default function NavBar() {
+  const totalAmount = useSelector((state) => state.cart.totalAmount);
+  const [openModal, setOpenModal] = useState(false);
+
+  const handleOpen = (e) => {
+    e.preventDefault();
+    setOpenModal(!openModal);
+  };
+
   return (
     <Disclosure as="nav" className="bg-emerald-900 text-neutral-100">
       {({ open }) => (
@@ -50,9 +66,9 @@ export default function NavBar() {
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
-                      <a
+                      <Link
                         key={item.id}
-                        href={item.href}
+                        to={item.path}
                         className={classNames(
                           item.current
                             ? "bg-emerald-900"
@@ -61,8 +77,26 @@ export default function NavBar() {
                         )}
                         aria-current={item.current ? "page" : undefined}>
                         {item.name}
-                      </a>
+                      </Link>
                     ))}
+                    <div
+                      onClick={handleOpen}
+                      className="flex flex-row bg-emerald-900 rounded-md px-3 py-2 text-sm font-medium hover:bg-emerald-700">
+                      <ShoppingCartIcon
+                        className="h-6 w-6 "
+                        aria-hidden="true"
+                      />
+                      {totalAmount > 0 ? (
+                        <span className="rounded-full bg-purple-300 mx-2 px-3 font-inter text-sm">
+                          {totalAmount}
+                        </span>
+                      ) : (
+                        ""
+                      )}
+                      {openModal && (
+                        <Cart openModal={openModal} setOpenModal={setOpenModal}></Cart>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -99,38 +133,38 @@ export default function NavBar() {
                     <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <Menu.Item>
                         {({ active }) => (
-                          <a
-                            href="#"
+                          <Link
+                            to="#"
                             className={classNames(
                               active ? "bg-emerald-100" : "",
                               "block px-4 py-2 text-sm text-emerald-700"
                             )}>
                             Your Profile
-                          </a>
+                          </Link>
                         )}
                       </Menu.Item>
                       <Menu.Item>
                         {({ active }) => (
-                          <a
-                            href="#"
+                          <Link
+                            to="#"
                             className={classNames(
                               active ? "bg-emerald-100" : "",
                               "block px-4 py-2 text-sm text-emerald-700"
                             )}>
                             Settings
-                          </a>
+                          </Link>
                         )}
                       </Menu.Item>
                       <Menu.Item>
                         {({ active }) => (
-                          <a
-                            href="#"
+                          <Link
+                            to="#"
                             className={classNames(
                               active ? "bg-emerald-100" : "",
                               "block px-4 py-2 text-sm text-emerald-700"
                             )}>
                             Sign out
-                          </a>
+                          </Link>
                         )}
                       </Menu.Item>
                     </Menu.Items>

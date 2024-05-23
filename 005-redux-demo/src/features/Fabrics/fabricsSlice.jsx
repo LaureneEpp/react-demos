@@ -14,7 +14,7 @@ export const fabricsSlice = createSlice({
         const filter = fabricData.filter(
           (fabric) => fabric.type === action.payload
         );
-        state.filterFabrics = filter;
+        state.fabrics = filter;
         console.log("filter", filter);
         const saveState = JSON.stringify(filter);
         sessionStorage.setItem("filteredData", saveState);

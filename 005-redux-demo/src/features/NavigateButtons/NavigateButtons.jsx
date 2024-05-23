@@ -24,6 +24,11 @@ const NavigateButtons = () => {
     "Leather",
   ];
   const dispatch = useDispatch();
+
+  const handleFilterFabrics = (type) => {
+    dispatch(filterFabrics(type));
+  };
+
   return (
     <div className="">
       <div className="flex flex-wrap justify-center py-5 m-5">
@@ -32,7 +37,7 @@ const NavigateButtons = () => {
             <div key={index.id} className="mr-4">
               <Link to={`/fabrics/${type}`}>
               <button className="outline bg-neutral-100 hover:bg-purple-800 text-purple-800 hover:text-neutral-100 font-bold py-2 px-4 m-2 rounded"
-              onClick={()=> dispatch(filterFabrics(type))}
+              onClick={() => handleFilterFabrics(type)}
               >
                 {type}
               </button>

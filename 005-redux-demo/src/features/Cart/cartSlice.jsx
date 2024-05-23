@@ -38,8 +38,13 @@ export const cartSlice = createSlice({
         return e;
       }
     },
+    clearCart(state) {
+      state.cart = [];
+      state.totalAmount = 0;
+      state.totalPrice = 0;
+    }
   },
 });
 
-export const { addToCart } = cartSlice.actions;
+export const { addToCart, clearCart } = cartSlice.actions;
 export default cartSlice.reducer;
