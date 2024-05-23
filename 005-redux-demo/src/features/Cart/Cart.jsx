@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { clearCart } from "./cartSlice";
 import { useState } from "react";
-// import NavBar from "../../components/NavBar";
 
 const Cart = () => {
   const [openModal, setOpenModal] = useState(true);
@@ -12,13 +11,11 @@ const Cart = () => {
 
   console.log("cart", cart);
   const handleClearCart = (e) => {
-    // e.preventDefault();
     dispatch(clearCart());
     setOpenModal(false);
   };
 
   const handleCancel = (e) => {
-    // e.preventDefault();
     setOpenModal(false);
   };
 
@@ -52,26 +49,48 @@ const Cart = () => {
                       />
                     </svg>
                   </div>
-                  <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
+                  <div className="w-full mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
                     <h3
                       className="text-base font-semibold leading-6 text-gray-900 my-3"
                       id="modal-title">
                       ShoppingCart
                     </h3>
                     <div className="mt-2">
-                      <ul className="list-none">
-                        {cart.map((item) => (
-                          <li key={item.id} className="my-2 text-gray-500 text-base">
-                            <strong>{item.name} </strong> for {item.color} color and {item.amount} units.
-                          </li>
-                        ))}
-                      </ul>
-                      <p className="text-base text-gray-500 mt-4">
-                        You have a total of <span className="underline underline-offset-1">{totalAmount} items</span>.
-                      </p>
-                      <p className="text-base text-gray-500 mt-4">
-                        ${totalPrice.toFixed(2)}
-                      </p>
+                      {cart.length > 0 ? (
+                        <div>
+                          <ul className="list-none">
+                            {cart.map((item) => (
+                              <li
+                                key={item.id}
+                                className="my-2 text-gray-500 text-base">
+                                <strong>{item.name} </strong> for {item.color}{" "}
+                                color and {item.amount} units.
+                              </li>
+                            ))}
+                          </ul>
+                          <p className="text-base text-gray-500 mt-4">
+                            You have a total of{" "}
+                            <span className="underline underline-offset-1">
+                              {totalAmount} items
+                            </span>
+                            .
+                          </p>
+                          <p className="flex justify-end text-lg text-gray-500 mt-4 mr-6">
+                            <strong>${totalPrice.toFixed(2)}</strong>
+                            
+                          </p>
+                        </div>
+                      ) : (
+                        <div>
+                          <h2 className="text-base text-gray-500 mt-4">
+                            Your bag is empty
+                          </h2>
+                          <p className="flex justify-end text-base text-gray-500 font-inter tracking-normal leading-none my-3 mr-6">
+                            {" "}
+                            Add some products
+                          </p>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>

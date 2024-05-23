@@ -22,7 +22,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function NavBar() {
+export default function NavBar({cart}) {
   const totalAmount = useSelector((state) => state.cart.totalAmount);
   const [openModal, setOpenModal] = useState(false);
 
