@@ -4,7 +4,6 @@ import FabricCard from "./FabricCard";
 
 const Fabrics = () => {
   const fabrics = useSelector((state) => state.fabrics.fabrics);
-  console.log("fabrics", fabrics);
   const { type } = useParams();
 
   return (
