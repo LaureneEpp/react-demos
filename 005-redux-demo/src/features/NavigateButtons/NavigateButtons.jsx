@@ -46,10 +46,10 @@ const NavigateButtons = () => {
           );
         })}
       </div>
-      <div className="bg-red-300 p-2 w-[55%] mx-auto rounded">
+      {/* <div className="bg-red-300 p-2 w-[55%] mx-auto rounded">
         <h3 className="text-orange-900 text-center text-lg">Sales up to 50%</h3>
-      </div>
-      <div className="flex flex-wrap justify-center items-center py-5 m-5">
+      </div> */}
+      {/* <div className="flex flex-wrap justify-center items-center py-5 m-5">
         {fabricData.map((img, index) => {
           return (
             <div>
@@ -61,7 +61,7 @@ const NavigateButtons = () => {
             </div>
           );
         })}
-      </div>
+      </div> */}
     </div>
   );
 };

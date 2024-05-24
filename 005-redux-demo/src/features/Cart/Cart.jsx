@@ -11,7 +11,7 @@ const Cart = () => {
 
   const handleClearCart = (e) => {
     dispatch(clearCart());
-    setOpenModal(false);
+    // setOpenModal(false);
   };
 
   const handleCancel = (e) => {

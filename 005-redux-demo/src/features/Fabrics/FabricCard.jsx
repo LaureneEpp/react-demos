@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { fabricShowPage } from "./fabricsSlice";
 import { Link, useParams } from "react-router-dom";
 
-const FabricCard = ({ id, name, text, price }) => {
+const FabricCard = ({ id, img, name, text, price, color }) => {
   const dispatch = useDispatch();
   const { type } = useParams();
   const handleCardClick = () => {
@@ -16,13 +16,13 @@ const FabricCard = ({ id, name, text, price }) => {
           className=" flex flex-col mt-6 text-gray-700 bg-neutral-100 shadow-md bg-clip-border rounded-xl w-96"
           onClick={handleCardClick}>
           <div className="p-6">
-            <h5 className="block mb-2 font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
+            <h5 className="block mb-2 font-inter text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
               {name}
             </h5>
-            <p className="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
+            <p className="block font-inter text-base antialiased font-light leading-relaxed text-inherit">
               {text}
             </p>
-            <p className="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
+            <p className="block font-inter text-base antialiased font-light leading-relaxed text-inherit">
               {price}€
             </p>
           </div>

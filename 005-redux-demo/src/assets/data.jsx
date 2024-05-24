@@ -65,10 +65,10 @@ export const fabricData = [];
 const sum = 40;
 
 for (let i = 0; i < sum; i++) {
-  const typeIndex = i % typesList.length; // Get index within typesList
-  const type = typesList[typeIndex]; // Get fabric type
-  const colorIndex = i % colorsList.length; // Get index within colorsList
-  const color = colorsList[colorIndex]; // Get fabric color
+  const typeIndex = i % typesList.length; 
+  const type = typesList[typeIndex];
+  const colorIndex = i % colorsList.length; 
+  const color = colorsList[colorIndex]; 
 
   const fabricItem = {
     id: (i + 1).toString(),

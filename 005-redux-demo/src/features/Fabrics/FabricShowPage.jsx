@@ -87,7 +87,7 @@ const FabricShowPage = () => {
                       name="color"
                       value={color}
                       onChange={handleColorChange}
-                      className="peer h-full w-full rounded-[7px] border border-emerald-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-base font-normal text-neutral-100 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-emerald-200 placeholder-shown:border-t-emerald-200 empty:!bg-gray-900 focus:border-2 focus:border-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-emerald-100">
+                      className="peer h-full w-full rounded-[7px] border border-emerald-200 border-t-transparent bg-transparent px-3 py-2.5 font-inter text-base font-normal text-neutral-100 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-emerald-200 placeholder-shown:border-t-emerald-200 empty:!bg-gray-900 focus:border-2 focus:border-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-emerald-100">
                       {colorsList.map((item, index) => {
                         return <option key={index}>{item}</option>;
                       })}
