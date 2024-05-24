@@ -4,6 +4,7 @@ export const cartSlice = createSlice({
   name: "cart",
   initialState: {
     cart: [],
+    img: "",
     amount: 0,
     total: 0,
     totalAmount: 0,
@@ -25,14 +26,15 @@ export const cartSlice = createSlice({
         } else {
           state.cart.push({
             id: fabricId.id,
+            img: fabricId.img,
             name: fabricId.name,
             price: fabricId.price,
             color: fabricId.color,
             amount: 1,
             totalPrice: fabricId.price,
           });
-            state.totalAmount++;
-            state.totalPrice += fabricId.price;
+          state.totalAmount++;
+          state.totalPrice += fabricId.price;
         }
       } catch (e) {
         return e;
@@ -42,9 +44,23 @@ export const cartSlice = createSlice({
       state.cart = [];
       state.totalAmount = 0;
       state.totalPrice = 0;
-    }
+    },
+    removeFromCart(state, action) {
+      const { id, color } = action.payload;
+      const existingFabric = state.cart.find(
+        (fabric) => fabric.id === id && fabric.color === color
+      );
+      if (existingFabric) {
+        state.totalAmount -= existingFabric.amount;
+        state.totalPrice -= existingFabric.totalPrice;
+        state.cart = state.cart.filter(
+          (fabric) =>
+            !(fabric.id === id && fabric.color === color)
+        );
+      }
+    },
   },
 });
 
-export const { addToCart, clearCart } = cartSlice.actions;
+export const { addToCart, clearCart, removeFromCart } = cartSlice.actions;
 export default cartSlice.reducer;

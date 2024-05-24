@@ -29,6 +29,7 @@ const FabricShowPage = () => {
     dispatch(
       addToCart({
         id: fabric.id,
+        img: fabric.img,
         name: fabric.name,
         price: fabric.price,
         color: fabric.color || color,

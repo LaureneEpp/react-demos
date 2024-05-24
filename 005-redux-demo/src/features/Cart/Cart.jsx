@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { clearCart } from "./cartSlice";
+import { clearCart, removeFromCart } from "./cartSlice";
 import { useState } from "react";
 
 const Cart = () => {
@@ -9,7 +9,6 @@ const Cart = () => {
   const totalPrice = useSelector((state) => state.cart.totalPrice);
   const totalAmount = useSelector((state) => state.cart.totalAmount);
 
-  console.log("cart", cart);
   const handleClearCart = (e) => {
     dispatch(clearCart());
     setOpenModal(false);
@@ -17,6 +16,10 @@ const Cart = () => {
 
   const handleCancel = (e) => {
     setOpenModal(false);
+  };
+
+  const handleRemoveFromCart = (item) => {
+    dispatch(removeFromCart(item));
   };
 
   return (
@@ -58,16 +61,46 @@ const Cart = () => {
                     <div className="mt-2">
                       {cart.length > 0 ? (
                         <div>
-                          <ul className="list-none">
-                            {cart.map((item) => (
-                              <li
-                                key={item.id}
-                                className="my-2 text-gray-500 text-base">
-                                <strong>{item.name} </strong> for {item.color}{" "}
-                                color and {item.amount} units.
-                              </li>
-                            ))}
-                          </ul>
+                          {cart.map((item, index) => (
+                            <div className="flex flex-row mt-4">
+                              {" "}
+                              key={index}
+                              <div className="flex-none">
+                                <img
+                                  className="h-[125px] rounded-md"
+                                  src={item.img}
+                                  alt={item.name}
+                                />
+                              </div>
+                              <div className=" grow flex flex-col p-3">
+                                <div className="flex flex-row justify-between">
+                                  <div className="text-gray-500 text-base font-inter font-bold tracking-norma leading-none py-4">
+                                    {item.name}
+                                  </div>
+                                  <div className="text-gray-500 text-base font-intertracking-norma leading-none py-4 italic">
+                                    {item.color}
+                                  </div>
+                                </div>
+                                <div className="flex flex-row justify-between">
+                                  <div className="text-gray-500 text-sm font-inter tracking-norma leading-none">
+                                    Quantity: {item.amount}
+                                  </div>
+                                  <div className="text-gray-500 text-sm font-inter tracking-norma leading-none">
+                                    ${item.price}/p
+                                  </div>
+                                </div>
+                                <div className="flex justify-end">
+                                  <button
+                                    type="button"
+                                    onClick={() => handleRemoveFromCart(item)}
+                                    className="w-1/2 mt-4 justify-center rounded-md bg-red-300 px-3 py-2 text-sm font-semibold text-neutral-100 shadow-sm hover:bg-red-400">
+                                    Remove
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+
                           <p className="text-base text-gray-500 mt-4">
                             You have a total of{" "}
                             <span className="underline underline-offset-1">
@@ -77,7 +110,6 @@ const Cart = () => {
                           </p>
                           <p className="flex justify-end text-lg text-gray-500 mt-4 mr-6">
                             <strong>${totalPrice.toFixed(2)}</strong>
-                            
                           </p>
                         </div>
                       ) : (
