@@ -1,11 +1,11 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addToCart } from "../Cart/cartSlice";
 import { Link } from "react-router-dom";
 
 const FabricsIndexItem = ({ id, img, name, text, price, color, type }) => {
+  
   const dispatch = useDispatch();
   const defaultColor = "black";
-  // const { id, type } = useParams();
 
   const handleAddToCart = () => {
     dispatch(
@@ -18,12 +18,12 @@ const FabricsIndexItem = ({ id, img, name, text, price, color, type }) => {
         price: price,
       })
     );
-  };©
+  };
 
   return (
     <div>
       <div className="relative flex flex-col m-6 bg-neutral-100 shadow-md bg-clip-border rounded-xl w-96">
-        <Link to={`/fabrics/`+ type + `/` +id}>
+        <Link to={`/fabrics/${type}/${id}`}>
           <div className=" h-48 overflow-hidden text-neutral-100 shadow-lg bg-clip-border rounded-t-xl bg-emerald-500 shadow-blue-gray-500/40">
             <img src={img} alt="name" className="object-cover" />
           </div>

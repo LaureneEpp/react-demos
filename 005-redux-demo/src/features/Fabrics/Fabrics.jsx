@@ -22,6 +22,7 @@ const Fabrics = () => {
                 <div key={index}>
                   <FabricCard
                     id={fabric.id}
+                    img={fabric.img}
                     name={fabric.name}
                     text={fabric.text}
                     price={fabric.price}></FabricCard>

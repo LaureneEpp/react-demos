@@ -9,10 +9,6 @@ import FabricShowPage from "./features/Fabrics/FabricShowPage";
 import { useSelector } from "react-redux";
 
 function App() {
-  // const cart = useSelector((state) => state.cart.cart);
-  // const totalAmount = useSelector((state) => state.cart.totalAmount);
-  // const totalPrice = useSelector((state) => state.cart.totalPrice);
-
   return (
     <div className="App">
       <BrowserRouter>

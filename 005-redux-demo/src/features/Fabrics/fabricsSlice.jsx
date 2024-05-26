@@ -30,7 +30,6 @@ export const fabricsSlice = createSlice({
         state.fabricShowPage = singleFabric;
         const saveState = JSON.stringify(singleFabric);
         sessionStorage.setItem("singleFabric", saveState);
-        console.log("product", singleFabric);
       } catch (error) {
         return error;
       }
@@ -48,10 +47,13 @@ export const fabricsSlice = createSlice({
       } catch (error) {
         return error;
       }
+    }, 
+    fabricsIndex(state, action) {
+      
     }
   },
 });
 
-export const { filterFabrics, fabricShowPage, updateFabricColor } =
+export const { filterFabrics, fabricShowPage, updateFabricColor, fabricsIndex } =
   fabricsSlice.actions;
 export default fabricsSlice.reducer;
