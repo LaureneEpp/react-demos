@@ -6,11 +6,13 @@ import {
   BellIcon,
   XMarkIcon,
   ShoppingCartIcon,
+  ArrowLeftStartOnRectangleIcon,
 } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
 import Cart from "../features/Cart/Cart";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { login, logout } from "../features/Login/authSlice";
 
 const navigation = [
   { name: "Dashboard", path: "/", current: true },
@@ -22,10 +24,12 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function NavBar({cart}) {
+export default function NavBar({ cart }) {
   const totalAmount = useSelector((state) => state.cart.totalAmount);
   const [openModal, setOpenModal] = useState(false);
-
+  const user = useSelector((state) => state.user.user);
+  const { name } = user;
+  const dispatch = useDispatch();
   const handleOpen = (e) => {
     e.preventDefault();
     setOpenModal(!openModal);
@@ -94,7 +98,9 @@ export default function NavBar({cart}) {
                         ""
                       )}
                       {openModal && (
-                        <Cart openModal={openModal} setOpenModal={setOpenModal}></Cart>
+                        <Cart
+                          openModal={openModal}
+                          setOpenModal={setOpenModal}></Cart>
                       )}
                     </div>
                   </div>
@@ -105,8 +111,18 @@ export default function NavBar({cart}) {
                   type="button"
                   className="relative rounded-full bg-emerald-800 p-1 text-purple-600 hover:text-neutral-100 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-emerald-800">
                   <span className="absolute -inset-1.5" />
-                  <span className="sr-only">View notifications</span>
                   <BellIcon className="h-6 w-6" aria-hidden="true" />
+                </button>
+                <button
+                  type="button"
+                  className="relative rounded-full bg-emerald-800 p-1 text-purple-600 hover:text-neutral-100 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-emerald-800 mx-2">
+                  <span className="absolute -inset-1.5"
+                    onClick={() => dispatch(logout())} />
+                  <span className="sr-only">View notifications</span>
+                  <ArrowLeftStartOnRectangleIcon
+                    className="h-6 w-6"
+                    aria-hidden="true"
+                  />
                 </button>
 
                 {/* Profile dropdown */}
