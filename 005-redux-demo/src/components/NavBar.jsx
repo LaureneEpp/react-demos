@@ -118,6 +118,7 @@ export default function NavBar({ cart }) {
                     className="relative rounded-full bg-emerald-800 p-1 text-purple-600 hover:text-neutral-100 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-emerald-800">
                     <span className="absolute -inset-1.5" />
                     <BellIcon className="h-6 w-6" aria-hidden="true" />
+                    </button>
                     <button
                       type="button"
                       className="relative rounded-full bg-emerald-800 p-1 text-purple-600 hover:text-neutral-100 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-emerald-800 mx-2">
@@ -130,7 +131,6 @@ export default function NavBar({ cart }) {
                         className="h-6 w-6"
                         aria-hidden="true"
                       />
-                    </button>
                   </button>
                   {/* Profile dropdown */}
                   <Menu as="div" className="relative ml-3">
