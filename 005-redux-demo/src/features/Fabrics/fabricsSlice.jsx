@@ -7,6 +7,7 @@ export const fabricsSlice = createSlice({
     fabrics: JSON.parse(sessionStorage.getItem("filteredData")) || fabricData,
     fabricShowPage: JSON.parse(sessionStorage.getItem("singleFabric")) || [],
     updateFabricColor: {},
+    fabricsIndex: fabricData
   },
   reducers: {
     filterFabrics(state, action) {
@@ -48,8 +49,7 @@ export const fabricsSlice = createSlice({
         return error;
       }
     }, 
-    fabricsIndex(state, action) {
-      
+    fabricsIndex() {
     }
   },
 });

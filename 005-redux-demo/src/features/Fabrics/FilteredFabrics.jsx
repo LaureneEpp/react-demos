@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import FabricCard from "./FabricCard";
 
-const Fabrics = () => {
+const FilteredFabrics = () => {
   const fabrics = useSelector((state) => state.fabrics.fabrics);
   const { type } = useParams();
 
@@ -35,4 +35,4 @@ const Fabrics = () => {
   );
 };
 
-export default Fabrics;
+export default FilteredFabrics;

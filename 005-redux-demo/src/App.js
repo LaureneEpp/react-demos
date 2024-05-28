@@ -3,7 +3,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Main from "./Main";
 import NavBar from "./components/NavBar";
-import Fabrics from "./features/Fabrics/Fabrics";
+import FilteredFabrics from "./features/Fabrics/FilteredFabrics";
+import FabricsIndexPage from "./features/Fabrics/FabricsIndexPage";
 import FabricShowPage from "./features/Fabrics/FabricShowPage";
 import Login from "./features/Login/Login";
 import { useSelector } from "react-redux";
@@ -22,8 +23,8 @@ function App() {
           <Route path="/" element={authUser ? <Main /> : <Login />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/fabrics/:type/:id" element={<FabricShowPage />}></Route>
-          <Route path="/fabrics/:type" element={<Fabrics />}></Route>
-          <Route path="/fabrics" element={<Fabrics />} />
+          <Route path="/fabrics/:type" element={<FilteredFabrics />}></Route>
+          <Route path="/fabrics" element={<FabricsIndexPage />} />
         </Routes>
       </BrowserRouter>
     </div>

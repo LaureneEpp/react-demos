@@ -16,8 +16,8 @@ import { login, logout } from "../features/Login/authSlice";
 
 const navigation = [
   { name: "Dashboard", path: "/", current: true },
-  { name: "Articles", path: "#", current: false },
-  { name: "Calendar", path: "#", current: false },
+  { name: "Products", path: "/fabrics", current: false },
+  // { name: "Calendar", path: "#", current: false },
 ];
 
 function classNames(...classes) {

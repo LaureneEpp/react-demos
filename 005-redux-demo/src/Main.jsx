@@ -1,13 +1,15 @@
 import Slider from "./features/Slider/Slider";
 import NavigateButtons from "./features/NavigateButtons/NavigateButtons";
-import FabricsIndex from "./features/Fabrics/FabricsIndex";
+import FabricsIndexSection from "./features/Fabrics/FabricsIndexSection";
+import {DiscountHeading} from "./components/Headings"
 
 const Main = () => {
   return (
     <>
       <Slider></Slider>
       <NavigateButtons></NavigateButtons>
-      <FabricsIndex></FabricsIndex>
+      <DiscountHeading/>
+      <FabricsIndexSection></FabricsIndexSection>
     </>
   );
 };
