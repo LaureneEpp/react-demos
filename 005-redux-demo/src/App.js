@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route , Navigate} from "react-router-dom";
 import "./App.css";
 import Main from "./Main";
 import NavBar from "./components/NavBar";
@@ -12,18 +12,18 @@ import { useSelector } from "react-redux";
 
 function App() {
   const authUser = useSelector((state) => state.auth.user);
-  // const { authUser } = user;
+  console.log(authUser)
 
   return (
     <div className="App">
       <BrowserRouter>
         <NavBar />
         <Routes>
-          <Route path="/" element={authUser ? <Main /> : <Login />}></Route>
+          <Route path="/" element={authUser ? <Main /> : <Navigate to={"/login"} />}/>
           <Route path="/login" element={<Login />}></Route>
-          <Route path="/profile" element={<UserProfile authUser={authUser} />}></Route>
-          <Route path="/fabrics/:type/:id" element={<FabricShowPage />}></Route>
-          <Route path="/fabrics/:type" element={<FilteredFabrics />}></Route>
+          <Route path="/profile" element={<UserProfile authUser={authUser} />}/>
+          <Route path="/fabrics/:type/:id" element={<FabricShowPage/>}/>
+          <Route path="/fabrics/:type" element={<FilteredFabrics />}/>
           <Route path="/fabrics" element={<FabricsIndexPage />} />
         </Routes>
       </BrowserRouter>

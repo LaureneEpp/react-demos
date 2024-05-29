@@ -13,11 +13,11 @@ import Cart from "../features/Cart/Cart";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { login, logout } from "../features/Login/authSlice";
+import { useNavigate } from 'react-router-dom';
 
 const navigation = [
   { name: "Dashboard", path: "/", current: true },
   { name: "Products", path: "/fabrics", current: false },
-  // { name: "Calendar", path: "#", current: false },
 ];
 
 function classNames(...classes) {
@@ -29,12 +29,19 @@ export default function NavBar({ cart }) {
   const [openModal, setOpenModal] = useState(false);
   const user = useSelector((state) => state.auth.user);
   const { authUser } = user;
-  // const { name } = user;
+  let navigate = useNavigate();
   const dispatch = useDispatch();
   const handleOpen = (e) => {
     e.preventDefault();
     setOpenModal(!openModal);
   };
+
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate('/', { replace: true });
+
+
+  }
 
   return (
     <Disclosure as="nav" className="bg-emerald-900 text-neutral-100">
@@ -173,7 +180,7 @@ export default function NavBar({ cart }) {
                                 active ? "bg-emerald-100" : "",
                                 "flex items-start px-4 py-2 text-sm text-emerald-700 w-full"
                               )}
-                              onClick={() => dispatch(logout())}>
+                              onClick={handleLogout}>
                               Sign out
                             </button>
                           )}

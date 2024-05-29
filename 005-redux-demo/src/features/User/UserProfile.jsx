@@ -1,15 +1,4 @@
-// import { userData } from "../../assets/data";
-import { useSelector } from "react-redux";
-// import { authSlice } from "../Login/authSlice";
-
-const UserProfile = ({authUser}) => {
-// const {authUser} = user
-// const user = useSelector((state) => state.auth.user)
-    console.log(authUser)
-    
-    if (!authUser) {
-        return <div>Loading...</div>; // or handle unauthenticated case
-      }
+const UserProfile = ({ authUser }) => {
   return (
     <div className="overflow-hidden h-full bg-neutral-100 py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -19,21 +8,19 @@ const UserProfile = ({authUser}) => {
               <h2 className="text-base font-semibold leading-7 text-purple-600">
                 Your profile
               </h2>
-              {/* {userData.map((user) => ( */}
-                <div key={authUser.id} className="mt-8">
-                  <img
-                    src={authUser.img}
-                    alt="avatar"
-                    className="relative inline-block h-12 w-12 !rounded-full  object-cover object-center"
-                  />
-                  <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                    {authUser.fullname}
-                  </p>
-                  <p className="mt-6 text-lg leading-8 text-gray-600">
-                    {authUser.bio}
-                  </p>
-                </div>
-              {/* ))} */}
+              <div key={authUser.id} className="mt-8">
+                <img
+                  src={authUser.img}
+                  alt="avatar"
+                  className="relative inline-block h-12 w-12 !rounded-full  object-cover object-center"
+                />
+                <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                  {authUser.fullname}
+                </p>
+                <p className="mt-6 text-lg leading-8 text-gray-600">
+                  {authUser.bio}
+                </p>
+              </div>
             </div>
           </div>
         </div>

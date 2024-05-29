@@ -4,6 +4,7 @@ import { login } from "./authSlice";
 import { useDispatch } from "react-redux";
 import { userData } from "../../assets/data";
 
+
 const Login = () => {
   const randomUser = userData[Math.floor(Math.random() * userData.length)];
   const initialState = {
@@ -12,7 +13,6 @@ const Login = () => {
     password: randomUser.password,
     img: randomUser.img, 
     bio: randomUser.bio
-    
   };
   const [values, setValues] = useState(initialState);
   const dispatch = useDispatch();
