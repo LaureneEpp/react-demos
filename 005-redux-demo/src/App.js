@@ -7,13 +7,12 @@ import FilteredFabrics from "./features/Fabrics/FilteredFabrics";
 import FabricsIndexPage from "./features/Fabrics/FabricsIndexPage";
 import FabricShowPage from "./features/Fabrics/FabricShowPage";
 import Login from "./features/Login/Login";
+import UserProfile from "./features/User/UserProfile";
 import { useSelector } from "react-redux";
 
 function App() {
-  const user = useSelector((state)=> state.user.user);
-  const {authUser } = user;
-  console.log("user", user);
-  console.log("authUser", authUser);
+  const authUser = useSelector((state) => state.auth.user);
+  // const { authUser } = user;
 
   return (
     <div className="App">
@@ -22,6 +21,7 @@ function App() {
         <Routes>
           <Route path="/" element={authUser ? <Main /> : <Login />}></Route>
           <Route path="/login" element={<Login />}></Route>
+          <Route path="/profile" element={<UserProfile authUser={authUser} />}></Route>
           <Route path="/fabrics/:type/:id" element={<FabricShowPage />}></Route>
           <Route path="/fabrics/:type" element={<FilteredFabrics />}></Route>
           <Route path="/fabrics" element={<FabricsIndexPage />} />

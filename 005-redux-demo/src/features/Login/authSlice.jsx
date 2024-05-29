@@ -4,19 +4,22 @@ export const authSlice = createSlice({
   name: "auth",
   initialState: {
     user: JSON.parse(sessionStorage.getItem('authUser')) || {
-      name: "",
+      fullname: "",
       password: "",
+      img: "", 
+      bio: "",
       authUser: false,
     },
   },
   reducers: {
     login(state, action) {
       const userId = action.payload;
-      const userValidation = /^[A-Za-z]{4,10}$/i.test(userId.name);
+      const userValidation = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{4,10}$/i.test(userId.fullname);
       const passwordValidation =
         /^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{4,10}$/i.test(
           userId.password
         );
+
       state.user = userId;
       if (!userValidation || !passwordValidation) {
         state.user.authUser = false;
@@ -28,8 +31,10 @@ export const authSlice = createSlice({
     },
       logout(state) {
           state.user = {
-            name: "",
+            fullname: "",
             password: "",
+            img: "", 
+            bio: "",
             authUser: false,
           }
           sessionStorage.clear()

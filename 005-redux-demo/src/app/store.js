@@ -9,7 +9,7 @@ export const store = configureStore({
     slider: slideReducer,
     fabrics: fabricsReducer,
     cart: cartReducer,
-    user: authReducer
+    auth: authReducer
   },
 });
  

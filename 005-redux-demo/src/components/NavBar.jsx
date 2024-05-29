@@ -27,7 +27,7 @@ function classNames(...classes) {
 export default function NavBar({ cart }) {
   const totalAmount = useSelector((state) => state.cart.totalAmount);
   const [openModal, setOpenModal] = useState(false);
-  const user = useSelector((state) => state.user.user);
+  const user = useSelector((state) => state.auth.user);
   const { authUser } = user;
   // const { name } = user;
   const dispatch = useDispatch();
