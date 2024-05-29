@@ -151,7 +151,7 @@ export default function NavBar({ cart }) {
                         <Menu.Item>
                           {({ active }) => (
                             <Link
-                              to="#"
+                              to="/profile"
                               className={classNames(
                                 active ? "bg-emerald-100" : "",
                                 "block px-4 py-2 text-sm text-emerald-700"
