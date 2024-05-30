@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { colorsList } from "../../assets/data";
 import { addToCart } from "../Cart/cartSlice";
 import { updateFabricColor } from "./fabricsSlice";
+import { DiscountHeading } from "../../components/Headings";
 
 const FabricShowPage = () => {
   const { id } = useParams();
@@ -64,11 +65,8 @@ const FabricShowPage = () => {
             <p className="text-3xl tracking-tight text-neutral-100">
               {fabric.price} €
             </p>
-            <div className="bg-red-300 p-2 w-[55%] mx-auto rounded">
-              <h3 className="text-orange-900 text-center text-lg">
-                Discount up to 15%
-              </h3>
-            </div>
+            <DiscountHeading text={`Discount up to ${fabric.discount}%`} />
+
             <div className="py-10 lg:pb-16 lg:pr-8 lg:pt-6">
               {/* Description */}
               <div>

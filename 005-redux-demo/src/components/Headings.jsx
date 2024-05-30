@@ -1,8 +1,9 @@
-export const DiscountHeading = () => {
+
+export const DiscountHeading = ({ text }) => {
   return (
     <div className="bg-red-300 p-2 w-[55%] mx-auto rounded">
       <h3 className="text-orange-900 text-center text-lg">
-        Sales for Fabrics up to 50%
+        {text}
       </h3>
     </div>
   );

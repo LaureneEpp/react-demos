@@ -5,7 +5,6 @@ import {DiscountHeading} from "./components/Headings"
 import { useSelector } from "react-redux";
 import Login from "./features/Login/Login";
 
-
 const Main = () => {
   const authUser = useSelector((state) => state.auth.user);
   console.log(authUser)
@@ -14,7 +13,7 @@ const Main = () => {
       <>
       <Slider></Slider>
         <NavigateButtons></NavigateButtons>
-        <DiscountHeading/>
+        <DiscountHeading text="Sales for Fabrics up to 50%"/>
         <FabricsIndexSection></FabricsIndexSection>
       </>
     ) : (
