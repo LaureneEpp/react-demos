@@ -67,13 +67,17 @@ export const sliderData = [
 
 export const fabricData = [];
 const sum = 40;
+const discount = [0, 15, 30, 50, 75];
+
 
 for (let i = 0; i < sum; i++) {
   const typeIndex = i % typesList.length;
   const type = typesList[typeIndex];
   const colorIndex = i % colorsList.length;
   const color = colorsList[colorIndex];
-
+  
+  const randomDiscount = discount[Math.floor(Math.random() * discount.length)];
+  
   const fabricItem = {
     id: (i + 1).toString(),
     img: i % 2 === 0 ? textile01 : textile02,
@@ -81,6 +85,7 @@ for (let i = 0; i < sum; i++) {
     text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Debitis, explicabo pariatur excepturi molestias eos corporis perferendis?",
     type: type,
     color: color,
+    discount: randomDiscount, 
     price: Math.floor(Math.random() * 100) + 1,
   };
 

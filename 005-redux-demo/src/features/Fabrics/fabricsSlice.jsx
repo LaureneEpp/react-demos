@@ -10,7 +10,7 @@ export const fabricsSlice = createSlice({
     fabricsIndex: fabricData
   },
   reducers: {
-    filterFabrics(state, action) {
+    filterFabricsByType(state, action) {
       try {
         const filter = fabricData.filter(
           (fabric) => fabric.type === action.payload
@@ -54,6 +54,6 @@ export const fabricsSlice = createSlice({
   },
 });
 
-export const { filterFabrics, fabricShowPage, updateFabricColor, fabricsIndex } =
+export const { filterFabricsByType,  fabricShowPage, updateFabricColor, fabricsIndex } =
   fabricsSlice.actions;
 export default fabricsSlice.reducer;

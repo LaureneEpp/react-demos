@@ -1,6 +1,6 @@
 // import React from "react";
 import { fabricData } from "../../assets/data";
-import { filterFabrics } from "../Fabrics/fabricsSlice";
+import { filterFabricsByType } from "../Fabrics/fabricsSlice";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -25,8 +25,8 @@ const NavigateButtons = () => {
   ];
   const dispatch = useDispatch();
 
-  const handleFilterFabrics = (type) => {
-    dispatch(filterFabrics(type));
+  const handleFilterFabricsByType = (type) => {
+    dispatch(filterFabricsByType(type));
   };
 
   return (
@@ -37,7 +37,7 @@ const NavigateButtons = () => {
             <div key={index.id} className="mr-4">
               <Link to={`/fabrics/${type}`}>
               <button className="outline bg-neutral-100 hover:bg-purple-800 text-purple-800 hover:text-neutral-100 font-bold py-2 px-4 m-2 rounded"
-              onClick={() => handleFilterFabrics(type)}
+              onClick={() => handleFilterFabricsByType(type)}
               >
                 {type}
               </button>

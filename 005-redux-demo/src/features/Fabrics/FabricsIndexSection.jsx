@@ -3,13 +3,14 @@ import { useSelector } from "react-redux";
 
 const FabricsIndexSection = () => {
   const fabrics = useSelector((state) => state.fabrics.fabricsIndex);
-
+  const filteredFabrics = fabrics.filter((fabric) => fabric.discount === 50);
+  
   return (
     <div>
       <div className="flex flex-wrap justify-center items-center py-5 m-5">
-        {fabrics.map((fabric, index) => {
+        {filteredFabrics.map((fabric, index) => {
           return (
-            <div key={index}>
+            <div key={fabric.id}>
               <FabricsIndexItem
                 id={fabric.id}
                 name={fabric.name}
