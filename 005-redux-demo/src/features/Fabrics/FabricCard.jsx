@@ -28,7 +28,7 @@ const FabricCard = ({ id, img, name, text, price, color }) => {
             </p>
           </div>
           <div className="p-6 pt-0">
-            <PrimaryButton text={type} onClick={handleCardClick} className="p-2 bg-purple-700 text-neutral-100"/>
+            <PrimaryButton text={type} onClick={handleCardClick} className="p-2 bg-purple-700 text-neutral-100 rounded-lg"/>
           </div>
         </div>
       </Link>

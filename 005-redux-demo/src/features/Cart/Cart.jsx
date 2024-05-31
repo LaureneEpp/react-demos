@@ -91,7 +91,7 @@ const Cart = () => {
                                   </div>
                                 </div>
                                 <div className="flex justify-end">
-                                  <PrimaryButton text="Remove" onclick={() => handleRemoveFromCart(item)} className="mt-6 bg-red-300 text-neutral-100 hover:bg-red-400" />
+                                  <PrimaryButton text="Remove" onclick={() => handleRemoveFromCart(item)} className="mt-6 bg-red-300 text-neutral-100 hover:bg-red-400 rounded-lg" />
                                 </div>
                               </div>
                             </div>
@@ -128,12 +128,12 @@ const Cart = () => {
                   <PrimaryButton
                     text="Cancel"
                     onclick={handleCancel}
-                    className="mx-2 bg-neutral-100 text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-neutral-400 hover:text-neutral-100 "
+                    className="mx-2 bg-neutral-100 text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-neutral-400 hover:text-neutral-100 rounded-lg "
                   />
                   <PrimaryButton
                     text="Clear"
                     onclick={handleClearCart}
-                    className="mx-2 bg-emerald-600 text-neutral-100 hover:bg-emerald-500"
+                    className="mx-2 bg-emerald-600 text-neutral-100 hover:bg-emerald-500 rounded-lg"
                   />
                 </div>
               </div>

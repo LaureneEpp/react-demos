@@ -48,7 +48,7 @@ const FabricsIndexItem = ({ id, img, name, text, price, color, type }) => {
           </div>
         </Link>
         <div className="p-6 pt-0">
-          <PrimaryButton text="Add to cart" onClick={ handleAddToCart} className=" select-none disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none bg-emerald-900 text-neutral-100 shadow-gray-900/10" />
+          <PrimaryButton text="Add to cart" onClick={ handleAddToCart} className="bg-emerald-900 text-neutral-100 rounded-lg" />
         </div>
       </div>
     </div>
