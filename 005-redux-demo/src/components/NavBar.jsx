@@ -6,14 +6,13 @@ import {
   BellIcon,
   XMarkIcon,
   ShoppingCartIcon,
-  ArrowLeftStartOnRectangleIcon,
 } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
 import Cart from "../features/Cart/Cart";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { login, logout } from "../features/Login/authSlice";
-import { useNavigate } from 'react-router-dom';
+import { logout } from "../features/Login/authSlice";
+import { useNavigate } from "react-router-dom";
 
 const navigation = [
   { name: "Dashboard", path: "/", current: true },
@@ -27,10 +26,12 @@ function classNames(...classes) {
 export default function NavBar({ cart }) {
   const totalAmount = useSelector((state) => state.cart.totalAmount);
   const [openModal, setOpenModal] = useState(false);
-  const user = useSelector((state) => state.auth.user);
-  const { authUser } = user;
+  const authUser = useSelector((state) => state.auth.user);
+  console.log(authUser);
+
   let navigate = useNavigate();
   const dispatch = useDispatch();
+
   const handleOpen = (e) => {
     e.preventDefault();
     setOpenModal(!openModal);
@@ -38,10 +39,8 @@ export default function NavBar({ cart }) {
 
   const handleLogout = () => {
     dispatch(logout());
-    navigate('/', { replace: true });
-
-
-  }
+    navigate("/", { replace: true });
+  };
 
   return (
     <Disclosure as="nav" className="bg-emerald-900 text-neutral-100">
@@ -49,7 +48,7 @@ export default function NavBar({ cart }) {
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
             <div className="relative flex h-16 items-center justify-between">
-              {authUser && (
+              {authUser.authUser && (
                 <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                   {/* Mobile menu button*/}
                   <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-purple-600 hover:bg-emerald-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
@@ -77,7 +76,7 @@ export default function NavBar({ cart }) {
                     />
                   </svg>
                 </div>
-                {authUser && (
+                {authUser.authUser && (
                   <div className="hidden sm:ml-6 sm:block">
                     <div className="flex space-x-4">
                       {navigation.map((item) => (
@@ -118,7 +117,7 @@ export default function NavBar({ cart }) {
                   </div>
                 )}
               </div>
-              {authUser && (
+              {authUser.authUser && (
                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                   <button
                     type="button"
@@ -132,9 +131,10 @@ export default function NavBar({ cart }) {
                       <Menu.Button className="relative flex rounded-full bg-emerald-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-emerald-800">
                         <span className="absolute -inset-1.5" />
                         <span className="sr-only">Open user menu</span>
+
                         <img
                           className="h-8 w-8 rounded-full"
-                          src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                          src={authUser.img}
                           alt=""
                         />
                       </Menu.Button>
@@ -192,7 +192,7 @@ export default function NavBar({ cart }) {
               )}
             </div>
           </div>
-          {authUser && (
+          {authUser.authUser && (
             <Disclosure.Panel className="sm:hidden">
               <div className="space-y-1 px-2 pb-3 pt-2">
                 {navigation.map((item) => (

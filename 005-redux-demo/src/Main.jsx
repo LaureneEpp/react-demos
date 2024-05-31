@@ -7,6 +7,7 @@ import Login from "./features/Login/Login";
 
 const Main = () => {
   const authUser = useSelector((state) => state.auth.user);
+  
   console.log(authUser)
   return (
     authUser.authUser ? (
