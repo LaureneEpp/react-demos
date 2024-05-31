@@ -1,12 +1,12 @@
 import { nextSlide, prevSlide, dotSlide } from "./sliderSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { sliderData } from "../../assets/data";
+import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
 
 const Slider = () => {
   const slideIndex = useSelector((state) => state.slider.value);
   console.log("slideIndex", slideIndex);
   const dispatch = useDispatch();
-
 
   return (
     <div className="relative pb-4">
@@ -57,36 +57,12 @@ const Slider = () => {
         <button
           className="absolute top-[15%] left-4 bg-purple-600 text-emerald-700 rounded-full p-2 hover:bg-emerald-700 hover:text-purple-600"
           onClick={() => dispatch(prevSlide(slideIndex - 1))}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="w-8 h-8">
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18"
-            />
-          </svg>
+          <ArrowLeftIcon className="w-8 h-8" />
         </button>
         <button
           className="absolute top-[15%] right-4 bg-purple-600 text-emerald-700 rounded-full p-2 hover:bg-emerald-700 hover:text-purple-600"
           onClick={() => dispatch(nextSlide(slideIndex + 1))}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="w-8 h-8">
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3"
-            />
-          </svg>
+          <ArrowRightIcon className="w-8 h-8" />
         </button>
       </div>
     </div>

@@ -2,6 +2,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { clearCart, removeFromCart } from "./cartSlice";
 import { useState } from "react";
 import { PrimaryButton } from "../../components/Buttons";
+import {
+  ShoppingBagIcon
+} from "@heroicons/react/24/outline";
 
 const Cart = () => {
   const [openModal, setOpenModal] = useState(true);
@@ -39,19 +42,7 @@ const Cart = () => {
               <div className="bg-neutral-100 px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
                 <div className="sm:flex sm:items-start">
                   <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-purple-100 sm:mx-0 sm:h-10 sm:w-10">
-                    <svg
-                      className="h-6 w-6 text-purple-600"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth="1.5"
-                      stroke="currentColor"
-                      aria-hidden="true">
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"
-                      />
-                    </svg>
+                    <ShoppingBagIcon className="h-6 w-6 text-purple-600" aria-hidden="true"/>
                   </div>
                   <div className="w-full mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
                     <h3
