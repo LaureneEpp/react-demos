@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { clearCart, removeFromCart } from "./cartSlice";
 import { useState } from "react";
+import { CartButton } from "../../components/Buttons";
 
 const Cart = () => {
   const [openModal, setOpenModal] = useState(true);
@@ -90,12 +91,7 @@ const Cart = () => {
                                   </div>
                                 </div>
                                 <div className="flex justify-end">
-                                  <button
-                                    type="button"
-                                    onClick={() => handleRemoveFromCart(item)}
-                                    className="w-1/2 mt-4 justify-center rounded-md bg-red-300 px-3 py-2 text-sm font-semibold text-neutral-100 shadow-sm hover:bg-red-400">
-                                    Remove
-                                  </button>
+                                  <CartButton text="Remove" onclick={() => handleRemoveFromCart(item)} className="mt-6 bg-red-300 text-neutral-100 hover:bg-red-400" />
                                 </div>
                               </div>
                             </div>
@@ -128,18 +124,18 @@ const Cart = () => {
                 </div>
               </div>
               <div className=" px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                <button
-                  type="button"
-                  onClick={handleClearCart}
-                  className="inline-flex w-full justify-center rounded-md bg-emerald-600 px-3 py-2 text-sm font-semibold text-neutral-100 shadow-sm hover:bg-emerald-500 sm:ml-3 sm:w-auto">
-                  Clear
-                </button>
-                <button
-                  type="button"
-                  onClick={handleCancel}
-                  className="mt-3 inline-flex w-full justify-center rounded-md bg-neutral-100 px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto">
-                  Cancel
-                </button>
+                <div className="flex flex-row">
+                  <CartButton
+                    text="Cancel"
+                    onclick={handleCancel}
+                    className="mx-2 bg-neutral-100 text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-neutral-400 hover:text-neutral-100 "
+                  />
+                  <CartButton
+                    text="Clear"
+                    onclick={handleClearCart}
+                    className="mx-2 bg-emerald-600 text-neutral-100 hover:bg-emerald-500"
+                  />
+                </div>
               </div>
             </div>
           </div>
