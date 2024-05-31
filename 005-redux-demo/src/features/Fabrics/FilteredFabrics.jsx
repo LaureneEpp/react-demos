@@ -17,9 +17,9 @@ const FilteredFabrics = () => {
         <div className="flex flex-wrap justify-center items-center py-8 gap-8">
           {fabrics
             .filter((fabric) => fabric.type === type)
-            .map((fabric, index) => {
+            .map((fabric) => {
               return (
-                <div key={index}>
+                <div key={fabric.id}>
                   <FabricCard
                     id={fabric.id}
                     img={fabric.img}
