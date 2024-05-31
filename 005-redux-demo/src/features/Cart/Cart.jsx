@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { clearCart, removeFromCart } from "./cartSlice";
 import { useState } from "react";
-import { Button } from "../../components/Buttons";
+import { PrimaryButton } from "../../components/Buttons";
 
 const Cart = () => {
   const [openModal, setOpenModal] = useState(true);
@@ -91,7 +91,7 @@ const Cart = () => {
                                   </div>
                                 </div>
                                 <div className="flex justify-end">
-                                  <Button text="Remove" onclick={() => handleRemoveFromCart(item)} className="mt-6 bg-red-300 text-neutral-100 hover:bg-red-400" />
+                                  <PrimaryButton text="Remove" onclick={() => handleRemoveFromCart(item)} className="mt-6 bg-red-300 text-neutral-100 hover:bg-red-400" />
                                 </div>
                               </div>
                             </div>
@@ -125,12 +125,12 @@ const Cart = () => {
               </div>
               <div className=" px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
                 <div className="flex flex-row">
-                  <Button
+                  <PrimaryButton
                     text="Cancel"
                     onclick={handleCancel}
                     className="mx-2 bg-neutral-100 text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-neutral-400 hover:text-neutral-100 "
                   />
-                  <Button
+                  <PrimaryButton
                     text="Clear"
                     onclick={handleClearCart}
                     className="mx-2 bg-emerald-600 text-neutral-100 hover:bg-emerald-500"

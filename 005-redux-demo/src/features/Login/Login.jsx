@@ -3,7 +3,7 @@ import { useState } from "react";
 import { login } from "./authSlice";
 import { useDispatch } from "react-redux";
 import { userData } from "../../assets/data";
-import { Button } from "../../components/Buttons";
+import { PrimaryButton } from "../../components/Buttons";
 
 const Login = () => {
   const randomUser = userData[Math.floor(Math.random() * userData.length)];
@@ -61,7 +61,7 @@ const Login = () => {
           </div>
         </div>
         <div className="p-6 pt-0">
-          <Button
+          <PrimaryButton
             text="Sign in"
             onClick={handleSubmit}
             className="w-full p-4 bg-purple-800 text-neutral-100"

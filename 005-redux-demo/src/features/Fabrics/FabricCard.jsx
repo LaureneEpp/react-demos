@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { fabricShowPage } from "./fabricsSlice";
 import { Link, useParams } from "react-router-dom";
-import { Button } from "../../components/Buttons";
+import { PrimaryButton } from "../../components/Buttons";
 
 const FabricCard = ({ id, img, name, text, price, color }) => {
   const dispatch = useDispatch();
@@ -28,7 +28,7 @@ const FabricCard = ({ id, img, name, text, price, color }) => {
             </p>
           </div>
           <div className="p-6 pt-0">
-            <Button text={type} onClick={handleCardClick} className="p-2 bg-purple-700 text-neutral-100"/>
+            <PrimaryButton text={type} onClick={handleCardClick} className="p-2 bg-purple-700 text-neutral-100"/>
           </div>
         </div>
       </Link>

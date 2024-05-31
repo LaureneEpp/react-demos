@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "../Cart/cartSlice";
 import { Link } from "react-router-dom";
 import { fabricShowPage } from "./fabricsSlice";
-import { Button } from "../../components/Buttons";
+import { PrimaryButton } from "../../components/Buttons";
 
 const FabricsIndexItem = ({ id, img, name, text, price, color, type }) => {
   const dispatch = useDispatch();
@@ -48,7 +48,7 @@ const FabricsIndexItem = ({ id, img, name, text, price, color, type }) => {
           </div>
         </Link>
         <div className="p-6 pt-0">
-          <Button text="Add to cart" onClick={ handleAddToCart} className=" select-none disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none bg-emerald-900 text-neutral-100 shadow-gray-900/10" />
+          <PrimaryButton text="Add to cart" onClick={ handleAddToCart} className=" select-none disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none bg-emerald-900 text-neutral-100 shadow-gray-900/10" />
         </div>
       </div>
     </div>

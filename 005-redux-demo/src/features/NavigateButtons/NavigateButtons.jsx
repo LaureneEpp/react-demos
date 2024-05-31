@@ -4,6 +4,7 @@ import { filterFabricsByType } from "../Fabrics/fabricsSlice";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
+
 const NavigateButtons = () => {
   const typesList = [
     "Cotton",
@@ -46,22 +47,6 @@ const NavigateButtons = () => {
           );
         })}
       </div>
-      {/* <div className="bg-red-300 p-2 w-[55%] mx-auto rounded">
-        <h3 className="text-orange-900 text-center text-lg">Sales up to 50%</h3>
-      </div> */}
-      {/* <div className="flex flex-wrap justify-center items-center py-5 m-5">
-        {fabricData.map((img, index) => {
-          return (
-            <div>
-              <img
-                src={img.img}
-                alt="Fabrics"
-                className="object-cover h-48 w-full drop-shadow-xl py-2 px-4 m-2"
-              />
-            </div>
-          );
-        })}
-      </div> */}
     </div>
   );
 };
