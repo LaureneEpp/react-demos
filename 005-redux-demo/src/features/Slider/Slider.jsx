@@ -7,6 +7,7 @@ const Slider = () => {
   console.log("slideIndex", slideIndex);
   const dispatch = useDispatch();
 
+
   return (
     <div className="relative pb-4">
       {sliderData.map((item) => {

@@ -3,7 +3,7 @@ import { useState } from "react";
 import { login } from "./authSlice";
 import { useDispatch } from "react-redux";
 import { userData } from "../../assets/data";
-
+import { Button } from "../../components/Buttons";
 
 const Login = () => {
   const randomUser = userData[Math.floor(Math.random() * userData.length)];
@@ -11,8 +11,8 @@ const Login = () => {
     userId: randomUser.id,
     fullname: randomUser.fullname,
     password: randomUser.password,
-    img: randomUser.img, 
-    bio: randomUser.bio
+    img: randomUser.img,
+    bio: randomUser.bio,
   };
   const [values, setValues] = useState(initialState);
   const dispatch = useDispatch();
@@ -26,17 +26,10 @@ const Login = () => {
 
   return (
     <div className="w-full h-full grid grid-col-1 justify-center items-center">
-      {/* <button
-        className="relative align-middle select-none font-inter font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] h-10 max-h-[40px] rounded-lg text-xs bg-gray-900 text-neutral-100 shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none"
-        type="button">
-        <span className="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-          <i className="fas fa-heart" aria-hidden="true"></i>
-        </span>
-      </button> */}
       <div className="flex flex-col bg-neutral-100 shadow-md w-96 rounded-xl bg-clip-border">
         <div className="grid mx-4 mb-4 -mt-6 overflow-hidden text-neutral-100 shadow-lg h-28 place-items-center rounded-xl bg-purple-900 bg-clip-border shadow-gray-900/20">
           <h3 className="block font-inter text-3xl antialiased font-semibold leading-snug tracking-normal text-neutral-100">
-            Sign In
+            Welcome
           </h3>
         </div>
         <div className="flex flex-col gap-4 p-6">
@@ -68,11 +61,11 @@ const Login = () => {
           </div>
         </div>
         <div className="p-6 pt-0">
-          <button
-            className="block w-full select-none rounded-lg bg-purple-800 py-3 px-6 text-center align-middle font-inter text-xs font-bold uppercase text-neutral-100 shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-            type="button" onClick={handleSubmit}>
-            Sign In
-          </button>
+          <Button
+            text="Sign in"
+            onClick={handleSubmit}
+            className="w-full p-4 bg-purple-800 text-neutral-100"
+          />
         </div>
       </div>
     </div>
