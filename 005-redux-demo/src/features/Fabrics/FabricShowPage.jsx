@@ -5,6 +5,7 @@ import { colorsList } from "../../assets/data";
 import { addToCart } from "../Cart/cartSlice";
 import { updateFabricColor } from "./fabricsSlice";
 import { DiscountHeading } from "../../components/Headings";
+import { FormButton } from "../../components/Buttons";
 
 const FabricShowPage = () => {
   const { id } = useParams();
@@ -97,13 +98,7 @@ const FabricShowPage = () => {
                 </div>
               </div>
             </div>
-
-            <button
-              type="submit"
-              onClick={handleAddToCart}
-              className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-purple-600 px-8 py-3 text-base font-medium text-neutral-100 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-              Add to bag
-            </button>
+            <FormButton text="Add to your bag" onClick={handleAddToCart} className=" mt-10 w-full bg-purple-600 text-neutral-100 hover:bg-purple-700"/>
           </div>
         </div>
       </div>

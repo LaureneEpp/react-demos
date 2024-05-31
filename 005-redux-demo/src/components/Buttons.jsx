@@ -10,3 +10,16 @@ export const PrimaryButton = ({ text, onClick, className }) => {
     </>
   );
 };
+
+export const FormButton = ({text, onClick, className}) => {
+  return (
+    <>
+      <button
+        type="submit"
+        onClick={onClick}
+        className={`flex items-center justify-center rounded-md border border-transparent px-8 py-3 text-base font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 ${className}`}>
+        {text}
+      </button>
+    </>
+  );
+};
