@@ -8,6 +8,7 @@ import FabricsIndexPage from "./features/Fabrics/FabricsIndexPage";
 import FabricShowPage from "./features/Fabrics/FabricShowPage";
 import Login from "./features/Login/Login";
 import UserProfile from "./features/User/UserProfile";
+import UserProfileForm from "./features/User/UserProfileForm";
 import { useSelector } from "react-redux";
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Route path="/" element={authUser ? <Main /> : <Navigate to={"/login"} />}/>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/profile" element={<UserProfile authUser={authUser} />}/>
+          <Route path="/profile/edit" element={<UserProfileForm authUser={authUser} />}/>
           <Route path="/fabrics/:type/:id" element={<FabricShowPage/>}/>
           <Route path="/fabrics/:type" element={<FilteredFabrics />}/>
           <Route path="/fabrics" element={<FabricsIndexPage />} />

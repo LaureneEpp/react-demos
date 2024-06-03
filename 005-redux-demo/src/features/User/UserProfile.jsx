@@ -1,8 +1,12 @@
-const UserProfile = ({ authUser }) => {
+import { useSelector } from "react-redux";
+
+const UserProfile = () => {
+  const authUser = useSelector((state) => state.auth.user);
+
   return (
-    <div className="overflow-hidden h-full bg-neutral-100 py-24 sm:py-32 flex items-center">
+    <div className="overflow-hidden h-full bg-transparent py-24 sm:py-32 flex items-center">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="lg:max-w-lg bg-emerald-800 p-4 rounded shadow-xl">
+        <div className="lg:max-w-lg bg-emerald-900 p-4 rounded shadow-2xl drop-shadow-2xl">
           <div className="p-3">
             <h2 className="text-2xl font-semibold leading-7 text-purple-600">
               Your profile

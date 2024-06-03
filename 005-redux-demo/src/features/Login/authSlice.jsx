@@ -41,6 +41,11 @@ export const authSlice = createSlice({
       };
       sessionStorage.clear();
     },
+    // updateUser(state, action) {
+    //   state.user = { ...state.user, ...action.payload };
+    //   const saveState = JSON.stringify(state.user);
+    //   sessionStorage.setItem("authUser", saveState);
+    // },
   },
 });
 

@@ -153,7 +153,7 @@ export default function NavBar({ cart }) {
                             </Link>
                           )}
                         </Menu.Item>
-                        <Menu.Item>
+                        {/* <Menu.Item>
                           {({ active }) => (
                             <Link
                               to="#"
@@ -164,7 +164,7 @@ export default function NavBar({ cart }) {
                               Settings
                             </Link>
                           )}
-                        </Menu.Item>
+                        </Menu.Item> */}
                         <Menu.Item>
                           {({ active }) => (
                             <button
